@@ -12,5 +12,71 @@
 
 body {
   color: rgba(255, 255, 255, 0.87);
-  background-color: #2b2b2b;
+  background-color: #171716;
+}
+
+
+
+/* Webkit Browsers */
+::-webkit-scrollbar {
+  width: 12px; /* width for vertical scrollbars */
+  height: 12px; /* height for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9835ff; /* Scrollbar color */
+  border-radius: 6px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a14af8; /* Darker color on hover */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-corner {
+  background: #f1f1f1;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #9835ff #f1f1f1;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #9835ff;
+  border-radius: 6px;
+  border: 3px solid #f1f1f1;
+}
+.hide-scroll {
+  /* Custom styles to hide the scrollbar */
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer 10+ */
+}
+
+.hide-scroll::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+
+
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.wave-icon {
+  display: inline-block;
+  animation: wave 5s infinite;
+  transform-origin: 80% 70%;
 }

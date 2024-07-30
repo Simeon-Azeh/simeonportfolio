@@ -22,7 +22,7 @@ function Header() {
   };
 
   return (
-    <div className="flex justify-between items-center py-8 px-6 md:px-0 text-white font-montserrat">
+    <div className="flex justify-between items-center py-8 px-6 md:px-0  font-inter sticky top-0 z-50">
       <div className="text-lg font-semibold">
         <h1 className='font-montserrat-alt'>Simeon <span className='text-gray-300'>Azeh</span></h1>
       </div>
@@ -38,7 +38,7 @@ function Header() {
             {dropdownOpen ? <IoIosArrowUp className="ml-1" /> : <IoIosArrowDown className="ml-1" />}
           </button>
           {dropdownOpen && (
-            <div className="absolute bg-[#2c2b2b]  text-white py-2 mt-2 space-y-2 rounded border border-gray-500">
+            <div className="absolute bg-[#1a1818]  text-white py-2 mt-2 space-y-2 rounded border border-gray-600">
               <a href="#skills" className="block py-2 px-4 ">Skills</a>
               <a href="#services" className="block py-2 px-4 ">Services</a>
             </div>
@@ -62,7 +62,7 @@ function Header() {
       >
         <MenuOutlined size={30}/>
       </button>
-      <Drawer title="Menu" placement="right" onClose={onClose} visible={visible} className='bg-[#f7f7f7] font-montserrat font-medium'>
+      <Drawer title="Menu" placement="right" onClose={onClose} visible={visible} className='bg-[#f7f7f7] font-inter font-medium'>
         <a href="#home" className="block py-2 px-4 text-[#2c2b2b] hover:text-[#2c2b2b]">Home</a>
         <a href="#about" className="block py-2 px-4 text-[#2c2b2b] hover:text-[#2c2b2b]">About</a>
         <a href="#skills" className="block py-2 px-4 text-[#2c2b2b] hover:text-[#2c2b2b]">Skills</a>
