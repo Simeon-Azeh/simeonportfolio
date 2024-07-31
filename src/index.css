@@ -19,17 +19,17 @@ body {
 
 /* Webkit Browsers */
 ::-webkit-scrollbar {
-  width: 12px; /* width for vertical scrollbars */
-  height: 12px; /* height for horizontal scrollbars */
+  width: 6px; /* width for vertical scrollbars */
+  height: 6px; /* height for horizontal scrollbars */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #9835ff; /* Scrollbar color */
+  background: #414760; /* Scrollbar color */
   border-radius: 6px; /* Rounded corners */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a14af8; /* Darker color on hover */
+  background: #414760; /* Darker color on hover */
 }
 
 ::-webkit-scrollbar-track {
@@ -44,11 +44,11 @@ body {
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #9835ff #f1f1f1;
+  scrollbar-color: #414760 #f1f1f1;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #9835ff;
+  background-color: #414760;
   border-radius: 6px;
   border: 3px solid #f1f1f1;
 }
@@ -79,4 +79,14 @@ body {
   display: inline-block;
   animation: wave 5s infinite;
   transform-origin: 80% 70%;
+}
+.custom-flag-select {
+  background-color: transparent !important;
+  border: none !important;
+  color: white !important;
+}
+
+.custom-flag-select .flag-select__option {
+  background-color: #1a1818 !important;
+  color: white !important;
 }

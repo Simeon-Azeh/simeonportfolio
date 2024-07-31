@@ -4,8 +4,8 @@ import Hero from '../components/Hero'
 
 function Home() {
   return (
-    <div className="w-full md:w-4/5 mx-auto">
-        <div>
+    <div className="">
+        <div className='sticky top-0'>
         <Header />
         </div>
         <div>
