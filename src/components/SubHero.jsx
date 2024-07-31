@@ -4,7 +4,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 function SubHero() {
   return (
     <div className='bg-white dark:bg-dark-body transition-colors font-inter'>
-      <div className='w-full md:w-4/5 mx-auto  px-6 md:px-0'>
+      <div className='w-full md:w-4/5 mx-auto pt-6 px-6 md:px-0'>
         <h2 className='text-2xl md:text-4xl mb-2 dark:text-slate-50 text-[#414760]'>Your vision deserves a world-class execution</h2>
         <h2 className='text-xl md:text-3xl dark:text-slate-300 text-[#6b7280]'>I am a go-to design partner for startups, agencies and creatives.</h2>
         <p className='text-[15px] dark:text-slate-300 text-[#6b7280] mt-2'>Looking to transform your vision into a real-world product? I thrive at crafting intuitive and attractive interfaces that tackle complex challenges.</p>

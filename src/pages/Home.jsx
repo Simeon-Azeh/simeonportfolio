@@ -4,6 +4,7 @@ import Hero from '../components/Hero'
 import TrustedBy from '../components/Trustedby'
 import SubHero from '../components/SubHero'
 import MyWork from '../components/MyWork'
+import WhyMe from '../components/WhyMe'
 
 function Home() {
   return (
@@ -23,6 +24,9 @@ function Home() {
         </div>
         <div>
           <MyWork />
+        </div>
+        <div>
+          <WhyMe />
         </div>
     </div>
   )

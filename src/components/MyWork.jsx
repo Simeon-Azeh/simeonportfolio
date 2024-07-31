@@ -29,7 +29,7 @@ const MyWork = () => {
   return (
     <div className='bg-[#f9feff] dark:bg-dark-body transition-colors font-inter'>
       <div className=" w-full md:w-4/5 mx-auto py-10 px-6 md:px-0 font-inter">
-        <h2 className=" font-medium mb-2 text-[#414760] dark:text-gray-200 ">
+        <h2 className="text-2xl md:text-4xl font-medium mb-2 text-[#414760] dark:text-gray-200 ">
           My Work
         </h2>
         <div className="flex flex-col items-center">
