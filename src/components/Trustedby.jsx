@@ -27,7 +27,7 @@ const TrustedBy = () => {
             <img src={logo3} alt="Logo 3" className="w-full h-auto filter dark:grayscale" />
             </div>
         </div>
-        <div>
+        <div className='hidden'>
             <div className='w-24'>
             <img src={logo4} alt="Logo 4" className="w-full h-auto filter grayscale" />
             </div>
