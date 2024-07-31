@@ -28,7 +28,7 @@ function Hero() {
 
   return (
     <div className='bg-[#F9FEFF] dark:bg-dark-body transition-colors'>
-          <div className='w-full md:w-4/5 mx-auto py-10 px-6 font-inter text-white  h-[100vh] '>
+          <div className='w-full md:w-4/5 mx-auto my-auto px-4 font-inter text-white pb-6  '>
       <div className='w-36 h-36 flex m-auto'>
         <img src={HeroImg} alt="HeroImg" className='w-full' />
       </div>
@@ -41,12 +41,12 @@ function Hero() {
             <MdWavingHand />
           </span>
         </p>
-        <h2 className='relative overflow-hidden inline-block text-4xl md:text-5xl font-normal dark:text-slate-50 text-[#414760]'>
+        <h2 className='relative  overflow-hidden inline-block text-4xl md:text-5xl font-medium dark:text-slate-50 text-[#414760]'>
           Building digital products, <span className='dark:text-[#fff19e] text-orange-500'>brands </span>and <span className='dark:text-[#fff19e] text-orange-500'>experiences. </span>
         </h2>
     
        
-        <div className='mt-4 text-xl font-medium dark:text-slate-50 text-[#414760]'>
+        <div className='mt-4 text-xl font-medium dark:text-slate-50 text-[#414760] hidden'>
           I am a{' '}
           <span
             className={`inline-block  text-xl transition-all duration-500 dark:text-[#fff19e] text-orange-500 ${fade ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
@@ -56,7 +56,7 @@ function Hero() {
         </div>
         <div className='mt-6'>
           <Link to="/explore">
-            <button className='dark:bg-[#1B1B1A] bg-orange-500 px-6 py-3 border dark:border-gray-500 md:border-none  dark:border-solid  rounded mx-auto font-normal text-lg transition-transform duration-300 hover:translate-y-[-3px] flex items-center gap-2'>
+            <button className='dark:bg-[#1B1B1A] bg-orange-500 px-6 py-3  md:border-none  dark:border-solid  rounded mx-auto font-normal text-lg transition-transform duration-300 hover:translate-y-[-3px] flex items-center gap-2'>
               Explore <IoMdArrowForward />
             </button>
           </Link>

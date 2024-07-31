@@ -14,6 +14,7 @@ export default {
       },
       colors: {
         'dark-body': '#171716',
+        'logo-grey': '#6b7280',
       },
     },
   },
