@@ -27,8 +27,8 @@ function Hero() {
   }, []);
 
   return (
-    <div className='bg-[#F9FEFF] dark:bg-dark-body transition-colors h-screen flex items-center justify-center'>
-      <div className='w-full md:w-4/5 mx-auto px-4 font-inter text-center pb-6'>
+    <div className='bg-[#F9FEFF] dark:bg-dark-body transition-colors h-[80vh] flex items-center justify-center'>
+      <div className='w-full md:w-4/5 mx-auto px-4 font-inter text-center '>
         <div className='w-36 h-36 flex mx-auto'>
           <img src={HeroImg} alt="HeroImg" className='w-full' />
         </div>
