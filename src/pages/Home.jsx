@@ -7,7 +7,7 @@ import SubHero from '../components/SubHero'
 function Home() {
   return (
     <div className="">
-        <div className='sticky top-0 bg-[#F9FEFF] dark:bg-[#171716] z-50 py-6'>
+        <div className='sticky top-0 bg-[#F9FEFF] dark:bg-[#171716] z-50 '>
         <Header />
         </div>
         <div>

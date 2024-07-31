@@ -7,7 +7,7 @@ import logo4 from '../../public/images/urega.png'; // Replace with your logo pat
 const TrustedBy = () => {
   return (
     <div  className=" bg-white dark:bg-dark-body transition-colors font-inter">
-         <div className="w-full md:w-4/5 mx-auto py-10 px-6">
+         <div className="w-full md:w-4/5 mx-auto py-10 px-6 md:px-0">
       <h2 className=" text-[16px] font-normal text-slate-500 dark:text-gray-300 ">
         Trusted by industry leaders:
       </h2>
