@@ -3,6 +3,7 @@ import { FaLaptopCode, FaPaintBrush } from 'react-icons/fa';
 import { BsCheck } from 'react-icons/bs';
 import { CgBrowser } from "react-icons/cg";
 import { VscLightbulbSparkle } from "react-icons/vsc";
+import { TbRainbow } from "react-icons/tb";
 
 const PricingCard = ({ icon: Icon, title, pricingType, price, description, features, buttonLabel }) => (
   <div className="bg-white dark:bg-[#1B1B1A] p-6 rounded-lg  w-full md:w-2/5  mx-4 mb-6 dark:border dark:border-gray-800 dark:border-solid font-inter">
@@ -58,11 +59,22 @@ function Pricing() {
             buttonLabel="Let's Work Together"
           />
         </div>
-        <div className="bg-white dark:bg-[#1B1B1A] p-6 rounded-lg  w-full mt-6 dark:border dark:border-gray-800 dark:border-solid">
-          <h3 className="text-xl font-semibold mb-2 dark:text-gray-200">Custom</h3>
-          <p className="mb-4 text-gray-700 dark:text-gray-300">Have unique requirements? Let's discuss a custom solution tailored to your needs.</p>
-          <button className="bg-orange-500 dark:bg-dark-body text-white px-4 py-2 rounded-lg hover:translate-y-[-3px] duration-300">
-            Contact Us
+        <div className="flex items-center justify-between flex-col md:flex-row  bg-white dark:bg-[#1B1B1A] px-6 py-6 rounded-lg  w-full mt-6 dark:border dark:border-gray-800 dark:border-solid font-inter">
+            <div className='flex gap-2 items-center '>
+           
+            <div>
+                <div className='flex items-center gap-2'>
+                <TbRainbow size={20} />
+                <h3 className="text-lg font-semibold  dark:text-gray-200">Custom</h3>
+                </div>
+          
+            <p className="mb-4 text-gray-700 dark:text-gray-300">Have unique requirements? Let's discuss a custom solution tailored to your needs.</p>
+            </div>
+     
+
+            </div>
+          <button className="bg-orange-500 dark:border flex w-full items-center justify-center md:w-1/6  dark:border-gray-700 dark:border-solid dark:bg-dark-body text-white px-4 py-2 rounded-lg hover:translate-y-[-3px] duration-300">
+           Let's talk
           </button>
         </div>
       </div>
