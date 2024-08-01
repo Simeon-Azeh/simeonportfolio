@@ -11,6 +11,7 @@ import Pricing from '../components/Pricing'
 import Footer from '../components/Footer'
 import AboutHero from '../components/About/AboutHero'
 import AboutMe from '../components/About/AboutMe'
+import Facts from '../components/About/Facts'
 function About() {
   return (
     <div className="">
@@ -25,7 +26,7 @@ function About() {
           <AboutMe />
         </div>
         <div>
-            <TrustedBy />
+            <Facts/>
         </div>
         <div>
           <MyWork />
