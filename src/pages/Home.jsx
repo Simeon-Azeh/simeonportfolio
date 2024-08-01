@@ -7,6 +7,7 @@ import MyWork from '../components/MyWork'
 import WhyMe from '../components/WhyMe'
 import Services from '../components/Services'
 import Testimonial from '../components/Testimonial'
+import Pricing from '../components/Pricing'
 
 function Home() {
   return (
@@ -35,6 +36,9 @@ function Home() {
         </div>
         <div>
           <Testimonial />
+        </div>
+        <div>
+          <Pricing />
         </div>
     </div>
   )
