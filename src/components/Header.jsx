@@ -49,22 +49,24 @@ function Header() {
         <h1 className='font-montserrat-alt text-[#414760] dark:text-slate-50'>Simeon <span className='dark:text-gray-300 text-orange-500'>Azeh</span></h1>
       </div>
       <div className="hidden md:flex space-x-6 text-[#414760] dark:text-slate-50 ">
+
         <a href="#home" className="hover:border-b-2 border-gray-400 ">Home</a>
-        <a href="#about" className="hover:border-b-2 border-gray-400">About</a>
-        <a href="#portfolio" className="hover:border-b-2 border-gray-400">Portfolio</a>
-        <a href="#contact" className="hover:border-b-2 border-gray-400">Contact</a>
         <div className="relative">
           <button onClick={toggleDropdown} className="flex items-center hover:text-gray-400">
-            More
+            About
             {dropdownOpen ? <IoIosArrowUp className="ml-1" /> : <IoIosArrowDown className="ml-1" />}
           </button>
           {dropdownOpen && (
             <div className="absolute bg-[#1a1818] text-white py-2 mt-2 space-y-2 rounded border border-gray-600">
+            <a href="#skills" className="block py-2 px-4">Resume</a>
               <a href="#skills" className="block py-2 px-4">Skills</a>
-              <a href="#services" className="block py-2 px-4">Services</a>
+              <a href="#services" className="block py-2 px-4">Portfolio</a>
             </div>
           )}
         </div>
+        <a href="#portfolio" className="hover:border-b-2 border-gray-400">Services</a>
+        <a href="#contact" className="hover:border-b-2 border-gray-400">Contact</a>
+        
       </div>
       <div className="hidden md:flex items-center space-x-4">
         <button onClick={toggleDarkMode} className="hover:text-gray-400 dark:text-slate-50 text-[#414760]">

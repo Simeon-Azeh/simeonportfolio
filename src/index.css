@@ -91,4 +91,66 @@ body {
 .custom-flag-select .flag-select__option {
   background-color: #1a1818 !important;
   color: white !important;
+}.marquee-container {
+  height: 100%; /* Adjust to show exactly two rows of images */
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee {
+  display: flex;
+  flex-direction: column;
+  animation: marquee 60s linear infinite; /* Adjust duration as needed */
+    /* Pause animation on hover */
+
+    transition: animation-play-state 0.5s ease; /* Smooth transition */
+}
+.marquee:hover {
+  animation-play-state: paused;
+}
+.marquee-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* Two images per row */
+  gap: 10px; /* Adjust the gap between images if needed */
+}
+
+.marquee-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px; /* Space between images */
+}
+
+.marquee-item img {
+  width: 100%; /* Ensure images take full width */
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Overlay effect */
+.marquee-container::before,
+.marquee-container::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 20%; /* Adjust height for the fade effect */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+  z-index: 1;
+}
+
+.marquee-container::after {
+  top: auto;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%); /* Move up by the container's height */
+  }
 }

@@ -27,7 +27,7 @@ function Hero() {
   }, []);
 
   return (
-    <div className='bg-[#F9FEFF] dark:bg-dark-body transition-colors h-[80vh] flex items-center justify-center'>
+    <div className='bg-[#F9FEFF] dark:bg-dark-body transition-colors h-[90vh] flex items-center justify-center'>
       <div className='w-full md:w-4/5 mx-auto px-4 font-inter text-center '>
         <div className='w-36 h-36 flex mx-auto'>
           <img src={HeroImg} alt="HeroImg" className='w-full' />
@@ -50,7 +50,7 @@ function Hero() {
           </div>
           <div className='mt-6'>
             <Link to="/explore">
-              <button className='dark:bg-[#1B1B1A] bg-orange-500 px-6 py-3 border-none rounded mx-auto font-normal text-lg transition-transform duration-300 hover:translate-y-[-3px] flex items-center gap-2'>
+              <button className='dark:bg-[#1B1B1A] dark:border dark:border-gray-700 dark:border-solid bg-orange-500 px-6 py-3 border-none rounded mx-auto font-normal text-lg transition-transform duration-300 hover:translate-y-[-3px] flex items-center gap-2'>
                 Explore <IoMdArrowForward />
               </button>
             </Link>
