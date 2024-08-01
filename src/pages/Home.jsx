@@ -8,7 +8,7 @@ import WhyMe from '../components/WhyMe'
 import Services from '../components/Services'
 import Testimonial from '../components/Testimonial'
 import Pricing from '../components/Pricing'
-
+import Footer from '../components/Footer'
 function Home() {
   return (
     <div className="">
@@ -39,6 +39,9 @@ function Home() {
         </div>
         <div>
           <Pricing />
+        </div>
+        <div>
+          <Footer />
         </div>
     </div>
   )
