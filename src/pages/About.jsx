@@ -12,6 +12,7 @@ import Footer from '../components/Footer'
 import AboutHero from '../components/About/AboutHero'
 import AboutMe from '../components/About/AboutMe'
 import Facts from '../components/About/Facts'
+import Timeline from '../components/About/Timeline'
 function About() {
   return (
     <div className="">
@@ -27,6 +28,9 @@ function About() {
         </div>
         <div>
             <Facts/>
+        </div>
+        <div>
+            <Timeline/>
         </div>
         <div>
           <MyWork />
