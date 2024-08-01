@@ -6,6 +6,7 @@ import SubHero from '../components/SubHero'
 import MyWork from '../components/MyWork'
 import WhyMe from '../components/WhyMe'
 import Services from '../components/Services'
+import Testimonial from '../components/Testimonial'
 
 function Home() {
   return (
@@ -31,6 +32,9 @@ function Home() {
         </div>
         <div>
           <Services />
+        </div>
+        <div>
+          <Testimonial />
         </div>
     </div>
   )
