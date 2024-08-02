@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import About from './pages/About'
 import Portfolio from './pages/Portfolio';
 
+import ServicesPage from './pages/Services';
+
 
 
 function ScrollToTop() {
@@ -28,6 +30,7 @@ function App() {
         <Route path="*" element={<Home />} />
         <Route path="/resume" element={<About />} />
         <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/services" element={<ServicesPage />} />
       </Routes>
     </BrowserRouter>
     </>
