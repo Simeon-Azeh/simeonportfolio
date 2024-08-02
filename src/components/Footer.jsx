@@ -14,10 +14,10 @@ function Footer() {
             <h1 className='font-montserrat-alt text-[#414760] font-medium dark:text-slate-50'>Simeon <span className='dark:text-gray-300 text-pink-600'>Azeh</span></h1>
           </div>
           <div className='flex gap-4 md:gap-8  items-center'>
-            <Link to="/resume" className='text-[#414760] hover:border-b-2 border-pink-600 dark:border-gray-400 dark:border-solid'>Resume</Link>
-            <Link to="/contact" className='text-[#414760] hover:border-b-2 border-pink-600 dark:border-gray-400 dark:border-solid'>Contact</Link>
-            <Link to="/services" className='text-[#414760] hover:border-b-2 border-pink-600 dark:border-gray-400 dark:border-solid'>Services</Link>
-            <Link to="/portfolio" className='text-[#414760] hover:border-b-2 border-pink-600 dark:border-gray-400 dark:border-solid'>Portfolio</Link>
+            <Link to="/resume" className='text-[#414760] dark:text-white hover:border-b-2 border-pink-600 dark:border-gray-400 dark:border-solid'>Resume</Link>
+            <Link to="/contact" className='text-[#414760] dark:text-white  hover:border-b-2 border-pink-600 dark:border-gray-400 dark:border-solid'>Contact</Link>
+            <Link to="/services" className='text-[#414760] dark:text-white  hover:border-b-2 border-pink-600 dark:border-gray-400 dark:border-solid'>Services</Link>
+            <Link to="/portfolio" className='text-[#414760] dark:text-white  hover:border-b-2 border-pink-600 dark:border-gray-400 dark:border-solid'>Portfolio</Link>
           </div>
         </div>
         <div className='flex flex-col gap-4'>
@@ -32,7 +32,7 @@ function Footer() {
       </div>
       <div className='w-[100%] md:w-4/5 mx-auto flex flex-col md:flex-row items-center justify-between py-10 px-8 md:px-0'>
         <div>
-          <p className='dark:text-slate-300 mb-4 md:mb-0'>© Simeon Azeh 2024. All Rights Reserved</p>
+          <p className='text-light-text dark:text-slate-300 mb-4 md:mb-0'>© Simeon Azeh 2024. All Rights Reserved</p>
         </div>
         <div className='flex gap-4 items-center font-poppins text-[#404660] text-[14px]'>
           
