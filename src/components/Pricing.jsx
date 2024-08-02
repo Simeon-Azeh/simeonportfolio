@@ -4,7 +4,7 @@ import { BsCheck } from 'react-icons/bs';
 import { CgBrowser } from "react-icons/cg";
 import { VscLightbulbSparkle } from "react-icons/vsc";
 import { TbRainbow } from "react-icons/tb";
-
+import { Link } from 'react-router-dom';
 const PricingCard = ({ icon: Icon, title, pricingType, price, description, features, buttonLabel }) => (
   <div className="bg-white dark:bg-[#1B1B1A] p-6 rounded-lg  w-full md:w-2/5  mx-4 mb-6 dark:border dark:border-gray-800 dark:border-solid font-inter">
     <div className="flex items-center mb-4">
@@ -29,9 +29,9 @@ const PricingCard = ({ icon: Icon, title, pricingType, price, description, featu
       ))}
     </ul>
     <hr className='dark:border-gray-700 dark:border-solid mb-4' />
-    <button className="flex items-center justify-center w-full bg-orange-500 dark:bg-dark-body dark:border dark:border-gray-700 dark:border-solid text-white px-4 py-2 rounded-lg hover:translate-y-[-3px] duration-300">
+    <Link to="/contact" className="flex items-center justify-center w-full bg-orange-500 dark:bg-dark-body dark:border dark:border-gray-700 dark:border-solid text-white px-4 py-2 rounded-lg hover:translate-y-[-3px] duration-300">
       {buttonLabel}
-    </button>
+    </Link>
   </div>
 );
 
@@ -73,9 +73,10 @@ function Pricing() {
      
 
             </div>
-          <button className="bg-orange-500 dark:border flex w-full items-center justify-center md:w-1/6  dark:border-gray-700 dark:border-solid dark:bg-dark-body text-white px-4 py-2 rounded-lg hover:translate-y-[-3px] duration-300">
-           Let's talk
-          </button>
+            <Link to="/contact" className='bg-orange-500 dark:border flex w-full items-center justify-center md:w-1/6  dark:border-gray-700 dark:border-solid dark:bg-dark-body text-white px-4 py-2 rounded-lg hover:translate-y-[-3px] duration-300'>
+            Let's talk
+            </Link>
+         
         </div>
       </div>
     </div>

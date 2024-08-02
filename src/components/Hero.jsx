@@ -49,7 +49,7 @@ function Hero() {
             </span>
           </div>
           <div className='mt-6'>
-            <Link to="/explore">
+            <Link to="/services">
               <button className='dark:bg-[#1B1B1A] dark:border dark:border-gray-700 dark:border-solid bg-orange-500 px-6 py-3 border-none rounded mx-auto font-normal text-lg transition-transform duration-300 hover:translate-y-[-3px] flex items-center gap-2'>
                 Explore <IoMdArrowForward />
               </button>
