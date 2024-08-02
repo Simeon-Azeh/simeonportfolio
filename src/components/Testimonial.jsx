@@ -26,7 +26,7 @@ const testimonials = [
 
 function TestimonialCard({ name, position, image, text }) {
   return (
-    <div className=' w-full md:w-4/5 mx-auto my-10 font-inter px-6'>
+    <div className=' w-full md:w-4/5 mx-auto my-10 font-inter px-6 md:px-0'>
       <h2 className='text-2xl font-medium  text-[#414760] dark:text-gray-200 '>Happy Clients</h2>
       <p className='text-[15px] dark:text-slate-300 text-[#6b7280] my-4 '>My individual backgrounds encompass years of industry expertise. We've partnered with clients across different sectors, and here are their thoughts on our services.</p>
          <div className="  font-inter">

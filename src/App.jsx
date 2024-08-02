@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Home from './pages/Home'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import About from './pages/About'
+import Portfolio from './pages/Portfolio';
 
 
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="*" element={<Home />} />
         <Route path="/resume" element={<About />} />
+        <Route path="/portfolio" element={<Portfolio />} />
       </Routes>
     </BrowserRouter>
     </>
