@@ -5,6 +5,7 @@ import About from './pages/About'
 import Portfolio from './pages/Portfolio';
 
 import ServicesPage from './pages/Services';
+import Contact from './pages/Contact';
 
 
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/resume" element={<About />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/services" element={<ServicesPage />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </BrowserRouter>
     </>
