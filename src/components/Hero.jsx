@@ -27,20 +27,20 @@ function Hero() {
   }, []);
 
   return (
-    <div className='bg-[#F9FEFF] dark:bg-dark-body transition-colors h-[90vh] flex items-center justify-center'>
-      <div className='w-full md:w-4/5 mx-auto px-4 font-inter text-center '>
+    <div className='bg-[#F9FEFF] dark:bg-dark-body transition-colors h-[90vh] flex items-center justify-center dot-pattern'>
+      <div className='w-full md:w-4/5 mx-auto px-4 font-inter text-center  '>
         <div className='w-36 h-36 flex mx-auto'>
           <img src={HeroImg} alt="HeroImg" className='w-full' />
         </div>
         <div className='mt-4'>
-          <p className='flex items-center justify-center gap-2 dark:text-slate-300 text-orange-500 font-medium mb-2'>
+          <p className='flex items-center justify-center gap-2 dark:text-slate-300 text-pink-600 font-medium mb-2'>
             Hello, I'm Simeon 
             <span className='inline-block wave-icon text-2xl'>
               <MdWavingHand />
             </span>
           </p>
-          <h2 className='relative overflow-hidden inline-block text-4xl md:text-5xl font-medium dark:text-slate-50 text-[#414760]'>
-            Building digital products, <span className='dark:text-slate-300 text-orange-500'>brands </span>and <span className='dark:text-slate-300 text-orange-500'>experiences. </span>
+          <h2 className='relative overflow-hidden inline-block text-4xl md:text-5xl font-medium dark:text-slate-50 text-[#545e85]'>
+            Building digital products, <span className='dark:text-slate-300 text-pink-600'>brands </span>and <span className='dark:text-slate-300 text-pink-600'>experiences. </span>
           </h2>
           <div className='mt-4 text-xl font-medium dark:text-slate-50 text-[#414760] hidden'>
             I am a{' '}
@@ -50,7 +50,7 @@ function Hero() {
           </div>
           <div className='mt-6'>
             <Link to="/services">
-              <button className='dark:bg-[#1B1B1A] dark:border dark:border-gray-700 dark:border-solid bg-orange-500 px-6 py-3 border-none rounded mx-auto font-normal text-lg transition-transform duration-300 hover:translate-y-[-3px] flex items-center gap-2'>
+              <button className='dark:bg-[#1B1B1A] dark:border dark:border-gray-700 dark:border-solid bg-pink-600 px-6 py-3 border-none rounded mx-auto font-normal text-lg transition-transform duration-300 hover:translate-y-[-3px] flex items-center gap-2'>
                 Explore <IoMdArrowForward />
               </button>
             </Link>

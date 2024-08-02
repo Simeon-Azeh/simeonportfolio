@@ -27,20 +27,20 @@ const MyWork = () => {
   }, []);
 
   return (
-    <div className='bg-[#f9feff] dark:bg-dark-body transition-colors font-inter'>
+    <div className='bg-white dark:bg-dark-body transition-colors font-inter dot-pattern'>
       <div className=" w-full md:w-4/5 mx-auto py-10 px-6 md:px-0 font-inter">
-        <h2 className="text-2xl md:text-4xl font-medium mb-2 text-[#414760] dark:text-gray-200 ">
+        <h2 className="text-2xl md:text-4xl font-medium mb-2 text-light-text dark:text-gray-200 ">
           My Work
         </h2>
         <div className="flex flex-col items-center">
-          <div className="w-full h-96 relative overflow-hidden border rounded-lg shadow-lg">
+          <div className="w-full h-96 relative overflow-hidden border rounded-lg shadow-sm dark:shadow-lg">
             <img
               src={images[currentImageIndex]}
               alt="My Work"
               className={`w-full h-full object-cover rounded-lg transition-opacity duration-500 ${fadeIn ? 'opacity-100' : 'opacity-0'}`}
             />
             <Link to="/portfolio" className="absolute bottom-[40%] left-1/2 transform -translate-x-1/2">
-              <button className="dark:bg-dark-body bg-orange-500 text-white px-4 py-2 rounded-lg hover:translate-y-[-3px] duration-300">
+              <button className="dark:bg-dark-body bg-pink-600 text-white px-4 py-2 rounded-lg hover:translate-y-[-3px] duration-300">
                 View Work
               </button>
             </Link>

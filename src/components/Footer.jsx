@@ -8,16 +8,16 @@ import { TiSocialLinkedinCircular } from "react-icons/ti";
 function Footer() {
   return (
     <div className='bg-[#f9feff] dark:bg-dark-body transition-colors font-inter '>
-      <div className='w-[100%] md:w-4/5 mx-auto flex flex-col md:flex-row items-center justify-between py-10 px-8 md:px-0 border-b dark:border-b-gray-700 border-t border-t-gray-700 border-solid'>
+      <div className='w-[100%] md:w-4/5 mx-auto flex flex-col md:flex-row items-center justify-between py-10 px-8 md:px-0 border-b dark:border-b-gray-700 dark:border-t border-t-gray-700 border-solid'>
         <div className='flex flex-col gap-4'>
           <div className='w-[120px] flex m-auto md:m-0'>
-            <h1 className='font-montserrat-alt text-[#414760] dark:text-slate-50'>Simeon <span className='dark:text-gray-300 text-orange-500'>Azeh</span></h1>
+            <h1 className='font-montserrat-alt text-[#414760] font-medium dark:text-slate-50'>Simeon <span className='dark:text-gray-300 text-pink-600'>Azeh</span></h1>
           </div>
           <div className='flex gap-4 md:gap-8  items-center'>
-            <Link to="/resume" className='text-[#414760] dark:text-slate-50'>Resume</Link>
-            <Link to="/contact" className='text-[#414760] dark:text-slate-50'>Contact</Link>
-            <Link to="/services" className='text-[#414760] dark:text-slate-50'>Services</Link>
-            <Link to="/portfolio" className='text-[#414760] dark:text-slate-50'>Portfolio</Link>
+            <Link to="/resume" className='text-[#414760] hover:border-b-2 border-pink-600 dark:border-gray-400 dark:border-solid'>Resume</Link>
+            <Link to="/contact" className='text-[#414760] hover:border-b-2 border-pink-600 dark:border-gray-400 dark:border-solid'>Contact</Link>
+            <Link to="/services" className='text-[#414760] hover:border-b-2 border-pink-600 dark:border-gray-400 dark:border-solid'>Services</Link>
+            <Link to="/portfolio" className='text-[#414760] hover:border-b-2 border-pink-600 dark:border-gray-400 dark:border-solid'>Portfolio</Link>
           </div>
         </div>
         <div className='flex flex-col gap-4'>

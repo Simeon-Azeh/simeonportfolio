@@ -34,7 +34,7 @@ function Home() {
         <div>
           <Services />
         </div>
-        <div>
+        <div className='bg-light-body dark:bg-dark-body'>
           <Testimonial />
         </div>
         <div>

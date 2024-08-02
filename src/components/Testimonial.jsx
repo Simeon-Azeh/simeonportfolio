@@ -27,20 +27,20 @@ const testimonials = [
 function TestimonialCard({ name, position, image, text }) {
   return (
     <div className=' w-full md:w-4/5 mx-auto my-10 font-inter px-6 md:px-0'>
-      <h2 className='text-2xl font-medium  text-[#414760] dark:text-gray-200 '>Happy Clients</h2>
-      <p className='text-[15px] dark:text-slate-300 text-[#6b7280] my-4 '>My individual backgrounds encompass years of industry expertise. We've partnered with clients across different sectors, and here are their thoughts on our services.</p>
+      <h2 className='text-2xl md:text-4xl mb-2 dark:text-slate-50 text-light-text'>Happy Clients</h2>
+      <p className='text-[15px] dark:text-slate-300 text-light-text my-4 '>My individual backgrounds encompass years of industry expertise. We've partnered with clients across different sectors, and here are their thoughts on our services.</p>
          <div className="  font-inter">
       <div className="flex items-center mb-4">
         <div className='w-10 mr-4'>
-        <img src={image} alt={name} className="w-full h-auto rounded-full object-contain filter grayscale mr-4" />
+        <img src={image} alt={name} className="w-full h-auto rounded-full object-contain filter dark:grayscale mr-4" />
         </div>
         <div>
-          <h3 className="text-lg font-semibold dark:text-gray-200">{name}</h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400">{position}</p>
+          <h3 className="text-lg font-semibold dark:text-gray-200 text-light-text">{name}</h3>
+          <p className="text-sm text-light-text dark:text-gray-400">{position}</p>
         </div>
       </div>
       <hr className="my-4 dark:border-gray-700 dark:border-solid" />
-      <h4 className="text-lg font-semibold mb-2 dark:text-gray-200">Testimonial</h4>
+      <h4 className="text-lg font-semibold mb-2 text-light-text dark:text-gray-200">Testimonial</h4>
       <p className="text-gray-700 dark:text-gray-300">{text}</p>
     </div>
     </div>
@@ -50,7 +50,7 @@ function TestimonialCard({ name, position, image, text }) {
 
 function Testimonial() {
   return (
-    <div className="bg-white dark:bg-dark-body">
+    <div className="bg-light-body dark:bg-dark-body">
       <Carousel autoplay>
         {testimonials.map((testimonial, index) => (
           <TestimonialCard key={index} {...testimonial} />
