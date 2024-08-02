@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import {  useEffect } from 'react'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import About from './pages/About'
 import Portfolio from './pages/Portfolio';
 
@@ -25,6 +25,7 @@ function App() {
   return (
     <>
     <BrowserRouter>
+    <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
