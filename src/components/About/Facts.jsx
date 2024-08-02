@@ -56,14 +56,12 @@ const Facts = () => {
             key={index}
             className="flex flex-col  justify-center items-center border dark:border-gray-700 dark:border-solid px-4 py-3 rounded-lg gap-1"
           >
-            <div className="text-4xl dark:text-slate-50 gap-2 items-center flex ">
+            <div className="text-2xl md:text-4xl dark:text-slate-50 gap-2 items-center flex ">
                 <p>{fact.icon}</p>
                 <h2  ref={el => countUpRefs.current[index] = el}>0</h2>
             </div>
-            <div className="text-5xl font-bold">
-          
-            </div>
-            <div className="text-lg  dark:text-slate-50">{fact.title}</div>
+           
+            <div className="text-xs md:text-lg  dark:text-slate-50">{fact.title}</div>
           </div>
         ))}
       </div>
