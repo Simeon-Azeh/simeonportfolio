@@ -49,19 +49,19 @@ const Facts = () => {
   }, [isVisible]);
 
   return (
-    <div id="facts-section" className="bg-[#f9feff] dark:bg-dark-body transition-colors py-10 px-6 md:px-0 font-inter">
+    <div id="facts-section" className="bg-light-body dark:bg-dark-body transition-colors py-10 px-6 md:px-0 font-inter">
       <div className="w-full md:w-4/5 mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
         {facts.map((fact, index) => (
           <div
             key={index}
-            className="flex flex-col  justify-center items-center border dark:border-gray-700 dark:border-solid px-4 py-3 rounded-lg gap-1"
+            className="flex flex-col  justify-center items-center border dark:border-gray-700 dark:border-solid px-4 py-3 rounded-lg gap-1 cursor-pointer hover:translate-y-[-5px] duration-300"
           >
-            <div className="text-2xl md:text-4xl dark:text-slate-50 gap-2 items-center flex ">
-                <p>{fact.icon}</p>
+            <div className="text-2xl md:text-4xl text-light-text dark:text-slate-50 gap-2 items-center flex ">
+                <p className='text-pink-600 dark:text-white'>{fact.icon}</p>
                 <h2  ref={el => countUpRefs.current[index] = el}>0</h2>
             </div>
            
-            <div className="text-xs md:text-lg  dark:text-slate-50">{fact.title}</div>
+            <div className="text-xs md:text-lg text-light-text  dark:text-slate-50">{fact.title}</div>
           </div>
         ))}
       </div>

@@ -36,7 +36,7 @@ function About() {
         <div>
           <Skills />
         </div>
-        <div>
+        <div className=''>
           <WhyMe />
         </div>
         <div>

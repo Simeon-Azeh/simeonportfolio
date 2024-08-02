@@ -18,7 +18,7 @@ const Skills = () => {
   return (
     <div className="bg-[#f9feff] dark:bg-dark-body py-10 px-6 md:px-0 font-inter">
       <div className="w-full md:w-4/5 mx-auto">
-        <h2 className="text-2xl font-bold mb-4">Skills</h2>
+        <h2 className="text-2xl md:text-3xl mb-6 dark:text-slate-50 text-light-text ">Skills</h2>
         {skillsData.map((item, index) => (
           <SkillBar key={index} skill={item.skill} level={item.level} />
         ))}
@@ -36,13 +36,13 @@ const SkillBar = ({ skill, level }) => {
   return (
     <div className="mb-4">
       <div className="flex justify-between mb-1">
-        <span className="text-gray-700 dark:text-gray-400">{skill}</span>
-        <span className="text-gray-700 dark:text-gray-400">{level}%</span>
+        <span className="text-light-text dark:text-gray-400">{skill}</span>
+        <span className="text-light-text dark:text-gray-400">{level}%</span>
       </div>
       <div className="w-full bg-gray-200 dark:bg-[#4B4B4B] rounded-sm h-2">
         <div
           ref={ref}
-          className="bg-slate-300 h-2 rounded-sm  transition-all duration-700 ease-in-out"
+          className="bg-pink-600 dark:bg-slate-300 h-2 rounded-sm  transition-all duration-700 ease-in-out"
           style={{ width: inView ? `${level}%` : '0%' }}
         ></div>
       </div>

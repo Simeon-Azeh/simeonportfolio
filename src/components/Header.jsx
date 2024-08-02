@@ -11,7 +11,10 @@ function Header() {
   const [visible, setVisible] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('US');
-  const [darkMode, setDarkMode] = useState(true); // Set default to true
+  const [darkMode, setDarkMode] = useState(() => {
+    // Retrieve dark mode preference from localStorage
+    return localStorage.getItem('darkMode') === 'true';
+  });
 
   useEffect(() => {
     if (darkMode) {
@@ -19,6 +22,8 @@ function Header() {
     } else {
       document.documentElement.classList.remove('dark');
     }
+    // Store dark mode preference in localStorage
+    localStorage.setItem('darkMode', darkMode);
   }, [darkMode]);
 
   const showDrawer = () => {
@@ -43,7 +48,7 @@ function Header() {
   };
 
   return (
-    <div className="bg-light-body dark:bg-dark-body transition-colors ">
+    <div className="bg-light-body dark:bg-dark-body transition-colors">
       <div className='flex justify-between w-full md:w-4/5 mx-auto items-center py-4 px-6 md:px-0 font-inter sticky top-0 z-50'>
         <div className="text-lg font-semibold">
           <Link to="/">

@@ -68,28 +68,28 @@ const anticipatedSkillsData = [
 
 const Timeline = () => {
   return (
-    <div className="bg-[#f9feff] dark:bg-dark-body py-10 px-6 md:px-0">
+    <div className="bg-white dot-pattern dark:bg-dark-body py-10 px-6 md:px-0">
       <div className="w-full md:w-4/5 mx-auto flex flex-col md:flex-row justify-between font-inter  ">
         {/* Left Column: Summary, Education, Anticipated Skills */}
         <div className="w-full md:w-1/2 relative">
           {/* Summary */}
           <div className="mb-12 w-full relative">
-            <h2 className="text-2xl md:text-3xl mb-6 dark:text-slate-50 text-[#414760]">Summary</h2>
-            <p className="text-gray-700 dark:text-gray-400 text-justify">{summaryData.description}</p>
+            <h2 className="text-2xl md:text-3xl mb-6 dark:text-slate-50 text-light-text">Summary</h2>
+            <p className="text-light-text dark:text-gray-400 text-justify">{summaryData.description}</p>
           </div>
 
           {/* Education */}
-          <h2 className="text-2xl md:text-3xl mb-6 dark:text-slate-50 text-[#414760]">Education</h2>
+          <h2 className="text-2xl md:text-3xl mb-6 dark:text-slate-50 text-light-text">Education</h2>
           <div className="relative">
             {educationData.map((item, index) => (
               <div key={index} className="mb-12 relative pl-10">
-                <div className="absolute left-0 top-0 w-4 h-4  rounded-full border--2 dark:border dark:border-white dark:border-solid"></div>
+                <div className="absolute left-0 top-0 w-4 h-4  rounded-full border dark:border dark:border-white dark:border-solid"></div>
                 <div className="absolute left-2 top-4 w-px h-full bg-gray-300 dark:bg-gray-700"></div>
                 <div className="pl-4">
-                  <p className="text-gray-600 dark:text-gray-300 text-sm dark:bg-[#1B1B1A] w-[120px] flex justify-center px-2 py-1 mb-2 rounded dark:border dark:border-gray-700 dark:border-solid">{item.date}</p>
-                  <h3 className="text-lg font-medium uppercase">{item.degree}</h3>
-                  <p className="text-gray-700 dark:text-gray-400 flex items-center gap-2 italic text-[14px] my-2"><LiaUniversitySolid size={20} />{item.institution}</p>
-                  <p className="text-gray-700 dark:text-gray-300 text-[14px] ">{item.description}</p>
+                  <p className="text-pink-600 bg-light-body dark:text-gray-300 text-sm dark:bg-[#1B1B1A] w-[120px] flex justify-center px-2 py-1 mb-2 rounded border dark:border-gray-700 dark:border-solid">{item.date}</p>
+                  <h3 className="text-lg text-light-text dark:text-white font-medium uppercase">{item.degree}</h3>
+                  <p className="text-light-text dark:text-gray-400 flex items-center gap-2 italic text-[14px] my-2"><LiaUniversitySolid size={20} />{item.institution}</p>
+                  <p className="text-light-text dark:text-gray-300 text-[14px] ">{item.description}</p>
                 </div>
               </div>
             ))}
@@ -100,12 +100,12 @@ const Timeline = () => {
           <div className="relative">
             {anticipatedSkillsData.map((item, index) => (
               <div key={index} className="mb-12 relative pl-10">
-                <div className="absolute left-0 top-0 w-4 h-4  rounded-full border--2 dark:border dark:border-white dark:border-solid"></div>
+                <div className="absolute left-0 top-0 w-4 h-4  rounded-full border dark:border dark:border-white dark:border-solid"></div>
                 <div className="absolute left-2 top-4 w-px h-full bg-gray-300 dark:bg-gray-700"></div>
                 <div className="pl-4">
-                  <p className="text-gray-600 dark:text-gray-300 text-sm dark:bg-[#1B1B1A] w-[120px] flex justify-center px-2 py-1 mb-2 rounded dark:border dark:border-gray-700 dark:border-solid">{item.date}</p>
-                  <h3 className="font-medium uppercase mt-4 mb-2">{item.skill}</h3>
-                  <p className="text-gray-700 dark:text-gray-300 text-[14px] ">{item.description}</p>
+                  <p className="text-pink-600 bg-light-body dark:text-gray-300 text-sm dark:bg-[#1B1B1A] w-[120px] flex justify-center px-2 py-1 mb-2 rounded border dark:border-gray-700 dark:border-solid">{item.date}</p>
+                  <h3 className="text-lg text-light-text dark:text-white font-medium uppercase mt-4 mb-2">{item.skill}</h3>
+                  <p className="text-light-text dark:text-gray-300 text-[14px]">{item.description}</p>
                 </div>
               </div>
             ))}
@@ -114,17 +114,17 @@ const Timeline = () => {
 
         {/* Right Column: Professional Experience */}
         <div className=" w-full md:w-1/3 relative">
-          <h2 className="text-2xl md:text-3xl mb-6 dark:text-slate-50 text-[#414760] ">Professional Experience</h2>
+          <h2 className="text-2xl md:text-3xl mb-6 dark:text-slate-50 text-light-text ">Professional Experience</h2>
           <div className="relative">
             {timelineData.map((item, index) => (
               <div key={index} className="mb-12 relative pl-10">
-                <div className="absolute left-0 top-0 w-4 h-4  rounded-full border--2 dark:border dark:border-white dark:border-solid"></div>
+                <div className="absolute left-0 top-0 w-4 h-4  rounded-full border dark:border dark:border-white dark:border-solid"></div>
                 <div className="absolute left-2 top-4 w-px h-full bg-gray-300 dark:bg-gray-700"></div>
                 <div className="pl-4">
-                  <p className="text-gray-600 dark:text-gray-300 text-sm dark:bg-[#1B1B1A] w-[140px] flex justify-center px-2 py-1 mb-2 rounded dark:border dark:border-gray-700 dark:border-solid">{item.date}</p>
-                  <h3 className="font-medium uppercase mt-4 mb-2">{item.title}</h3>
-                  <p className="text-gray-700 dark:text-gray-400 flex items-center gap-2 italic text-[14px] my-2"><GoOrganization /> {item.company}</p>
-                  <ul className="list-disc list-inside pl-4 space-y-4 text-gray-700 dark:text-gray-300 text-[12px]">
+                  <p className="text-pink-600 bg-light-body dark:text-gray-300 text-sm dark:bg-[#1B1B1A] w-[140px] flex justify-center px-2 py-1 mb-2 rounded border dark:border-gray-700 dark:border-solid">{item.date}</p>
+                  <h3 className="text-lg text-light-text dark:text-white font-medium uppercase mt-4 mb-2">{item.title}</h3>
+                  <p className="text-light-text dark:text-gray-400 flex items-center gap-2 italic text-[14px] my-2"><GoOrganization /> {item.company}</p>
+                  <ul className="list-disc list-inside pl-4 space-y-4 text-light-text dark:text-gray-300 text-[12px]">
                     {item.roles.map((role, roleIndex) => (
                       <li key={roleIndex}>{role}</li>
                     ))}
