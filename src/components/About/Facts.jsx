@@ -49,7 +49,7 @@ const Facts = () => {
   }, [isVisible]);
 
   return (
-    <div id="facts-section" className="bg-[#f9feff] dark:bg-dark-body transition-colors py-10 px-4 md:px-0 font-inter">
+    <div id="facts-section" className="bg-[#f9feff] dark:bg-dark-body transition-colors py-10 px-6 md:px-0 font-inter">
       <div className="w-full md:w-4/5 mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
         {facts.map((fact, index) => (
           <div

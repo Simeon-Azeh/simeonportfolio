@@ -36,7 +36,7 @@ function AboutMe() {
             </div>
           </div>
         </div>
-        <div className="w-full md:w-4/5 mt-6 md:mt-0 md:ml-8 font-inter">
+        <div className="w-full md:w-4/5 mt-6 md:mt-0 md:ml-8 font-inter px-1 md:px-0 ">
           <h2 className="text-2xl md:text-4xl font-medium mb-2 text-[#414760] dark:text-gray-200 ">About Me </h2>
           <p className="mt-4 text-gray-700 dark:text-slate-300 text-justify">
            | Hello! I'm Simeon Azeh, a passionate Frontend Engineer, Brand Manager, and Graphic Designer with a knack for crafting engaging digital experiences. With a strong background in web development and design, I focus on creating intuitive and visually appealing interfaces that drive user engagement. I believe in blending creativity with technology to build innovative solutions that stand out. Let's collaborate and bring your ideas to life!
@@ -54,7 +54,7 @@ function AboutMe() {
           </div>
         </div>
       </div>
-        <p className='text-[15px] dark:text-slate-300 text-[#6b7280] mt-4 font-inter w-full md:w-4/5 mx-auto px-2 md:px-0'>I am always eager to learn new technologies and improve my skills. I believe in the power of programming to solve complex problems and make life easier. I am available for freelance work and look forward to contributing to your projects.</p>
+        <p className='text-[15px] dark:text-slate-300 text-[#6b7280] mt-4 font-inter w-full md:w-4/5 mx-auto text-justify md:px-0'>I am always eager to learn new technologies and improve my skills. I believe in the power of programming to solve complex problems and make life easier. I am available for freelance work and look forward to contributing to your projects. |</p>
     </div>
   );
 }
