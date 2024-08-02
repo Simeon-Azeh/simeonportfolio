@@ -35,7 +35,7 @@ function Footer() {
           <p className='dark:text-slate-300 mb-4 md:mb-0'>© Simeon Azeh 2024. All Rights Reserved</p>
         </div>
         <div className='flex gap-4 items-center font-poppins text-[#404660] text-[14px]'>
-          <Link to="/contact" className='text-[#414760] dark:text-slate-50'>Contact</Link>
+          
           <Link to="/terms" className='text-[#414760] dark:text-slate-50'>Terms & Conditions</Link>
           <Link to="/cookies" className='text-[#414760] dark:text-slate-50'>Cookies</Link>
         </div>
