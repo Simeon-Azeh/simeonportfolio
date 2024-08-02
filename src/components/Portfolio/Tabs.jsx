@@ -8,110 +8,136 @@ const projects = {
     {
       title: 'Sidec',
       image: '/images/work5.png',
-      description: 'Sidec is an Edtech compan...',
-      description2: 'Sidec',
-      category: 'Web Development',
-      client: 'Client A',
-      projectDate: '2023-01-01',
-      projectUrl: 'https://example.com/project1',
+      description: 'Sidec is a platform that allows users to find questions, book tutors, and take practice exams. In summary, Sidec is a web app that allows students to practice and know how prepared they are for a National Exam. I am pleased to have worked on the front-end',
+      description2: 'As the frontend developer of Sidec, I bring to life a vision that goes beyond pixels and code. Our platform is a dynamic canvas where education meets innovation. From personalized mock exams to real-time syllabus courses, every click is a step toward empowering students across Africa.',
+      category: 'EdTech',
+      client: 'Sidec Inc.',
+      projectDate: '2023 to Present',
+      projectUrl: 'https://sidecedu.com',
     },
     {
-      title: 'Project 2',
+      title: 'Multiprime',
       image: '/images/work2.png',
-      description: 'Description 2',
-      category: 'Web Development',
+      description: 'Multiprime is an entertainment website that deals with promotion of music, model and arts talents.',
+      description2: 'I work as Snr Frontend developer at this company, as well as their content writer',
+      category: 'Entertainment',
       client: 'Client A',
-      projectDate: '2023-01-01',
-      projectUrl: 'https://example.com/project2',
+      projectDate: '2024 to Present',
+      projectUrl: 'https://multiprime.org',
     },
     {
-      title: 'Project 3',
+      title: 'Urega',
       image: '/images/work6.png',
-      description: 'Description 3',
-      category: 'Web Development',
-      client: 'Client A',
-      projectDate: '2023-01-01',
-      projectUrl: 'https://example.com/project3',
+      description: 'Founded in 2020, the Urega Foundation is a pan-African youth-led NGO founded in the Netherlands with an official branch in Cameroon. Urega was founded to support High school students in Cameroon with full scholarships',
+      description2: "I have a double role at Urega where I currently work as Urega's brand manager, I design and ideate their post across social media. I have also worked on the front-end of the website and designing their application process for a seamless application process for aspiring scholars.",
+      category: 'Education',
+      client: 'The Urega Foundation',
+      projectDate: '2022 to Present',
+      projectUrl: 'https://urega.org',
     },
     {
-      title: 'Project 4',
+        title: 'Afiacare',
+        image: '/images/work.png',
+        description: 'Afiacare is dedicated to transforming the healthcare system in Cameroon. Our comprehensive digital platform addresses key challenges such as data mismanagement, donor matching, and information sharing between hospitals. We leverage cutting-edge technology to enhance the accuracy, efficiency, and accessibility of healthcare services.',
+        description2: "I worked on the frontend of this platform!",
+        category: 'Healthcare',
+        client: 'The Afiacare team',
+        projectDate: '2024 to Present',
+        projectUrl: 'https://afiacare.netlify.app',
+      },
+    {
+      title: 'CodeXtreme',
       image: '/images/work1.png',
-      description: 'Description 4',
-      category: 'Web Development',
-      client: 'Client A',
-      projectDate: '2023-01-01',
-      projectUrl: 'https://example.com/project4',
+      description: 'CodeXtreme is a seasonal 4 days Hackathon that brings together like-minded individuals from all walks of tech to solve problems, network with local and international tech experts and companies, win prizes, and change lives with their tech solutions.',
+      category: 'Events and Student development',
+      client: 'Codextreme | Nigma',
+      projectDate: '2024 to Present',
+      projectUrl: 'https://codextremeex.netlify.app/',
     },
     {
-      title: 'Project 5',
+      title: 'Smartpro',
       image: '/images/work3.png',
-      description: 'Description 5',
+      description: 'This is a smart waste management software, it was just for a school project, but I am looking forward to realizing it.',
       category: 'Web Development',
-      client: 'Client A',
-      projectDate: '2023-01-01',
+      client: 'School Project',
+      projectDate: '2024 to Present',
       projectUrl: 'https://example.com/project5',
     },
     {
-      title: 'Project 6',
+      title: 'Viscame',
       image: '/images/work4.png',
-      description: 'Description 6',
-      category: 'Web Development',
+      description: "Viscame is a tourism website, it's one of my passion projects aimed at promoting tourism in Cameroon",
+      category: 'Tourism',
       client: 'Client A',
-      projectDate: '2023-01-01',
-      projectUrl: 'https://example.com/project6',
+      projectDate: '2023 to Present',
+      projectUrl: 'https://viscam.netlify.app/',
     },
-    {
-      title: 'Project 7',
-      image: '/images/work7.png',
-      description: 'Description 7',
-      category: 'Web Development',
-      client: 'Client A',
-      projectDate: '2023-01-01',
-      projectUrl: 'https://example.com/project7',
-    },
+   
     // Add more projects here
   ],
   Webapps: [
     {
-      title: 'Webapp 1',
-      image: '/images/work5.png',
-      description: 'Description 1',
-      category: 'Web App',
-      client: 'Client B',
-      projectDate: '2023-02-01',
-      projectUrl: 'https://example.com/webapp1',
-    },
-    {
-      title: 'Webapp 2',
-      image: '/images/work4.png',
-      description: 'Description 2',
-      category: 'Web App',
-      client: 'Client B',
-      projectDate: '2023-02-01',
-      projectUrl: 'https://example.com/webapp2',
-    },
-    {
-      title: 'Webapp 3',
-      image: '/images/work3.png',
-      description: 'Description 3',
-      category: 'Web App',
-      client: 'Client B',
-      projectDate: '2023-02-01',
-      projectUrl: 'https://example.com/webapp3',
-    },
+        title: 'Sidec',
+        image: '/images/work5.png',
+        description: 'Sidec is a platform that allows users to find questions, book tutors, and take practice exams. In summary, Sidec is a web app that allows students to practice and know how prepared they are for a National Exam. I am pleased to have worked on the front-end',
+        description2: 'As the frontend developer of Sidec, I bring to life a vision that goes beyond pixels and code. Our platform is a dynamic canvas where education meets innovation. From personalized mock exams to real-time syllabus courses, every click is a step toward empowering students across Africa.',
+        category: 'EdTech',
+        client: 'Sidec Inc.',
+        projectDate: '2023 to Present',
+        projectUrl: 'https://sidecedu.com',
+      },
+      {
+        title: 'Afiacare',
+        image: '/images/work.png',
+        description: 'Afiacare is dedicated to transforming the healthcare system in Cameroon. Our comprehensive digital platform addresses key challenges such as data mismanagement, donor matching, and information sharing between hospitals. We leverage cutting-edge technology to enhance the accuracy, efficiency, and accessibility of healthcare services.',
+        description2: "I worked on the frontend of this platform!",
+        category: 'Healthcare',
+        client: 'The Afiacare team',
+        projectDate: '2024 to Present',
+        projectUrl: 'https://afiacare.netlify.app',
+      },
+      {
+        title: 'Smartpro',
+        image: '/images/work3.png',
+        description: 'This is a smart waste management software, it was just for a school project, but I am looking forward to realizing it.',
+        category: 'Web Development',
+        client: 'School Project',
+        projectDate: '2024 to Present',
+        projectUrl: 'https://example.com/project5',
+      },
+  
     // Add more projects here
   ],
   Websites: [
     {
-      title: 'Website 1',
-      image: '/images/work2.png',
-      description: 'Description 1',
-      category: 'Website',
-      client: 'Client C',
-      projectDate: '2023-03-01',
-      projectUrl: 'https://example.com/website1',
-    },
-    // Add more projects here
+        title: 'Multiprime',
+        image: '/images/work2.png',
+        description: 'Multiprime is an entertainment website that deals with promotion of music, model and arts talents.',
+        description2: 'I work as Snr Frontend developer at this company, as well as their content writer',
+        category: 'Entertainment',
+        client: 'Client A',
+        projectDate: '2024 to Present',
+        projectUrl: 'https://multiprime.org',
+      },
+      {
+        title: 'Urega',
+        image: '/images/work6.png',
+        description: 'Founded in 2020, the Urega Foundation is a pan-African youth-led NGO founded in the Netherlands with an official branch in Cameroon. Urega was founded to support High school students in Cameroon with full scholarships',
+        description2: "I have a double role at Urega where I currently work as Urega's brand manager, I design and ideate their post across social media. I have also worked on the front-end of the website and designing their application process for a seamless application process for aspiring scholars.",
+        category: 'Education',
+        client: 'The Urega Foundation',
+        projectDate: '2022 to Present',
+        projectUrl: 'https://urega.org',
+      },
+      {
+        title: 'CodeXtreme',
+        image: '/images/work1.png',
+        description: 'CodeXtreme is a seasonal 4 days Hackathon that brings together like-minded individuals from all walks of tech to solve problems, network with local and international tech experts and companies, win prizes, and change lives with their tech solutions.',
+        category: 'Events and Student development',
+        client: 'Codextreme | Nigma',
+        projectDate: '2024 to Present',
+        projectUrl: 'https://codextremeex.netlify.app/',
+      },
   ],
   Photos: [
     {
@@ -231,11 +257,11 @@ const Tabs = () => {
   const toggleShowMore = () => {
     setShowMore(!showMore);
   };
-
   const truncateDescription = (description, maxLength) => {
     if (description.length <= maxLength) return description;
     return description.substring(0, maxLength) + '...';
   };
+
 
   return (
     <div className="bg-[#f9feff] dark:bg-dark-body transition-colors py-10 px-4 md:px-0 font-inter">
@@ -276,8 +302,9 @@ const Tabs = () => {
                         </div>
                     
                       <div className="p-4">
-                        <h3 className="text-lg font-semibold">{project.title}</h3>
-                        <p className="text-gray-700 dark:text-gray-400 text-sm">{project.description}</p>
+                        <h3 className="text-lg font-medium">{project.title}</h3>
+                        <p className="text-gray-700 dark:text-gray-400 text-sm hidden md:block">   {truncateDescription(project.description, 28)}</p>
+                        <p className="text-gray-700 dark:text-gray-400 text-sm block md:hidden">   {truncateDescription(project.description, 80)}</p>
                         <button
                           className="flex font-medium text-[13px] items-center mt-4 text-blue-600 dark:text-gray-200"
                           onClick={() => openDrawer(project)}
@@ -307,21 +334,23 @@ const Tabs = () => {
         placement="left"
         onClose={closeDrawer}
         open={isDrawerOpen}
-        width={600}
+        width={700}
         className='font-inter'
       >
         {selectedProject && (
           <div>
-            <img
+            <div className='flex flex-col md:flex-row items-center gap-4'>
+                <div className='w-full md:w-[70%] '>
+                <img
               src={selectedProject.image}
               alt={selectedProject.title}
-              className="w-full h-80 object-cover"
+              className="w-full h-48 object-cover"
             />
-            <p className="mt-4">{selectedProject.description2}</p>
-
-            <ul className="mt-4">
+                </div>
+                <div className='w-full md:w-[30%]'>
+                <ul className="mt-4 text-[#6b7280]">
               <li>
-                <strong>Category:</strong> {selectedProject.category}
+                <strong >Category:</strong> {selectedProject.category}
               </li>
               <li>
                 <strong>Client:</strong> {selectedProject.client}
@@ -341,6 +370,17 @@ const Tabs = () => {
                 </a>
               </li>
             </ul>
+                </div>
+           
+            </div>
+            <div>
+                 <h2 className='text-lg font-semibold mt-5 mb-2 text-[#414760]'>Project Overview</h2>
+              <p className="text-justify text-base">{selectedProject.description}</p>
+            <p className="mt-4 text-justify text-base">{selectedProject.description2}</p>
+            </div>
+           
+
+          
           </div>
         )}
       </Drawer>
