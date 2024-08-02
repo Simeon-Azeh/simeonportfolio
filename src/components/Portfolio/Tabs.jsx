@@ -264,16 +264,16 @@ const Tabs = () => {
 
 
   return (
-    <div className="bg-[#f9feff] dark:bg-dark-body transition-colors py-10 px-4 md:px-0 font-inter">
+    <div className="bg-white dot-pattern  dark:bg-dark-body transition-colors py-10 px-4 md:px-0 font-inter">
       <div className="w-full md:w-4/5 mx-auto">
         <Tab.Group>
-          <Tab.List className="flex space-x-1 bg-[#f9feff] dark:bg-[#1B1B1A] p-1">
+          <Tab.List className="flex space-x-1 bg-white border dark:border-none rounded-lg dark:bg-[#1B1B1A] p-1">
             {Object.keys(projects).map((category) => (
               <Tab
                 key={category}
                 className={({ selected }) =>
-                  `w-full py-2 text-sm leading-5 font-medium text-slate-100 rounded-lg outline-none duration-300
-                  ${selected ? 'border border-gray-700 shadow' : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'}`
+                  `w-full py-2 text-sm leading-5 font-medium text-pink-600 dark:text-slate-100 rounded-lg outline-none duration-300
+                  ${selected ? 'border border-pink-600 dark:border-gray-700 dark:border-solid shadow' : 'text-blue-100 hover:bg-slate-300/[0.12] dark:hover:bg-white/[0.12] dark:hover:text-white'}`
                 }
               >
                 {category}
@@ -291,7 +291,7 @@ const Tabs = () => {
                   .map((project, index) => (
                     <div
                       key={index}
-                      className="bg-[#f9feff] dark:bg-[#1B1B1A] dark:border dark:border-gray-700 dark:border-solid shadow-lg rounded-lg overflow-hidden hover:translate-y-[-5px] duration-300"
+                      className="bg-white border dark:bg-[#1B1B1A] dark:border dark:border-gray-700 dark:border-solid shadow-lg rounded-lg overflow-hidden hover:translate-y-[-5px] duration-300"
                     >
                         <div className='w-[90%] py-4  mx-auto'>
                         <img
@@ -302,11 +302,11 @@ const Tabs = () => {
                         </div>
                     
                       <div className="p-4">
-                        <h3 className="text-lg font-medium">{project.title}</h3>
-                        <p className="text-gray-700 dark:text-gray-400 text-sm hidden md:block">   {truncateDescription(project.description, 28)}</p>
-                        <p className="text-gray-700 dark:text-gray-400 text-sm block md:hidden">   {truncateDescription(project.description, 80)}</p>
+                        <h3 className="text-lg font-medium text-light-text dark:text-white">{project.title}</h3>
+                        <p className="text-light-text dark:text-gray-400 text-sm hidden md:block">   {truncateDescription(project.description, 28)}</p>
+                        <p className="text-light-text dark:text-gray-400 text-sm block md:hidden">   {truncateDescription(project.description, 80)}</p>
                         <button
-                          className="flex font-medium text-[13px] items-center mt-4 text-blue-600 dark:text-gray-200"
+                          className="flex font-medium text-[13px] items-center mt-4 text-pink-600 dark:text-gray-200"
                           onClick={() => openDrawer(project)}
                         >
                           <FaLink className="mr-2" />
@@ -318,7 +318,7 @@ const Tabs = () => {
                 {projectList.length > 4 && (
                   <button
                     onClick={toggleShowMore}
-                    className="mt-4 px-4 py-2 text-blue-600 dark:text-gray-200 border border-gray-700 border-solid dark:border-gray-700 rounded-md"
+                    className="mt-4 px-4 py-2 text-pink-600 dark:text-gray-200 border dark:border-gray-700) dark:border-solid dark:dar rounded-md"
                   >
                     {showMore ? 'Show Less' : 'Show More'}
                   </button>

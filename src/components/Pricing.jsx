@@ -54,8 +54,8 @@ function Pricing() {
             title="Product Design"
             pricingType="Subscription"
             price="$499/mo"
-            description="Professional product design services."
-            features={['UX/UI Design', 'Prototype', 'User Testing', 'Iteration']}
+            description="Professional product design services. Best buy for orgs looking to create custom products."
+            features={['UX/UI Design', 'Prototype', 'User Testing', 'Iteration',  ]}
             buttonLabel="Let's Work Together"
           />
         </div>

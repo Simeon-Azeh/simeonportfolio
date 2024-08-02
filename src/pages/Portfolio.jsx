@@ -17,7 +17,7 @@ function Portfolio() {
         <Header />
         </div>
        
-        <div>
+        <div className=''>
           <SubHero />
         </div>
         <div>
