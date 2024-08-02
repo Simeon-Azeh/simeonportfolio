@@ -13,6 +13,7 @@ import AboutHero from '../components/About/AboutHero'
 import AboutMe from '../components/About/AboutMe'
 import Facts from '../components/About/Facts'
 import Timeline from '../components/About/Timeline'
+import Skills from '../components/About/Skills'
 function About() {
   return (
     <div className="">
@@ -33,19 +34,10 @@ function About() {
             <Timeline/>
         </div>
         <div>
-          <MyWork />
+          <Skills />
         </div>
         <div>
           <WhyMe />
-        </div>
-        <div>
-          <Services />
-        </div>
-        <div>
-          <Testimonial />
-        </div>
-        <div>
-          <Pricing />
         </div>
         <div>
           <Footer />

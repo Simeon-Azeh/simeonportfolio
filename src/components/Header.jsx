@@ -59,7 +59,6 @@ function Header() {
           {dropdownOpen && (
             <div className="absolute bg-[#1a1818] text-white py-2 mt-2 space-y-2 rounded border border-gray-600">
             <a href="#skills" className="block py-2 px-4">Resume</a>
-              <a href="#skills" className="block py-2 px-4">Skills</a>
               <a href="#services" className="block py-2 px-4">Portfolio</a>
             </div>
           )}
@@ -108,8 +107,7 @@ function Header() {
      
       <Drawer title="Menu" placement="right" onClose={onClose} visible={visible} className='bg-[#f7f7f7] font-inter font-medium'>
         <a href="#home" className="block py-2 px-4 text-[#2c2b2b] hover:text-[#2c2b2b]">Home</a>
-        <a href="#about" className="block py-2 px-4 text-[#2c2b2b] hover:text-[#2c2b2b]">About</a>
-        <a href="#skills" className="block py-2 px-4 text-[#2c2b2b] hover:text-[#2c2b2b]">Skills</a>
+        <a href="#about" className="block py-2 px-4 text-[#2c2b2b] hover:text-[#2c2b2b]">Resume</a>
         <a href="#services" className="block py-2 px-4 text-[#2c2b2b] hover:text-[#2c2b2b]">Services</a>
         <a href="#portfolio" className="block py-2 px-4 text-[#2c2b2b] hover:text-[#2c2b2b]">Portfolio</a>
         <a href="#contact" className="block py-2 px-4 text-[#2c2b2b] hover:text-[#2c2b2b]">Contact</a>
