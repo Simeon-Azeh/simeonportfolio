@@ -25,8 +25,17 @@ function AboutHero() {
     }, []);
     useEffect(() => {
         AOS.init({ duration: 1000 });
-      }, []);
     
+        const handleScroll = () => {
+          AOS.refresh(); // Refresh AOS on scroll
+        };
+    
+        window.addEventListener('scroll', handleScroll);
+    
+        return () => {
+          window.removeEventListener('scroll', handleScroll);
+        };
+      }, []);
   return (
     <div className='bg-light-body dark:bg-dark-body transition-colors pb-4'>
         <div className='text-2xl md:text-4xl font-medium dark:text-slate-50 text-light-text  flex gap-2 md:gap-4 items-center w-full md:w-4/5 mx-auto font-inter px-6 md:px-0 '  data-aos="fade-up">

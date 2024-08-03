@@ -5,9 +5,9 @@ import { RiCustomerService2Fill } from "react-icons/ri";
 import { MdPlaylistAddCheckCircle } from "react-icons/md";
 
 const facts = [
-  {  title: 'Happy Clients', count: 1200, icon: <FaRegSmile size={30} /> },
-  {  title: 'Completed Projects', count: 150, icon: <MdPlaylistAddCheckCircle size={30} /> },
-  {  title: 'Hours of Support', count: 3400, icon: <RiCustomerService2Fill  size={30} /> },
+  {  title: 'Happy Clients', count: 12, icon: <FaRegSmile size={30} /> },
+  {  title: 'Completed Projects', count: 15, icon: <MdPlaylistAddCheckCircle size={30} /> },
+  {  title: 'Hours of Support', count: 3700, icon: <RiCustomerService2Fill  size={30} /> },
   {  title: 'Awards', count: 10, icon: <FaAward size={30} /> }
 ];
 

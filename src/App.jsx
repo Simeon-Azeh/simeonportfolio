@@ -13,7 +13,13 @@ function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const timer = setTimeout(() => {
+      window.scrollTo(0, 0);
+      // If AOS is used, ensure it's refreshed here
+      // AOS.refresh();
+    }, 100); // Adjust the delay as needed
+
+    return () => clearTimeout(timer);
   }, [pathname]);
 
   return null;

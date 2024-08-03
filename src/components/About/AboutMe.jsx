@@ -17,8 +17,17 @@ function AboutMe() {
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
-  }, []);
 
+    const handleScroll = () => {
+      AOS.refresh(); // Refresh AOS on scroll
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   return (
     <div className="bg-white dot-pattern dark:bg-dark-body transition-colors py-10 px-4 md:px-0 overflow-hidden" >
       <div className="w-full md:w-4/5 mx-auto flex flex-col md:flex-row items-center">

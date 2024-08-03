@@ -29,8 +29,8 @@ const Skills = () => {
 
 const SkillBar = ({ skill, level }) => {
   const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.5, // Adjust this value as needed
+    triggerOnce: false,
+    threshold: 1, // Adjust this value as needed
   });
 
   return (

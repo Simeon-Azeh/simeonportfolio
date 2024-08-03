@@ -65,9 +65,21 @@ const anticipatedSkillsData = [
 ];
 
 const Timeline = () => {
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-  }, []);
+  
+    useEffect(() => {
+      AOS.init({ duration: 1000 });
+  
+      const handleScroll = () => {
+        AOS.refresh(); // Refresh AOS on scroll
+      };
+  
+      window.addEventListener('scroll', handleScroll);
+  
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, []);
+  
 
   return (
     <div className="bg-white dot-pattern dark:bg-dark-body py-10 px-6 md:px-0">
