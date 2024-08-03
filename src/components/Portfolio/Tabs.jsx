@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Tab } from '@headlessui/react';
 import { FaLink } from 'react-icons/fa';
 import { Drawer } from 'antd';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const projects = {
   All: [
@@ -239,153 +241,156 @@ const projects = {
     // Add more projects here
   ],
 };
-
 const Tabs = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [showMore, setShowMore] = useState(false);
-
-  const openDrawer = (project) => {
-    setSelectedProject(project);
-    setIsDrawerOpen(true);
-  };
-
-  const closeDrawer = () => {
-    setIsDrawerOpen(false);
-  };
-
-  const toggleShowMore = () => {
-    setShowMore(!showMore);
-  };
-  const truncateDescription = (description, maxLength) => {
-    if (description.length <= maxLength) return description;
-    return description.substring(0, maxLength) + '...';
-  };
-
-
-  return (
-    <div className="bg-white dot-pattern  dark:bg-dark-body transition-colors py-10 px-4 md:px-0 font-inter">
-      <div className="w-full md:w-4/5 mx-auto">
-        <Tab.Group>
-          <Tab.List className="flex space-x-1 bg-white border dark:border-none rounded-lg dark:bg-[#1B1B1A] p-1">
-            {Object.keys(projects).map((category) => (
-              <Tab
-                key={category}
-                className={({ selected }) =>
-                  `w-full py-2 text-sm leading-5 font-medium text-pink-600 dark:text-slate-100 rounded-lg outline-none duration-300
-                  ${selected ? 'border border-pink-600 dark:border-gray-700 dark:border-solid shadow' : 'text-blue-100 hover:bg-slate-300/[0.12] dark:hover:bg-white/[0.12] dark:hover:text-white'}`
-                }
-              >
-                {category}
-              </Tab>
-            ))}
-          </Tab.List>
-          <Tab.Panels className="mt-8">
-            {Object.values(projects).map((projectList, idx) => (
-              <Tab.Panel
-                key={idx}
-                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-              >
-                {projectList
-                  .slice(0, showMore ? projectList.length : 4)
-                  .map((project, index) => (
-                    <div
-                      key={index}
-                      className="bg-white border dark:bg-[#1B1B1A] dark:border dark:border-gray-700 dark:border-solid shadow-lg rounded-lg overflow-hidden hover:translate-y-[-5px] duration-300"
-                    >
-                        <div className='w-[90%] py-4  mx-auto'>
-                        <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-48 object-cover rounded-md cursor-pointer hover:scale-105 duration-300"
-                      />
+    const [selectedProject, setSelectedProject] = useState(null);
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const [showMore, setShowMore] = useState(false);
+  
+    useEffect(() => {
+      AOS.init({
+        duration: 1000,
+        once: true,
+      });
+    }, []);
+  
+    const openDrawer = (project) => {
+      setSelectedProject(project);
+      setIsDrawerOpen(true);
+    };
+  
+    const closeDrawer = () => {
+      setIsDrawerOpen(false);
+    };
+  
+    const toggleShowMore = () => {
+      setShowMore(!showMore);
+    };
+  
+    const truncateDescription = (description, maxLength) => {
+      if (description.length <= maxLength) return description;
+      return description.substring(0, maxLength) + '...';
+    };
+  
+    return (
+      <div className="bg-white dot-pattern dark:bg-dark-body transition-colors py-10 px-4 md:px-0 font-inter">
+        <div className="w-full md:w-4/5 mx-auto">
+          <Tab.Group>
+            <Tab.List className="flex space-x-1 bg-white border dark:border-none rounded-lg dark:bg-[#1B1B1A] p-1">
+              {Object.keys(projects).map((category) => (
+                <Tab
+                  key={category}
+                  className={({ selected }) =>
+                    `w-full py-2 text-sm leading-5 font-medium text-pink-600 dark:text-slate-100 rounded-lg outline-none duration-300
+                    ${selected ? 'border border-pink-600 dark:border-gray-700 dark:border-solid shadow' : 'text-blue-100 hover:bg-slate-300/[0.12] dark:hover:bg-white/[0.12] dark:hover:text-white'}`
+                  }
+                >
+                  {category}
+                </Tab>
+              ))}
+            </Tab.List>
+            <Tab.Panels className="mt-8">
+              {Object.values(projects).map((projectList, idx) => (
+                <Tab.Panel
+                  key={idx}
+                  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+                >
+                  {projectList
+                    .slice(0, showMore ? projectList.length : 4)
+                    .map((project, index) => (
+                      <div
+                        key={index}
+                        data-aos="fade-up"
+                        data-aos-offset="200"
+                        data-aos-delay={`${index * 100}`} // Adding delay based on index
+                        className="bg-white border dark:bg-[#1B1B1A] dark:border dark:border-gray-700 dark:border-solid shadow-lg rounded-lg overflow-hidden hover:translate-y-[-5px] duration-300"
+                      >
+                        <div className='w-[90%] py-4 mx-auto'>
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-48 object-cover rounded-md cursor-pointer hover:scale-105 duration-300"
+                          />
                         </div>
-                    
-                      <div className="p-4">
-                        <h3 className="text-lg font-medium text-light-text dark:text-white">{project.title}</h3>
-                        <p className="text-light-text dark:text-gray-400 text-sm hidden md:block">   {truncateDescription(project.description, 28)}</p>
-                        <p className="text-light-text dark:text-gray-400 text-sm block md:hidden">   {truncateDescription(project.description, 80)}</p>
-                        <button
-                          className="flex font-medium text-[13px] items-center mt-4 text-pink-600 dark:text-gray-200"
-                          onClick={() => openDrawer(project)}
-                        >
-                          <FaLink className="mr-2" />
-                          <span>Read More</span>
-                        </button>
+                        <div className="p-4">
+                          <h3 className="text-lg font-medium text-light-text dark:text-white">{project.title}</h3>
+                          <p className="text-light-text dark:text-gray-400 text-sm hidden md:block">{truncateDescription(project.description, 28)}</p>
+                          <p className="text-light-text dark:text-gray-400 text-sm block md:hidden">{truncateDescription(project.description, 80)}</p>
+                          <button
+                            className="flex font-medium text-[13px] items-center mt-4 text-pink-600 dark:text-gray-200"
+                            onClick={() => openDrawer(project)}
+                          >
+                            <FaLink className="mr-2" />
+                            <span>Read More</span>
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                {projectList.length > 4 && (
-                  <button
-                    onClick={toggleShowMore}
-                    className="mt-4 px-4 py-2 text-pink-600 dark:text-gray-200 border dark:border-gray-700) dark:border-solid dark:dar rounded-md"
-                  >
-                    {showMore ? 'Show Less' : 'Show More'}
-                  </button>
-                )}
-              </Tab.Panel>
-            ))}
-          </Tab.Panels>
-        </Tab.Group>
-      </div>
-
-      <Drawer
-        title={selectedProject?.title}
-        placement="left"
-        onClose={closeDrawer}
-        open={isDrawerOpen}
-        width={700}
-        className='font-inter'
-      >
-        {selectedProject && (
-          <div>
-            <div className='flex flex-col md:flex-row items-center gap-4'>
-                <div className='w-full md:w-[70%] '>
-                <img
-              src={selectedProject.image}
-              alt={selectedProject.title}
-              className="w-full h-48 object-cover"
-            />
+                    ))}
+                  {projectList.length > 4 && (
+                    <button
+                      onClick={toggleShowMore}
+                      className="mt-4 px-4 py-2 text-pink-600 dark:text-gray-200 border dark:border-gray-700 dark:border-solid rounded-md"
+                    >
+                      {showMore ? 'Show Less' : 'Show More'}
+                    </button>
+                  )}
+                </Tab.Panel>
+              ))}
+            </Tab.Panels>
+          </Tab.Group>
+        </div>
+  
+        <Drawer
+          title={selectedProject?.title}
+          placement="left"
+          onClose={closeDrawer}
+          open={isDrawerOpen}
+          width={700}
+          className='font-inter'
+        >
+          {selectedProject && (
+            <div>
+              <div className='flex flex-col md:flex-row items-center gap-4'>
+                <div className='w-full md:w-[70%]'>
+                  <img
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    className="w-full h-48 object-cover"
+                  />
                 </div>
                 <div className='w-full md:w-[30%]'>
-                <ul className="mt-4 text-[#6b7280]">
-              <li>
-                <strong >Category:</strong> {selectedProject.category}
-              </li>
-              <li>
-                <strong>Client:</strong> {selectedProject.client}
-              </li>
-              <li>
-                <strong>Project Date:</strong> {selectedProject.projectDate}
-              </li>
-              <li>
-                <strong>Project URL:</strong>{' '}
-                <a
-                  href={selectedProject.projectUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600"
-                >
-                  {selectedProject.projectUrl}
-                </a>
-              </li>
-            </ul>
+                  <ul className="mt-4 text-[#6b7280]">
+                    <li>
+                      <strong>Category:</strong> {selectedProject.category}
+                    </li>
+                    <li>
+                      <strong>Client:</strong> {selectedProject.client}
+                    </li>
+                    <li>
+                      <strong>Project Date:</strong> {selectedProject.projectDate}
+                    </li>
+                    <li>
+                      <strong>Project URL:</strong>{' '}
+                      <a
+                        href={selectedProject.projectUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600"
+                      >
+                        {selectedProject.projectUrl}
+                      </a>
+                    </li>
+                  </ul>
                 </div>
-           
+              </div>
+              <div>
+                <h2 className='text-lg font-semibold mt-5 mb-2 text-[#414760]'>Project Overview</h2>
+                <p className="text-justify">{selectedProject.description}</p>
+              </div>
             </div>
-            <div>
-                 <h2 className='text-lg font-semibold mt-5 mb-2 text-[#414760]'>Project Overview</h2>
-              <p className="text-justify text-base">{selectedProject.description}</p>
-            <p className="mt-4 text-justify text-base">{selectedProject.description2}</p>
-            </div>
-           
-
-          
-          </div>
-        )}
-      </Drawer>
-    </div>
-  );
-};
-
-export default Tabs;
+          )}
+        </Drawer>
+      </div>
+    );
+  };
+  
+  export default Tabs;

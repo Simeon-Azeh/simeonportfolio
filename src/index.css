@@ -174,4 +174,40 @@ body {
 /* Hide dot pattern in dark mode */
 .dark .dot-pattern {
   background-image: none;
+}/* index.css */
+
+
+/* Add this CSS to your styles.css or a CSS module */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-image {
+  width: 9rem;
+  height: 9rem;
+  border-radius: 50%;
+  margin: auto;
+}
+
+.skeleton-text {
+  height: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.skeleton-button {
+  width: 8rem;
+  height: 2.5rem;
+  border-radius: 0.25rem;
+  margin: auto;
 }

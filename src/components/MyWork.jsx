@@ -7,6 +7,9 @@ import work4 from '../../public/images/work4.png';
 import work5 from '../../public/images/work5.png';
 import work6 from '../../public/images/work6.png';
 import work7 from '../../public/images/work7.png';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 const images = [work1, work2, work3, work4, work5, work6, work7];
 
@@ -26,19 +29,23 @@ const MyWork = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
   return (
-    <div className='bg-white dark:bg-dark-body transition-colors font-inter dot-pattern'>
+    <div className='bg-white dark:bg-dark-body transition-colors font-inter dot-pattern overflow-hidden'>
       <div className=" w-full md:w-4/5 mx-auto py-10 px-6 md:px-0 font-inter">
-        <h2 className="text-2xl md:text-4xl font-medium mb-2 text-light-text dark:text-gray-200 ">
+        <h2 className="text-2xl md:text-4xl font-medium mb-8 text-light-text dark:text-gray-200 " data-aos="fade-left" data-aos-delay="500">
           My Work
         </h2>
         <div className="flex flex-col items-center">
-          <div className="w-full h-96 relative overflow-hidden border rounded-lg shadow-sm dark:shadow-lg">
+          <div className="w-full h-96 relative overflow-hidden border rounded-lg shadow-sm dark:shadow-lg"    data-aos="fade-right" data-aos-delay="400" >
             <img
               src={images[currentImageIndex]}
               alt="My Work"
               className={`w-full h-full object-cover rounded-lg transition-opacity duration-500 ${fadeIn ? 'opacity-100' : 'opacity-0'}`}
-            />
+           />
             <Link to="/portfolio" className="absolute bottom-[40%] left-1/2 transform -translate-x-1/2">
               <button className="dark:bg-dark-body bg-pink-600 text-white px-4 py-2 rounded-lg hover:translate-y-[-3px] duration-300">
                 View Work
