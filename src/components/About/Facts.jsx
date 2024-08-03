@@ -3,15 +3,17 @@ import { CountUp } from 'countup.js'; // Ensure this import matches the actual e
 import { FaUserFriends, FaTasks, FaRegSmile, FaAward } from 'react-icons/fa';
 import { RiCustomerService2Fill } from "react-icons/ri";
 import { MdPlaylistAddCheckCircle } from "react-icons/md";
+import { useTranslation } from 'react-i18next';
 
 const facts = [
-  {  title: 'Happy Clients', count: 12, icon: <FaRegSmile size={30} /> },
-  {  title: 'Completed Projects', count: 15, icon: <MdPlaylistAddCheckCircle size={30} /> },
-  {  title: 'Hours of Support', count: 3700, icon: <RiCustomerService2Fill  size={30} /> },
-  {  title: 'Awards', count: 10, icon: <FaAward size={30} /> }
+  { key: 'happy_clients', count: 12, icon: <FaRegSmile size={30} /> },
+  { key: 'completed_projects', count: 15, icon: <MdPlaylistAddCheckCircle size={30} /> },
+  { key: 'hours_of_support', count: 3700, icon: <RiCustomerService2Fill size={30} /> },
+  { key: 'awards', count: 10, icon: <FaAward size={30} /> }
 ];
 
 const Facts = () => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const countUpRefs = useRef([]);
 
@@ -57,11 +59,10 @@ const Facts = () => {
             className="flex flex-col  justify-center items-center border dark:border-gray-700 dark:border-solid px-4 py-3 rounded-lg gap-1 cursor-pointer hover:translate-y-[-5px] duration-300"
           >
             <div className="text-2xl md:text-4xl text-light-text dark:text-slate-50 gap-2 items-center flex ">
-                <p className='text-pink-600 dark:text-white'>{fact.icon}</p>
-                <h2  ref={el => countUpRefs.current[index] = el}>0</h2>
+              <p className='text-pink-600 dark:text-white'>{fact.icon}</p>
+              <h2 ref={el => countUpRefs.current[index] = el}>0</h2>
             </div>
-           
-            <div className="text-xs md:text-lg text-light-text  dark:text-slate-50">{fact.title}</div>
+            <div className="text-xs md:text-lg text-light-text dark:text-slate-50">{t(fact.key)}</div>
           </div>
         ))}
       </div>

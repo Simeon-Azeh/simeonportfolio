@@ -1,85 +1,108 @@
 import React, { useEffect } from 'react';
 import { LiaUniversitySolid } from 'react-icons/lia';
 import { GoOrganization } from 'react-icons/go';
+import { useTranslation } from 'react-i18next';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-const summaryData = {
-  title: 'Summary',
-  description: 'Co-Founder of Sidec and Afiacare. Frontend Engineer at both Sidec and Afiacare. Associate Director for digital strategy & design at Urega Foundation. Experienced in leading and contributing to tech startups and NGOs.'
-};
-
-const timelineData = [
-  {
-    date: '2023 to Present',
-    title: 'Co-Founder & Developer', 
-    company: 'Sidec Edu Ltd, Rwanda.',
-    roles: ['Co-founded Sidec, an EdTech aimed at providing quality education via tech solutions.', 'Worked on the entire frontend of this project', 'Collaborating with teams to implement new features and improvements']
-  },
-  {
-    date: '2023 to Present',
-    title: 'Frontend Developer',
-    company: 'Multiprime Ltd, Cameroon.',
-    roles: ['Worked on the entire frontend of this project', 'Collaborated with design teams', 'Implemented responsive designs']
-  },
-  {
-    date: '2021 to Present',
-    title: 'Associate Director for digital strategy & design',
-    company: 'Urega Foundation, Netherlands.',
-    roles: ['Work on branding and design', 'Manage SEO and social media', 'Customer care for clients', 'Collaborate with design teams', 'Implement new features and improvements']
-  },
-  {
-    date: '2024 to Present',
-    title: 'Frontend Intern',
-    company: 'CodeXtreme, Rwanda.',
-    roles: ['Working with teams to improve my frontend', 'Collaborating with design teams', 'Implement new features and improvements']
-  },
-  {
-    date: '2024 to Present',
-    title: 'Frontend Intern',
-    company: 'Nigma, Rwanda.',
-    roles: ['Working with teams to improve my frontend', 'Collaborating with design teams', 'Implement new features and improvements']
-  },
-];
-
-const educationData = [
-  {
-    date: '2023 - 2026',
-    degree: 'Bachelor of Science in Software Engineering',
-    institution: 'African Leadership University, Rwanda',
-    description: 'Focused on advanced software engineering concepts and web development.'
-  },
-];
-
-const anticipatedSkillsData = [
-  {
-    date: '2024 - 2025',
-    skill: 'Advanced React Techniques',
-    description: 'Mastering React hooks, context API, and performance optimization.'
-  },
-  {
-    date: '2025 - 2026',
-    skill: 'Full Stack Development',
-    description: 'Expanding knowledge to backend development with Node.js and Express.'
-  },
-];
-
 const Timeline = () => {
-  
-    useEffect(() => {
-      AOS.init({ duration: 1000 });
-  
-      const handleScroll = () => {
-        AOS.refresh(); // Refresh AOS on scroll
-      };
-  
-      window.addEventListener('scroll', handleScroll);
-  
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
-    }, []);
-  
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+
+    const handleScroll = () => {
+      AOS.refresh(); // Refresh AOS on scroll
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const summaryData = {
+    title: t('summary_title'),
+    description: t('summary_description')
+  };
+
+  const timelineData = [
+    {
+      date: t('timeline_data_2023_to_present_date'),
+      title: t('timeline_data_2023_to_present_title'),
+      company: t('timeline_data_2023_to_present_company'),
+      roles: [
+        t('timeline_data_2023_to_present_role_1'),
+        t('timeline_data_2023_to_present_role_2'),
+        t('timeline_data_2023_to_present_role_3')
+      ]
+    },
+    {
+      date: t('timeline_data_2023_to_present_date'),
+      title: t('timeline_data_2023_to_present_title_2'),
+      company: t('timeline_data_2023_to_present_company_2'),
+      roles: [
+        t('timeline_data_2023_to_present_role_4'),
+        t('timeline_data_2023_to_present_role_5'),
+        t('timeline_data_2023_to_present_role_6')
+      ]
+    },
+    {
+      date: t('timeline_data_2021_to_present_date'),
+      title: t('timeline_data_2021_to_present_title'),
+      company: t('timeline_data_2021_to_present_company'),
+      roles: [
+        t('timeline_data_2021_to_present_role_1'),
+        t('timeline_data_2021_to_present_role_2'),
+        t('timeline_data_2021_to_present_role_3'),
+        t('timeline_data_2021_to_present_role_4'),
+        t('timeline_data_2021_to_present_role_5')
+      ]
+    },
+    {
+      date: t('timeline_data_2024_to_present_date_1'),
+      title: t('timeline_data_2024_to_present_title_3'),
+      company: t('timeline_data_2024_to_present_company_3'),
+      roles: [
+        t('timeline_data_2024_to_present_role_7'),
+        t('timeline_data_2024_to_present_role_8'),
+        t('timeline_data_2024_to_present_role_9')
+      ]
+    },
+    {
+      date: t('timeline_data_2024_to_present_date_2'),
+      title: t('timeline_data_2024_to_present_title_4'),
+      company: t('timeline_data_2024_to_present_company_4'),
+      roles: [
+        t('timeline_data_2024_to_present_role_10'),
+        t('timeline_data_2024_to_present_role_11'),
+        t('timeline_data_2024_to_present_role_12')
+      ]
+    },
+  ];
+
+  const educationData = [
+    {
+      date: t('education_data_date'),
+      degree: t('education_data_degree'),
+      institution: t('education_data_institution'),
+      description: t('education_data_description')
+    }
+  ];
+
+  const anticipatedSkillsData = [
+    {
+      date: t('anticipated_skills_data_2024_to_2025_date'),
+      skill: t('anticipated_skills_data_2024_to_2025_skill'),
+      description: t('anticipated_skills_data_2024_to_2025_description')
+    },
+    {
+      date: t('anticipated_skills_data_2025_to_2026_date'),
+      skill: t('anticipated_skills_data_2025_to_2026_skill'),
+      description: t('anticipated_skills_data_2025_to_2026_description')
+    }
+  ];
 
   return (
     <div className="bg-white dot-pattern dark:bg-dark-body py-10 px-6 md:px-0">
@@ -88,12 +111,12 @@ const Timeline = () => {
         <div className="w-full md:w-1/2 relative">
           {/* Summary */}
           <div className="mb-12 w-full relative" data-aos="fade-up">
-            <h2 className="text-2xl md:text-3xl mb-6 dark:text-slate-50 text-light-text">Summary</h2>
+            <h2 className="text-2xl md:text-3xl mb-6 dark:text-slate-50 text-light-text">{summaryData.title}</h2>
             <p className="text-light-text dark:text-gray-400 text-justify">{summaryData.description}</p>
           </div>
 
           {/* Education */}
-          <h2 className="text-2xl md:text-3xl mb-6 dark:text-slate-50 text-light-text" data-aos="fade-up">Education</h2>
+          <h2 className="text-2xl md:text-3xl mb-6 dark:text-slate-50 text-light-text" data-aos="fade-up">{t('education_title')}</h2>
           <div className="relative">
             {educationData.map((item, index) => (
               <div key={index} className="mb-12 relative pl-10" data-aos="fade-up">
@@ -102,7 +125,7 @@ const Timeline = () => {
                 <div className="pl-4">
                   <p className="text-pink-600 bg-light-body dark:text-gray-300 text-sm dark:bg-[#1B1B1A] w-[120px] flex justify-center px-2 py-1 mb-2 rounded border dark:border-gray-700 dark:border-solid">{item.date}</p>
                   <h3 className="text-lg text-light-text dark:text-white font-medium uppercase">{item.degree}</h3>
-                  <p className="text-light-text dark:text-gray-400 flex items-center gap-2 italic text-[14px] my-2"><LiaUniversitySolid size={20} />{item.institution}</p>
+                  <p className="text-light-text dark:text-gray-400 flex items-center gap-2 italic text-[14px]"><LiaUniversitySolid size={20} />{item.institution}</p>
                   <p className="text-light-text dark:text-gray-300 text-[14px]">{item.description}</p>
                 </div>
               </div>
@@ -110,7 +133,7 @@ const Timeline = () => {
           </div>
 
           {/* Anticipated Skills */}
-          <h2 className="text-2xl md:text-3xl mb-6 dark:text-slate-50 text-[#414760]" data-aos="fade-up">Anticipated Skills</h2>
+          <h2 className="text-2xl md:text-3xl mb-6 dark:text-slate-50 text-[#414760]" data-aos="fade-up">{t('anticipated_skills_title')}</h2>
           <div className="relative">
             {anticipatedSkillsData.map((item, index) => (
               <div key={index} className="mb-12 relative pl-10" data-aos="fade-up">
@@ -128,7 +151,7 @@ const Timeline = () => {
 
         {/* Right Column: Professional Experience */}
         <div className="w-full md:w-1/3 relative">
-          <h2 className="text-2xl md:text-3xl mb-6 dark:text-slate-50 text-light-text" data-aos="fade-up">Professional Experience</h2>
+          <h2 className="text-2xl md:text-3xl mb-6 dark:text-slate-50 text-light-text" data-aos="fade-up">{t('professional_experience_title')}</h2>
           <div className="relative">
             {timelineData.map((item, index) => (
               <div key={index} className="mb-12 relative pl-10" data-aos="fade-up">
