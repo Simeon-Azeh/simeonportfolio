@@ -1,13 +1,13 @@
-import {  useEffect } from 'react'
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import Home from './pages/Home'
-import About from './pages/About'
-import Portfolio from './pages/Portfolio';
+// src/App.js
 
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import Home from './pages/Home';
+import About from './pages/About';
+import Portfolio from './pages/Portfolio';
 import ServicesPage from './pages/Services';
 import Contact from './pages/Contact';
-
-
+import './routes/i18n'; // Import i18n configuration
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -25,13 +25,10 @@ function ScrollToTop() {
   return null;
 }
 
-
 function App() {
-
   return (
-    <>
     <BrowserRouter>
-    <ScrollToTop />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
@@ -42,8 +39,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </BrowserRouter>
-    </>
-  )
+  );
 }
 
-export default App
+export default App;

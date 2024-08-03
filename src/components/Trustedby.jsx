@@ -5,17 +5,18 @@ import logo3 from '../../public/images/alu.png'; // Replace with your logo paths
 import logo4 from '../../public/images/urega.png'; // Replace with your logo paths
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-
+import { useTranslation } from 'react-i18next';
 const TrustedBy = () => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
+  const { t } = useTranslation();
 
   return (
     <div className="bg-light-body dark:bg-dark-body transition-colors font-inter">
       <div className="w-full md:w-4/5 mx-auto py-10 pb-0 px-6 md:px-0">
         <h2 className="text-[16px] font-normal text-slate-500 dark:text-gray-300" data-aos="fade-up">
-          Trusted by industry leaders:
+        {t('TrustedBy')}
         </h2>
         <div className="flex items-center justify-start space-x-6">
           <div data-aos="fade-up" data-aos-delay="200">

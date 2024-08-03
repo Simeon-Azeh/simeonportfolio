@@ -1,0 +1,83 @@
+{
+    "home": "Home",
+    "about": "About",
+    "resume": "Resume",
+    "portfolio": "Portfolio",
+    "services": "Services",
+    "contact": "Contact",
+
+    "hello": "Hello, I'm Simeon",
+    "building_products": "Building digital products,",
+    "brands": "brands",
+    "and": "and",
+    "experiences": "experiences.",
+    "explore": "Explore",
+
+    "vision_execution": "Your vision deserves a world-class execution",
+    "design_partner": "I am a go-to design partner for startups, agencies and creatives.",
+    "product_transformation": "Looking to transform your vision into a real-world product? I thrive at crafting intuitive and attractive interfaces that tackle complex challenges.",
+    "schedule_call": "Schedule Call",
+    "view_work": "View Work",
+    "drop_email": "Or drop me an email",
+    "email": "hello@simeonazeh.com",
+
+    "TrustedBy": "Trusted by",
+    "MyWork": "My Work",
+    "ViewMore": "View More",
+
+    "why_me_title": "Why Me",
+    "why_me_intro": "Complicated problems don't call for complex interfaces ⏤ I craft user-friendly and straightforward interfaces that simplify even the most sophisticated issues.",
+    "why_me_point_1": "Tailored design solutions that meet your specific needs and goals.",
+    "why_me_point_2": "Rigorous quality checks and revisions to ensure the final deliverables meet high standards.",
+    "why_me_point_3": "Regular updates, clear communication, and transparency throughout the project lifecycle.",
+    "why_me_conclusion": "Your product is treated as mine with a primary goal of your uncompromised satisfaction ⏤ your success equals our success.",
+
+    "services_title": "My Services",
+    "services_intro": "Sometimes, you come across a design that feels right — you can't quite explain why, but you know it when you see it!",
+    "services_description": "I am dedicated to crafting solutions that evoke this feeling while offering everything design-related, from A to Z.",
+    "services_website_design": "Website Design",
+    "services_graphic_design": "Graphic Design",
+    "services_product_design": "Product Design",
+    "services_illustration_design": "Illustration Design",
+    "services_video_photography": "Video & Photography",
+    "services_branding": "Branding",
+
+    "testimonial_title": "Happy Clients",
+    "testimonial_intro": "My individual backgrounds encompass years of industry expertise. We've partnered with clients across different sectors, and here are their thoughts on our services.",
+    "testimonial_header": "Testimonial",
+
+    "pricing_web_dev_title": "Web Development",
+    "pricing_flat_rate": "Flat Rate",
+    "pricing_web_dev_price": "$299/mo",
+    "pricing_web_dev_desc": "A perfect fit for those who seek landing pages or a complex website design.",
+    "pricing_feature_custom_design": "Custom Design",
+    "pricing_feature_responsive": "Responsive",
+    "pricing_feature_seo": "SEO Optimized",
+    "pricing_feature_fast_load": "Fast Load Times",
+    "pricing_button_share_vision": "Share Your Vision",
+    "pricing_product_design_title": "Product Design",
+    "pricing_subscription": "Subscription",
+    "pricing_product_design_price": "$499/mo",
+    "pricing_product_design_desc": "Professional product design services. Best buy for orgs looking to create custom products.",
+    "pricing_feature_ux_ui": "UX/UI Design",
+    "pricing_feature_prototype": "Prototype",
+    "pricing_feature_user_testing": "User Testing",
+    "pricing_feature_iteration": "Iteration",
+    "pricing_button_work_together": "Let's Work Together",
+    "pricing_custom_title": "Custom",
+    "pricing_custom_desc": "Have unique requirements? Let's discuss a custom solution tailored to your needs.",
+    "pricing_custom_button": "Let's talk",
+
+    "name": "Simeon",
+  "surname": "Azeh",
+  "follow_me": "Follow Me",
+  "all_rights_reserved": "All Rights Reserved",
+  "terms_conditions": "Terms & Conditions",
+  "cookies": "Cookies"
+
+  }
+  
+  
+
+
+  
