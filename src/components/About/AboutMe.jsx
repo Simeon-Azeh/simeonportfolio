@@ -32,7 +32,7 @@ function AboutMe() {
   }, []);
 
   return (
-    <div className="bg-white dot-pattern dark:bg-dark-body transition-colors py-10 px-4 md:px-0 overflow-hidden">
+    <div className="bg-white  dark:bg-dark-body transition-colors py-10 px-4 md:px-0 overflow-hidden">
       <div className="w-full md:w-4/5 mx-auto flex flex-col md:flex-row items-center">
         <div className="relative w-full md:w-1/2 flex flex-col items-center h-96 overflow-hidden" data-aos="fade-right">
           <div className="marquee-container">

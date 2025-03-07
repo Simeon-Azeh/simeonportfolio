@@ -48,7 +48,7 @@
 
     "pricing_web_dev_title": "Web Development",
     "pricing_flat_rate": "Flat Rate",
-    "pricing_web_dev_price": "$299/mo",
+    "pricing_web_dev_price": "From 100,000 XAF",
     "pricing_web_dev_desc": "A perfect fit for those who seek landing pages or a complex website design.",
     "pricing_feature_custom_design": "Custom Design",
     "pricing_feature_responsive": "Responsive",
@@ -147,7 +147,58 @@
   "skills_node_js": "Node.js",
   "skills_design": "Design",
   "skills_photography": "Photography",
-  "skills_videography": "Videography"
+  "skills_videography": "Videography", 
+  "trustedBySubtitle": "Companies and organizations I have collaborated with throughout my journey",
+  "joinCompanies": "Ready to join these amazing companies?",
+  "getInTouch": "Get in touch", 
+
+  "services_website_design_description": "Custom, responsive websites that engage and convert",
+ 
+  "services_graphic_design_description": "Eye-catching visuals that tell your story",
+
+  "services_product_design_description": "User-centered design solutions for digital products",
+  
+  "services_illustration_design_description": "Custom illustrations that bring ideas to life",
+
+  "services_video_photography_description": "Professional visual content creation",
+  
+  "services_branding_description": "Cohesive brand identity development", 
+  "services_mobile_development": "Mobile Development",
+  "services_mobile_development_description": "Native and cross-platform mobile applications", 
+  "my_work_description": "Explore a selection of my recent work, showcasing creative solutions and technical expertise across various domains.",
+  "pricing_title": "Simple, Transparent Pricing",
+  "pricing_description": "Choose the perfect plan for your project. All prices are starting points and may vary based on specific requirements.",
+  
+ 
+  
+ 
+  "pricing_mobile_dev_title": "Mobile Development",
+  "pricing_mobile_dev_desc": "Native and cross-platform mobile apps",
+  
+  
+  
+  "pricing_feature_ux_research": "UX Research & Strategy",
+  "pricing_feature_ui_design": "UI Design System",
+ 
+  "pricing_feature_testing": "User Testing",
+  
+  "pricing_feature_native_app": "Native App Development",
+  "pricing_feature_cross_platform": "Cross-platform Support",
+  "pricing_feature_app_store": "App Store Submission",
+  "pricing_feature_maintenance": "3 Months Maintenance",
+  
+  "pricing_button_get_started": "Get Started",
+  "footer_description": "Building digital experiences that make a difference.",
+  "quick_links": "Quick Links",
+  "contact_info": "Contact Info",
+  "skills_firebase": "Firebase",
+  "skills_sass": "Sass/SCSS",
+  "skills_react_native": "React Native",
+  "skills_flutter": "Flutter",
+  "skills_bootstrap": "Bootstrap",
+  "skills_Github": "GitHub"
+   
+
 
   }
   

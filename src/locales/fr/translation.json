@@ -149,6 +149,41 @@
   "skills_node_js": "Node.js",
   "skills_design": "Design",
   "skills_photography": "Photographie",
-  "skills_videography": "Vidéographie"
+  "skills_videography": "Vidéographie",
+  "trustedBySubtitle": "Entreprises et organisations avec lesquelles j'ai collaboré tout au long de mon parcours",
+  "joinCompanies": "Prêt à rejoindre ces entreprises exceptionnelles ?",
+  "getInTouch": "Contactez-moi", 
+  "services_mobile_development": "Développement Mobile",
+  "services_mobile_development_description": "Applications mobiles natives et multiplateformes",
+  "my_work_description": "Découvrez une sélection de mes travaux récents, démontrant des solutions créatives et une expertise technique dans divers domaines.",
+  
+    "pricing_title": "Tarification Simple et Transparente",
+    "pricing_description": "Choisissez le plan parfait pour votre projet. Tous les prix sont des points de départ et peuvent varier en fonction des exigences spécifiques.",
+    
+   
+    
+   
+    
+    "pricing_mobile_dev_title": "Développement Mobile",
+    "pricing_mobile_dev_desc": "Applications mobiles natives et multiplateformes",
+    
+
+    
+    "pricing_feature_ux_research": "Recherche et Stratégie UX",
+    "pricing_feature_ui_design": "Système de Design UI",
+    
+    "pricing_feature_testing": "Tests Utilisateurs",
+    
+    "pricing_feature_native_app": "Développement d'Applications Natives",
+    "pricing_feature_cross_platform": "Support Multiplateforme",
+    "pricing_feature_app_store": "Soumission à l'App Store",
+    "pricing_feature_maintenance": "Maintenance de 3 Mois",
+    
+    "pricing_button_get_started": "Commencer",
+    "footer_description": "Créer des expériences numériques qui font la différence.",
+    "quick_links": "Liens rapides",
+    "contact_info": "Informations de contact"
+
+  
   }
   

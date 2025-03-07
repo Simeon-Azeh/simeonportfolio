@@ -211,3 +211,44 @@ body {
   border-radius: 0.25rem;
   margin: auto;
 }
+.mobile-nav-link {
+  @apply block py-2 text-light-text dark:text-slate-50 hover:text-pink-600 dark:hover:text-gray-300 transition-colors duration-300;
+}
+
+.custom-flag-select button {
+  @apply border-gray-200 dark:border-gray-700 !important;
+}
+
+.custom-flag-select ul {
+  @apply bg-white dark:bg-[#1a1818] border-gray-200 dark:border-gray-700 !important;
+}
+
+.custom-flag-select li:hover {
+  @apply bg-gray-100 dark:bg-gray-800 !important;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s linear infinite;
+  background-size: 200% 100%;
+}

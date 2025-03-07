@@ -1,15 +1,36 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { CountUp } from 'countup.js'; // Ensure this import matches the actual export
-import { FaUserFriends, FaTasks, FaRegSmile, FaAward } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { CountUp } from 'countup.js';
+import { FaRegSmile, FaAward } from 'react-icons/fa';
 import { RiCustomerService2Fill } from "react-icons/ri";
 import { MdPlaylistAddCheckCircle } from "react-icons/md";
 import { useTranslation } from 'react-i18next';
 
 const facts = [
-  { key: 'happy_clients', count: 12, icon: <FaRegSmile size={30} /> },
-  { key: 'completed_projects', count: 15, icon: <MdPlaylistAddCheckCircle size={30} /> },
-  { key: 'hours_of_support', count: 3700, icon: <RiCustomerService2Fill size={30} /> },
-  { key: 'awards', count: 10, icon: <FaAward size={30} /> }
+  {
+    key: 'happy_clients',
+    count: 12,
+    icon: FaRegSmile,
+    color: 'from-pink-500 to-light-text'
+  },
+  {
+    key: 'completed_projects',
+    count: 15,
+    icon: MdPlaylistAddCheckCircle,
+   color: 'from-pink-500 to-light-text'
+  },
+  {
+    key: 'hours_of_support',
+    count: 3700,
+    icon: RiCustomerService2Fill,
+    color: 'from-pink-500 to-light-text'
+  },
+  {
+    key: 'awards',
+    count: 10,
+    icon: FaAward,
+     color: 'from-pink-500 to-light-text'
+  }
 ];
 
 const Facts = () => {
@@ -22,51 +43,96 @@ const Facts = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.disconnect(); // Stop observing after first intersection
+          observer.disconnect();
         }
       },
-      { threshold: 0.1 } // Trigger when 10% of the component is visible
+      { threshold: 0.1 }
     );
 
     const element = document.querySelector('#facts-section');
-    if (element) {
-      observer.observe(element);
-    }
-
-    return () => {
-      if (element) {
-        observer.unobserve(element);
-      }
-    };
+    if (element) observer.observe(element);
+    return () => element && observer.unobserve(element);
   }, []);
 
   useEffect(() => {
     if (isVisible) {
       countUpRefs.current.forEach((ref, index) => {
         if (ref) {
-          new CountUp(ref, facts[index].count, { duration: 2 }).start();
+          new CountUp(ref, facts[index].count, {
+            duration: 2.5,
+            useEasing: true,
+            useGrouping: true,
+            separator: ',',
+            decimal: '.'
+          }).start();
         }
       });
     }
   }, [isVisible]);
 
   return (
-    <div id="facts-section" className="bg-light-body dark:bg-dark-body transition-colors py-10 px-6 md:px-0 font-inter">
-      <div className="w-full md:w-4/5 mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-        {facts.map((fact, index) => (
-          <div
-            key={index}
-            className="flex flex-col  justify-center items-center border dark:border-gray-700 dark:border-solid px-4 py-3 rounded-lg gap-1 cursor-pointer hover:translate-y-[-5px] duration-300"
-          >
-            <div className="text-2xl md:text-4xl text-light-text dark:text-slate-50 gap-2 items-center flex ">
-              <p className='text-pink-600 dark:text-white'>{fact.icon}</p>
-              <h2 ref={el => countUpRefs.current[index] = el}>0</h2>
-            </div>
-            <div className="text-xs md:text-lg text-light-text dark:text-slate-50">{t(fact.key)}</div>
-          </div>
-        ))}
+    <motion.section
+      id="facts-section"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="bg-light-body dark:bg-dark-body transition-colors py-16 relative overflow-hidden"
+    >
+      {/* Background Pattern */}
+      <motion.div 
+        className="absolute inset-0 opacity-5 dark:opacity-10 font-inter"
+        animate={{
+          backgroundPosition: ['0% 0%', '100% 100%'],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+      >
+        <div className="absolute inset-0 bg-grid-pattern"></div>
+      </motion.div>
+
+      <div className="relative z-10 w-full md:w-4/5 mx-auto px-6 md:px-0 font-inter">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {facts.map((fact, index) => (
+            <motion.div
+              key={fact.key}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              className="bg-white dark:bg-[#1a1a1a] rounded-2xl p-6  dark:shadow-none
+                         border border-gray-100 dark:border-gray-700"
+            >
+              <div className="flex flex-col items-center space-y-4">
+                <motion.div
+                  whileHover={{ scale: 1.1, rotate: 360 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className={`w-12 h-12 rounded-xl bg-gradient-to-br ${fact.color} 
+                             flex items-center justify-center text-white`}
+                >
+                  <fact.icon size={24} />
+                </motion.div>
+                
+                <div className="text-center">
+                  <h3 
+                    ref={el => countUpRefs.current[index] = el}
+                    className="text-3xl md:text-4xl font-bold bg-clip-text text-pink-500
+                               bg-gradient-to-r dark:from-white dark:to-gray-300"
+                  >
+                    0
+                  </h3>
+                  <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-2">
+                    {t(fact.key)}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
-    </div>
+    </motion.section>
   );
 };
 

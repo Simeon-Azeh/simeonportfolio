@@ -1,54 +1,144 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaFacebook } from "react-icons/fa";
-import { RiInstagramFill } from "react-icons/ri";
-import { RiWhatsappFill } from "react-icons/ri";
-import { TiSocialLinkedinCircular } from "react-icons/ti";
+import { motion } from 'framer-motion';
+import { FaFacebook, FaLinkedinIn, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { useTranslation } from 'react-i18next';
 
+const socialLinks = [
+  {
+    icon: FaFacebook,
+    url: "https://www.facebook.com/kongnyuy.simeon.3",
+    label: "Facebook"
+  },
+  {
+    icon: FaWhatsapp,
+    url: "https://wa.me/250798654693",
+    label: "WhatsApp"
+  },
+  {
+    icon: FaInstagram,
+    url: "https://www.instagram.com/heis_kay_c",
+    label: "Instagram"
+  },
+  {
+    icon: FaLinkedinIn,
+    url: "https://www.linkedin.com/in/simeonazeh",
+    label: "LinkedIn"
+  }
+];
+
+const navLinks = ["resume", "contact", "services", "portfolio"];
 
 function Footer() {
   const { t } = useTranslation();
 
-
-
   return (
-    <div className='bg-[#f9feff] dark:bg-dark-body transition-colors font-inter'>
-      <div className='w-[100%] md:w-4/5 mx-auto flex flex-col md:flex-row items-center justify-between py-10 px-8 md:px-0 border-b dark:border-b-gray-700 dark:border-t border-t-gray-700 border-solid'>
-        <div className='flex flex-col gap-4'>
-          <div className='w-[120px] flex m-auto md:m-0'>
-            <h1 className='font-montserrat-alt text-[#414760] font-medium dark:text-slate-50'>
-              {t('name')} <span className='dark:text-gray-300 text-pink-600'>{t('surname')}</span>
-            </h1>
+    <motion.footer 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="bg-white dark:bg-dark-body transition-colors font-inter relative overflow-hidden"
+    >
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5 dark:opacity-10">
+        <div className="absolute inset-0 bg-grid-pattern"></div>
+      </div>
+
+      <div className="relative z-10 border-t border-gray-200 dark:border-gray-800">
+        <div className="w-full md:w-4/5 mx-auto">
+          {/* Main Footer Content */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 py-16 px-6 md:px-0">
+            {/* Brand Section */}
+            <div className="space-y-4">
+              <motion.h2 
+                className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-purple-600 dark:from-white dark:to-gray-300"
+              >
+                {t('name')} <span>{t('surname')}</span>
+              </motion.h2>
+              <p className="text-gray-600 dark:text-gray-400 max-w-sm">
+                {t('footer_description')}
+              </p>
+            </div>
+
+            {/* Quick Links */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                {t('quick_links')}
+              </h3>
+              <ul className="space-y-2">
+                {navLinks.map((link) => (
+                  <motion.li 
+                    key={link}
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <Link 
+                      to={`/${link}`}
+                      className="text-gray-600 dark:text-gray-400 hover:text-pink-600 dark:hover:text-white transition-colors"
+                    >
+                      {t(link)}
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Social Links */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                {t('follow_me')}
+              </h3>
+              <div className="flex gap-4">
+                {socialLinks.map(({ icon: Icon, url, label }) => (
+                  <motion.a
+                    key={label}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center
+                             text-gray-600 dark:text-gray-400 hover:bg-pink-600 hover:text-white dark:hover:bg-pink-600
+                             transition-colors"
+                  >
+                    <Icon size={18} />
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+
+            {/* Contact Info */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                {t('contact_info')}
+              </h3>
+              <ul className="space-y-2 text-gray-600 dark:text-gray-400">
+                <li>contact@simeonazeh.com</li>
+                <li>+250 798 654 693</li>
+                <li>Kigali, Rwanda</li>
+              </ul>
+            </div>
           </div>
-          <div className='flex gap-4 md:gap-8 items-center'>
-            <Link to="/resume" className='text-[#414760] dark:text-white hover:border-b-2 border-pink-600 dark:border-gray-400 dark:border-solid'>{t('resume')}</Link>
-            <Link to="/contact" className='text-[#414760] dark:text-white hover:border-b-2 border-pink-600 dark:border-gray-400 dark:border-solid'>{t('contact')}</Link>
-            <Link to="/services" className='text-[#414760] dark:text-white hover:border-b-2 border-pink-600 dark:border-gray-400 dark:border-solid'>{t('services')}</Link>
-            <Link to="/portfolio" className='text-[#414760] dark:text-white hover:border-b-2 border-pink-600 dark:border-gray-400 dark:border-solid'>{t('portfolio')}</Link>
-          </div>
-        </div>
-        <div className='flex flex-col gap-4'>
-          <h1 className='text-[#414760] dark:text-slate-50 font-medium text-center mt-5 md:text-left md:mt-0'>{t('follow_me')}</h1>
-          <div className='flex gap-8 items-center'>
-            <a href="https://www.facebook.com/kongnyuy.simeon.3?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className='text-[#414760] dark:text-slate-50'><FaFacebook size={20} /></a>
-            <a href="https://wa.me/250798654693" target="_blank" rel="noopener noreferrer" className='text-[#414760] dark:text-slate-50'><RiWhatsappFill size={20} /></a>
-            <a href="https://www.instagram.com/heis_kay_c?igsh=MXF2NDA2YzJtODhxOQ==" target="_blank" rel="noopener noreferrer" className='text-[#414760] dark:text-slate-50'><RiInstagramFill size={20} /></a>
-            <a href="https://www.linkedin.com/in/simeonazeh?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" className='text-[#414760] dark:text-slate-50'><TiSocialLinkedinCircular size={30} /></a>
+
+          {/* Bottom Bar */}
+          <div className="border-t border-gray-200 dark:border-gray-800 py-6 px-6 md:px-0">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-gray-600 dark:text-gray-400 text-sm text-center md:text-left">
+                © {new Date().getFullYear()} {t('name')} {t('surname')}. {t('all_rights_reserved')}
+              </p>
+              <div className="flex gap-6 text-sm">
+                <Link to="/terms" className="text-gray-600 dark:text-gray-400 hover:text-pink-600 dark:hover:text-white transition-colors">
+                  {t('terms_conditions')}
+                </Link>
+                <Link to="/cookies" className="text-gray-600 dark:text-gray-400 hover:text-pink-600 dark:hover:text-white transition-colors">
+                  {t('cookies')}
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div className='w-[100%] md:w-4/5 mx-auto flex flex-col md:flex-row items-center justify-between py-10 px-8 md:px-0'>
-        <div>
-          <p className='text-light-text dark:text-slate-300 mb-4 md:mb-0'>© {t('name')} {t('surname')} 2024. {t('all_rights_reserved')}</p>
-        </div>
-        <div className='flex gap-4 items-center font-poppins text-[#404660] text-[14px]'>
-          <Link to="/terms" className='text-[#414760] dark:text-slate-50'>{t('terms_conditions')}</Link>
-          <Link to="/cookies" className='text-[#414760] dark:text-slate-50'>{t('cookies')}</Link>
-        </div>
-      </div>
-    </div>
-  )
+    </motion.footer>
+  );
 }
 
 export default Footer;
