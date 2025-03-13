@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import HeroImg from '../../public/images/HeroImg.png';
 import { MdWavingHand } from "react-icons/md";
 import { Link } from 'react-router-dom';
-import { IoMdArrowForward } from "react-icons/io";
+import { CloudDownload } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { IoMailOutline } from "react-icons/io5";
 
 const roles = ["Frontend Engineer", "Brand Manager", "Graphic Designer", "Web Developer"];
 
@@ -69,7 +70,7 @@ function Hero() {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.4 }}
-                className="px-5 py-2 bg-pink-100 dark:bg-slate-800 rounded-full text-pink-600 dark:text-slate-300 font-medium inline-flex items-center"
+                className="px-5 py-2 bg-pink-100 dark:bg-[#1a1a1a] dark:border dark:border-gray-800 rounded-full text-pink-600 dark:text-slate-300 font-medium inline-flex items-center"
               >
                 {t('hello')}
                 <motion.span 
@@ -119,47 +120,54 @@ function Hero() {
             </div>
 
             <motion.div 
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.7 }}
-              className="flex gap-4 pt-4"
-            >
-              <Link to="/services">
-                <motion.button 
-                  className="group px-8 py-3 bg-pink-600 dark:bg-white text-white dark:text-[#414760] rounded-lg font-medium 
-                           flex items-center gap-2
-                           shadow-lg shadow-pink-600/20 dark:shadow-white/10
-                           transition-all duration-300"
-                  whileHover={{ 
-                    scale: 1.02,
-                    y: -2,
-                    boxShadow: "0 20px 25px -5px rgba(236, 72, 153, 0.3)" 
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  {t('explore')} 
-                  <motion.span 
-                    initial={{ x: 0 }}
-                    whileHover={{ x: 3 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <IoMdArrowForward className="text-lg" />
-                  </motion.span>
-                </motion.button>
-              </Link>
-              
-              <Link to="/contact">
-                <motion.button 
-                  className="group px-8 py-3 border-2 border-pink-600 dark:border-slate-300 text-pink-600 dark:text-slate-300 
-                           rounded-lg font-medium transition-all duration-300
-                           hover:bg-pink-600/5 dark:hover:bg-slate-300/5"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  {t('contact')}
-                </motion.button>
-              </Link>
-            </motion.div>
+  initial={{ y: 20, opacity: 0 }}
+  animate={{ y: 0, opacity: 1 }}
+  transition={{ delay: 0.7 }}
+  className="flex gap-4 pt-4"
+>
+  <motion.button 
+    onClick={() => window.open('/simeonazehPortfolio.pdf', '_blank')}
+    className="group px-8 py-3 bg-pink-600 dark:bg-white text-white dark:text-[#414760] rounded-lg font-medium 
+             flex items-center gap-2
+             shadow-lg shadow-pink-600/20 dark:shadow-white/20
+             transition-all duration-300 dark:hover:bg-white"
+    whileHover={{ 
+      scale: 1.02,
+      y: -2,
+    }}
+    variants={{
+      light: {
+        boxShadow: "0 20px 25px -5px rgba(236, 72, 153, 0.3)"
+      },
+      dark: {
+        boxShadow: "0 20px 25px -5px rgba(255, 255, 255, 0.2)"
+      }
+    }}
+    animate={document.documentElement.classList.contains('dark') ? 'dark' : 'light'}
+    whileTap={{ scale: 0.98 }}
+  >
+    {t('download_cv')} 
+    <motion.span 
+      initial={{ x: 0 }}
+      whileHover={{ x: 3 }}
+      transition={{ duration: 0.2 }}
+    >
+      <CloudDownload />
+    </motion.span>
+  </motion.button>
+
+  <Link to="/contact">
+    <motion.button 
+      className="group px-8 py-3 border border-pink-600 dark:bg-[#1a1a1a] dark:border-gray-800 text-pink-600 dark:text-slate-300 
+               rounded-lg font-medium transition-all duration-300
+               hover:bg-pink-600/5 dark:hover:bg-gray-800/5"
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      {t('contact')}
+    </motion.button>
+  </Link>
+</motion.div>
           </motion.div>
           
           {/* Right side remains unchanged */}

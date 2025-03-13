@@ -182,7 +182,32 @@
     "pricing_button_get_started": "Commencer",
     "footer_description": "Créer des expériences numériques qui font la différence.",
     "quick_links": "Liens rapides",
-    "contact_info": "Informations de contact"
+    "contact_info": "Informations de contact",
+    "download_cv": "Télécharger CV", 
+    "booking_title": "Demande de Réservation",
+  "booking_description": "Remplissez le formulaire ci-dessous pour planifier une consultation pour votre projet. Je vous répondrai dans les 24 heures pour confirmer votre réservation.",
+  
+  "form_name": "Votre Nom",
+  "form_name_placeholder": "Entrez votre nom complet",
+  "form_email": "Adresse Email",
+  "form_email_placeholder": "Entrez votre adresse email",
+  "form_service": "Service Requis",
+  "form_date": "Date Préférée",
+  "form_time": "Heure Préférée",
+  "form_message": "Détails du Projet",
+  "form_message_placeholder": "Parlez-moi de votre projet et de vos besoins spécifiques...",
+  "form_submit": "Demander une Réservation",
+  "form_submitting": "Soumission en cours...",
+  
+  "booking_success_title": "Demande de Réservation Reçue!",
+  "booking_success_message": "Merci pour votre demande de réservation. J'examinerai les détails de votre projet et vous recontacterai sous peu pour confirmer votre rendez-vous.",
+  "booking_new_request": "Faire une Autre Demande",
+  
+  "error_name_required": "Veuillez entrer votre nom",
+  "error_email_required": "Veuillez entrer votre adresse email",
+  "error_email_invalid": "Veuillez entrer une adresse email valide",
+  "error_date_required": "Veuillez sélectionner une date préférée",
+  "error_time_required": "Veuillez sélectionner une heure préférée"
 
   
   }

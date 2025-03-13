@@ -9,6 +9,10 @@ import work4 from '../../public/images/work4.png';
 import work5 from '../../public/images/work5.png';
 import work6 from '../../public/images/work6.png';
 import work7 from '../../public/images/work7.png';
+import work8 from '../../public/images/work8.png';
+import work9 from '../../public/images/work9.png';
+import work10 from '../../public/images/work10.png';
+import work11 from '../../public/images/work11.png';
 import { useTranslation } from 'react-i18next';
 
 const works = [
@@ -18,7 +22,11 @@ const works = [
   { image: work4, title: "Project 4" },
   { image: work5, title: "Project 5" },
   { image: work6, title: "Project 6" },
-  { image: work7, title: "Project 7" }
+  { image: work7, title: "Project 7" },
+  { image: work8, title: "Project 8" },
+  { image: work9, title: "Project 9" },
+  { image: work10, title: "Project 10" },
+  { image: work11, title: "Project 11" }
 ];
 
 const MyWork = () => {

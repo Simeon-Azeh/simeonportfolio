@@ -32,11 +32,11 @@ const TrustedBy = () => {
       </div>
 
       <div className="w-full md:w-4/5 mx-auto px-6 md:px-0 relative z-10">
-        {/* Section Title with Accent Bar */}
-        <div className="mb-16 flex flex-col items-center">
+        {/* Section Title with Accent Bar - Left Aligned */}
+        <div className="mb-16 flex flex-col items-start">
           <motion.div 
             initial={{ width: 0 }}
-            whileInView={{ width: "120px" }}
+            whileInView={{ width: "80px" }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="h-1 bg-pink-600 dark:bg-white rounded-full mb-6"
@@ -46,7 +46,7 @@ const TrustedBy = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold text-light-text dark:text-white mb-4 text-center"
+            className="text-3xl md:text-4xl font-bold mb-4 text-left bg-gradient-to-r from-pink-500 to-light-text dark:text-white/90 bg-clip-text text-transparent"
           >
             {t('TrustedBy')}
           </motion.h2>
@@ -56,7 +56,7 @@ const TrustedBy = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl text-center"
+            className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl text-left"
           >
             {t('trustedBySubtitle')}
           </motion.p>
@@ -64,12 +64,9 @@ const TrustedBy = () => {
 
         {/* Logo Showcase */}
         <div className="relative">
-          {/* Gradient Overlays */}
-
-          
           {/* Logos Container */}
           <motion.div 
-            className="py-12 flex flex-wrap justify-center gap-8 md:gap-12"
+            className="py-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -80,20 +77,20 @@ const TrustedBy = () => {
           </motion.div>
         </div>
         
-        {/* Call to Action */}
+        {/* Call to Action - Left Aligned */}
         <motion.div 
-          className="mt-16 text-center"
+          className="mt-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
         >
-          <h3 className="text-xl md:text-2xl font-semibold text-light-text dark:text-white mb-6">
+          <h3 className="text-xl md:text-2xl font-semibold mb-6 bg-gradient-to-r from-pink-500 to-light-text dark:text-white/80 bg-clip-text text-transparent">
             {t('joinCompanies')}
           </h3>
           <Link to="/contact">
             <motion.button 
-              className="group px-8 py-3 bg-pink-600 dark:bg-white text-white dark:text-[#414760] rounded-lg font-medium 
+              className="group flex items-center gap-2 px-8 py-3 bg-pink-600 dark:bg-white text-white dark:text-[#414760] rounded-lg font-medium 
                        shadow-lg shadow-pink-600/20 dark:shadow-white/10
                        hover:transform hover:translate-y-[-2px] transition-all duration-300
                        hover:shadow-xl hover:shadow-pink-600/30 dark:hover:shadow-white/20"
@@ -101,6 +98,9 @@ const TrustedBy = () => {
               whileTap={{ scale: 0.98 }}
             >
               {t('getInTouch')}
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
             </motion.button>
           </Link>
         </motion.div>
@@ -121,26 +121,26 @@ const LogoCard = ({ logo, index }) => {
         y: -5,
       }}
       className={`
-        relative group p-6 md:p-8
-        rounded-2xl bg-white dark:bg-[#1a1a1a] dark:border-gray-800 dark:border-2
+        relative group p-5 md:p-6
+        rounded-xl bg-white dark:bg-[#1a1a1a] dark:border-gray-800 dark:border
         shadow-lg shadow-gray-100/50 dark:shadow-none
         border border-gray-100 dark:border-gray-700/50
         hover:border-pink-600/30 dark:hover:border-white/30
         transition-all duration-300
       `}
     >
-      <div className="relative w-28 md:w-32 h-16 md:h-20 flex items-center justify-center">
+      <div className="relative w-full h-16 md:h-20 flex items-center justify-center">
         <img 
           src={logo.src} 
           alt={logo.alt} 
-          className="w-full h-full object-contain filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" 
+          className="w-full h-full object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" 
         />
         
-        {/* Hover Glow Effect */}
+        {/* Enhanced Hover Glow Effect */}
         <motion.div
           initial={{ opacity: 0 }}
           whileHover={{ opacity: 1 }}
-          className="absolute inset-0 rounded-xl bg-gradient-to-br from-pink-600/5 to-blue-600/5 dark:from-white/5 dark:to-white/10 blur-xl transition-opacity"
+          className="absolute inset-0 rounded-lg bg-gradient-to-br from-pink-600/10 to-blue-600/5 dark:from-pink-500/10 dark:to-white/5 blur-xl transition-opacity"
         />
       </div>
     </motion.div>

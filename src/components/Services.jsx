@@ -92,7 +92,7 @@ const Services = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-purple-600 dark:from-white dark:to-gray-300">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-light-text dark:from-white dark:to-gray-300">
               {t('services_title')}
             </span>
           </motion.h2>

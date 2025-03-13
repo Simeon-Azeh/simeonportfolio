@@ -196,8 +196,32 @@
   "skills_react_native": "React Native",
   "skills_flutter": "Flutter",
   "skills_bootstrap": "Bootstrap",
-  "skills_Github": "GitHub"
-   
+  "skills_Github": "GitHub",
+    "download_cv": "Download CV",
+    "booking_title": "Request a Booking",
+    "booking_description": "Fill out the form below to schedule a consultation for your project. I'll get back to you within 24 hours to confirm your booking.",
+    
+    "form_name": "Your Name",
+    "form_name_placeholder": "Enter your full name",
+    "form_email": "Email Address",
+    "form_email_placeholder": "Enter your email address",
+    "form_service": "Service Required",
+    "form_date": "Preferred Date",
+    "form_time": "Preferred Time",
+    "form_message": "Project Details",
+    "form_message_placeholder": "Tell me about your project and specific requirements...",
+    "form_submit": "Request Booking",
+    "form_submitting": "Submitting...",
+    
+    "booking_success_title": "Booking Request Received!",
+    "booking_success_message": "Thank you for your booking request. I'll review your project details and get back to you shortly to confirm your appointment.",
+    "booking_new_request": "Make Another Request",
+    
+    "error_name_required": "Please enter your name",
+    "error_email_required": "Please enter your email address",
+    "error_email_invalid": "Please enter a valid email address",
+    "error_date_required": "Please select a preferred date",
+    "error_time_required": "Please select a preferred time"
 
 
   }

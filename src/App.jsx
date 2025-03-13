@@ -7,6 +7,7 @@ import About from './pages/About';
 import Portfolio from './pages/Portfolio';
 import ServicesPage from './pages/Services';
 import Contact from './pages/Contact';
+import RequestBooking from './pages/RequestBooking';
 import './routes/i18n'; // Import i18n configuration
 
 function ScrollToTop() {
@@ -37,6 +38,7 @@ function App() {
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/request-booking" element={<RequestBooking />} />
       </Routes>
     </BrowserRouter>
   );

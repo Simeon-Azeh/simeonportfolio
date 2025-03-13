@@ -17,7 +17,7 @@ const PricingCard = ({ icon: Icon, title, pricingType, price, description, featu
     viewport={{ once: true }}
     whileHover={{ y: -5 }}
     className={`bg-white dark:bg-[#1a1a1a] p-8 rounded-2xl w-full md:w-[calc(33.333%-2rem)] 
-                border border-gray-200 dark:border-gray-700/50  hover:shadow-xl 
+                border border-gray-200 dark:border-gray-700/50 hover:shadow-xl 
                 transition-all duration-300 relative ${popular ? 'ring-2 ring-pink-600 dark:ring-pink-500 font-inter' : ''}`}
   >
     {popular && (
@@ -42,9 +42,9 @@ const PricingCard = ({ icon: Icon, title, pricingType, price, description, featu
     </div>
 
     <div className="mb-6 font-inter">
-      <div className="text-sm text-gray-500 dark:text-gray-400 mb-1 font-inter">Starting from</div>
+      <div className="text-sm text-gray-500 dark:text-white/70 mb-1 font-inter">Starting from</div>
       <div className="text-3xl font-bold text-light-text dark:text-white mb-2 font-inter">{price}</div>
-      <p className="text-gray-600 dark:text-gray-400 font-inter">{description}</p>
+      <p className="text-gray-600 dark:text-white/80 font-inter">{description}</p>
     </div>
 
     <ul className="space-y-4 mb-8 font-inter">
@@ -61,17 +61,17 @@ const PricingCard = ({ icon: Icon, title, pricingType, price, description, featu
                          flex items-center justify-center">
             <BsCheck className="text-pink-600 dark:text-white" />
           </div>
-          <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+          <span className="text-gray-700 dark:text-white/90">{feature}</span>
         </motion.li>
       ))}
     </ul>
 
-    <Link to="/contact" className="block">
+    <Link to="/request-booking" className="block">
       <motion.button 
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         className={`w-full px-6 py-3 text-white rounded-lg font-medium transition-all duration-300
-                   ${popular ? 'bg-gradient-to-r from-pink-600 to-light-text' : 'bg-gray-900 dark:bg-gray-800'}
+                   ${popular ? 'bg-gradient-to-r from-pink-600 to-light-text' : 'bg-gray-900 dark:bg-white text-white dark:text-[#414760]'}
                    hover:shadow-lg hover:shadow-pink-600/20`}
       >
         {buttonLabel}
@@ -109,19 +109,27 @@ function Pricing() {
       </motion.div>
 
       <div className="w-full md:w-4/5 mx-auto px-6 md:px-0 relative z-10">
-        <div className="text-center mb-12">
+        <div className="mb-12 flex flex-col items-start">
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: "80px" }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="h-1 bg-pink-600 dark:bg-white rounded-full mb-6"
+          />
+          
           <motion.h2 
             className="text-3xl md:text-4xl font-bold mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r font-inter from-pink-600 to-light-text dark:from-white dark:to-gray-300">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r font-inter from-pink-600 to-light-text dark:from-white dark:to-white">
               {t('pricing_title')}
             </span>
           </motion.h2>
           <motion.p 
-            className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-inter"
+            className="text-gray-600 dark:text-white/80 max-w-2xl font-inter"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -131,7 +139,7 @@ function Pricing() {
           </motion.p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-8 mb-12">
+        <div className="flex flex-wrap justify-start gap-8 mb-12">
           <PricingCard
             icon={CgBrowser}
             title={t('pricing_web_dev_title')}
@@ -180,12 +188,12 @@ function Pricing() {
             <div>
               <div className='flex items-center gap-2'>
                 <TbRainbow size={20} className='text-pink-600 dark:text-white' />
-                <h3 className="text-lg font-semibold text-light-text dark:text-gray-200">{t('pricing_custom_title')}</h3>
+                <h3 className="text-lg font-semibold text-light-text dark:text-white">{t('pricing_custom_title')}</h3>
               </div>
-              <p className="mb-4 text-gray-700 dark:text-gray-300">{t('pricing_custom_desc')}</p>
+              <p className="mb-4 text-gray-700 dark:text-white/90">{t('pricing_custom_desc')}</p>
             </div>
           </div>
-          <Link to="/contact" className='bg-pink-600 dark:border flex w-full items-center justify-center md:w-1/6 dark:border-gray-700 dark:border-solid dark:bg-dark-body text-white px-4 py-2 rounded-lg hover:translate-y-[-3px] duration-300' data-aos="fade-up" data-aos-delay="200">
+          <Link to="/request-booking" className='bg-pink-600  flex w-full items-center justify-center md:w-1/6 text-white dark:bg-white px-4 py-2 rounded-lg hover:translate-y-[-3px] duration-300 dark:text-light-text' data-aos="fade-up" data-aos-delay="200">
             {t('pricing_custom_button')}
           </Link>
         </div>

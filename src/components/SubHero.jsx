@@ -1,8 +1,8 @@
 import React from 'react';
 import { FaArrowRightLong } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { CalendarCheck2 } from 'lucide-react';
 
 function SubHero() {
   const { t } = useTranslation();
@@ -67,28 +67,32 @@ function SubHero() {
           className="flex flex-wrap gap-4 mb-8"
           variants={itemVariants}
         >
-          <motion.button 
-            className="group px-8 py-3 bg-pink-600 dark:bg-white text-white dark:text-[#414760] rounded-lg font-medium 
-                     shadow-lg shadow-pink-600/20 dark:shadow-white/10
-                     hover:transform hover:translate-y-[-2px] transition-all duration-300
-                     hover:shadow-xl hover:shadow-pink-600/30 dark:hover:shadow-white/20"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            {t('schedule_call')}
-          </motion.button>
-
-          <Link to="/portfolio">
+           <a href="https://calendar.app.google/PNDeZmc1AHQjAV9L8" target="_blank" rel="noopener noreferrer">
             <motion.button 
-              className="group px-8 py-3 bg-transparent text-[#414760] dark:text-white border-2 border-pink-600/20 
-                       dark:border-gray-700 rounded-lg font-medium hover:border-pink-600 dark:hover:border-white
+              className="group flex items-center gap-2 px-8 py-3 bg-pink-600 dark:bg-white text-white dark:text-[#414760] rounded-lg font-medium 
+                       shadow-lg shadow-pink-600/20 dark:shadow-white/10
+                       hover:transform hover:translate-y-[-2px] transition-all duration-300
+                       hover:shadow-xl hover:shadow-pink-600/30 dark:hover:shadow-white/20"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+               <CalendarCheck2 />
+              {t('schedule_call')}
+              
+            </motion.button>
+          </a>
+
+          <a href="https://preply.com/en/tutor/6173769" target="_blank" rel="noopener noreferrer">
+            <motion.button 
+              className="group px-8 py-3 bg-transparent text-[#414760] dark:text-white border border-pink-600/20 
+                       dark:border-gray-800 rounded-lg font-medium hover:border-pink-600 dark:hover:border-white
                        hover:transform hover:translate-y-[-2px] transition-all duration-300"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              {t('view_work')}
+              I teach on Preply
             </motion.button>
-          </Link>
+          </a>
         </motion.div>
 
         <motion.p 
