@@ -62,9 +62,9 @@ const WhyMe = () => {
           viewport={{ once: true }}
           className="max-w-3xl mx-auto"
         >
-          {/* Title with Gradient */}
+          {/* Title with Gradient - Left aligned */}
           <motion.h2 
-            className="text-3xl md:text-4xl font-bold mb-6 text-center"
+            className="text-3xl md:text-4xl font-bold mb-6 text-left"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -74,9 +74,9 @@ const WhyMe = () => {
             </span>
           </motion.h2>
 
-          {/* Introduction */}
+          {/* Introduction - Left aligned */}
           <motion.p 
-            className="text-base text-gray-600 dark:text-gray-400 text-center mb-12"
+            className="text-base text-gray-600 dark:text-gray-400 text-left mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -113,7 +113,7 @@ const WhyMe = () => {
                            group-hover:border-pink-500/30 dark:group-hover:border-white/20
                            transition-all duration-300"
                 >
-                  <p className="text-gray-700 dark:text-gray-300">
+                  <p className="text-gray-700 dark:text-gray-300 text-left">
                     {t(point.text)}
                   </p>
                 </motion.div>
@@ -121,9 +121,9 @@ const WhyMe = () => {
             ))}
           </div>
 
-          {/* Conclusion */}
+          {/* Conclusion - Left aligned */}
           <motion.p 
-            className="text-base text-gray-600 dark:text-gray-400 text-center mt-12"
+            className="text-base text-gray-600 dark:text-gray-400 text-left mt-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

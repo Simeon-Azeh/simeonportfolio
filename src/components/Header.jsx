@@ -1,22 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
 import { FaFacebook, FaLinkedin, FaGithub } from 'react-icons/fa';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
-import ReactFlagsSelect from 'react-flags-select';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { BiLoaderAlt } from 'react-icons/bi';
 
 function Header() {
   const { t, i18n } = useTranslation();
   const location = useLocation();
   const [visible, setVisible] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const [isChangingLang, setIsChangingLang] = useState(false);
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem('darkMode') === 'true';
   });
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const langDropdownRef = useRef(null);
 
   useEffect(() => {
     if (darkMode) {
@@ -29,10 +33,30 @@ function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
+      // Check if scrolled more than 50px for header style change
       setScrolled(window.scrollY > 50);
+      
+      // Calculate scroll progress percentage
+      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = window.scrollY;
+      const progress = Math.min(scrolled / windowHeight * 100, 100);
+      setScrollProgress(progress);
     };
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target)) {
+        setLangDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   // Close drawer when route changes
@@ -48,8 +72,23 @@ function Header() {
     setDropdownOpen(!dropdownOpen);
   };
 
-  const handleLanguageChange = (countryCode) => {
-    i18n.changeLanguage(countryCode === 'US' ? 'en' : 'fr');
+  const toggleLangDropdown = () => {
+    setLangDropdownOpen(!langDropdownOpen);
+  };
+
+  const handleLanguageChange = (langCode) => {
+    if (i18n.language === langCode) return;
+    
+    setIsChangingLang(true);
+    setLangDropdownOpen(false);
+    
+    // Simulate loading time
+    setTimeout(() => {
+      i18n.changeLanguage(langCode);
+      setTimeout(() => {
+        setIsChangingLang(false);
+      }, 300);
+    }, 700);
   };
 
   const toggleDarkMode = () => {
@@ -61,23 +100,41 @@ function Header() {
     return location.pathname === path;
   };
 
+  // Language options
+  const languages = [
+    { code: 'en', label: 'English', flag: 'uk.png' },
+    { code: 'fr', label: 'Français', flag: 'france.png' },
+  ];
+
+  // Get current language
+  const currentLang = languages.find(lang => lang.code === i18n.language) || languages[0];
+
   return (
     <div className={`sticky top-0 z-50
       ${scrolled 
         ? 'bg-white/90 dark:bg-dark-body/90' 
         : 'bg-light-body/90 dark:bg-dark-body/90'
       }`}>
-    <motion.div 
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className={`flex justify-between w-full md:w-4/5 mx-auto items-center py-4 px-6 md:px-0 font-inter
-        backdrop-blur-sm transition-colors duration-500
-        ${scrolled 
-          ? 'bg-white/90 dark:bg-dark-body/90' 
-          : 'bg-light-body/90 dark:bg-dark-body/90'
-        }`}
-    >
+      {/* Scroll Progress Indicator */}
+      <motion.div 
+        className="absolute top-0 left-0 h-1 bg-gradient-to-r from-pink-500 to-light-text dark:from-white dark:to-pink-400 z-50"
+        style={{ width: `${scrollProgress}%` }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: scrollProgress > 0 ? 1 : 0 }}
+        transition={{ duration: 0.2 }}
+      />
+
+      <motion.div 
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className={`flex justify-between w-full md:w-4/5 mx-auto items-center py-4 px-6 md:px-0 font-inter
+          backdrop-blur-sm transition-colors duration-500
+          ${scrolled 
+            ? 'bg-white/90 dark:bg-dark-body/90' 
+            : 'bg-light-body/90 dark:bg-dark-body/90'
+          }`}
+      >
         <Link to="/" className="text-lg font-semibold group">
           <motion.h1 
             whileHover={{ scale: 1.05 }}
@@ -139,6 +196,7 @@ function Header() {
           
           <NavLink to="/services" isActive={isActive("/services")} label={t('services')} />
           <NavLink to="/contact" isActive={isActive("/contact")} label={t('contact')} />
+         
         </nav>
         
         {/* Desktop Controls */}
@@ -152,13 +210,72 @@ function Header() {
             {darkMode ? <MdOutlineLightMode size={24} /> : <MdOutlineDarkMode size={24} />}
           </motion.button>
           
-          <ReactFlagsSelect
-            countries={["US", "FR"]}
-            customLabels={{ US: "EN", FR: "FR" }}
-            selected={i18n.language === 'en' ? 'US' : 'FR'}
-            onSelect={handleLanguageChange}
-            className="custom-flag-select text-[#414760] dark:text-slate-50 !min-w-[80px] !p-0"
-          />
+          {/* Custom Language Selector - Desktop */}
+          <div className="relative" ref={langDropdownRef}>
+            <motion.button
+              onClick={toggleLangDropdown}
+              disabled={isChangingLang}
+              className="flex items-center space-x-2 text-[#414760] dark:text-slate-50 hover:text-pink-600 dark:hover:text-gray-300 cursor-pointer px-2 py-1 rounded-md"
+              whileHover={{ scale: isChangingLang ? 1 : 1.05 }}
+            >
+              {isChangingLang ? (
+                <motion.div 
+                  animate={{ rotate: 360 }}
+                  transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                >
+                  <BiLoaderAlt size={20} className="text-pink-600 dark:text-gray-300" />
+                </motion.div>
+              ) : (
+                <>
+                  <img 
+                    src={`/images/${currentLang.flag}`} 
+                    alt={currentLang.code} 
+                    className="w-5 h-5 rounded-sm"
+                  />
+                  <span className="text-sm">{currentLang.code.toUpperCase()}</span>
+                  <IoIosArrowDown 
+                    className={`transition-transform ${langDropdownOpen ? 'rotate-180' : ''}`} 
+                    size={14} 
+                  />
+                </>
+              )}
+            </motion.button>
+            
+            <AnimatePresence>
+              {langDropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-full right-0 mt-1 bg-white dark:bg-dark-body border dark:border-gray-700 rounded-md shadow-lg py-1 min-w-[120px]"
+                >
+                  {languages.map((lang) => (
+                    <motion.button
+                      key={lang.code}
+                      whileHover={{ 
+                        x: 3,
+                        backgroundColor: "rgba(249, 168, 212, 0.1)" 
+                      }}
+                      onClick={() => handleLanguageChange(lang.code)}
+                      className={`flex items-center space-x-2 w-full text-left px-3 py-2 ${
+                        lang.code === i18n.language 
+                          ? 'text-pink-600 dark:text-gray-300 font-medium'
+                          : 'text-[#414760] dark:text-slate-200'
+                      }`}
+                    >
+                      <img 
+                        src={`/images/${lang.flag}`} 
+                        alt={lang.code}
+                        className="w-5 h-5 rounded-sm" 
+                      />
+                      <span className="text-sm">{lang.label}</span>
+                    </motion.button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
           
           <SocialLinks />
         </div>
@@ -174,14 +291,65 @@ function Header() {
             {darkMode ? <MdOutlineLightMode size={22} /> : <MdOutlineDarkMode size={22} />}
           </motion.button>
           
-          <ReactFlagsSelect
-            countries={["US", "FR"]}
-            customLabels={{ US: "EN", FR: "FR" }}
-            selected={i18n.language === 'en' ? 'US' : 'FR'}
-            onSelect={handleLanguageChange}
-            className="custom-flag-select !min-w-[80px] !p-0"
-            optionsSize={14}
-          />
+          {/* Custom Language Selector - Mobile */}
+          <div className="relative" ref={langDropdownRef}>
+            <motion.button
+              onClick={toggleLangDropdown}
+              disabled={isChangingLang}
+              className="flex items-center text-[#414760] dark:text-slate-50"
+              whileHover={{ scale: isChangingLang ? 1 : 1.05 }}
+            >
+              {isChangingLang ? (
+                <motion.div 
+                  animate={{ rotate: 360 }}
+                  transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                >
+                  <BiLoaderAlt size={18} className="text-pink-600 dark:text-gray-300" />
+                </motion.div>
+              ) : (
+                <img 
+                  src={`/images/${currentLang.flag}`} 
+                  alt={currentLang.code} 
+                  className="w-5 h-5 rounded-sm"
+                />
+              )}
+            </motion.button>
+            
+            <AnimatePresence>
+              {langDropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-full right-0 mt-1 bg-white dark:bg-dark-body border dark:border-gray-700 rounded-md shadow-lg py-1 min-w-[120px] z-50"
+                >
+                  {languages.map((lang) => (
+                    <motion.button
+                      key={lang.code}
+                      whileHover={{ 
+                        x: 3,
+                        backgroundColor: "rgba(249, 168, 212, 0.1)" 
+                      }}
+                      onClick={() => handleLanguageChange(lang.code)}
+                      className={`flex items-center space-x-2 w-full text-left px-3 py-2 ${
+                        lang.code === i18n.language 
+                          ? 'text-pink-600 dark:text-gray-300 font-medium'
+                          : 'text-[#414760] dark:text-slate-200'
+                      }`}
+                    >
+                      <img 
+                        src={`/images/${lang.flag}`} 
+                        alt={lang.code}
+                        className="w-5 h-5 rounded-sm" 
+                      />
+                      <span className="text-sm">{lang.label}</span>
+                    </motion.button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
           
           <motion.button 
             whileTap={{ scale: 0.9 }}
@@ -232,6 +400,7 @@ function Header() {
                   <MobileNavLink to="/services" label={t('services')} isActive={isActive("/services")} />
                   <MobileNavLink to="/portfolio" label={t('portfolio')} isActive={isActive("/portfolio")} />
                   <MobileNavLink to="/contact" label={t('contact')} isActive={isActive("/contact")} />
+                  
                 </nav>
                 
                 <div className="flex space-x-5 mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
@@ -240,6 +409,25 @@ function Header() {
               </div>
             </motion.div>
           </>
+        )}
+      </AnimatePresence>
+
+      {/* Full page loading overlay when changing language */}
+      <AnimatePresence>
+        {isChangingLang && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.3 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black z-[100] flex items-center justify-center"
+          >
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+            >
+              <BiLoaderAlt size={40} className="text-white" />
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>

@@ -207,7 +207,23 @@
   "error_email_required": "Veuillez entrer votre adresse email",
   "error_email_invalid": "Veuillez entrer une adresse email valide",
   "error_date_required": "Veuillez sélectionner une date préférée",
-  "error_time_required": "Veuillez sélectionner une heure préférée"
+  "error_time_required": "Veuillez sélectionner une heure préférée", 
+  "leave_review": "Laissez-moi un avis",
+  "your_name": "Votre nom",
+  "your_position": "Votre poste/entreprise",
+  "your_email": "Votre e-mail",
+  "your_rating": "Votre évaluation",
+  "your_review": "Votre avis",
+  "required_field": "Ce champ est requis",
+  "valid_email": "Veuillez entrer une adresse e-mail valide",
+  "name_placeholder": "Jean Dupont",
+  "position_placeholder": "PDG, Nom de l'entreprise",
+  "email_placeholder": "vous@example.com",
+  "review_placeholder": "Partagez votre expérience de travail avec moi...",
+  "submit_review": "Soumettre l'avis",
+  "cancel": "Annuler",
+  "review_submitted": "Merci pour votre avis !",
+  "review_error": "Une erreur s'est produite lors de la soumission de votre avis. Veuillez réessayer."
 
   
   }

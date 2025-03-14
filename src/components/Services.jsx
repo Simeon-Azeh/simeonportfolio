@@ -72,22 +72,23 @@ const Services = () => {
       </motion.div>
 
       <div className="w-full md:w-4/5 mx-auto px-6 md:px-0 relative z-10">
+        {/* Remove the mx-auto from the div to allow it to align with the grid */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-3xl mx-auto text-center mb-16"
+          className="max-w-3xl mb-16 text-left"
         >
           <motion.div 
             initial={{ width: 0 }}
             whileInView={{ width: "120px" }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="h-1 bg-pink-600 dark:bg-white rounded-full mb-6 mx-auto"
+            className="h-1 bg-pink-600 dark:bg-white rounded-full mb-6 mx-0"
           />
 
           <motion.h2 
-            className="text-3xl md:text-4xl font-bold mb-6"
+            className="text-3xl md:text-4xl font-bold mb-6 text-left"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -98,7 +99,7 @@ const Services = () => {
           </motion.h2>
           
           <motion.p 
-            className="text-base text-gray-600 dark:text-gray-400 mb-4"
+            className="text-base text-gray-600 dark:text-gray-400 mb-4 text-left"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -108,7 +109,7 @@ const Services = () => {
           </motion.p>
 
           <motion.p 
-            className="text-base text-gray-600 dark:text-gray-400"
+            className="text-base text-gray-600 dark:text-gray-400 text-left"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -169,11 +170,11 @@ const ServiceCard = ({ service, index, t }) => {
           </motion.div>
         </div>
 
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 text-left">
           {t(`services_${service.title}`)}
         </h3>
 
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-gray-600 dark:text-gray-400 text-left">
           {t(`services_${service.title}_description`)}
         </p>
 

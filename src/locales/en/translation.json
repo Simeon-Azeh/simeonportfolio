@@ -221,7 +221,23 @@
     "error_email_required": "Please enter your email address",
     "error_email_invalid": "Please enter a valid email address",
     "error_date_required": "Please select a preferred date",
-    "error_time_required": "Please select a preferred time"
+    "error_time_required": "Please select a preferred time", 
+   "leave_review": "Leave me a review",
+  "your_name": "Your Name",
+  "your_position": "Your Position/Company",
+  "your_email": "Your Email",
+  "your_rating": "Your Rating",
+  "your_review": "Your Review",
+  "required_field": "This field is required",
+  "valid_email": "Please enter a valid email",
+  "name_placeholder": "John Doe",
+  "position_placeholder": "CEO, Company Name",
+  "email_placeholder": "you@example.com",
+  "review_placeholder": "Share your experience working with me...",
+  "submit_review": "Submit Review",
+  "cancel": "Cancel",
+  "review_submitted": "Thank you for your review!",
+  "review_error": "There was an error submitting your review. Please try again."
 
 
   }
