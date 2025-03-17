@@ -14,12 +14,14 @@ import AboutMe from '../components/About/AboutMe'
 import Facts from '../components/About/Facts'
 import Timeline from '../components/About/Timeline'
 import Skills from '../components/About/Skills'
+
 function About() {
   return (
     <div className="">
         <div className='sticky top-0 bg-[#F9FEFF] dark:bg-[#171716] z-50 '>
         <Header />
         </div>
+        
         <div>
            <AboutHero />
         </div>

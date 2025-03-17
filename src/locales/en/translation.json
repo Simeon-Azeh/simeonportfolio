@@ -237,7 +237,22 @@
   "submit_review": "Submit Review",
   "cancel": "Cancel",
   "review_submitted": "Thank you for your review!",
-  "review_error": "There was an error submitting your review. Please try again."
+  "review_error": "There was an error submitting your review. Please try again.", 
+  "skill_web_developer": "Web Developer",
+  "skill_mobile_developer": "Mobile App Developer",
+  "skill_ui_ux_designer": "UI/UX Designer",
+  "skill_brand_manager": "Brand Manager",
+  "skill_graphic_designer": "Graphic Designer",
+  "skill_tech_tutor": "Tech Tutor", 
+  "app_showcase_title": "Mobile Applications",
+  "app_showcase_description": "Explore some of my latest mobile app projects with beautiful UI/UX design and powerful functionality",
+  "view_details": "View Details", 
+  "info_frontend_label": "Web Development",
+  "info_frontend_value": "3+ years",
+  "info_ui_design_label": "UI Design",
+  "info_ui_design_value": "30+ projects",
+  "info_mobile_label": "Mobile Apps",
+  "info_mobile_value": "10+ apps"
 
 
   }

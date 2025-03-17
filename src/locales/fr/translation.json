@@ -223,7 +223,19 @@
   "submit_review": "Soumettre l'avis",
   "cancel": "Annuler",
   "review_submitted": "Merci pour votre avis !",
-  "review_error": "Une erreur s'est produite lors de la soumission de votre avis. Veuillez réessayer."
+  "review_error": "Une erreur s'est produite lors de la soumission de votre avis. Veuillez réessayer.", 
+  "skill_web_developer": "Développeur Web",
+    "skill_mobile_developer": "Développeur d'Applications Mobiles",
+    "skill_ui_ux_designer": "Designer UI/UX",
+    "skill_brand_manager": "Gestionnaire de Marque",
+    "skill_graphic_designer": "Designer Graphique",
+    "skill_tech_tutor": "Formateur Technique", 
+    "info_frontend_label": "Développement Web",
+  "info_frontend_value": "3+ ans",
+  "info_ui_design_label": "Conception UI",
+  "info_ui_design_value": "30+ projets",
+  "info_mobile_label": "Applications Mobiles",
+  "info_mobile_value": "10+ applis"
 
   
   }
