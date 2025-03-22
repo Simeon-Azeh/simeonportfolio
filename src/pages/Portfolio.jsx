@@ -10,11 +10,15 @@ import Testimonial from '../components/Testimonial'
 import Pricing from '../components/Pricing'
 import Footer from '../components/Footer'
 import Tabs from '../components/Portfolio/Tabs'
+import AppHero from '../components/AppHero'
 function Portfolio() {
   return (
     <div className="">
         <div className='sticky top-0 bg-[#F9FEFF] dark:bg-[#171716] z-50 '>
         <Header />
+        </div>
+        <div>
+          <AppHero />
         </div>
        
         <div className=''>

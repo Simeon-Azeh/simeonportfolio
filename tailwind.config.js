@@ -18,6 +18,7 @@ export default {
         'light-body': '#F9FEFF',
         'light-text' : '#545e85'
       },
+      
     },
   },
   plugins: [],

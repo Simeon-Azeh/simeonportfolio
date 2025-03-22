@@ -252,3 +252,59 @@ body {
   animation: shimmer 2s linear infinite;
   background-size: 200% 100%;
 }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+:root {
+  --carousel-transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-item {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-item.active {
+  z-index: 20;
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+  left: 50%;
+  filter: blur(0);
+}
+
+.carousel-item.prev {
+  z-index: 10;
+  opacity: 0.3;
+  transform: translateX(-150%) scale(0.85);
+  left: 50%;
+  filter: blur(3px);
+}
+
+.carousel-item.next {
+  z-index: 10;
+  opacity: 0.3;
+  transform: translateX(50%) scale(0.85);
+  left: 50%;
+  filter: blur(3px);
+}

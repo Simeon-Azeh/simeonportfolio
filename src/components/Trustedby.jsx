@@ -5,6 +5,7 @@ import logo2 from '../../public/images/afiacare.svg';
 import logo3 from '../../public/images/alu.png';
 import logo4 from '../../public/images/urega.png';
 import logo5 from '../../public/images/logo3.png'
+import logo6 from '../../public/images/logo4.png'
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
@@ -12,11 +13,12 @@ const TrustedBy = () => {
   const { t } = useTranslation();
 
   const logos = [
-    { src: logo1, alt: "SIDEC Logo", width: "32" },
-    { src: logo2, alt: "Afiacare Logo", width: "40" },
+    { src: logo1, alt: "SIDEC Logo", width: "22" },
+    { src: logo2, alt: "Afiacare Logo", width: "60" },
     { src: logo3, alt: "ALU Logo", width: "36" },
-    { src: logo4, alt: "Urega Logo", width: "40" },
-    { src: logo5, alt: "Bucabus", width: "60"}
+    { src: logo4, alt: "Urega Logo", width: "20" },
+    { src: logo5, alt: "Bucabus", width: "60"},
+    { src: logo6, alt: "Fakaba", width: "60"}
   ];
 
   return (
