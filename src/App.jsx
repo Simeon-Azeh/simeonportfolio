@@ -14,6 +14,7 @@ import Dashboard from './admin/dashboard';
 import { ChatProvider } from './contexts/ChatContext';
 import { AuthProvider, ProtectedRoute } from './contexts/AuthContext';
 import ChatWidget from './components/ChatWidget';
+import Reviews from './pages/Reviews';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -47,6 +48,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/request-booking" element={<RequestBooking />} />
             <Route path="/projects/:projectId" element={<ProjectCase />} />
+            <Route path='/review' element={<Reviews />} />
             
             {/* Admin Routes */}
             <Route path="/admin/login" element={<Login />} />

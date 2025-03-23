@@ -7,6 +7,8 @@ import {
 } from 'react-icons/fi';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../../firebase'; // Make sure the path to firebase.js is correct
 
 const ContactForm = () => {
   const { t } = useTranslation();
@@ -102,11 +104,23 @@ const ContactForm = () => {
     setSubmitStatus(null);
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Save form data to Firestore
+      const formSubmissionsRef = collection(db, 'contactFormSubmissions');
       
-      // Handle form submission logic here
-      console.log('Form data submitted:', formData);
+      // Add timestamp and status
+      const submissionData = {
+        ...formData,
+        timestamp: serverTimestamp(),
+        status: 'new',
+        source: 'contact-form',
+        userAgent: navigator.userAgent,
+        language: navigator.language || 'unknown'
+      };
+      
+      // Submit to Firestore
+      await addDoc(formSubmissionsRef, submissionData);
+      
+      console.log('Form data submitted to Firestore:', submissionData);
       
       // Success!
       setSubmitStatus('success');
@@ -123,7 +137,7 @@ const ContactForm = () => {
       }, 5000);
       
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('Error submitting form to Firestore:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);

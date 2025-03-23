@@ -434,6 +434,17 @@ const projects = {
       projectUrl: 'https://planetvanguardrw.vercel.app/home',
     },
     {
+      title: 'Simeon Azeh Portfolio',
+      image: '/images/simeonazehimg.png',
+      description: 'This is my portfolio website, I built it to showcase my projects and skills',
+      description2: "I am the lead developer of this project",
+    
+      category: 'Personal',
+      client: 'Simeon Azeh',
+      projectDate: '2023 to Present',
+      projectUrl: 'https://simeonazeh.vercel.app/',
+    },
+    {
         title: 'Afiacare',
         image: '/images/work.png',
         description: 'Afiacare is dedicated to transforming the healthcare system in Cameroon. Our comprehensive digital platform addresses key challenges such as data mismanagement, donor matching, and information sharing between hospitals. We leverage cutting-edge technology to enhance the accuracy, efficiency, and accessibility of healthcare services.',

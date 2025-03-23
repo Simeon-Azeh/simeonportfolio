@@ -3,10 +3,26 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { BsCalendar, BsClock, BsPerson, BsEnvelope } from 'react-icons/bs';
 import { FaArrowRight, FaCheckCircle } from 'react-icons/fa';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../firebase';
+import SEO from '../components/SEO';
+
+interface FormData {
+  name: string;
+  email: string;
+  service: string;
+  date: string;
+  time: string;
+  message: string;
+}
+
+interface FormErrors {
+  [key: string]: string | null;
+}
 
 const RequestBooking = () => {
   const { t } = useTranslation();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     service: 'web-development',
@@ -16,7 +32,8 @@ const RequestBooking = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [errors, setErrors] = useState<{ [key: string]: string | null }>({});
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const services = [
     { id: 'web-development', name: t('pricing_web_dev_title') },
@@ -25,17 +42,21 @@ const RequestBooking = () => {
     { id: 'custom-solution', name: t('pricing_custom_title') }
   ];
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     // Clear error when field is modified
     if (errors[name]) {
       setErrors({ ...errors, [name]: null });
     }
+    // Clear submit error when any field changes
+    if (submitError) {
+      setSubmitError(null);
+    }
   };
 
-  const validate = () => {
-    const newErrors: { [key: string]: string | null } = {};
+  const validate = (): boolean => {
+    const newErrors: FormErrors = {};
     if (!formData.name.trim()) newErrors.name = t('error_name_required');
     if (!formData.email.trim()) {
       newErrors.email = t('error_email_required');
@@ -49,18 +70,37 @@ const RequestBooking = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!validate()) return;
     
     setIsSubmitting(true);
+    setSubmitError(null);
     
-    // Simulate API call
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Create booking data
+      const bookingData = {
+        name: formData.name,
+        email: formData.email,
+        service: formData.service,
+        date: formData.date,
+        time: formData.time,
+        message: formData.message || '',
+        status: 'pending', // Initial status
+        timestamp: serverTimestamp(),
+        // Generate a formatted booking date for easier reference
+        bookingDateTime: `${formData.date} ${formData.time}`,
+      };
+      
+      // Add booking to Firestore
+      const bookingsRef = collection(db, 'bookings');
+      await addDoc(bookingsRef, bookingData);
+      
+      // Set as submitted
       setIsSubmitted(true);
-      // Reset form after submission
+      
+      // Reset form
       setFormData({
         name: '',
         email: '',
@@ -71,6 +111,7 @@ const RequestBooking = () => {
       });
     } catch (error) {
       console.error('Form submission error:', error);
+      setSubmitError(t('error_submission') || 'There was an error submitting your booking. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -102,6 +143,12 @@ const RequestBooking = () => {
       variants={containerVariants}
       className="py-16 bg-light-body dark:bg-dark-body transition-colors font-inter"
     >
+      <SEO 
+        title="Request a Booking"
+        description="Book a consultation for your web development, design, or digital project. Fill out this form to schedule a meeting with Simeon."
+        keywords={['booking', 'consultation', 'web development', 'project consultation']}
+      />
+      
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5 dark:opacity-10">
         <div className="absolute inset-0 bg-grid-pattern"></div>
@@ -159,6 +206,12 @@ const RequestBooking = () => {
             onSubmit={handleSubmit}
             className="bg-white dark:bg-[#1a1a1a] rounded-2xl p-8 md:p-10 border border-gray-100 dark:border-gray-800 shadow-lg"
           >
+            {submitError && (
+              <div className="bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-200 p-4 rounded-lg mb-6 border border-red-200 dark:border-red-800">
+                <p>{submitError}</p>
+              </div>
+            )}
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <motion.div variants={itemVariants} className="space-y-2">
                 <label htmlFor="name" className="block text-gray-700 dark:text-white font-medium">
@@ -211,7 +264,7 @@ const RequestBooking = () => {
                   name="service"
                   value={formData.service}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg text-gray-800/40 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-500 dark:text-white appearance-none"
+                  className="w-full px-4 py-3 rounded-lg text-gray-800 dark:text-white bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-500 appearance-none"
                 >
                   {services.map(service => (
                     <option key={service.id} value={service.id}>{service.name}</option>
@@ -231,7 +284,7 @@ const RequestBooking = () => {
                     name="date"
                     value={formData.date}
                     onChange={handleChange}
-                    className={`w-full pl-10 pr-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 border ${
+                    className={`w-full pl-10 pr-4 py-3 text-light-text rounded-lg bg-gray-50 dark:bg-gray-800/50 border ${
                       errors.date ? 'border-red-500 dark:border-red-400' : 'border-gray-200 dark:border-gray-700'
                     } focus:outline-none focus:ring-2 focus:ring-pink-500 dark:text-white`}
                     min={new Date().toISOString().split('T')[0]}
@@ -252,7 +305,7 @@ const RequestBooking = () => {
                     name="time"
                     value={formData.time}
                     onChange={handleChange}
-                    className={`w-full pl-10 pr-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 border ${
+                    className={`w-full pl-10 pr-4 py-3 text-light-text rounded-lg bg-gray-50 dark:bg-gray-800/50 border ${
                       errors.time ? 'border-red-500 dark:border-red-400' : 'border-gray-200 dark:border-gray-700'
                     } focus:outline-none focus:ring-2 focus:ring-pink-500 dark:text-white`}
                   />
@@ -270,7 +323,7 @@ const RequestBooking = () => {
                   rows={4}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-500 dark:text-white"
+                  className="w-full px-4 py-3 rounded-lg text-light-text bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-500 dark:text-white"
                   placeholder={t('form_message_placeholder') || 'Tell me about your project and specific requirements...'}
                 ></textarea>
               </motion.div>

@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiUser, FiLock, FiEye, FiEyeOff, FiAlertCircle } from 'react-icons/fi';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase"; // Import Firebase Auth
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
@@ -16,20 +18,14 @@ const Login = () => {
     setError('');
     setIsLoading(true);
 
-    // For demo purposes, use a simple username/password check
-    // In a real app, you would validate against a secure backend
-    if (username === 'admin' && password === 'simeon123') {
-      // Store authentication state in localStorage
-      localStorage.setItem('adminAuthenticated', 'true');
-      setTimeout(() => {
-        setIsLoading(false);
-        navigate('/admin/dashboard');
-      }, 1000);
-    } else {
-      setTimeout(() => {
-        setIsLoading(false);
-        setError('Invalid username or password. Please try again.');
-      }, 1000);
+    try {
+      // Sign in with Firebase
+      await signInWithEmailAndPassword(auth, email, password);
+      setIsLoading(false);
+      navigate('/admin/dashboard'); // Redirect to dashboard on success
+    } catch (err) {
+      setIsLoading(false);
+      setError('Invalid email or password. Please try again.');
     }
   };
 
@@ -65,22 +61,22 @@ const Login = () => {
             <form onSubmit={handleSubmit}>
               <div className="space-y-5">
                 <div>
-                  <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Username
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    Email
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                       <FiUser className="text-gray-400" />
                     </div>
                     <input
-                      id="username"
-                      name="username"
-                      type="text"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       required
                       className="pl-10 w-full py-2 px-4 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                      placeholder="Admin username"
+                      placeholder="Admin email"
                     />
                   </div>
                 </div>
@@ -134,11 +130,6 @@ const Login = () => {
                 </div>
               </div>
             </form>
-
-            <div className="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
-              <p>Default credentials: admin / simeon123</p>
-              <p className="mt-1">(This is for demo purposes only, use secure credentials in production)</p>
-            </div>
           </div>
         </div>
       </motion.div>

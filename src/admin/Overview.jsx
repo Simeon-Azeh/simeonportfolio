@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { FiMessageSquare, FiUserPlus, FiPieChart, FiTrendingUp, FiCalendar, FiArrowRight, FiSettings  } from 'react-icons/fi';
+import { FiMessageSquare, FiUserPlus, FiPieChart, FiTrendingUp, FiCalendar, FiArrowRight, FiSettings } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import { collection, query, orderBy, limit, getDocs, doc, getDoc, where } from 'firebase/firestore';
+import { db, auth } from '../firebase';
 
 const Overview = () => {
   const [stats, setStats] = useState({
@@ -10,46 +12,89 @@ const Overview = () => {
   });
   
   const [isLoading, setIsLoading] = useState(true);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [userName, setUserName] = useState('Admin');
   
   useEffect(() => {
-    // Load chats from localStorage to calculate stats
-    const loadStats = () => {
-      const savedHistory = localStorage.getItem('chatHistory');
-      let chatHistory = [];
+    // Check for authenticated user
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      setCurrentUser(user);
       
-      if (savedHistory) {
-        chatHistory = JSON.parse(savedHistory);
+      if (user) {
+        try {
+          // Query the users collection to find the user with matching email
+          const usersRef = collection(db, "users");
+          const q = query(usersRef, where("email", "==", user.email));
+          const querySnapshot = await getDocs(q);
+          
+          if (!querySnapshot.empty) {
+            // Get the first matching document
+            const userDoc = querySnapshot.docs[0];
+            const userData = userDoc.data();
+            
+            if (userData.name) {
+              setUserName(userData.name);
+            }
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
       }
-      
-      // Get chats needing attention
-      const needsAttention = chatHistory.filter(chat => {
-        return chat.messages.some(
-          m => m.type === 'assistant' && m.text.includes("hold while I connect you to my boss")
-        );
-      });
-      
-      // Sort by most recent first
-      const sortedHistory = chatHistory.sort((a, b) => 
-        new Date(b.timestamp) - new Date(a.timestamp)
-      );
-      
-      // Get the 5 most recent chats
-      const recentChats = sortedHistory.slice(0, 5);
-      
-      setStats({
-        totalChats: chatHistory.length,
-        needsAttention: needsAttention.length,
-        recentChats
-      });
-      
-      setIsLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+  
+  useEffect(() => {
+    // Load chats from Firestore to calculate stats
+    const loadStats = async () => {
+      try {
+        // Reference to chats collection
+        const chatsRef = collection(db, "chats");
+        
+        // Query to get all chats, ordered by timestamp descending
+        const q = query(chatsRef, orderBy("timestamp", "desc"));
+        
+        // Get the data
+        const querySnapshot = await getDocs(q);
+        
+        // Process the data
+        const chatHistory = [];
+        querySnapshot.forEach((doc) => {
+          chatHistory.push({ id: doc.id, ...doc.data() });
+        });
+        
+        // Get chats needing attention
+        const needsAttention = chatHistory.filter(chat => {
+          return chat.messages && chat.messages.some(
+            m => m.type === 'assistant' && m.text.includes("hold while I connect you to my boss")
+          );
+        });
+        
+        // Get the 5 most recent chats
+        const recentChats = chatHistory.slice(0, 5);
+        
+        setStats({
+          totalChats: chatHistory.length,
+          needsAttention: needsAttention.length,
+          recentChats
+        });
+      } catch (error) {
+        console.error("Error fetching chats:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
     
-    loadStats();
-  }, []);
+    if (currentUser) {
+      loadStats();
+    }
+  }, [currentUser]);
   
   const extractUserEmail = (chat) => {
     // Find if there's an email in the chat
+    if (!chat.messages) return null;
+    
     for (let i = 0; i < chat.messages.length; i++) {
       const message = chat.messages[i];
       if (message.type === 'user') {
@@ -61,21 +106,45 @@ const Overview = () => {
     return null;
   };
   
-  // Format date to be more readable
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return new Intl.DateTimeFormat('en-US', { 
-      month: 'short', 
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    }).format(date);
+// Update your formatDate function to safely handle different timestamp formats
+const formatDate = (timestamp) => {
+    try {
+      // Check if it's a Firestore timestamp (has toDate method)
+      if (timestamp && typeof timestamp.toDate === 'function') {
+        return new Intl.DateTimeFormat('en-US', { 
+          month: 'short', 
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        }).format(timestamp.toDate());
+      }
+      
+      // If it's a Date object or a valid timestamp string
+      const date = timestamp instanceof Date ? timestamp : new Date(timestamp);
+      
+      // Check if the date is valid
+      if (isNaN(date.getTime())) {
+        return 'Invalid date';
+      }
+      
+      return new Intl.DateTimeFormat('en-US', { 
+        month: 'short', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      }).format(date);
+    } catch (error) {
+      console.error("Error formatting date:", error);
+      return 'Invalid date';
+    }
   };
   
   return (
     <div>
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Welcome back, Admin</h2>
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
+          Welcome back, {userName}
+        </h2>
         <p className="text-gray-600 dark:text-gray-300 mt-1">Here's what's happening with your website today.</p>
       </div>
       
@@ -113,7 +182,9 @@ const Overview = () => {
               </div>
               <div>
                 <p className="text-gray-500 dark:text-gray-400 text-sm">Response Rate</p>
-                <h3 className="text-2xl font-bold text-gray-800 dark:text-white">100%</h3>
+                <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+                  {stats.totalChats ? Math.round(((stats.totalChats - stats.needsAttention) / stats.totalChats) * 100) : 100}%
+                </h3>
               </div>
             </div>
           </div>
@@ -135,7 +206,7 @@ const Overview = () => {
               <div className="divide-y divide-gray-200 dark:divide-gray-700">
                 {stats.recentChats.map(chat => {
                   const email = extractUserEmail(chat);
-                  const needsAttention = chat.messages.some(
+                  const needsAttention = chat.messages && chat.messages.some(
                     m => m.type === 'assistant' && m.text.includes("hold while I connect you to my boss")
                   );
                   
@@ -165,7 +236,9 @@ const Overview = () => {
                               )}
                             </div>
                             <p className="mt-2 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
-                              {chat.messages[chat.messages.length - 1]?.text}
+                              {chat.messages && chat.messages.length > 0
+                                ? chat.messages[chat.messages.length - 1]?.text
+                                : "No messages in this chat"}
                             </p>
                           </div>
                         </div>
@@ -184,7 +257,7 @@ const Overview = () => {
             
             <div className="p-4 bg-gray-50 dark:bg-gray-750 border-t border-gray-200 dark:border-gray-700">
               <Link 
-                to="/admin/dashboard/chats" 
+                to="/admin/chats" 
                 className="inline-flex items-center text-sm font-medium text-pink-600 hover:text-pink-700 dark:text-pink-400 dark:hover:text-pink-300"
               >
                 View all conversations
