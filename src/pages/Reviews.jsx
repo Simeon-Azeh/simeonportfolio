@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Form, Input, Button, Rate, message, Steps, Card, Alert } from 'antd';
+import { Form, Input, Button, Rate, message, Steps, Card, Alert, Select } from 'antd';
 import { MdRateReview, MdOutlineVerified, MdOutlineMarkEmailRead } from 'react-icons/md';
 import { FaQuoteLeft, FaRegThumbsUp } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
@@ -11,6 +11,41 @@ import SEO from '../components/SEO';
 
 const { TextArea } = Input;
 const { Step } = Steps;
+const { Option } = Select;
+
+// Country data
+const COUNTRY_LIST = [
+  'United States', 'United Kingdom', 'Canada', 'Nigeria', 'India', 'Germany',
+  'France', 'Australia', 'South Africa', 'Brazil', 'Netherlands', 'Italy',
+  'Spain', 'Ghana', 'Kenya', 'Singapore', 'UAE', 'China', 'Japan', 'Rwanda',
+  'Israel', 'Cameroon', 'Other'
+];
+
+const COUNTRY_CODE_MAP = {
+  'United States': 'US',
+  'United Kingdom': 'GB',
+  'Canada': 'CA',
+  'Nigeria': 'NG',
+  'India': 'IN',
+  'Germany': 'DE',
+  'France': 'FR',
+  'Australia': 'AU',
+  'South Africa': 'ZA',
+  'Brazil': 'BR',
+  'Netherlands': 'NL',
+  'Italy': 'IT',
+  'Spain': 'ES',
+  'Ghana': 'GH',
+  'Kenya': 'KE',
+  'Singapore': 'SG',
+  'UAE': 'AE',
+  'China': 'CN',
+  'Japan': 'JP',
+  'Rwanda': 'RW',
+  'Israel': 'IL',
+  'Cameroon': 'CM',
+  'Other': ''
+};
 
 const Reviews = () => {
   const { t } = useTranslation();
@@ -21,6 +56,7 @@ const Reviews = () => {
   const [formData, setFormData] = useState({});
   const confettiRef = useRef(null);
   const [previewData, setPreviewData] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState(null);
 
   // Check if the form was already submitted (store in localStorage)
   useEffect(() => {
@@ -41,37 +77,47 @@ const Reviews = () => {
     }
   };
 
+  // Handle country selection change
+  const handleCountryChange = (value) => {
+    setSelectedCountry(value);
+
+    // Clear custom country if user switches from "Other" to a specific country
+    if (value !== 'Other') {
+      form.setFieldsValue({ customCountry: undefined });
+    }
+  };
+
   const steps = [
     {
       title: t('your_info', 'Your Information'),
       content: (
         <div className="space-y-6">
-          <Form.Item 
-            name="name" 
+          <Form.Item
+            name="name"
             label={<span className="text-light-text dark:text-light font-inter">{t('your_name', 'Your Name')}</span>}
             rules={[{ required: true, message: t('required_field', 'This field is required') }]}
           >
-            <Input 
-              placeholder={t('name_placeholder', 'Enter your full name')} 
-              className="rounded-lg py-2" 
+            <Input
+              placeholder={t('name_placeholder', 'Enter your full name')}
+              className="rounded-lg py-2"
               size="large"
             />
           </Form.Item>
-          
-          <Form.Item 
-            name="position" 
+
+          <Form.Item
+            name="position"
             label={<span className="text-light-text dark:text-light font-inter">{t('your_position', 'Your Position')}</span>}
             rules={[{ required: true, message: t('required_field', 'This field is required') }]}
           >
-            <Input 
-              placeholder={t('position_placeholder', 'e.g. Marketing Director at Company XYZ')} 
-              className="rounded-lg py-2" 
+            <Input
+              placeholder={t('position_placeholder', 'e.g. Marketing Director at Company XYZ')}
+              className="rounded-lg py-2"
               size="large"
             />
           </Form.Item>
-          
-          <Form.Item 
-            name="email" 
+
+          <Form.Item
+            name="email"
             label={<span className="text-light-text dark:text-light font-inter">{t('your_email', 'Your Email')}</span>}
             rules={[
               { required: true, message: t('required_field', 'This field is required') },
@@ -79,20 +125,56 @@ const Reviews = () => {
             ]}
             extra={<span className="text-xs text-gray-500 dark:text-gray-400">{t('email_privacy', 'Your email will not be published and is only used for verification.')}</span>}
           >
-            <Input 
-              placeholder={t('email_placeholder', 'your@email.com')} 
-              className="rounded-lg py-2" 
+            <Input
+              placeholder={t('email_placeholder', 'your@email.com')}
+              className="rounded-lg py-2"
               size="large"
             />
           </Form.Item>
 
-          <Form.Item 
-            name="company" 
+          <Form.Item
+            name="country"
+            label={<span className="text-light-text dark:text-light font-inter">{t('your_country', 'Your Country')}</span>}
+            rules={[{ required: true, message: t('required_field', 'This field is required') }]}
+          >
+            <Select
+              placeholder={t('country_placeholder', 'Select your country')}
+              onChange={handleCountryChange}
+              className="rounded-lg"
+              size="large"
+              showSearch
+              filterOption={(input, option) =>
+                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              }
+            >
+              {COUNTRY_LIST.map(country => (
+                <Option key={country} value={country}>{country}</Option>
+              ))}
+            </Select>
+          </Form.Item>
+
+          {selectedCountry === 'Other' && (
+            <Form.Item
+              name="customCountry"
+              label={<span className="text-light-text dark:text-light font-inter">{t('specify_country', 'Specify Your Country')}</span>}
+              rules={[{ required: true, message: t('required_field', 'This field is required') }]}
+              className="mt-4 animate-fadeIn"
+            >
+              <Input
+                placeholder={t('custom_country_placeholder', 'Enter your country name')}
+                className="rounded-lg py-2"
+                size="large"
+              />
+            </Form.Item>
+          )}
+
+          <Form.Item
+            name="company"
             label={<span className="text-light-text dark:text-light font-inter">{t('company', 'Company (Optional)')}</span>}
           >
-            <Input 
-              placeholder={t('company_placeholder', 'Company name')} 
-              className="rounded-lg py-2" 
+            <Input
+              placeholder={t('company_placeholder', 'Company name')}
+              className="rounded-lg py-2"
               size="large"
             />
           </Form.Item>
@@ -103,29 +185,29 @@ const Reviews = () => {
       title: t('your_testimonial', 'Your Testimonial'),
       content: (
         <div className="space-y-6">
-          <Form.Item 
-            name="rating" 
+          <Form.Item
+            name="rating"
             label={<span className="text-light-text dark:text-light font-inter text-lg">{t('your_rating', 'Your Rating')}</span>}
             rules={[{ required: true, message: t('required_field', 'Please rate your experience') }]}
           >
-            <Rate 
-              allowHalf 
-              className="text-3xl" 
+            <Rate
+              allowHalf
+              className="text-3xl"
               character={<FaRegThumbsUp />}
             />
           </Form.Item>
-          
-          <Form.Item 
-            name="text" 
+
+          <Form.Item
+            name="text"
             label={<span className="text-light-text dark:text-light font-inter text-lg">{t('your_testimonial', 'Your Testimonial')}</span>}
             rules={[
               { required: true, message: t('required_field', 'This field is required') },
               { min: 20, message: t('testimonial_min_length', 'Please provide at least 20 characters') }
             ]}
           >
-            <TextArea 
-              placeholder={t('review_placeholder', 'Share your experience working with me. What was the project? What did you like? What was the outcome?')} 
-              rows={6} 
+            <TextArea
+              placeholder={t('review_placeholder', 'Share your experience working with me. What was the project? What did you like? What was the outcome?')}
+              rows={6}
               className="rounded-lg"
               showCount
               maxLength={500}
@@ -144,18 +226,18 @@ const Reviews = () => {
               <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">
                 {t('preview_message', 'Please review your testimonial before submitting.')}
               </p>
-              
+
               <Card className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
                 <div className="relative">
                   <div className="absolute top-0 left-4 opacity-10">
                     <FaQuoteLeft className="text-5xl text-pink-600 dark:text-white" />
                   </div>
-                  
+
                   <div className="flex items-start gap-4 mb-4 relative z-10">
                     <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 bg-pink-100 dark:bg-pink-900/30 flex items-center justify-center text-pink-600 dark:text-pink-400">
                       {previewData.name.slice(0, 1).toUpperCase()}
                     </div>
-                    
+
                     <div>
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
                         {previewData.name}
@@ -165,18 +247,21 @@ const Reviews = () => {
                           </span>
                         )}
                       </h3>
-                      <p className="text-gray-600 dark:text-gray-400">{previewData.position}</p>
-                      
+                      <p className="text-gray-600 dark:text-gray-400">
+                        {previewData.position}
+                        {previewData.country && ` · ${previewData.country === 'Other' ? previewData.customCountry : previewData.country}`}
+                      </p>
+
                       <div className="flex items-center mt-1">
                         <Rate disabled defaultValue={previewData.rating} />
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="text-gray-800 dark:text-gray-200 text-lg leading-relaxed pl-6 border-l-2 border-pink-200 dark:border-pink-800 italic">
                     "{previewData.text}"
                   </div>
-                  
+
                   {previewData.company && (
                     <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 text-right">
                       <span className="text-gray-500 dark:text-gray-400 text-sm">
@@ -186,7 +271,7 @@ const Reviews = () => {
                   )}
                 </div>
               </Card>
-              
+
               <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mt-6">
                 <div className="flex items-start">
                   <div className="mr-3 text-blue-500 dark:text-blue-400 mt-0.5">
@@ -215,10 +300,14 @@ const Reviews = () => {
   const handleNext = async () => {
     try {
       let values;
-      
+
       if (currentStep === 0) {
         // Validate first step
-        values = await form.validateFields(['name', 'position', 'email', 'company']);
+        if (selectedCountry === 'Other') {
+          values = await form.validateFields(['name', 'position', 'email', 'company', 'country', 'customCountry']);
+        } else {
+          values = await form.validateFields(['name', 'position', 'email', 'company', 'country']);
+        }
         setFormData({ ...formData, ...values });
         setCurrentStep(currentStep + 1);
       } else if (currentStep === 1) {
@@ -241,8 +330,11 @@ const Reviews = () => {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-    
+
     try {
+      // Determine the final country value (from select or custom input)
+      const finalCountry = formData.country === 'Other' ? formData.customCountry : formData.country;
+
       // Create review data with status awaiting approval
       const reviewData = {
         name: formData.name,
@@ -250,27 +342,28 @@ const Reviews = () => {
         position: formData.position,
         text: formData.text,
         company: formData.company || '',
+        country: finalCountry || '',
         rating: formData.rating,
         timestamp: serverTimestamp(),
         status: 'pending',
         image: 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg'
       };
-      
+
       // Add testimonial to Firestore
       const testimonialsRef = collection(db, 'testimonials');
       await addDoc(testimonialsRef, reviewData);
-      
+
       // Show success message and confetti effect
       triggerConfetti();
       message.success({
         content: t('review_submitted', 'Thank you! Your review has been submitted and will be published after approval.'),
         duration: 5
       });
-      
+
       // Set as submitted in localStorage to prevent multiple submissions
       localStorage.setItem('testimonial_submitted', 'true');
       setIsSubmitted(true);
-      
+
       // Reset the form
       form.resetFields();
     } catch (error) {
@@ -297,11 +390,11 @@ const Reviews = () => {
       className="min-h-screen bg-light-body dark:bg-dark-body py-16 px-4 sm:px-6 lg:px-8"
       ref={confettiRef}
     >
-      <SEO 
+      <SEO
         title="Leave a Review - Simeon's Portfolio"
         description="Share your experience working with Simeon. Your feedback helps others make informed decisions."
       />
-      
+
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-10">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
@@ -313,9 +406,9 @@ const Reviews = () => {
             {t('leave_review_page_description', 'Thank you for considering to share your feedback. Your testimonial helps others understand the quality and value of my work.')}
           </p>
         </div>
-        
+
         {isSubmitted ? (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg text-center"
@@ -331,8 +424,8 @@ const Reviews = () => {
             <p className="text-gray-600 dark:text-gray-400 mb-6">
               {t('already_submitted_message', 'You have already submitted a testimonial. Thank you for your feedback and support!')}
             </p>
-            <Button 
-              type="primary" 
+            <Button
+              type="primary"
               size="large"
               onClick={() => {
                 localStorage.removeItem('testimonial_submitted');
@@ -352,7 +445,7 @@ const Reviews = () => {
                 <Step key={item.title} title={item.title} />
               ))}
             </Steps>
-            
+
             <Form
               form={form}
               layout="vertical"
@@ -371,22 +464,22 @@ const Reviews = () => {
                 {steps[currentStep].content}
               </motion.div>
             </Form>
-            
+
             <div className="flex justify-between mt-8">
               {currentStep > 0 && (
-                <Button 
-                  onClick={handlePrev} 
-                  className="rounded-lg border border-gray-300 dark:border-gray-600"
+                <Button
+                  onClick={handlePrev}
+                  className="rounded-lg border border-gray-300 border-solid dark:border-gray-600"
                   size="large"
                 >
                   {t('previous', 'Previous')}
                 </Button>
               )}
-              
+
               <div className="ml-auto">
                 {currentStep < steps.length - 1 && (
-                  <Button 
-                    type="primary" 
+                  <Button
+                    type="primary"
                     onClick={handleNext}
                     className="bg-pink-600 hover:bg-pink-700 border-none rounded-lg"
                     size="large"
@@ -394,10 +487,10 @@ const Reviews = () => {
                     {t('next', 'Next')}
                   </Button>
                 )}
-                
+
                 {currentStep === steps.length - 1 && (
-                  <Button 
-                    type="primary" 
+                  <Button
+                    type="primary"
                     onClick={handleSubmit}
                     loading={isSubmitting}
                     className="bg-pink-600 hover:bg-pink-700 border-none rounded-lg"

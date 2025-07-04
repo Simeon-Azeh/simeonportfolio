@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Carousel, Modal, Form, Input, Button, Rate, message, Skeleton, Empty, Select } from 'antd';
-import { FaQuoteLeft, FaLinkedin, FaTwitter } from 'react-icons/fa';
-import { MdRateReview, MdOutlineVerified } from 'react-icons/md';
+import { Carousel, Modal, Form, Input, Button, Rate, message, Skeleton, Empty, Select, Progress, Tooltip } from 'antd';
+import { FaQuoteLeft, FaLinkedin, FaTwitter, FaStar, FaRegStar } from 'react-icons/fa';
+import { MdRateReview, MdOutlineVerified, MdChevronRight } from 'react-icons/md';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 import { useTranslation } from 'react-i18next';
 import {
@@ -49,64 +49,143 @@ const { Option } = Select;
 const DEFAULT_AVATAR = 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg';
 
 const COUNTRY_LIST = [
-  'United States', 'United Kingdom', 'Canada', 'Nigeria', 'India', 'Germany', 'France', 'Australia', 'South Africa', 'Brazil', 'Netherlands', 'Italy', 'Spain', 'Ghana', 'Kenya', 'Singapore', 'UAE', 'China', 'Japan', 'Other'
+  'United States', 'United Kingdom', 'Canada', 'Nigeria', 'India', 'Germany', 
+  'France', 'Australia', 'South Africa', 'Brazil', 'Netherlands', 'Italy', 
+  'Spain', 'Ghana', 'Kenya', 'Singapore', 'UAE', 'China', 'Japan', 'Rwanda',
+  'Israel', 'Cameroon', 'Other'
 ];
 
-function TestimonialCard({ name, position, image, text, rating, company, country, socialLinks, gridView = false }) {
-  const { t } = useTranslation();
-
-  const starRating = rating ? (
+// Star Rating Component with hover effect
+const StarRating = ({ rating, size = 'default' }) => {
+  const sizeMap = {
+    small: 'w-3 h-3',
+    default: 'w-4 h-4',
+    large: 'w-5 h-5'
+  };
+  
+  const classes = sizeMap[size] || sizeMap.default;
+  
+  return rating ? (
     <div className="flex items-center mt-2">
       {[...Array(5)].map((_, i) => (
-        <svg
+        <motion.svg
           key={i}
-          className={`w-4 h-4 ${i < Math.floor(rating) ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600'}`}
+          whileHover={{ scale: 1.2 }}
+          className={`${classes} ${i < Math.floor(rating) ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600'}`}
           fill="currentColor"
           viewBox="0 0 20 20"
         >
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
+        </motion.svg>
       ))}
       {rating % 1 !== 0 && (
-        <span className="text-xs ml-1 text-yellow-500">{rating.toFixed(1)}</span>
+        <span className="text-xs ml-1 text-yellow-500 font-semibold">{rating.toFixed(1)}</span>
       )}
     </div>
   ) : null;
+};
 
-  // If in grid view, return a simpler card design
+// Letter Avatar Component
+const LetterAvatar = ({ name, size = "default", className = "" }) => {
+  // Size classes for different avatar dimensions
+  const sizeClasses = {
+    small: "w-10 h-10 text-base",
+    default: "w-14 h-14 text-lg",
+    large: "w-20 h-20 text-2xl"
+  };
+  
+  // Generate a deterministic color based on the name
+  const getColorFromName = (name) => {
+    const colors = [
+      "bg-pink-500 dark:bg-pink-600",
+      "bg-blue-500 dark:bg-blue-600",
+      "bg-purple-500 dark:bg-purple-600",
+      "bg-green-500 dark:bg-green-600",
+      "bg-indigo-500 dark:bg-indigo-600",
+      "bg-red-500 dark:bg-red-600",
+      "bg-amber-500 dark:bg-amber-600",
+      "bg-teal-500 dark:bg-teal-600",
+      "bg-cyan-500 dark:bg-cyan-600",
+      "bg-rose-500 dark:bg-rose-600"
+    ];
+    
+ // Create a simple hash from the name to select a color
+    let hashCode = 0;
+    if (name.length === 0) return colors[0];
+    
+    for (let i = 0; i < name.length; i++) {
+      hashCode = name.charCodeAt(i) + ((hashCode << 5) - hashCode);
+    }
+    
+    return colors[Math.abs(hashCode) % colors.length];
+  };
+  
+  // Get the first letter from the name (safely)
+  const getFirstLetter = (name) => {
+    if (!name || typeof name !== 'string' || name.length === 0) return '?';
+    return name.trim().charAt(0).toUpperCase();
+  };
+  
+  // Determine color and letter
+  const firstLetter = getFirstLetter(name);
+  const bgColorClass = getColorFromName(name);
+  
+  return (
+    <div className={`${sizeClasses[size] || sizeClasses.default} ${bgColorClass} rounded-full flex items-center justify-center font-bold text-white ${className}`}>
+      {firstLetter}
+    </div>
+  );
+};
+
+// Modern Card Component
+function TestimonialCard({ name, position, image, text, rating, company, country, socialLinks, gridView = false, isPreview = false }) {
+  const { t } = useTranslation();
+
+    const useLetterAvatar = !image || image === DEFAULT_AVATAR;
+  // Grid view card (smaller, simpler design)
   if (gridView) {
     return (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
-        whileHover={{ y: -8 }}
+        whileHover={{ y: -8, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
         transition={{ duration: 0.3 }}
-        className="bg-white dark:bg-[#1a1a1a] rounded-xl p-6  dark:shadow-none
-                   border border-gray-200 dark:border-gray-800 font-inter h-full flex flex-col"
+        className={`bg-white dark:bg-[#1a1a1a] rounded-xl p-6 dark:shadow-none
+                   border border-gray-200 dark:border-gray-800 font-inter h-full flex flex-col
+                   ${isPreview ? 'opacity-70 blur-[1px]' : ''}`}
       >
         <div className="absolute -top-3 left-6">
           <FaQuoteLeft className="text-3xl text-pink-600 dark:text-white opacity-20" />
         </div>
 
         <div className="flex items-start mb-4 relative z-10 pt-3">
-          <div className="flex-shrink-0">
-            <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-pink-600 dark:border-pink-500">
-              <img
-                src={image}
-                alt={name}
-                className="w-full h-full rounded-full object-cover"
-              />
-            </div>
+             <div className="flex-shrink-0">
+            {useLetterAvatar ? (
+              <LetterAvatar name={name} className="border-2 border-white dark:border-gray-800" />
+            ) : (
+              <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-pink-600 dark:border-pink-500">
+                <img
+                  src={image}
+                  alt={name}
+                  className="w-full h-full rounded-full object-cover"
+                />
+              </div>
+            )}
           </div>
           <div className="ml-3">
             <div className="flex items-center gap-1">
               <h3 className="text-base font-bold text-gray-900 dark:text-white">
                 {(name || '').split(' ').slice(0, 2).join(' ')}
               </h3>
+              {rating && rating >= 4.5 && (
+                <span className="inline-flex items-center text-green-600 dark:text-green-400">
+                  <MdOutlineVerified size={14} />
+                </span>
+              )}
             </div>
             <p className="text-xs text-gray-600 dark:text-gray-400">{position}</p>
-            {starRating}
+            <StarRating rating={rating} />
           </div>
         </div>
 
@@ -139,46 +218,18 @@ function TestimonialCard({ name, position, image, text, rating, company, country
     );
   }
 
-  // Original carousel card design
+  // Carousel card design (larger, more detailed)
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="w-full md:w-4/5 mx-auto py-16 px-6 md:px-0"
+      className="w-full md:w-4/5 mx-auto py-8 px-6 md:px-0"
     >
-      <div className="text-left mb-12">
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: "120px" }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="h-1 bg-pink-600 dark:bg-white rounded-full mb-6 mx-0"
-        />
-        <motion.h2
-          className="text-3xl md:text-4xl font-bold mb-4 text-left"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-light-text dark:from-white dark:to-gray-300">
-            {t('testimonial_title', 'Client Testimonials')}
-          </span>
-        </motion.h2>
-        <motion.p
-          className="text-gray-600 dark:text-gray-400 max-w-2xl text-left font-inter"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-        >
-          {t('testimonial_intro', 'Discover what clients say about working with me. Their experiences reflect my commitment to delivering exceptional results.')}
-        </motion.p>
-      </div>
-
       <motion.div
         className="bg-white dark:bg-[#1a1a1a] rounded-2xl p-8 md:p-10 shadow-xl dark:shadow-none relative
-                           border border-gray-200 border-solid dark:border-gray-800 font-inter overflow-hidden"
+                   border border-gray-200 border-solid dark:border-gray-800 font-inter overflow-hidden
+                   backdrop-blur-sm bg-white/80 dark:bg-[#1a1a1a]/80"
         whileHover={{ y: -5 }}
         transition={{ duration: 0.3 }}
       >
@@ -191,27 +242,39 @@ function TestimonialCard({ name, position, image, text, rating, company, country
         </div>
 
         <div className="flex flex-col md:flex-row md:items-center gap-6 mb-6 relative z-10">
-          <motion.div
-            className="w-20 h-20 rounded-full overflow-hidden border-2 border-pink-600 border-solid dark:border-white p-1"
-            whileHover={{ scale: 1.1 }}
-          >
-            <img
-              src={image}
-              alt={name}
-              className="w-full h-full rounded-full object-cover filter dark:grayscale"
-            />
-          </motion.div>
+             {useLetterAvatar ? (
+            <motion.div whileHover={{ scale: 1.1 }}>
+              <LetterAvatar 
+                name={name} 
+                size="large" 
+                className="border-2 border-pink-600 border-solid dark:border-white p-1" 
+              />
+            </motion.div>
+          ) : (
+            <motion.div
+              className="w-20 h-20 rounded-full overflow-hidden border-2 border-pink-600 border-solid dark:border-white p-1"
+              whileHover={{ scale: 1.1 }}
+            >
+              <img
+                src={image}
+                alt={name}
+                className="w-full h-full rounded-full object-cover filter dark:grayscale"
+              />
+            </motion.div>
+          )}
           <div>
             <div className="flex items-center gap-2">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{name}</h3>
               {rating && rating >= 4.5 && (
-                <span className="inline-flex items-center text-green-600 dark:text-green-400">
-                  <MdOutlineVerified size={18} />
-                </span>
+                <Tooltip title="Verified Review">
+                  <span className="inline-flex items-center text-green-600 dark:text-green-400">
+                    <MdOutlineVerified size={18} />
+                  </span>
+                </Tooltip>
               )}
             </div>
             <p className="text-sm text-gray-600 dark:text-gray-400">{position}</p>
-            {starRating}
+            <StarRating rating={rating} size="large" />
 
             {/* Social links */}
             {socialLinks && (
@@ -271,6 +334,7 @@ function TestimonialCard({ name, position, image, text, rating, company, country
   );
 }
 
+// Review form component
 function ReviewForm({ isOpen, onClose, onReviewSubmitted }) {
   const [form] = Form.useForm();
   const { t } = useTranslation();
@@ -560,6 +624,142 @@ function ReviewForm({ isOpen, onClose, onReviewSubmitted }) {
   );
 }
 
+// Review Statistics Summary Component
+function ReviewSummary({ testimonials }) {
+  const { t } = useTranslation();
+
+  const stats = useMemo(() => {
+    if (!testimonials.length) return null;
+
+    // Calculate average rating
+    const totalRating = testimonials.reduce((acc, curr) => acc + curr.rating, 0);
+    const averageRating = totalRating / testimonials.length;
+
+    // Count ratings by star
+    const ratingCounts = {
+      5: 0, 4: 0, 3: 0, 2: 0, 1: 0
+    };
+    
+    testimonials.forEach(t => {
+      const roundedRating = Math.floor(t.rating);
+      ratingCounts[roundedRating] = (ratingCounts[roundedRating] || 0) + 1;
+    });
+
+    // Get top countries
+    const countries = {};
+    testimonials.forEach(t => {
+      if (t.country) {
+        countries[t.country] = (countries[t.country] || 0) + 1;
+      }
+    });
+    
+    const topCountries = Object.entries(countries)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+      .map(([country, count]) => ({ country, count }));
+
+    return {
+      averageRating,
+      total: testimonials.length,
+      ratingCounts,
+      topCountries
+    };
+  }, [testimonials]);
+
+  if (!stats) return null;
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="bg-white dark:bg-[#1a1a1a] rounded-2xl p-6 md:p-8 shadow-[0_4px_12px_0_rgba(0,0,0,0.05)] dark:shadow-none mb-8
+                border border-gray-200 dark:border-gray-800 backdrop-blur-sm bg-white/90 dark:bg-[#1a1a1a]/90"
+    >
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Average Rating */}
+        <div className="flex flex-col items-center justify-center p-4 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-800">
+          <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
+            {t('average_rating', 'Average Rating')}
+          </h3>
+          <div className="flex items-center mb-2">
+            <span className="text-4xl font-bold text-gray-900 dark:text-white mr-2">
+              {stats.averageRating.toFixed(1)}
+            </span>
+            <span className="text-yellow-500">
+              <FaStar size={24} />
+            </span>
+          </div>
+          <div className="flex mt-1">
+            <StarRating rating={stats.averageRating} size="large" />
+          </div>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+            {t('from_reviews', 'From {{count}} reviews', { count: stats.total })}
+          </p>
+        </div>
+
+        {/* Rating Distribution */}
+        <div className="p-4 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-800">
+          <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center md:text-left">
+            {t('rating_distribution', 'Rating Distribution')}
+          </h3>
+          
+          {[5, 4, 3, 2, 1].map(rating => {
+            const count = stats.ratingCounts[rating] || 0;
+            const percentage = Math.round((count / stats.total) * 100) || 0;
+            
+            return (
+              <div key={rating} className="flex items-center mb-2">
+                <div className="flex items-center w-10">
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{rating}</span>
+                  <FaStar className="ml-1 text-yellow-400 w-3 h-3" />
+                </div>
+                <div className="flex-1 mx-4">
+                  <Progress 
+                    percent={percentage} 
+                    showInfo={false} 
+                    strokeColor="#EC4899" 
+                    trailColor="#E5E7EB"
+                    className="custom-progress"
+                  />
+                </div>
+                <div className="w-9 text-right">
+                  <span className="text-xs font-medium text-gray-500 dark:text-gray-400">{percentage}%</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Top Represented Countries */}
+        <div className="p-4">
+          <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center md:text-left">
+            {t('top_countries', 'Top Countries')}
+          </h3>
+          
+          <div className="space-y-3">
+            {stats.topCountries.map(({ country, count }) => (
+              <div key={country} className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <CountryFlag
+                    countryCode={COUNTRY_CODE_MAP[country] || ''}
+                    svg
+                    style={{ width: '1.5em', height: '1.5em', marginRight: '0.5em' }}
+                  />
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{country}</span>
+                </div>
+                <span className="text-xs font-medium px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-full">
+                  {count} {count === 1 ? t('review', 'review') : t('reviews', 'reviews')}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// Main Testimonial Component
 function Testimonial() {
   const { t } = useTranslation();
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
@@ -567,7 +767,8 @@ function Testimonial() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [viewMode, setViewMode] = useState('grid');
-  const [displayCount, setDisplayCount] = useState(6);
+  const [page, setPage] = useState(0);
+  const testimonialsPerPage = 3;
   const carouselRef = useRef(null);
 
   const fetchTestimonials = async () => {
@@ -609,15 +810,21 @@ function Testimonial() {
     fetchTestimonials();
   }, []);
 
+  const totalPages = Math.ceil(testimonials.length / testimonialsPerPage);
+
   const handlePrev = () => {
-    if (carouselRef.current) {
+    if (viewMode === 'carousel' && carouselRef.current) {
       carouselRef.current.prev();
+    } else {
+      setPage(p => Math.max(0, p - 1));
     }
   };
 
   const handleNext = () => {
-    if (carouselRef.current) {
+    if (viewMode === 'carousel' && carouselRef.current) {
       carouselRef.current.next();
+    } else {
+      setPage(p => Math.min(totalPages - 1, p + 1));
     }
   };
 
@@ -633,21 +840,17 @@ function Testimonial() {
     setIsReviewModalOpen(false);
   };
 
-  const showMoreTestimonials = () => {
-    setDisplayCount(prevCount => prevCount + 6);
-  };
-
   const headerSection = (
-    <div className="text-left mb-12">
+    <div className="text-center md:text-left mb-8">
       <motion.div
         initial={{ width: 0 }}
         whileInView={{ width: "120px" }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="h-1 bg-pink-600 dark:bg-white rounded-full mb-6 mx-0"
+        className="h-1 bg-pink-600 dark:bg-white rounded-full mb-6 mx-auto md:mx-0"
       />
       <motion.h2
-        className="text-3xl md:text-4xl font-bold mb-4 text-left"
+        className="text-3xl md:text-4xl font-bold mb-4"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -657,7 +860,7 @@ function Testimonial() {
         </span>
       </motion.h2>
       <motion.p
-        className="text-gray-600 dark:text-gray-400 max-w-2xl text-left font-inter"
+        className="text-gray-600 dark:text-gray-400 max-w-2xl font-inter mx-auto md:mx-0"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -668,46 +871,27 @@ function Testimonial() {
     </div>
   );
 
-  const ShowMoreCard = () => (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      whileHover={{ scale: 1.03 }}
-      transition={{ duration: 0.3 }}
-      onClick={showMoreTestimonials}
-      className="bg-white dark:bg-[#1a1a1a] rounded-xl p-6  dark:shadow-none
-                border border-gray-200 dark:border-gray-800 font-inter h-full flex flex-col 
-                items-center justify-center cursor-pointer border-dashed"
-    >
-      <div className="p-6 rounded-full bg-pink-50 dark:bg-pink-900/20 mb-4">
-        <svg className="w-10 h-10 text-pink-600 dark:text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-        </svg>
-      </div>
-      <h3 className="text-base font-bold text-gray-900 dark:text-white mb-2">
-        {t('show_more', 'Show More')}
-      </h3>
-      <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
-        {t('show_more_testimonials', 'View more testimonials from clients')}
-      </p>
-    </motion.div>
-  );
+  const currentTestimonials = testimonials.slice(page * testimonialsPerPage, (page * testimonialsPerPage) + testimonialsPerPage);
+  const hasNextTestimonial = (page * testimonialsPerPage) + testimonialsPerPage < testimonials.length;
 
   return (
-    <div className="bg-light-body dark:bg-dark-body relative overflow-hidden py-8 md:py-16">
+    <div className="bg-light-body dark:bg-dark-body relative overflow-hidden py-12 md:py-20">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5 dark:opacity-10">
         <div className="absolute inset-0 bg-grid-pattern"></div>
       </div>
 
-      <div className="w-full md:w-4/5 mx-auto relative px-4 md:px-0">
+      <div className="w-full md:w-11/12 lg:w-4/5 mx-auto relative px-4 md:px-6">
         {headerSection}
+
+        {testimonials.length > 0 && (
+          <ReviewSummary testimonials={testimonials} />
+        )}
 
         {/* View Mode Toggle */}
         {testimonials.length > 0 && (
           <div className="flex justify-end mb-6">
-            <div className="inline-flex rounded-md shadow-sm" role="group">
+            <div className="inline-flex rounded-md shadow-[0_4px_12px_0_rgba(0,0,0,0.05)]" role="group">
               <button
                 type="button"
                 onClick={() => setViewMode('grid')}
@@ -738,9 +922,9 @@ function Testimonial() {
 
         {isLoading ? (
           <div className="py-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[1, 2, 3].map(i => (
-                <div key={i} className="bg-white dark:bg-[#1a1a1a] rounded-xl p-6 shadow-lg">
+                <div key={i} className="bg-white dark:bg-[#1a1a1a] rounded-xl p-6 shadow-[0_4px_12px_0_rgba(0,0,0,0.05)]">
                   <div className="flex items-center gap-4 mb-6">
                     <Skeleton.Avatar active size={56} />
                     <div>
@@ -757,8 +941,8 @@ function Testimonial() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="bg-white dark:bg-[#1a1a1a] rounded-2xl p-8 md:p-10 shadow-lg dark:shadow-none
-                                  border border-gray-200 border-solid dark:border-gray-800 text-center py-16"
+            className="bg-white dark:bg-[#1a1a1a] rounded-2xl p-8 md:p-10 shadow-[0_4px_12px_0_rgba(0,0,0,0.05)] dark:shadow-none
+                        border border-gray-200 border-solid dark:border-gray-800 text-center py-16"
           >
             <Empty
               image={Empty.PRESENTED_IMAGE_SIMPLE}
@@ -786,17 +970,84 @@ function Testimonial() {
             />
           </motion.div>
         ) : viewMode === 'grid' ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.slice(0, displayCount).map((testimonial, index) => (
-              <TestimonialCard
-                key={testimonial.id || index}
-                {...testimonial}
-                gridView={true}
-              />
-            ))}
-            {testimonials.length > displayCount && (
-              <ShowMoreCard />
+          <div className="relative">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {currentTestimonials.map((testimonial, index) => (
+                <TestimonialCard
+                  key={testimonial.id || index}
+                  {...testimonial}
+                  gridView={true}
+                />
+              ))}
+              
+              {/* Preview card with overlay if there are more testimonials */}
+              {hasNextTestimonial && testimonials.length > 3 && (
+                <div className="relative col-span-1">
+                  <TestimonialCard
+                    {...testimonials[page * testimonialsPerPage + 3]}
+                    gridView={true}
+                    isPreview={true}
+                  />
+                  <div 
+                    className="absolute inset-0 bg-gradient-to-r from-transparent to-gray-100/70 dark:to-gray-900/70 
+                            rounded-xl flex items-center justify-center cursor-pointer transition-all group"
+                    onClick={handleNext}
+                  >
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="bg-pink-600 text-white px-4 py-2 rounded-lg shadow-[0_4px_12px_0_rgba(0,0,0,0.05)] 
+                               flex items-center group-hover:shadow-xl transition-all"
+                    >
+                      <span>{t('see_more', 'See More')}</span>
+                      <MdChevronRight className="ml-1" />
+                    </motion.button>
+                  </div>
+                </div>
+              )}
+            </div>
+            
+        
+            {totalPages > 1 && (
+              <div className="flex justify-center mt-8">
+                <div className="flex items-center gap-2">
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={handlePrev}
+                    disabled={page === 0}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center
+                              ${page === 0 
+                                ? 'bg-gray-200 text-gray-400 dark:bg-gray-800 dark:text-gray-600 cursor-not-allowed'
+                                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-white shadow-md'}`}
+                    aria-label="Previous page"
+                  >
+                    <HiChevronLeft size={20} />
+                  </motion.button>
+                  
+                  <div className="px-4 py-2 bg-white dark:bg-gray-800 rounded-lg shadow-[0_4px_12px_0_rgba(0,0,0,0.05)]">
+                    <span className="text-sm font-medium text-gray-700 dark:text-white">
+                      {page + 1} / {totalPages}
+                    </span>
+                  </div>
+                  
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={handleNext}
+                    disabled={page >= totalPages - 1}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center
+                              ${page >= totalPages - 1
+                                ? 'bg-gray-200 text-gray-400 dark:bg-gray-800 dark:text-gray-600 cursor-not-allowed'
+                                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-white shadow-md'}`}
+                    aria-label="Next page"
+                  >
+                    <HiChevronRight size={20} />
+                  </motion.button>
+                </div>
+              </div>
             )}
+            
           </div>
         ) : (
           <div className="relative">
@@ -812,12 +1063,15 @@ function Testimonial() {
                 <TestimonialCard key={testimonial.id || index} {...testimonial} />
               ))}
             </Carousel>
+            
             <div className="absolute left-0 right-0 top-1/2 transform -translate-y-1/2 flex justify-between pointer-events-none z-10 px-2 md:px-8">
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={handlePrev}
-                className="w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-md flex items-center justify-center text-gray-700 dark:text-white pointer-events-auto"
+                className="w-10 h-10 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-md 
+                          flex items-center justify-center text-gray-700 dark:text-white pointer-events-auto
+                          hover:bg-white dark:hover:bg-gray-700 transition-colors"
                 aria-label="Previous testimonial"
               >
                 <HiChevronLeft size={20} />
@@ -826,12 +1080,15 @@ function Testimonial() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={handleNext}
-                className="w-10 h-10 rounded-full bg-white dark:bg-gray-800 shadow-md flex items-center justify-center text-gray-700 dark:text-white pointer-events-auto"
+                className="w-10 h-10 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-md 
+                          flex items-center justify-center text-gray-700 dark:text-white pointer-events-auto
+                          hover:bg-white dark:hover:bg-gray-700 transition-colors"
                 aria-label="Next testimonial"
               >
-                <HiChevronRight size={20} />
+                  <HiChevronRight size={20} />
               </motion.button>
             </div>
+            
             <div className="flex justify-center gap-2 mt-6">
               {testimonials.map((_, index) => (
                 <button
@@ -849,27 +1106,26 @@ function Testimonial() {
         )}
       </div>
 
-      {testimonials.length > 0 && (
-        <div className="w-full md:w-4/5 mx-auto flex justify-center pb-12 mt-12">
-          <motion.button
-            whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(236, 72, 153, 0.4)" }}
-            whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              type: "spring",
-              stiffness: 400,
-              damping: 17
-            }}
-            onClick={openReviewModal}
-            className="flex items-center gap-2 bg-gradient-to-r from-pink-600 to-pink-500 dark:from-pink-700 dark:to-pink-500
-                      text-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-medium z-10 relative"
-          >
+      {/* Leave a review button */}
+      <div className="w-full md:w-4/5 mx-auto flex justify-center pb-8 mt-16">
+        <motion.button
+          whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(236, 72, 153, 0.4)" }}
+          whileTap={{ scale: 0.95 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            type: "spring",
+            stiffness: 400,
+            damping: 17
+          }}
+          onClick={openReviewModal}
+          className="flex items-center gap-3 bg-gradient-to-r from-pink-600 to-pink-500 dark:from-pink-700 dark:to-pink-500
+                    text-white px-8 py-4 rounded-full shadow-[0_4px_12px_0_rgba(0,0,0,0.05)] hover:shadow-xl transition-all duration-300 font-medium z-10 relative"
+        >
             <MdRateReview size={22} />
-            {t('leave_review', 'Share Your Experience')}
-          </motion.button>
-        </div>
-      )}
+          {t('leave_review', 'Share Your Experience')}
+        </motion.button>
+      </div>
 
       <ReviewForm
         isOpen={isReviewModalOpen}
@@ -879,4 +1135,5 @@ function Testimonial() {
     </div>
   );
 }
+
 export default Testimonial;
