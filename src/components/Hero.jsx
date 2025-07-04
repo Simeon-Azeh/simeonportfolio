@@ -115,7 +115,7 @@ function Hero() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.6 + (index * 0.1) }}
                   className="px-4 py-2 rounded-full bg-white dark:bg-[#1a1a1a] text-gray-700 dark:text-gray-300 
-                            border border-gray-200 dark:border-gray-800 text-sm font-medium shadow-sm"
+                                              border border-gray-200 border-solid dark:border-gray-800 text-sm font-medium shadow-sm"
                 >
                   {t(skillKey)}
                 </motion.span>
@@ -129,7 +129,7 @@ function Hero() {
               className="flex flex-col sm:flex-row gap-4 pt-4"
             >
               <motion.button
-                onClick={() => window.open('/simeonazehPortfolio.pdf', '_blank')}
+                onClick={() => window.open('/simeonazehPortfolioUpdated.pdf', '_blank')}
                 className="group px-8 py-3 bg-pink-600 dark:bg-white text-white dark:text-[#414760] rounded-lg font-medium 
           flex items-center justify-center gap-2 w-full sm:w-auto
           shadow-lg shadow-pink-600/20 dark:shadow-none
@@ -161,9 +161,9 @@ function Hero() {
 
               <Link to="/contact" className="w-full sm:w-auto">
                 <motion.button
-                  className="group px-8 py-3 border border-pink-600 dark:bg-[#1a1a1a] dark:border-gray-800 text-pink-600 dark:text-slate-300 
-                          rounded-lg font-medium transition-all duration-300 w-full
-                          hover:bg-pink-600/5 dark:hover:bg-gray-800/5"
+                  className="group px-8 py-3 border border-pink-600 border-solid dark:bg-[#1a1a1a] dark:border-gray-800 text-pink-600 dark:text-slate-300 
+                                            rounded-lg font-medium transition-all duration-300 w-full
+                                            hover:bg-pink-600/5 dark:hover:bg-gray-800/5"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -195,7 +195,7 @@ function Hero() {
 
               {/* Image container */}
               <motion.div
-                className="w-full h-full rounded-2xl overflow-hidden border-4 border-white dark:border-gray-800 relative z-10"
+                className="w-full h-full rounded-2xl overflow-hidden border-4 border-white border-solid dark:border-gray-800 relative z-10"
                 whileHover={{ scale: 1.03 }}
                 transition={{ type: "spring", stiffness: 300, damping: 15 }}
               >
@@ -206,7 +206,7 @@ function Hero() {
                 />
 
                 {/* Overlay gradient */}
-             
+
               </motion.div>
 
               {/* Info boxes */}
@@ -254,9 +254,9 @@ function Hero() {
 
                   {/* Content */}
                   <div className="bg-white dark:bg-[#1a1a1a] rounded-lg p-1.5 flex items-center gap-2 relative z-10">
-                    <motion.div 
+                    <motion.div
                       className="text-pink-600 dark:text-white text-xl"
-                      whileHover={{ 
+                      whileHover={{
                         rotate: [0, -10, 10, -10, 10, 0],
                         transition: { duration: 0.5 }
                       }}
@@ -265,7 +265,7 @@ function Hero() {
                     </motion.div>
                     <div>
                       <p className="text-xs text-gray-500 dark:text-white">{t(box.label)}</p>
-                      <motion.p 
+                      <motion.p
                         className="text-sm font-semibold text-gray-900 dark:text-white"
                         whileHover={{ color: "#ec4899" }}
                       >
