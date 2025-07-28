@@ -49,8 +49,8 @@ const { Option } = Select;
 const DEFAULT_AVATAR = 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg';
 
 const COUNTRY_LIST = [
-  'United States', 'United Kingdom', 'Canada', 'Nigeria', 'India', 'Germany', 
-  'France', 'Australia', 'South Africa', 'Brazil', 'Netherlands', 'Italy', 
+  'United States', 'United Kingdom', 'Canada', 'Nigeria', 'India', 'Germany',
+  'France', 'Australia', 'South Africa', 'Brazil', 'Netherlands', 'Italy',
   'Spain', 'Ghana', 'Kenya', 'Singapore', 'UAE', 'China', 'Japan', 'Rwanda',
   'Israel', 'Cameroon', 'Other'
 ];
@@ -62,9 +62,9 @@ const StarRating = ({ rating, size = 'default' }) => {
     default: 'w-4 h-4',
     large: 'w-5 h-5'
   };
-  
+
   const classes = sizeMap[size] || sizeMap.default;
-  
+
   return rating ? (
     <div className="flex items-center mt-2">
       {[...Array(5)].map((_, i) => (
@@ -93,7 +93,7 @@ const LetterAvatar = ({ name, size = "default", className = "" }) => {
     default: "w-14 h-14 text-lg",
     large: "w-20 h-20 text-2xl"
   };
-  
+
   // Generate a deterministic color based on the name
   const getColorFromName = (name) => {
     const colors = [
@@ -108,28 +108,28 @@ const LetterAvatar = ({ name, size = "default", className = "" }) => {
       "bg-cyan-500 dark:bg-cyan-600",
       "bg-rose-500 dark:bg-rose-600"
     ];
-    
- // Create a simple hash from the name to select a color
+
+    // Create a simple hash from the name to select a color
     let hashCode = 0;
     if (name.length === 0) return colors[0];
-    
+
     for (let i = 0; i < name.length; i++) {
       hashCode = name.charCodeAt(i) + ((hashCode << 5) - hashCode);
     }
-    
+
     return colors[Math.abs(hashCode) % colors.length];
   };
-  
+
   // Get the first letter from the name (safely)
   const getFirstLetter = (name) => {
     if (!name || typeof name !== 'string' || name.length === 0) return '?';
     return name.trim().charAt(0).toUpperCase();
   };
-  
+
   // Determine color and letter
   const firstLetter = getFirstLetter(name);
   const bgColorClass = getColorFromName(name);
-  
+
   return (
     <div className={`${sizeClasses[size] || sizeClasses.default} ${bgColorClass} rounded-full flex items-center justify-center font-bold text-white ${className}`}>
       {firstLetter}
@@ -141,7 +141,8 @@ const LetterAvatar = ({ name, size = "default", className = "" }) => {
 function TestimonialCard({ name, position, image, text, rating, company, country, socialLinks, gridView = false, isPreview = false }) {
   const { t } = useTranslation();
 
-    const useLetterAvatar = !image || image === DEFAULT_AVATAR;
+  const [isExpanded, setIsExpanded] = useState(false);
+  const useLetterAvatar = !image || image === DEFAULT_AVATAR;
   // Grid view card (smaller, simpler design)
   if (gridView) {
     return (
@@ -160,7 +161,7 @@ function TestimonialCard({ name, position, image, text, rating, company, country
         </div>
 
         <div className="flex items-start mb-4 relative z-10 pt-3">
-             <div className="flex-shrink-0">
+          <div className="flex-shrink-0">
             {useLetterAvatar ? (
               <LetterAvatar name={name} className="border-2 border-white dark:border-gray-800" />
             ) : (
@@ -190,9 +191,30 @@ function TestimonialCard({ name, position, image, text, rating, company, country
         </div>
 
         <div className="flex-grow overflow-hidden">
-          <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-3 line-clamp-4">
-            "{text}"
-          </p>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={isExpanded ? 'expanded' : 'collapsed'}
+              initial={{ opacity: 0.8 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0.8 }}
+              transition={{ duration: 0.2 }}
+            >
+              <p className={`text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-2 ${isExpanded ? '' : 'line-clamp-4'}`}>
+                "{text}"
+              </p>
+              {text.length > 170 && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsExpanded(!isExpanded);
+                  }}
+                  className="text-pink-600 dark:text-pink-400 text-xs font-medium hover:underline focus:outline-none transition-colors mt-[4px]"
+                >
+                  {isExpanded ? t('see_less', 'See less') : t('see_more', 'See more')}
+                </button>
+              )}
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {(company || country) && (
@@ -217,7 +239,6 @@ function TestimonialCard({ name, position, image, text, rating, company, country
       </motion.div>
     );
   }
-
   // Carousel card design (larger, more detailed)
   return (
     <motion.div
@@ -242,12 +263,12 @@ function TestimonialCard({ name, position, image, text, rating, company, country
         </div>
 
         <div className="flex flex-col md:flex-row md:items-center gap-6 mb-6 relative z-10">
-             {useLetterAvatar ? (
+          {useLetterAvatar ? (
             <motion.div whileHover={{ scale: 1.1 }}>
-              <LetterAvatar 
-                name={name} 
-                size="large" 
-                className="border-2 border-pink-600 border-solid dark:border-white p-1" 
+              <LetterAvatar
+                name={name}
+                size="large"
+                className="border-2 border-pink-600 border-solid dark:border-white p-1"
               />
             </motion.div>
           ) : (
@@ -333,7 +354,6 @@ function TestimonialCard({ name, position, image, text, rating, company, country
     </motion.div>
   );
 }
-
 // Review form component
 function ReviewForm({ isOpen, onClose, onReviewSubmitted }) {
   const [form] = Form.useForm();
@@ -639,7 +659,7 @@ function ReviewSummary({ testimonials }) {
     const ratingCounts = {
       5: 0, 4: 0, 3: 0, 2: 0, 1: 0
     };
-    
+
     testimonials.forEach(t => {
       const roundedRating = Math.floor(t.rating);
       ratingCounts[roundedRating] = (ratingCounts[roundedRating] || 0) + 1;
@@ -652,7 +672,7 @@ function ReviewSummary({ testimonials }) {
         countries[t.country] = (countries[t.country] || 0) + 1;
       }
     });
-    
+
     const topCountries = Object.entries(countries)
       .sort((a, b) => b[1] - a[1])
       .slice(0, 3)
@@ -669,7 +689,7 @@ function ReviewSummary({ testimonials }) {
   if (!stats) return null;
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       className="bg-white dark:bg-[#1a1a1a] rounded-2xl p-6 md:p-8 shadow-[0_4px_12px_0_rgba(0,0,0,0.05)] dark:shadow-none mb-8
@@ -702,11 +722,11 @@ function ReviewSummary({ testimonials }) {
           <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center md:text-left">
             {t('rating_distribution', 'Rating Distribution')}
           </h3>
-          
+
           {[5, 4, 3, 2, 1].map(rating => {
             const count = stats.ratingCounts[rating] || 0;
             const percentage = Math.round((count / stats.total) * 100) || 0;
-            
+
             return (
               <div key={rating} className="flex items-center mb-2">
                 <div className="flex items-center w-10">
@@ -714,10 +734,10 @@ function ReviewSummary({ testimonials }) {
                   <FaStar className="ml-1 text-yellow-400 w-3 h-3" />
                 </div>
                 <div className="flex-1 mx-4">
-                  <Progress 
-                    percent={percentage} 
-                    showInfo={false} 
-                    strokeColor="#EC4899" 
+                  <Progress
+                    percent={percentage}
+                    showInfo={false}
+                    strokeColor="#EC4899"
                     trailColor="#E5E7EB"
                     className="custom-progress"
                   />
@@ -735,7 +755,7 @@ function ReviewSummary({ testimonials }) {
           <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center md:text-left">
             {t('top_countries', 'Top Countries')}
           </h3>
-          
+
           <div className="space-y-3">
             {stats.topCountries.map(({ country, count }) => (
               <div key={country} className="flex items-center justify-between">
@@ -979,7 +999,7 @@ function Testimonial() {
                   gridView={true}
                 />
               ))}
-              
+
               {/* Preview card with overlay if there are more testimonials */}
               {hasNextTestimonial && testimonials.length > 3 && (
                 <div className="relative col-span-1">
@@ -988,7 +1008,7 @@ function Testimonial() {
                     gridView={true}
                     isPreview={true}
                   />
-                  <div 
+                  <div
                     className="absolute inset-0 bg-gradient-to-r from-transparent to-gray-100/70 dark:to-gray-900/70 
                             rounded-xl flex items-center justify-center cursor-pointer transition-all group"
                     onClick={handleNext}
@@ -1006,8 +1026,8 @@ function Testimonial() {
                 </div>
               )}
             </div>
-            
-        
+
+
             {totalPages > 1 && (
               <div className="flex justify-center mt-8">
                 <div className="flex items-center gap-2">
@@ -1017,20 +1037,20 @@ function Testimonial() {
                     onClick={handlePrev}
                     disabled={page === 0}
                     className={`w-10 h-10 rounded-full flex items-center justify-center
-                              ${page === 0 
-                                ? 'bg-gray-200 text-gray-400 dark:bg-gray-800 dark:text-gray-600 cursor-not-allowed'
-                                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-white shadow-md'}`}
+                              ${page === 0
+                        ? 'bg-gray-200 text-gray-400 dark:bg-gray-800 dark:text-gray-600 cursor-not-allowed'
+                        : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-white shadow-md'}`}
                     aria-label="Previous page"
                   >
                     <HiChevronLeft size={20} />
                   </motion.button>
-                  
+
                   <div className="px-4 py-2 bg-white dark:bg-gray-800 rounded-lg shadow-[0_4px_12px_0_rgba(0,0,0,0.05)]">
                     <span className="text-sm font-medium text-gray-700 dark:text-white">
                       {page + 1} / {totalPages}
                     </span>
                   </div>
-                  
+
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
@@ -1038,8 +1058,8 @@ function Testimonial() {
                     disabled={page >= totalPages - 1}
                     className={`w-10 h-10 rounded-full flex items-center justify-center
                               ${page >= totalPages - 1
-                                ? 'bg-gray-200 text-gray-400 dark:bg-gray-800 dark:text-gray-600 cursor-not-allowed'
-                                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-white shadow-md'}`}
+                        ? 'bg-gray-200 text-gray-400 dark:bg-gray-800 dark:text-gray-600 cursor-not-allowed'
+                        : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-white shadow-md'}`}
                     aria-label="Next page"
                   >
                     <HiChevronRight size={20} />
@@ -1047,7 +1067,7 @@ function Testimonial() {
                 </div>
               </div>
             )}
-            
+
           </div>
         ) : (
           <div className="relative">
@@ -1056,6 +1076,8 @@ function Testimonial() {
               autoplay
               dots={false}
               effect="fade"
+              pauseOnHover={true}
+              autoplaySpeed={5000} // 5 seconds instead of the default 3 seconds
               className="testimonial-carousel"
               afterChange={handleChange}
             >
@@ -1063,7 +1085,7 @@ function Testimonial() {
                 <TestimonialCard key={testimonial.id || index} {...testimonial} />
               ))}
             </Carousel>
-            
+
             <div className="absolute left-0 right-0 top-1/2 transform -translate-y-1/2 flex justify-between pointer-events-none z-10 px-2 md:px-8">
               <motion.button
                 whileHover={{ scale: 1.1 }}
@@ -1085,10 +1107,10 @@ function Testimonial() {
                           hover:bg-white dark:hover:bg-gray-700 transition-colors"
                 aria-label="Next testimonial"
               >
-                  <HiChevronRight size={20} />
+                <HiChevronRight size={20} />
               </motion.button>
             </div>
-            
+
             <div className="flex justify-center gap-2 mt-6">
               {testimonials.map((_, index) => (
                 <button
@@ -1122,7 +1144,7 @@ function Testimonial() {
           className="flex items-center gap-3 bg-gradient-to-r from-pink-600 to-pink-500 dark:from-pink-700 dark:to-pink-500
                     text-white px-8 py-4 rounded-full shadow-[0_4px_12px_0_rgba(0,0,0,0.05)] hover:shadow-xl transition-all duration-300 font-medium z-10 relative"
         >
-            <MdRateReview size={22} />
+          <MdRateReview size={22} />
           {t('leave_review', 'Share Your Experience')}
         </motion.button>
       </div>

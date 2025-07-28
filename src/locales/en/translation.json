@@ -81,6 +81,7 @@
   "graphic_designer": "Graphic Designer",
   "web_developer": "Web Developer",
   "ui_ux_designer": "UI/UX Designer",
+  
 
   "about_me": "About Me",
   "about_me_description": "Hello! I'm Simeon Azeh, a passionate Frontend Engineer, Brand Manager, and Graphic Designer with a knack for crafting engaging digital experiences. With a strong background in web development and design, I focus on creating intuitive and visually appealing interfaces that drive user engagement. I believe in blending creativity with technology to build innovative solutions that stand out. Let's collaborate and bring your ideas to life!",
@@ -328,7 +329,9 @@
       "copied": "Copied!",
       "open_maps": "Open Maps",
       "social_media": "Find me on social media",
-      "response_time": "Average response time: 24 hours"  
+      "response_time": "Average response time: 24 hours" ,
+    "see_more": "See more",
+    "see_less": "See less" 
  
 
 
