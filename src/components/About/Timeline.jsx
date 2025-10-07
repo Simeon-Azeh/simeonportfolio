@@ -79,6 +79,46 @@ function Timeline() {
 
   const timelineData = [
     {
+      date: t('timeline_data_2024_september_date'),
+      title: t('timeline_data_2024_september_title'),
+      company: t('timeline_data_2024_september_company'),
+      roles: [
+        t('timeline_data_2024_september_role_1'),
+        t('timeline_data_2024_september_role_2'),
+        t('timeline_data_2024_september_role_3')
+      ]
+    },
+    {
+      date: t('timeline_data_2024_present_date'),
+      title: t('timeline_data_2024_present_title'),
+      company: t('timeline_data_2024_present_company'),
+      roles: [
+        t('timeline_data_2024_present_role_1'),
+        t('timeline_data_2024_present_role_2'),
+        t('timeline_data_2024_present_role_3')
+      ]
+    },
+    {
+      date: t('timeline_data_2024_present_date_2'),
+      title: t('timeline_data_2024_present_title_2'),
+      company: t('timeline_data_2024_present_company_2'),
+      roles: [
+        t('timeline_data_2024_present_role_4'),
+        t('timeline_data_2024_present_role_5'),
+        t('timeline_data_2024_present_role_6')
+      ]
+    },
+    {
+      date: t('timeline_data_2024_present_date_3'),
+      title: t('timeline_data_2024_present_title_3'),
+      company: t('timeline_data_2024_present_company_3'),
+      roles: [
+        t('timeline_data_2024_present_role_7'),
+        t('timeline_data_2024_present_role_8'),
+        t('timeline_data_2024_present_role_9')
+      ]
+    },
+    {
       date: t('timeline_data_2023_to_present_date'),
       title: t('timeline_data_2023_to_present_title'),
       company: t('timeline_data_2023_to_present_company'),

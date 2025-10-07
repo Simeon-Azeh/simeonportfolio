@@ -15,16 +15,14 @@ import { ChatProvider } from './contexts/ChatContext';
 import { AuthProvider, ProtectedRoute } from './contexts/AuthContext';
 import ChatWidget from './components/ChatWidget';
 import Reviews from './pages/Reviews';
-
+import Referrals from './pages/referrals';
 function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
     const timer = setTimeout(() => {
       window.scrollTo(0, 0);
-      // If AOS is used, ensure it's refreshed here
-      // AOS.refresh();
-    }, 100); // Adjust the delay as needed
+    }, 100);
 
     return () => clearTimeout(timer);
   }, [pathname]);
@@ -49,6 +47,7 @@ function App() {
             <Route path="/request-booking" element={<RequestBooking />} />
             <Route path="/projects/:projectId" element={<ProjectCase />} />
             <Route path='/review' element={<Reviews />} />
+            <Route path='/referrals' element={<Referrals />} />
             
             {/* Admin Routes */}
             <Route path="/admin/login" element={<Login />} />

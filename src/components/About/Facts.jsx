@@ -11,25 +11,33 @@ const facts = [
     key: 'happy_clients',
     count: 12,
     icon: FaRegSmile,
-    color: 'from-pink-500 to-light-text'
+    color: 'from-pink-500 to-pink-600',
+    bgGlow: 'bg-pink-500/10',
+    shadowColor: 'shadow-pink-500/20'
   },
   {
     key: 'completed_projects',
     count: 15,
     icon: MdPlaylistAddCheckCircle,
-   color: 'from-pink-500 to-light-text'
+    color: 'from-pink-500 to-pink-600',
+    bgGlow: 'bg-pink-500/10',
+    shadowColor: 'shadow-pink-500/20'
   },
   {
     key: 'hours_of_support',
-    count: 3700,
+    count: 3925,
     icon: RiCustomerService2Fill,
-    color: 'from-pink-500 to-light-text'
+    color: 'from-pink-500 to-pink-600',
+    bgGlow: 'bg-pink-500/10',
+    shadowColor: 'shadow-pink-500/20'
   },
   {
     key: 'awards',
     count: 10,
     icon: FaAward,
-     color: 'from-pink-500 to-light-text'
+    color: 'from-pink-500 to-pink-600',
+    bgGlow: 'bg-pink-500/10',
+    shadowColor: 'shadow-pink-500/20'
   }
 ];
 
@@ -63,12 +71,37 @@ const Facts = () => {
             useEasing: true,
             useGrouping: true,
             separator: ',',
-            decimal: '.'
+            decimal: '.',
+            suffix: index === 2 ? '+' : '' // Add + to hours of support
           }).start();
         }
       });
     }
   }, [isVisible]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12
+      }
+    }
+  };
 
   return (
     <motion.section
@@ -76,11 +109,11 @@ const Facts = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-light-body dark:bg-dark-body transition-colors py-16 relative overflow-hidden"
+      className="bg-light-body dark:bg-dark-body transition-colors py-20 relative overflow-hidden font-inter"
     >
-      {/* Background Pattern */}
+      {/* Enhanced Background Pattern with Gradient Orbs */}
       <motion.div 
-        className="absolute inset-0 opacity-5 dark:opacity-10 font-inter"
+        className="absolute inset-0 opacity-5 dark:opacity-10"
         animate={{
           backgroundPosition: ['0% 0%', '100% 100%'],
         }}
@@ -93,44 +126,141 @@ const Facts = () => {
         <div className="absolute inset-0 bg-grid-pattern"></div>
       </motion.div>
 
-      <div className="relative z-10 w-full md:w-4/5 mx-auto px-6 md:px-0 font-inter">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      {/* Animated gradient blobs */}
+      <motion.div 
+        className="absolute top-10 -left-20 w-64 h-64 bg-pink-300/20 dark:bg-pink-900/20 rounded-full blur-3xl"
+        animate={{ 
+          scale: [1, 1.2, 1],
+          x: [0, 30, 0],
+          opacity: [0.2, 0.3, 0.2]
+        }}
+        transition={{ duration: 12, repeat: Infinity, repeatType: "reverse" }}
+      />
+      <motion.div 
+        className="absolute -bottom-20 -right-20 w-72 h-72 bg-pink-200/20 dark:bg-pink-800/20 rounded-full blur-3xl"
+        animate={{ 
+          scale: [1, 1.3, 1],
+          y: [0, -20, 0],
+          opacity: [0.15, 0.25, 0.15]
+        }}
+        transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
+      />
+
+      <div className="relative z-10 w-full md:w-4/5 mx-auto px-6 md:px-0">
+        {/* Section Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: "60px" }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="h-1 bg-pink-600 dark:bg-pink-500 rounded-full mb-6 mx-auto"
+          />
+          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-pink-600 to-light-text dark:from-pink-400 dark:to-white bg-clip-text text-transparent font-montserrat-alt">
+            {t('achievements_title', 'My Achievements')}
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 mt-3 max-w-2xl mx-auto font-inter">
+            {t('achievements_subtitle', 'Numbers that reflect my dedication and commitment to excellence')}
+          </p>
+        </motion.div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8"
+        >
           {facts.map((fact, index) => (
             <motion.div
               key={fact.key}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="bg-white dark:bg-[#1a1a1a] rounded-2xl p-6  dark:shadow-none
-                         border border-gray-100 dark:border-gray-700"
+              variants={itemVariants}
+              whileHover={{ 
+                y: -8, 
+                transition: { duration: 0.3, type: "spring", stiffness: 300 } 
+              }}
+              className="group relative bg-white dark:bg-[#1a1a1a] rounded-2xl p-6 md:p-8
+                         border border-gray-100 dark:border-gray-700
+                         hover:border-pink-200 dark:hover:border-pink-800
+                         transition-all duration-300
+                         hover:shadow-xl hover:shadow-pink-500/10 dark:hover:shadow-pink-500/5"
             >
-              <div className="flex flex-col items-center space-y-4">
+              {/* Glow effect on hover */}
+              <motion.div
+                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  background: 'radial-gradient(circle at center, rgba(236, 72, 153, 0.1) 0%, transparent 70%)'
+                }}
+              />
+
+              <div className="relative flex flex-col items-center space-y-4">
+                {/* Icon with enhanced styling */}
                 <motion.div
-                  whileHover={{ scale: 1.1, rotate: 360 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className={`w-12 h-12 rounded-xl bg-gradient-to-br ${fact.color} 
-                             flex items-center justify-center text-white`}
+                  whileHover={{ scale: 1.15, rotate: [0, -10, 10, 0] }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  className="relative"
                 >
-                  <fact.icon size={24} />
+                  {/* Icon glow background */}
+                  <div className={`absolute inset-0 ${fact.bgGlow} rounded-xl blur-lg scale-110 opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+                  
+                  <div className={`relative w-14 h-14 md:w-16 md:h-16 rounded-xl bg-gradient-to-br ${fact.color} 
+                                 flex items-center justify-center text-white
+                                 shadow-lg ${fact.shadowColor} group-hover:shadow-xl group-hover:${fact.shadowColor}
+                                 transition-all duration-300`}
+                  >
+                    <fact.icon size={28} className="md:w-8 md:h-8" />
+                  </div>
                 </motion.div>
                 
                 <div className="text-center">
-                  <h3 
+                  {/* Animated counter with gradient */}
+                  <motion.h3 
                     ref={el => countUpRefs.current[index] = el}
-                    className="text-3xl md:text-4xl font-bold bg-clip-text text-pink-500
-                               bg-gradient-to-r dark:from-white dark:to-gray-300"
+                    initial={{ scale: 0.5 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent
+                               bg-gradient-to-r from-pink-600 to-pink-500
+                               dark:from-pink-400 dark:to-pink-300
+                               group-hover:from-pink-500 group-hover:to-pink-600
+                               dark:group-hover:from-pink-300 dark:group-hover:to-pink-400
+                               transition-all duration-300 font-montserrat-alt"
                   >
                     0
-                  </h3>
-                  <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-2">
+                  </motion.h3>
+                  
+                  {/* Label with better spacing */}
+                  <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-3
+                               group-hover:text-gray-800 dark:group-hover:text-gray-300
+                               transition-colors duration-300 font-medium font-inter">
                     {t(fact.key)}
                   </p>
                 </div>
               </div>
+
+              {/* Corner accent */}
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-pink-500/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.div>
           ))}
-        </div>
+        </motion.div>
+
+        {/* Optional: Add a call-to-action or testimonial below */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="mt-16 text-center"
+        >
+          <p className="text-gray-500 dark:text-gray-400 italic text-sm md:text-base font-inter">
+            {t('facts_footnote', '"Success is not just about numbers, but the impact we create"')}
+          </p>
+        </motion.div>
       </div>
     </motion.section>
   );

@@ -195,6 +195,26 @@ function Header() {
           </div>
           
           <NavLink to="/services" isActive={isActive("/services")} label={t('services')} />
+          
+          {/* Referrals Link with New Badge */}
+          <div className="relative">
+            <NavLink to="/referrals" isActive={isActive("/referrals")} label={t('referrals', 'Referrals')} />
+            <motion.div
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ 
+                type: "spring",
+                stiffness: 500,
+                damping: 10,
+                delay: 0.3 
+              }}
+              className="absolute -top-3 -right-8 bg-gradient-to-r from-pink-600 to-light-text 
+                        text-white text-[9px] font-bold px-2 py-0.5 rounded-full"
+            >
+              {t('new', 'NEW')}
+            </motion.div>
+          </div>
+          
           <NavLink to="/contact" isActive={isActive("/contact")} label={t('contact')} />
          
         </nav>
@@ -399,8 +419,27 @@ function Header() {
                   <MobileNavLink to="/resume" label={t('resume')} isActive={isActive("/resume")} />
                   <MobileNavLink to="/services" label={t('services')} isActive={isActive("/services")} />
                   <MobileNavLink to="/portfolio" label={t('portfolio')} isActive={isActive("/portfolio")} />
-                  <MobileNavLink to="/contact" label={t('contact')} isActive={isActive("/contact")} />
                   
+                  {/* Mobile Referral Link with New Badge */}
+                  <div className="relative">
+                    <MobileNavLink to="/referrals" label={t('referrals', 'Referrals')} isActive={isActive("/referrals")} />
+                    <motion.div
+                      initial={{ scale: 0.5, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ 
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 10,
+                        delay: 0.3 
+                      }}
+                      className="absolute top-2 right-2 bg-gradient-to-r from-pink-600 to-light-text 
+                                text-white text-[9px] font-bold px-2 py-0.5 rounded-full"
+                    >
+                      {t('new', 'NEW')}
+                    </motion.div>
+                  </div>
+                  
+                  <MobileNavLink to="/contact" label={t('contact')} isActive={isActive("/contact")} />
                 </nav>
                 
                 <div className="flex space-x-5 mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">

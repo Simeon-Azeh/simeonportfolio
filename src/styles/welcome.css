@@ -1,0 +1,327 @@
+.welcome-interactive {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Animated Blobs */
+.blob-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  filter: blur(60px);
+}
+
+.blob {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Cursor Glow Effect */
+.cursor-glow {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 110, 150, 0.15), transparent 70%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: blur(40px);
+  z-index: 1;
+}
+
+/* Main Content */
+.welcome-steps {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 600px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.step-content {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* Floating Icon */
+.floating-icon {
+  color: #FF6E96;
+  margin-bottom: 1rem;
+}
+
+/* Typography */
+.welcome-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, #FF6E96, #8B5CF6, #3B82F6);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.welcome-subtitle {
+  font-size: 1.25rem;
+  color: #a0a0a0;
+  margin: 0;
+}
+
+.step-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  background: linear-gradient(135deg, #FF6E96, #8B5CF6, #3B82F6, #FF6E96);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.step-description {
+  font-size: 1.125rem;
+  color: #c0c0c0;
+  margin: 0;
+}
+
+.highlight {
+  background: linear-gradient(135deg, #FF6E96, #8B5CF6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* Interactive Buttons */
+.interactive-btn {
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, #FF6E96, #8B5CF6);
+  color: white;
+}
+
+.secondary-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+.secondary-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.giant-btn {
+  padding: 1.5rem 3rem;
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, #10B981, #3B82F6);
+  color: white;
+  position: relative;
+}
+
+.btn-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #FF6E96;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+/* Input Group */
+.input-group {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.interactive-input {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1.125rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  color: white;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.interactive-input::placeholder {
+  color: #666;
+}
+
+.input-feedback {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+}
+
+/* Vibe Grid */
+.vibe-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+.vibe-card {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+.vibe-card.selected {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+}
+
+.vibe-card span {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Floating Elements */
+.floating-elements {
+  position: absolute;
+  bottom: 2rem;
+  display: flex;
+  gap: 3rem;
+}
+
+.float-icon {
+  color: #FF6E96;
+  opacity: 0.6;
+}
+
+/* Progress Bar */
+.progress-bar {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.progress-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+/* Skip Button */
+.skip-btn {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  color: white;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Encouragement Text */
+.encouragement {
+  font-size: 1.25rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #10B981, #3B82F6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Confetti */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* Success Icon */
+.success-icon {
+  margin-bottom: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .vibe-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .welcome-steps {
+    padding: 1rem;
+  }
+  
+  .skip-btn {
+    bottom: 1rem;
+    right: 1rem;
+  }
+}

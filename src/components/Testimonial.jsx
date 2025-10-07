@@ -644,6 +644,8 @@ function ReviewForm({ isOpen, onClose, onReviewSubmitted }) {
   );
 }
 
+// ...existing code...
+
 // Review Statistics Summary Component
 function ReviewSummary({ testimonials }) {
   const { t } = useTranslation();
@@ -665,7 +667,7 @@ function ReviewSummary({ testimonials }) {
       ratingCounts[roundedRating] = (ratingCounts[roundedRating] || 0) + 1;
     });
 
-    // Get top countries
+    // Get all countries with their counts
     const countries = {};
     testimonials.forEach(t => {
       if (t.country) {
@@ -673,16 +675,16 @@ function ReviewSummary({ testimonials }) {
       }
     });
 
-    const topCountries = Object.entries(countries)
+    // Sort countries by count (highest first)
+    const sortedCountries = Object.entries(countries)
       .sort((a, b) => b[1] - a[1])
-      .slice(0, 3)
       .map(([country, count]) => ({ country, count }));
 
     return {
       averageRating,
       total: testimonials.length,
       ratingCounts,
-      topCountries
+      sortedCountries
     };
   }, [testimonials]);
 
@@ -750,35 +752,62 @@ function ReviewSummary({ testimonials }) {
           })}
         </div>
 
-        {/* Top Represented Countries */}
+        {/* Country Distribution */}
         <div className="p-4">
           <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center md:text-left">
-            {t('top_countries', 'Top Countries')}
+            {t('country_distribution', 'Country Distribution')}
           </h3>
 
-          <div className="space-y-3">
-            {stats.topCountries.map(({ country, count }) => (
-              <div key={country} className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <CountryFlag
-                    countryCode={COUNTRY_CODE_MAP[country] || ''}
-                    svg
-                    style={{ width: '1.5em', height: '1.5em', marginRight: '0.5em' }}
-                  />
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{country}</span>
-                </div>
-                <span className="text-xs font-medium px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-full">
-                  {count} {count === 1 ? t('review', 'review') : t('reviews', 'reviews')}
-                </span>
-              </div>
-            ))}
+          <div className="space-y-3 max-h-48 overflow-y-auto">
+            {stats.sortedCountries.map(({ country, count }) => {
+              const percentage = Math.round((count / stats.total) * 100) || 0;
+
+              return (
+                <motion.div 
+                  key={country} 
+                  className="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-800 rounded-lg"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: stats.sortedCountries.indexOf({ country, count }) * 0.05 }}
+                >
+                  <div className="flex items-center gap-2 flex-1 min-w-0">
+                    <CountryFlag
+                      countryCode={COUNTRY_CODE_MAP[country] || ''}
+                      svg
+                      style={{ width: '1.2em', height: '1.2em', flexShrink: 0 }}
+                    />
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300 truncate">
+                      {country}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
+                      {percentage}%
+                    </span>
+                    <span className="text-xs font-semibold px-2 py-1 bg-pink-100 dark:bg-pink-900/20 
+                                   text-pink-600 dark:text-pink-400 rounded-full">
+                      {count}
+                    </span>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
+          
+          {stats.sortedCountries.length === 0 && (
+            <div className="text-center py-4">
+              <span className="text-sm text-gray-500 dark:text-gray-400">
+                {t('no_country_data', 'No country data available')}
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </motion.div>
   );
 }
 
+// ...existing code...
 // Main Testimonial Component
 function Testimonial() {
   const { t } = useTranslation();
