@@ -11,7 +11,7 @@ import { FaHandshake, FaMoneyBillWave, FaRocket, FaUserFriends, FaQuoteLeft } fr
 import { HiOutlineClipboardCheck, HiOutlineLightBulb, HiOutlineSparkles } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 // Use a public URL for the screenshot image
-const referralScreenshot = '/images/screenshot-proof.jpeg';
+const referralScreenshot = '/images/screenshot-proof.jpg';
 
 const Referrals = () => {
   const { t } = useTranslation();
