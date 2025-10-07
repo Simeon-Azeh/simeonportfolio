@@ -5,7 +5,7 @@ import i18n from './routes/i18n';
 import { ChatProvider } from './contexts/ChatContext';
 import { AuthProvider, ProtectedRoute } from './contexts/AuthContext';
 import ChatWidget from './components/ChatWidget';
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics"
 
 // Import all page components directly
 import Home from './pages/Home';
@@ -48,6 +48,7 @@ function App() {
     <HelmetProvider> {/* Wrapped the entire app with HelmetProvider */}
       <AuthProvider>
         <ChatProvider>
+           <Analytics />
           <BrowserRouter>
             <ScrollToTop />
             <Routes>
@@ -88,7 +89,7 @@ function App() {
             </Routes>
             
             <ConditionalChatWidget />
-            <Analytics />
+           
           </BrowserRouter>
         </ChatProvider>
       </AuthProvider>
