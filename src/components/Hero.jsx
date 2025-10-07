@@ -103,12 +103,13 @@ function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex-1 text-left space-y-6 md:pr-4"
           >
-            <div className="flex items-center gap-3">
+            {/* Updated badges container for better responsiveness */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3">
               <motion.span
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.4 }}
-                className="px-5 py-2 bg-pink-100 dark:bg-[#1a1a1a] dark:border dark:border-gray-800 rounded-full text-pink-600 dark:text-slate-300 font-medium inline-flex items-center"
+                className="px-3 sm:px-5 py-2 bg-pink-100 dark:bg-[#1a1a1a] dark:border dark:border-gray-800 rounded-full text-pink-600 dark:text-slate-300 font-medium inline-flex items-center"
               >
                 {t('hello')}
                 <motion.span
@@ -297,19 +298,20 @@ function Hero() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-40"></div>
               </motion.div>
 
-              {/* Info boxes */}
+              {/* Info boxes with slight slant */}
               {infoBoxes.map((box) => (
                 <motion.div
                   key={box.id}
                   className={`absolute z-20 ${box.position} flex items-center bg-white dark:bg-[#1a1a1a] 
-                            rounded-lg p-3 shadow-lg dark:shadow-gray-900/30 border border-gray-200 dark:border-gray-700`}
+                            rounded-lg p-3 shadow-lg dark:shadow-gray-900/30 border border-gray-200 dark:border-gray-700 transform -rotate-2`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: box.delay }}
                   whileHover={{
                     scale: 1.05,
                     boxShadow: "0 15px 30px -10px rgba(0, 0, 0, 0.2)",
-                    y: -3
+                    y: -3,
+                    rotate: 0 // Straighten on hover for better readability
                   }}
                   whileTap={{ scale: 0.98 }}
                 >
