@@ -33,6 +33,14 @@ function ScrollToTop() {
   return null;
 }
 
+function ConditionalChatWidget() {
+  const location = useLocation();
+  const isAdmin = location.pathname.startsWith('/admin');
+
+  if (isAdmin) return null;
+  return <ChatWidget />;
+}
+
 // Loading fallback component
 const LoadingFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-light-body dark:bg-dark-body">
@@ -84,11 +92,7 @@ function App() {
             </Routes>
           </Suspense>
           
-          {/* Only show chat widget on non-admin pages */}
-          <Routes>
-            <Route path="/admin/*" element={null} />
-            <Route path="*" element={<ChatWidget />} />
-          </Routes>
+          <ConditionalChatWidget />
         </BrowserRouter>
       </ChatProvider>
     </AuthProvider>
