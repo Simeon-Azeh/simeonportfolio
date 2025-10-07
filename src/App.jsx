@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async'; // Added import for HelmetProvider
 import i18n from './routes/i18n';
 import { ChatProvider } from './contexts/ChatContext';
 import { AuthProvider, ProtectedRoute } from './contexts/AuthContext';
@@ -43,50 +44,52 @@ function ConditionalChatWidget() {
 
 function App() {
   return (
-    <AuthProvider>
-      <ChatProvider>
-        <BrowserRouter>
-          <ScrollToTop />
-          <Routes>
-            {/* Public Routes */}
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/resume" element={<About />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/request-booking" element={<RequestBooking />} />
-            <Route path="/projects/:projectId" element={<ProjectCase />} />
-            <Route path='/review' element={<Reviews />} />
-            <Route path='/referrals' element={<Referrals />} />
+    <HelmetProvider> {/* Wrapped the entire app with HelmetProvider */}
+      <AuthProvider>
+        <ChatProvider>
+          <BrowserRouter>
+            <ScrollToTop />
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/resume" element={<About />} />
+              <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/request-booking" element={<RequestBooking />} />
+              <Route path="/projects/:projectId" element={<ProjectCase />} />
+              <Route path='/review' element={<Reviews />} />
+              <Route path='/referrals' element={<Referrals />} />
+              
+              {/* Admin Routes */}
+              <Route path="/admin/login" element={<Login />} />
+              <Route 
+                path="/admin/dashboard" 
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/admin/*" 
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                } 
+              />
+              
+              {/* Fallback Route - 404 Not Found */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
             
-            {/* Admin Routes */}
-            <Route path="/admin/login" element={<Login />} />
-            <Route 
-              path="/admin/dashboard" 
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/admin/*" 
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              } 
-            />
-            
-            {/* Fallback Route - 404 Not Found */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          
-          <ConditionalChatWidget />
-        </BrowserRouter>
-      </ChatProvider>
-    </AuthProvider>
+            <ConditionalChatWidget />
+          </BrowserRouter>
+        </ChatProvider>
+      </AuthProvider>
+    </HelmetProvider>
   );
 }
 
