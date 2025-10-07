@@ -9,7 +9,8 @@ import { BsCheckCircleFill, BsCurrencyDollar, BsGift, BsPeople, BsShare, BsStar,
 import { FaHandshake, FaMoneyBillWave, FaRocket, FaUserFriends, FaQuoteLeft } from 'react-icons/fa';
 import { HiOutlineClipboardCheck, HiOutlineLightBulb, HiOutlineSparkles } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
-import referralScreenshot from '../../public/images/screenshot-proof.jpeg';
+// Use a public URL for the screenshot image
+const referralScreenshot = '/images/screenshot-proof.jpeg';
 
 const Referrals = () => {
   const { t } = useTranslation();
