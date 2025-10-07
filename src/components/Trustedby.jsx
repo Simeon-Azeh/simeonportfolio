@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import logo1 from '../../public/images/sidec.png';
 import logo2 from '../../public/images/afiacare.svg';
@@ -19,6 +19,7 @@ const TrustedBy = () => {
   const { t } = useTranslation();
   const containerRef = useRef(null);
   const controls = useAnimation();
+  const mounted = useRef(false);
 
   // Add more logos to create a better scrolling experience
   const logos = [
@@ -115,9 +116,11 @@ const TrustedBy = () => {
   // Triple the logos array for smoother infinite scrolling
   const extendedLogos = [...logos, ...logos, ...logos];
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    mounted.current = true;
+
     const animateScroll = async () => {
-      while (true) {
+      while (mounted.current) {
         await controls.start({
           x: -100 * logos.length, // Move by the width of one set of logos
           transition: {
@@ -125,11 +128,16 @@ const TrustedBy = () => {
             ease: "linear"
           }
         });
+        if (!mounted.current) break;
         controls.set({ x: 0 }); // Reset position instantly
       }
     };
 
     animateScroll();
+
+    return () => {
+      mounted.current = false;
+    };
   }, [controls, logos.length]);
 
   return (
