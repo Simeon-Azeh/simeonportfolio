@@ -5,7 +5,7 @@ import i18n from './routes/i18n';
 import { ChatProvider } from './contexts/ChatContext';
 import { AuthProvider, ProtectedRoute } from './contexts/AuthContext';
 import ChatWidget from './components/ChatWidget';
-import { Analytics } from "@vercel/analytics"
+import { Analytics } from '@vercel/analytics/react'; 
 
 // Import all page components directly
 import Home from './pages/Home';
