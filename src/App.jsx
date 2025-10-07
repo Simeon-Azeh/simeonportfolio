@@ -5,6 +5,7 @@ import i18n from './routes/i18n';
 import { ChatProvider } from './contexts/ChatContext';
 import { AuthProvider, ProtectedRoute } from './contexts/AuthContext';
 import ChatWidget from './components/ChatWidget';
+import { Analytics } from "@vercel/analytics/next"
 
 // Import all page components directly
 import Home from './pages/Home';
@@ -61,6 +62,7 @@ function App() {
               <Route path="/projects/:projectId" element={<ProjectCase />} />
               <Route path='/review' element={<Reviews />} />
               <Route path='/referrals' element={<Referrals />} />
+
               
               {/* Admin Routes */}
               <Route path="/admin/login" element={<Login />} />
@@ -86,6 +88,7 @@ function App() {
             </Routes>
             
             <ConditionalChatWidget />
+            <Analytics />
           </BrowserRouter>
         </ChatProvider>
       </AuthProvider>
