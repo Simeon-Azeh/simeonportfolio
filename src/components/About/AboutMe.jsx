@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
-import { FaFacebook, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { FaFacebook, FaLinkedin, FaGithub, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useTranslation } from 'react-i18next';
+import { BsAward, BsCode, BsPeople } from 'react-icons/bs';
 
 const images = [
   '/images/about1.jpg',
@@ -15,13 +17,13 @@ const images = [
 
 function AboutMe() {
   const { t } = useTranslation();
-  const duplicatedImages = [...images, ...images]; // Duplicate images for seamless scrolling
+  const duplicatedImages = [...images, ...images];
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
 
     const handleScroll = () => {
-      AOS.refresh(); // Refresh AOS on scroll
+      AOS.refresh();
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -31,50 +33,282 @@ function AboutMe() {
     };
   }, []);
 
+  const stats = [
+    { 
+      icon: BsAward, 
+      value: '5+', 
+      label: t('years_experience', 'Years Experience'),
+      color: 'from-pink-500 to-rose-500'
+    },
+    { 
+      icon: BsCode, 
+      value: '50+', 
+      label: t('projects_completed', 'Projects Completed'),
+      color: 'from-purple-500 to-indigo-500'
+    },
+    { 
+      icon: BsPeople, 
+      value: '30+', 
+      label: t('happy_clients', 'Happy Clients'),
+      color: 'from-blue-500 to-cyan-500'
+    },
+  ];
+
+  const socialLinks = [
+    { 
+      icon: FaFacebook, 
+      url: 'https://www.facebook.com/kongnyuy.simeon.3?mibextid=ZbWKwL',
+      color: 'hover:text-blue-600 dark:hover:text-blue-400',
+      label: 'Facebook'
+    },
+    { 
+      icon: FaLinkedin, 
+      url: 'https://www.linkedin.com/in/simeonazeh?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      color: 'hover:text-blue-700 dark:hover:text-blue-500',
+      label: 'LinkedIn'
+    },
+    { 
+      icon: FaGithub, 
+      url: 'https://github.com/Simeon-Azeh',
+      color: 'hover:text-gray-900 dark:hover:text-white',
+      label: 'GitHub'
+    },
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
   return (
-    <div className="bg-white  dark:bg-dark-body transition-colors py-10 px-4 md:px-0 overflow-hidden">
-      <div className="w-full md:w-4/5 mx-auto flex flex-col md:flex-row items-center">
-        <div className="relative w-full md:w-1/2 flex flex-col items-center h-96 overflow-hidden" data-aos="fade-right">
-          <div className="marquee-container">
-            <div className="marquee">
-              {/* Create two rows of images */}
-              {Array.from({ length: 2 }).map((_, rowIndex) => (
-                <div key={rowIndex} className="marquee-row">
-                  {duplicatedImages.map((image, index) => (
-                    <div key={index} className="marquee-item">
-                      <img
-                        src={image}
-                        alt={`Scrolling ${index}`}
-                        className="w-full h-auto"
-                      />
+    <div className="bg-gradient-to-b from-white to-gray-50 dark:from-dark-body dark:to-[#0d0d0d] transition-colors py-20 px-4 md:px-0 overflow-hidden relative">
+      {/* Decorative background elements */}
+      <motion.div 
+        className="absolute top-0 right-0 w-96 h-96 bg-pink-500/5 dark:bg-pink-500/10 rounded-full blur-3xl"
+        animate={{ 
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.5, 0.3]
+        }}
+        transition={{ 
+          duration: 8,
+          repeat: Infinity,
+          repeatType: "reverse"
+        }}
+      />
+      <motion.div 
+        className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-3xl"
+        animate={{ 
+          scale: [1, 1.3, 1],
+          opacity: [0.2, 0.4, 0.2]
+        }}
+        transition={{ 
+          duration: 10,
+          repeat: Infinity,
+          repeatType: "reverse"
+        }}
+      />
+
+      <div className="w-full md:w-4/5 mx-auto relative z-10">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <div className="inline-flex items-center gap-2 bg-pink-100 dark:bg-pink-900/20 px-4 py-2 rounded-full mb-4">
+            <span className="w-2 h-2 bg-pink-600 dark:bg-pink-400 rounded-full animate-pulse"></span>
+            <span className="text-pink-600 dark:text-pink-400 font-medium text-sm">
+              {t('get_to_know', 'Get to Know Me')}
+            </span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold text-light-text dark:text-white mb-4 font-montserrat-alt">
+            {t('about_me', 'About Me')}
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-inter">
+            {t('about_subtitle', 'Passionate developer crafting digital experiences')}
+          </p>
+        </motion.div>
+
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-16">
+          {/* Image Gallery Section */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800">
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-pink-900/30 via-transparent to-purple-900/30 z-10 pointer-events-none"></div>
+              
+              {/* Marquee container */}
+              <div className="marquee-container h-full">
+                <div className="marquee">
+                  {Array.from({ length: 2 }).map((_, rowIndex) => (
+                    <div key={rowIndex} className="marquee-row">
+                      {duplicatedImages.map((image, index) => (
+                        <div key={index} className="marquee-item">
+                          <img
+                            src={image}
+                            alt={`Gallery ${index}`}
+                            className="w-full h-auto object-cover"
+                          />
+                        </div>
+                      ))}
                     </div>
                   ))}
                 </div>
-              ))}
+              </div>
+
+              {/* Decorative corner accent */}
+              <div className="absolute top-4 left-4 w-20 h-20 border-t-4 border-l-4 border-pink-500 dark:border-pink-400 rounded-tl-2xl z-20"></div>
+              <div className="absolute bottom-4 right-4 w-20 h-20 border-b-4 border-r-4 border-purple-500 dark:border-purple-400 rounded-br-2xl z-20"></div>
             </div>
-          </div>
+          </motion.div>
+
+          {/* Text Content Section */}
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-6"
+          >
+            <div className="space-y-4">
+              <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed font-inter">
+                {t('about_me_description', 'I\'m a passionate web developer and designer with expertise in creating beautiful, functional digital experiences. My journey in tech has been driven by curiosity and a love for solving complex problems.')}
+              </p>
+              <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed font-inter">
+                {t('about_me_note', 'With a focus on modern technologies and user-centered design, I bring ideas to life through clean code and intuitive interfaces. Whether it\'s a sleek website, a powerful web application, or a stunning brand identity, I\'m committed to delivering excellence.')}
+              </p>
+            </div>
+
+            {/* Social Links */}
+            <div className="pt-4">
+              <h3 className="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-4 uppercase tracking-wider">
+                {t('connect_with_me', 'Connect With Me')}
+              </h3>
+              <div className="flex gap-4">
+                {socialLinks.map((social, index) => (
+                  <motion.a
+                    key={index}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`group relative w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 ${social.color} transition-all duration-300 hover:scale-110 hover:shadow-lg`}
+                    whileHover={{ y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label={social.label}
+                  >
+                    <social.icon size={20} />
+                    
+                    {/* Tooltip */}
+                    <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-xs py-1 px-3 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                      {social.label}
+                    </span>
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA Button */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <a 
+                href="/contact"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-600 to-purple-600 text-white px-8 py-4 rounded-lg font-medium hover:shadow-xl transition-all duration-300 mt-4"
+              >
+                <span>{t('lets_work_together', "Let's Work Together")}</span>
+                <span className="text-xl">→</span>
+              </a>
+            </motion.div>
+          </motion.div>
         </div>
-        <div className="w-full md:w-4/5 mt-6 md:mt-0 md:ml-8 font-inter px-1 md:px-0" data-aos="fade-left">
-          <h2 className="text-2xl md:text-4xl font-medium mb-2 text-light-text dark:text-gray-200">{t('about_me')}</h2>
-          <p className="mt-4 text-light-text dark:text-slate-300 text-justify">
-            {t('about_me_description')}
-          </p>
-          <div className="mt-6 flex space-x-4" data-aos="fade-up">
-            <a href="https://www.facebook.com/kongnyuy.simeon.3?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
-              <FaFacebook size={24} />
-            </a>
-            <a href="https://www.linkedin.com/in/simeonazeh?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
-              <FaLinkedin size={24} />
-            </a>
-            <a href="https://github.com/Simeon-Azeh" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
-              <FaGithub size={24} />
-            </a>
-          </div>
-        </div>
+
+     
+        
       </div>
-      <p className='text-[15px] dark:text-slate-300 text-light-text mt-4 font-inter w-full md:w-4/5 mx-auto text-justify md:px-0' data-aos="fade-up">
-        {t('about_me_note')}
-      </p>
+
+      {/* Enhanced CSS for marquee */}
+      <style jsx>{`
+        .marquee-container {
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .marquee {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+        
+        .marquee-row {
+          display: flex;
+          animation: scroll 30s linear infinite;
+        }
+        
+        .marquee-row:nth-child(2) {
+          animation-direction: reverse;
+          animation-duration: 25s;
+        }
+        
+        .marquee-item {
+          flex-shrink: 0;
+          width: 250px;
+          height: 200px;
+          margin-right: 1rem;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s ease;
+        }
+        
+        .marquee-item:hover {
+          transform: scale(1.05);
+          z-index: 10;
+        }
+        
+        .marquee-item img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .marquee-item {
+            width: 200px;
+            height: 160px;
+          }
+        }
+      `}</style>
     </div>
   );
 }

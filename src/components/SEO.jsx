@@ -28,8 +28,8 @@ const SEO = ({
   // Default site information
   const siteTitle = 'Simeon Portfolio';
   const siteDescription = 'Professional portfolio showcasing web development and design projects';
-  const siteUrl = 'https://www.simeonazeh.me'; // Replace with your actual domain
-  const siteImage = `${siteUrl}/images/og-default.jpg`; // Replace with your default OG image
+  const siteUrl = 'https://www.simeonazeh.me'; 
+  const siteImage = `${siteUrl}/og-image.jpg`; 
 
   // Use provided values or fallbacks
   const metaTitle = title ? `${title} | ${siteTitle}` : siteTitle;
