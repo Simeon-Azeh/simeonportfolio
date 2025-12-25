@@ -152,12 +152,12 @@ function TestimonialCard({ name, position, image, text, rating, company, country
         exit={{ opacity: 0, y: -20 }}
         whileHover={{ y: -8, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
         transition={{ duration: 0.3 }}
-        className={`bg-white dark:bg-[#1a1a1a] rounded-xl p-6 dark:shadow-none
-                   border border-gray-200 dark:border-gray-800 font-inter h-full flex flex-col
+        className={`bg-white dark:bg-zinc-900/80 rounded-xl p-6 dark:shadow-none
+                   border border-slate-200 dark:border-zinc-800 font-inter h-full flex flex-col
                    ${isPreview ? 'opacity-70 blur-[1px]' : ''}`}
       >
         <div className="absolute -top-3 left-6">
-          <FaQuoteLeft className="text-3xl text-pink-600 dark:text-white opacity-20" />
+          <FaQuoteLeft className="text-3xl text-violet-600 dark:text-violet-400 opacity-20" />
         </div>
 
         <div className="flex items-start mb-4 relative z-10 pt-3">
@@ -165,7 +165,7 @@ function TestimonialCard({ name, position, image, text, rating, company, country
             {useLetterAvatar ? (
               <LetterAvatar name={name} className="border-2 border-white dark:border-gray-800" />
             ) : (
-              <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-pink-600 dark:border-pink-500">
+              <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-violet-600 dark:border-violet-400">
                 <img
                   src={image}
                   alt={name}
@@ -208,7 +208,7 @@ function TestimonialCard({ name, position, image, text, rating, company, country
                     e.stopPropagation();
                     setIsExpanded(!isExpanded);
                   }}
-                  className="text-pink-600 dark:text-pink-400 text-xs font-medium hover:underline focus:outline-none transition-colors mt-[4px]"
+                  className="text-violet-600 dark:text-violet-400 text-xs font-medium hover:underline focus:outline-none transition-colors mt-[4px]"
                 >
                   {isExpanded ? t('see_less', 'See less') : t('see_more', 'See more')}
                 </button>
@@ -248,18 +248,18 @@ function TestimonialCard({ name, position, image, text, rating, company, country
       className="w-full md:w-4/5 mx-auto py-8 px-6 md:px-0"
     >
       <motion.div
-        className="bg-white dark:bg-[#1a1a1a] rounded-2xl p-8 md:p-10 shadow-xl dark:shadow-none relative
-                   border border-gray-200 border-solid dark:border-gray-800 font-inter overflow-hidden
-                   backdrop-blur-sm bg-white/80 dark:bg-[#1a1a1a]/80"
+        className="bg-white dark:bg-zinc-900/80 rounded-2xl p-8 md:p-10 shadow-xl dark:shadow-none relative
+                   border border-slate-200 border-solid dark:border-zinc-800 font-inter overflow-hidden
+                   backdrop-blur-sm"
         whileHover={{ y: -5 }}
         transition={{ duration: 0.3 }}
       >
         {/* Background decoration */}
-        <div className="absolute -top-20 -right-20 w-40 h-40 bg-pink-100 dark:bg-pink-900/20 rounded-full opacity-50"></div>
-        <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-blue-100 dark:bg-blue-900/20 rounded-full opacity-50"></div>
+        <div className="absolute -top-20 -right-20 w-40 h-40 bg-violet-100 dark:bg-violet-900/20 rounded-full opacity-50"></div>
+        <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-purple-100 dark:bg-purple-900/20 rounded-full opacity-50"></div>
 
         <div className="absolute -top-4 left-8">
-          <FaQuoteLeft className="text-4xl text-pink-600 dark:text-white opacity-20" />
+          <FaQuoteLeft className="text-4xl text-violet-600 dark:text-violet-400 opacity-20" />
         </div>
 
         <div className="flex flex-col md:flex-row md:items-center gap-6 mb-6 relative z-10">
@@ -268,12 +268,12 @@ function TestimonialCard({ name, position, image, text, rating, company, country
               <LetterAvatar
                 name={name}
                 size="large"
-                className="border-2 border-pink-600 border-solid dark:border-white p-1"
+                className="border-2 border-violet-600 border-solid dark:border-violet-400 p-1"
               />
             </motion.div>
           ) : (
             <motion.div
-              className="w-20 h-20 rounded-full overflow-hidden border-2 border-pink-600 border-solid dark:border-white p-1"
+              className="w-20 h-20 rounded-full overflow-hidden border-2 border-violet-600 border-solid dark:border-violet-400 p-1"
               whileHover={{ scale: 1.1 }}
             >
               <img
@@ -453,9 +453,9 @@ function ReviewForm({ isOpen, onClose, onReviewSubmitted }) {
     >
       <div className="mb-4 border-b border-gray-200 border-solid dark:border-gray-700 pb-4">
         <div className="flex">
-          <div className={`flex-1 ${currentStep >= 1 ? 'text-pink-600 dark:text-pink-400' : 'text-gray-400'}`}>
+          <div className={`flex-1 ${currentStep >= 1 ? 'text-violet-600 dark:text-violet-400' : 'text-gray-400'}`}>
             <div className="flex items-center">
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${currentStep >= 1 ? 'bg-pink-600 dark:bg-pink-700 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-500'
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${currentStep >= 1 ? 'bg-violet-600 dark:bg-violet-700 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-500'
                 }`}>
                 1
               </div>
@@ -465,11 +465,11 @@ function ReviewForm({ isOpen, onClose, onReviewSubmitted }) {
             </div>
           </div>
           <div className="w-12 flex items-center justify-center">
-            <div className={`h-1 w-full ${currentStep >= 2 ? 'bg-pink-600 dark:bg-pink-500' : 'bg-gray-200 dark:bg-gray-700'}`}></div>
+            <div className={`h-1 w-full ${currentStep >= 2 ? 'bg-violet-600 dark:bg-violet-500' : 'bg-gray-200 dark:bg-gray-700'}`}></div>
           </div>
-          <div className={`flex-1 ${currentStep >= 2 ? 'text-pink-600 dark:text-pink-400' : 'text-gray-400'}`}>
+          <div className={`flex-1 ${currentStep >= 2 ? 'text-violet-600 dark:text-violet-400' : 'text-gray-400'}`}>
             <div className="flex items-center">
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${currentStep >= 2 ? 'bg-pink-600 dark:bg-pink-700 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-500'
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${currentStep >= 2 ? 'bg-violet-600 dark:bg-violet-700 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-500'
                 }`}>
                 2
               </div>
@@ -563,7 +563,7 @@ function ReviewForm({ isOpen, onClose, onReviewSubmitted }) {
                   <Button
                     type="primary"
                     onClick={handleNext}
-                    className="bg-pink-600 hover:bg-pink-700 border-none rounded-lg"
+                    className="bg-violet-600 hover:bg-violet-700 border-none rounded-lg"
                   >
                     {t('next', 'Next')}
                   </Button>
@@ -630,7 +630,7 @@ function ReviewForm({ isOpen, onClose, onReviewSubmitted }) {
                     type="primary"
                     htmlType="submit"
                     loading={isSubmitting}
-                    className="bg-pink-600 hover:bg-pink-700 border-none rounded-lg"
+                    className="bg-violet-600 hover:bg-violet-700 border-none rounded-lg"
                   >
                     {t('submit_review', 'Submit Review')}
                   </Button>
@@ -739,7 +739,7 @@ function ReviewSummary({ testimonials }) {
                   <Progress
                     percent={percentage}
                     showInfo={false}
-                    strokeColor="#EC4899"
+                    strokeColor="#8B5CF6"
                     trailColor="#E5E7EB"
                     className="custom-progress"
                   />
@@ -763,8 +763,8 @@ function ReviewSummary({ testimonials }) {
               const percentage = Math.round((count / stats.total) * 100) || 0;
 
               return (
-                <motion.div 
-                  key={country} 
+                <motion.div
+                  key={country}
                   className="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-800 rounded-lg"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -784,8 +784,8 @@ function ReviewSummary({ testimonials }) {
                     <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
                       {percentage}%
                     </span>
-                    <span className="text-xs font-semibold px-2 py-1 bg-pink-100 dark:bg-pink-900/20 
-                                   text-pink-600 dark:text-pink-400 rounded-full">
+                    <span className="text-xs font-semibold px-2 py-1 bg-violet-100 dark:bg-violet-900/20 
+                                   text-violet-600 dark:text-violet-400 rounded-full">
                       {count}
                     </span>
                   </div>
@@ -793,7 +793,7 @@ function ReviewSummary({ testimonials }) {
               );
             })}
           </div>
-          
+
           {stats.sortedCountries.length === 0 && (
             <div className="text-center py-4">
               <span className="text-sm text-gray-500 dark:text-gray-400">
@@ -896,20 +896,20 @@ function Testimonial() {
         whileInView={{ width: "120px" }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="h-1 bg-pink-600 dark:bg-white rounded-full mb-6 mx-auto md:mx-0"
+        className="h-1 bg-gradient-to-r from-violet-600 to-purple-600 dark:from-violet-400 dark:to-purple-400 rounded-full mb-6 mx-auto md:mx-0"
       />
       <motion.h2
-        className="text-3xl md:text-4xl font-bold mb-4"
+        className="text-3xl md:text-4xl font-bold font-montserrat-alt mb-4"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
       >
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-light-text dark:from-white dark:to-gray-300">
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-slate-700 dark:from-violet-400 dark:to-slate-200">
           {t('testimonial_title', 'Client Testimonials')}
         </span>
       </motion.h2>
       <motion.p
-        className="text-gray-600 dark:text-gray-400 max-w-2xl font-inter mx-auto md:mx-0"
+        className="text-slate-600 dark:text-slate-400 max-w-2xl font-inter mx-auto md:mx-0"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -924,11 +924,15 @@ function Testimonial() {
   const hasNextTestimonial = (page * testimonialsPerPage) + testimonialsPerPage < testimonials.length;
 
   return (
-    <div className="bg-light-body dark:bg-dark-body relative overflow-hidden py-12 md:py-20">
+    <div className="bg-light-body dark:bg-[#09090b] relative overflow-hidden py-12 md:py-20">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5 dark:opacity-10">
-        <div className="absolute inset-0 bg-grid-pattern"></div>
-      </div>
+      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(139, 92, 246, 0.5) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(139, 92, 246, 0.5) 1px, transparent 1px)`,
+          backgroundSize: '60px 60px'
+        }}
+      />
 
       <div className="w-full md:w-11/12 lg:w-4/5 mx-auto relative px-4 md:px-6">
         {headerSection}
@@ -945,8 +949,8 @@ function Testimonial() {
                 type="button"
                 onClick={() => setViewMode('grid')}
                 className={`px-4 py-2 text-sm font-medium rounded-l-lg ${viewMode === 'grid'
-                  ? 'bg-pink-600 text-white'
-                  : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
+                  ? 'bg-violet-600 text-white'
+                  : 'bg-white dark:bg-zinc-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-zinc-700'
                   }`}
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -957,8 +961,8 @@ function Testimonial() {
                 type="button"
                 onClick={() => setViewMode('carousel')}
                 className={`px-4 py-2 text-sm font-medium rounded-r-lg ${viewMode === 'carousel'
-                  ? 'bg-pink-600 text-white'
-                  : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
+                  ? 'bg-violet-600 text-white'
+                  : 'bg-white dark:bg-zinc-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-zinc-700'
                   }`}
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -1006,7 +1010,7 @@ function Testimonial() {
                   <Button
                     type="primary"
                     onClick={openReviewModal}
-                    className="bg-pink-600 hover:bg-pink-700 border-none px-6 py-2 h-auto"
+                    className="bg-violet-600 hover:bg-violet-700 border-none px-6 py-2 h-auto"
                     size="large"
                   >
                     <span className="flex items-center gap-2">
@@ -1045,7 +1049,7 @@ function Testimonial() {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="bg-pink-600 text-white px-4 py-2 rounded-lg shadow-[0_4px_12px_0_rgba(0,0,0,0.05)] 
+                      className="bg-violet-600 text-white px-4 py-2 rounded-lg shadow-[0_4px_12px_0_rgba(0,0,0,0.05)] 
                                flex items-center group-hover:shadow-xl transition-all"
                     >
                       <span>{t('see_more', 'See More')}</span>
@@ -1146,8 +1150,8 @@ function Testimonial() {
                   key={index}
                   onClick={() => carouselRef.current?.goTo(index)}
                   className={`w-2 h-2 rounded-full transition-all ${activeIndex === index
-                    ? 'bg-pink-600 dark:bg-pink-500 w-6'
-                    : 'bg-gray-300 dark:bg-gray-700'
+                    ? 'bg-violet-600 dark:bg-violet-400 w-6'
+                    : 'bg-slate-300 dark:bg-zinc-700'
                     }`}
                   aria-label={`Go to testimonial ${index + 1}`}
                 />
@@ -1160,7 +1164,7 @@ function Testimonial() {
       {/* Leave a review button */}
       <div className="w-full md:w-4/5 mx-auto flex justify-center pb-8 mt-16">
         <motion.button
-          whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(236, 72, 153, 0.4)" }}
+          whileHover={{ scale: 1.05, boxShadow: "0 10px 25px -5px rgba(139, 92, 246, 0.4)" }}
           whileTap={{ scale: 0.95 }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -1170,7 +1174,7 @@ function Testimonial() {
             damping: 17
           }}
           onClick={openReviewModal}
-          className="flex items-center gap-3 bg-gradient-to-r from-pink-600 to-pink-500 dark:from-pink-700 dark:to-pink-500
+          className="flex items-center gap-3 bg-gradient-to-r from-violet-600 to-purple-600 dark:from-violet-500 dark:to-purple-500
                     text-white px-8 py-4 rounded-full shadow-[0_4px_12px_0_rgba(0,0,0,0.05)] hover:shadow-xl transition-all duration-300 font-medium z-10 relative"
         >
           <MdRateReview size={22} />

@@ -11,33 +11,33 @@ const facts = [
     key: 'happy_clients',
     count: 12,
     icon: FaRegSmile,
-    color: 'from-pink-500 to-pink-600',
-    bgGlow: 'bg-pink-500/10',
-    shadowColor: 'shadow-pink-500/20'
+    color: 'from-violet-500 to-purple-600',
+    bgGlow: 'bg-violet-500/10',
+    shadowColor: 'shadow-violet-500/20'
   },
   {
     key: 'completed_projects',
     count: 15,
     icon: MdPlaylistAddCheckCircle,
-    color: 'from-pink-500 to-pink-600',
-    bgGlow: 'bg-pink-500/10',
-    shadowColor: 'shadow-pink-500/20'
+    color: 'from-violet-500 to-purple-600',
+    bgGlow: 'bg-violet-500/10',
+    shadowColor: 'shadow-violet-500/20'
   },
   {
     key: 'hours_of_support',
     count: 3925,
     icon: RiCustomerService2Fill,
-    color: 'from-pink-500 to-pink-600',
-    bgGlow: 'bg-pink-500/10',
-    shadowColor: 'shadow-pink-500/20'
+    color: 'from-violet-500 to-purple-600',
+    bgGlow: 'bg-violet-500/10',
+    shadowColor: 'shadow-violet-500/20'
   },
   {
     key: 'awards',
     count: 10,
     icon: FaAward,
-    color: 'from-pink-500 to-pink-600',
-    bgGlow: 'bg-pink-500/10',
-    shadowColor: 'shadow-pink-500/20'
+    color: 'from-violet-500 to-purple-600',
+    bgGlow: 'bg-violet-500/10',
+    shadowColor: 'shadow-violet-500/20'
   }
 ];
 
@@ -109,10 +109,10 @@ const Facts = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-light-body dark:bg-dark-body transition-colors py-20 relative overflow-hidden font-inter"
+      className="bg-slate-50 dark:bg-[#09090b] transition-colors py-20 relative overflow-hidden font-inter"
     >
       {/* Enhanced Background Pattern with Gradient Orbs */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 opacity-5 dark:opacity-10"
         animate={{
           backgroundPosition: ['0% 0%', '100% 100%'],
@@ -127,18 +127,18 @@ const Facts = () => {
       </motion.div>
 
       {/* Animated gradient blobs */}
-      <motion.div 
-        className="absolute top-10 -left-20 w-64 h-64 bg-pink-300/20 dark:bg-pink-900/20 rounded-full blur-3xl"
-        animate={{ 
+      <motion.div
+        className="absolute top-10 -left-20 w-64 h-64 bg-violet-300/20 dark:bg-violet-900/20 rounded-full blur-3xl"
+        animate={{
           scale: [1, 1.2, 1],
           x: [0, 30, 0],
           opacity: [0.2, 0.3, 0.2]
         }}
         transition={{ duration: 12, repeat: Infinity, repeatType: "reverse" }}
       />
-      <motion.div 
-        className="absolute -bottom-20 -right-20 w-72 h-72 bg-pink-200/20 dark:bg-pink-800/20 rounded-full blur-3xl"
-        animate={{ 
+      <motion.div
+        className="absolute -bottom-20 -right-20 w-72 h-72 bg-purple-200/20 dark:bg-purple-800/20 rounded-full blur-3xl"
+        animate={{
           scale: [1, 1.3, 1],
           y: [0, -20, 0],
           opacity: [0.15, 0.25, 0.15]
@@ -148,23 +148,23 @@ const Facts = () => {
 
       <div className="relative z-10 w-full md:w-4/5 mx-auto px-6 md:px-0">
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <motion.div 
+          <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: "60px" }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="h-1 bg-pink-600 dark:bg-pink-500 rounded-full mb-6 mx-auto"
+            className="h-1 bg-violet-600 dark:bg-violet-500 rounded-full mb-6 mx-auto"
           />
-          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-pink-600 to-light-text dark:from-pink-400 dark:to-white bg-clip-text text-transparent font-montserrat-alt">
+          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-violet-600 to-purple-600 dark:from-violet-400 dark:to-purple-400 bg-clip-text text-transparent font-montserrat-alt">
             {t('achievements_title', 'My Achievements')}
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 mt-3 max-w-2xl mx-auto font-inter">
+          <p className="text-slate-600 dark:text-slate-400 mt-3 max-w-2xl mx-auto font-inter">
             {t('achievements_subtitle', 'Numbers that reflect my dedication and commitment to excellence')}
           </p>
         </motion.div>
@@ -180,21 +180,21 @@ const Facts = () => {
             <motion.div
               key={fact.key}
               variants={itemVariants}
-              whileHover={{ 
-                y: -8, 
-                transition: { duration: 0.3, type: "spring", stiffness: 300 } 
+              whileHover={{
+                y: -8,
+                transition: { duration: 0.3, type: "spring", stiffness: 300 }
               }}
-              className="group relative bg-white dark:bg-[#1a1a1a] rounded-2xl p-6 md:p-8
-                         border border-gray-100 dark:border-gray-700
-                         hover:border-pink-200 dark:hover:border-pink-800
+              className="group relative bg-white dark:bg-zinc-900 rounded-2xl p-6 md:p-8
+                         border border-slate-100 dark:border-zinc-700
+                         hover:border-violet-200 dark:hover:border-violet-800
                          transition-all duration-300
-                         hover:shadow-xl hover:shadow-pink-500/10 dark:hover:shadow-pink-500/5"
+                         hover:shadow-xl hover:shadow-violet-500/10 dark:hover:shadow-violet-500/5"
             >
               {/* Glow effect on hover */}
               <motion.div
                 className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
-                  background: 'radial-gradient(circle at center, rgba(236, 72, 153, 0.1) 0%, transparent 70%)'
+                  background: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.1) 0%, transparent 70%)'
                 }}
               />
 
@@ -207,7 +207,7 @@ const Facts = () => {
                 >
                   {/* Icon glow background */}
                   <div className={`absolute inset-0 ${fact.bgGlow} rounded-xl blur-lg scale-110 opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-                  
+
                   <div className={`relative w-14 h-14 md:w-16 md:h-16 rounded-xl bg-gradient-to-br ${fact.color} 
                                  flex items-center justify-center text-white
                                  shadow-lg ${fact.shadowColor} group-hover:shadow-xl group-hover:${fact.shadowColor}
@@ -216,27 +216,27 @@ const Facts = () => {
                     <fact.icon size={28} className="md:w-8 md:h-8" />
                   </div>
                 </motion.div>
-                
+
                 <div className="text-center">
                   {/* Animated counter with gradient */}
-                  <motion.h3 
+                  <motion.h3
                     ref={el => countUpRefs.current[index] = el}
                     initial={{ scale: 0.5 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
                     className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent
-                               bg-gradient-to-r from-pink-600 to-pink-500
-                               dark:from-pink-400 dark:to-pink-300
-                               group-hover:from-pink-500 group-hover:to-pink-600
-                               dark:group-hover:from-pink-300 dark:group-hover:to-pink-400
+                               bg-gradient-to-r from-violet-600 to-purple-600
+                               dark:from-violet-400 dark:to-purple-400
+                               group-hover:from-violet-500 group-hover:to-purple-500
+                               dark:group-hover:from-violet-300 dark:group-hover:to-purple-300
                                transition-all duration-300 font-montserrat-alt"
                   >
                     0
                   </motion.h3>
-                  
+
                   {/* Label with better spacing */}
-                  <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-3
-                               group-hover:text-gray-800 dark:group-hover:text-gray-300
+                  <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 mt-3
+                               group-hover:text-slate-800 dark:group-hover:text-slate-300
                                transition-colors duration-300 font-medium font-inter">
                     {t(fact.key)}
                   </p>
@@ -244,7 +244,7 @@ const Facts = () => {
               </div>
 
               {/* Corner accent */}
-              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-pink-500/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-violet-500/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.div>
           ))}
         </motion.div>

@@ -29,15 +29,15 @@ function Home() {
         <meta name="twitter:image" content="/og-image.jpg" />
         <link rel="canonical" href={window.location.href} />
       </Helmet>
-      
+
       <div className="">
-        <div className='sticky top-0 bg-[#F9FEFF] dark:bg-[#171716] z-50 '>
+        <div className='sticky top-0 bg-[#F9FEFF] dark:bg-[#09090b] z-50 '>
           <Header />
         </div>
         <div>
           <Hero />
         </div>
-       
+
         <div>
           <SubHero />
         </div>
@@ -53,7 +53,7 @@ function Home() {
         <div>
           <Services />
         </div>
-        <div className='bg-light-body dark:bg-dark-body'>
+        <div className='bg-light-body dark:bg-[#09090b]'>
           <Testimonial />
         </div>
         <div>

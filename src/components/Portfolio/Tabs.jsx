@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Tab } from '@headlessui/react';
-import { FaLink, FaGithub, FaExternalLinkAlt, FaRegCalendarAlt, FaUserAlt, FaCode, FaTimes, FaReact, FaNodeJs,  } from 'react-icons/fa';
+import { FaLink, FaGithub, FaExternalLinkAlt, FaRegCalendarAlt, FaUserAlt, FaCode, FaTimes, FaReact, FaNodeJs, } from 'react-icons/fa';
 import { RiTailwindCssFill, RiJavascriptFill } from "react-icons/ri";
 import { SiMailgun } from "react-icons/si";
 import { FiFramer } from "react-icons/fi";
@@ -82,10 +82,10 @@ const Tabs = () => {
     'Firebase': SiFirebase,
     'TypeScript': SiTypescript,
     'Node.js': FaNodeJs,
-     'Tailwind-CSS': RiTailwindCssFill,
+    'Tailwind-CSS': RiTailwindCssFill,
     'MongoDB': () => <span className="text-green-500 font-bold">DB</span>, // Placeholder, as react-icons doesn't have MongoDB
     'Express': () => <span className="text-gray-500 font-bold">Ex</span>, // Placeholder
-    'Mailgun' : SiMailgun,
+    'Mailgun': SiMailgun,
     'Framer Motion': FiFramer,
     'WordPress': () => <span className="text-blue-600 font-bold">WP</span>, // Placeholder
     'PHP': () => <span className="text-indigo-500 font-bold">PHP</span>, // Placeholder
@@ -112,28 +112,28 @@ const Tabs = () => {
   return (
     <div className="bg-light-body dark:bg-dark-body transition-colors py-12 md:py-20 px-4 md:px-6 lg:px-8 relative overflow-hidden font-inter">
       {/* Enhanced Background Decorations */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(236,72,153,0.05),transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(236,72,153,0.1),transparent_50%)]"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(59,130,246,0.05),transparent_50%)] dark:bg-[radial-gradient(circle_at_70%_80%,rgba(59,130,246,0.1),transparent_50%)]"></div>
-      
-      <motion.div 
-        className="absolute top-20 right-10 w-64 h-64 md:w-72 md:h-72 rounded-full bg-gradient-to-br from-pink-200/20 to-purple-200/20 dark:from-pink-500/10 dark:to-purple-500/10 blur-3xl"
-        animate={{ 
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(139,92,246,0.05),transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(139,92,246,0.1),transparent_50%)]"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(147,51,234,0.05),transparent_50%)] dark:bg-[radial-gradient(circle_at_70%_80%,rgba(147,51,234,0.1),transparent_50%)]"></div>
+
+      <motion.div
+        className="absolute top-20 right-10 w-64 h-64 md:w-72 md:h-72 rounded-full bg-gradient-to-br from-violet-200/20 to-purple-200/20 dark:from-violet-500/10 dark:to-purple-500/10 blur-3xl"
+        animate={{
           scale: [1, 1.1, 1],
           opacity: [0.3, 0.5, 0.3],
           rotate: [0, 90, 0]
         }}
         transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div 
+      <motion.div
         className="absolute bottom-20 left-10 w-80 h-80 md:w-96 md:h-96 rounded-full bg-gradient-to-br from-blue-200/20 to-cyan-200/20 dark:from-blue-500/10 dark:to-cyan-500/10 blur-3xl"
-        animate={{ 
+        animate={{
           scale: [1, 1.2, 1],
           opacity: [0.2, 0.4, 0.2],
           rotate: [0, -90, 0]
         }}
         transition={{ duration: 25, repeat: Infinity, ease: "easeInOut", delay: 2 }}
       />
-      
+
       <div className="w-full max-w-7xl mx-auto relative z-10">
         {/* Header Section */}
         <motion.div
@@ -142,9 +142,9 @@ const Tabs = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-8 md:mb-12"
         >
-          <div className="inline-flex items-center gap-2 bg-pink-50 dark:bg-pink-900/20 px-3 md:px-4 py-2 rounded-full mb-4 md:mb-6">
-            <MdFilterList className="text-pink-600 dark:text-pink-400 text-sm md:text-base" />
-            <span className="text-pink-600 dark:text-pink-400 font-medium text-sm font-inter">
+          <div className="inline-flex items-center gap-2 bg-violet-50 dark:bg-violet-900/20 px-3 md:px-4 py-2 rounded-full mb-4 md:mb-6">
+            <MdFilterList className="text-violet-600 dark:text-violet-400 text-sm md:text-base" />
+            <span className="text-violet-600 dark:text-violet-400 font-medium text-sm font-inter">
               {t('portfolio.filter', 'Filter Projects')}
             </span>
           </div>
@@ -171,8 +171,8 @@ const Tabs = () => {
                     key={category}
                     className={({ selected }) =>
                       `group relative py-2 md:py-3 px-4 md:px-6 text-xs md:text-sm font-semibold rounded-xl outline-none transition-all duration-300 flex items-center gap-1 md:gap-2 flex-shrink-0 font-inter
-                      ${selected 
-                        ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-xl shadow-pink-500/30 dark:shadow-pink-500/20' 
+                      ${selected
+                        ? 'bg-gradient-to-r from-violet-500 to-purple-600 text-white shadow-xl shadow-violet-500/30 dark:shadow-violet-500/20'
                         : 'text-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800/50 hover:text-gray-900 dark:hover:text-white'}`
                     }
                   >
@@ -183,7 +183,7 @@ const Tabs = () => {
                         {selected && (
                           <motion.div
                             layoutId="activeTab"
-                            className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-600 rounded-xl -z-10"
+                            className="absolute inset-0 bg-gradient-to-r from-violet-500 to-purple-600 rounded-xl -z-10"
                             transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                           />
                         )}
@@ -193,14 +193,14 @@ const Tabs = () => {
                 );
               })}
             </Tab.List>
-            
+
             <Tab.Panels>
               <AnimatePresence mode="wait">
                 {categories.map((category, idx) => {
                   const projectList = projects[category];
                   const isShowingMore = showMore[category];
                   const displayedProjects = isShowingMore ? projectList : projectList.slice(0, 8);
-                  
+
                   return (
                     <Tab.Panel key={idx}>
                       <motion.div
@@ -215,7 +215,7 @@ const Tabs = () => {
                             key={index}
                             data-aos="fade-up"
                             data-aos-delay={`${index * 50}`}
-                            className="group bg-white dark:bg-[#1B1B1A] border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-pink-500/10 dark:hover:shadow-pink-500/20 transition-all duration-500"
+                            className="group bg-white dark:bg-[#1B1B1A] border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-violet-500/10 dark:hover:shadow-violet-500/20 transition-all duration-500"
                             whileHover={{ y: -8, scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                           >
@@ -228,14 +228,14 @@ const Tabs = () => {
                               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
                                   <div className="flex justify-between items-center">
-                                    <span className="text-white text-xs px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gradient-to-r from-pink-600 to-purple-600 backdrop-blur-sm shadow-lg font-medium">
+                                    <span className="text-white text-xs px-2 md:px-3 py-1 md:py-1.5 rounded-full bg-gradient-to-r from-violet-600 to-purple-600 backdrop-blur-sm shadow-lg font-medium">
                                       {project.category || t('portfolio.uncategorized', 'Uncategorized')}
                                     </span>
                                     <div className="flex gap-1 md:gap-2">
                                       {project.projectUrl && (
-                                        <motion.a 
-                                          href={project.projectUrl} 
-                                          target="_blank" 
+                                        <motion.a
+                                          href={project.projectUrl}
+                                          target="_blank"
                                           rel="noopener noreferrer"
                                           className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/40 transition-all"
                                           whileHover={{ scale: 1.1, rotate: 5 }}
@@ -245,9 +245,9 @@ const Tabs = () => {
                                         </motion.a>
                                       )}
                                       {project.githubUrl && (
-                                        <motion.a 
-                                          href={project.githubUrl} 
-                                          target="_blank" 
+                                        <motion.a
+                                          href={project.githubUrl}
+                                          target="_blank"
                                           rel="noopener noreferrer"
                                           className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/40 transition-all"
                                           whileHover={{ scale: 1.1, rotate: -5 }}
@@ -261,9 +261,9 @@ const Tabs = () => {
                                 </div>
                               </div>
                             </div>
-                            
+
                             <div className="p-4 md:p-6">
-                              <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-2 font-montserrat-alt group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">
+                              <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-2 font-montserrat-alt group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
                                 {project.title}
                               </h3>
                               <p className="text-gray-600 dark:text-gray-400 text-sm mb-3 md:mb-4 line-clamp-2 font-inter">
@@ -283,7 +283,7 @@ const Tabs = () => {
                               )}
                               <div className="flex justify-between items-center pt-2 md:pt-3 border-t border-gray-200 dark:border-gray-800">
                                 <button
-                                  className="flex items-center gap-1 md:gap-2 text-sm font-semibold text-pink-600 dark:text-pink-400 hover:text-pink-700 dark:hover:text-pink-300 transition-colors group/btn"
+                                  className="flex items-center gap-1 md:gap-2 text-sm font-semibold text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 transition-colors group/btn"
                                   onClick={() => navigateToProjectDetails(project)}
                                 >
                                   <span className="font-inter text-xs md:text-sm">{t('portfolio.view_details', 'View Details')}</span>
@@ -297,9 +297,9 @@ const Tabs = () => {
                           </motion.div>
                         ))}
                       </motion.div>
-                      
+
                       {projectList.length > 8 && (
-                        <motion.div 
+                        <motion.div
                           className="mt-8 md:mt-12 text-center"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
@@ -307,12 +307,12 @@ const Tabs = () => {
                         >
                           <motion.button
                             onClick={() => toggleShowMore(category)}
-                            className="px-6 md:px-8 py-2.5 md:py-3.5 bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white font-semibold rounded-xl shadow-lg shadow-pink-500/30 hover:shadow-xl hover:shadow-pink-500/40 transition-all duration-300 font-inter text-sm md:text-base"
+                            className="px-6 md:px-8 py-2.5 md:py-3.5 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white font-semibold rounded-xl shadow-lg shadow-violet-500/30 hover:shadow-xl hover:shadow-violet-500/40 transition-all duration-300 font-inter text-sm md:text-base"
                             whileHover={{ scale: 1.05, y: -2 }}
                             whileTap={{ scale: 0.95 }}
                           >
-                            {isShowingMore 
-                              ? t('portfolio.show_less', 'Show Less Projects') 
+                            {isShowingMore
+                              ? t('portfolio.show_less', 'Show Less Projects')
                               : t('portfolio.show_more', 'Show More Projects')}
                           </motion.button>
                         </motion.div>
@@ -340,7 +340,7 @@ const Tabs = () => {
       >
         <AnimatePresence>
           {selectedProject && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -354,9 +354,9 @@ const Tabs = () => {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                
+
                 {/* Close Button */}
-                <motion.button 
+                <motion.button
                   onClick={closeDrawer}
                   className="absolute top-4 md:top-6 right-4 md:right-6 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-white/20 transition-all"
                   whileHover={{ scale: 1.1, rotate: 90 }}
@@ -364,7 +364,7 @@ const Tabs = () => {
                 >
                   <FaTimes size={16} />
                 </motion.button>
-                
+
                 {/* Title & Category */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                   <motion.div
@@ -376,14 +376,14 @@ const Tabs = () => {
                       {selectedProject.title}
                     </h2>
                     <div className="flex items-center gap-3">
-                      <span className="px-3 md:px-4 py-1 md:py-1.5 rounded-full bg-gradient-to-r from-pink-600 to-purple-600 backdrop-blur-sm text-white text-sm font-semibold shadow-lg">
+                      <span className="px-3 md:px-4 py-1 md:py-1.5 rounded-full bg-gradient-to-r from-violet-600 to-purple-600 backdrop-blur-sm text-white text-sm font-semibold shadow-lg">
                         {selectedProject.category || t('portfolio.uncategorized', 'Uncategorized')}
                       </span>
                     </div>
                   </motion.div>
                 </div>
               </div>
-              
+
               {/* Content Section */}
               <div className="p-4 md:p-6 lg:p-8">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-10">
@@ -403,7 +403,7 @@ const Tabs = () => {
                       )}
                     </div>
                   </div>
-                  
+
                   {/* Project Details Sidebar */}
                   <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800/50 dark:to-gray-900/50 rounded-2xl p-4 md:p-6 border border-gray-200 dark:border-gray-700">
                     <h3 className="text-base md:text-lg font-bold text-gray-900 dark:text-white mb-4 md:mb-6 font-montserrat-alt">
@@ -411,7 +411,7 @@ const Tabs = () => {
                     </h3>
                     <ul className="space-y-3 md:space-y-4">
                       <li className="flex items-center text-gray-700 dark:text-gray-300">
-                        <MdCategory className="mr-2 md:mr-3 text-pink-600 dark:text-pink-400 text-lg md:text-xl" />
+                        <MdCategory className="mr-2 md:mr-3 text-violet-600 dark:text-violet-400 text-lg md:text-xl" />
                         <div className="font-inter text-sm md:text-base">
                           <span className="font-semibold text-sm block text-gray-500 dark:text-gray-400">
                             {t('portfolio.category', 'Category')}
@@ -420,7 +420,7 @@ const Tabs = () => {
                         </div>
                       </li>
                       <li className="flex items-center text-gray-700 dark:text-gray-300">
-                        <FaUserAlt className="mr-2 md:mr-3 text-pink-600 dark:text-pink-400 text-base md:text-lg" />
+                        <FaUserAlt className="mr-2 md:mr-3 text-violet-600 dark:text-violet-400 text-base md:text-lg" />
                         <div className="font-inter text-sm md:text-base">
                           <span className="font-semibold text-sm block text-gray-500 dark:text-gray-400">
                             {t('portfolio.client', 'Client')}
@@ -429,7 +429,7 @@ const Tabs = () => {
                         </div>
                       </li>
                       <li className="flex items-center text-gray-700 dark:text-gray-300">
-                        <FaRegCalendarAlt className="mr-2 md:mr-3 text-pink-600 dark:text-pink-400 text-base md:text-lg" />
+                        <FaRegCalendarAlt className="mr-2 md:mr-3 text-violet-600 dark:text-violet-400 text-base md:text-lg" />
                         <div className="font-inter text-sm md:text-base">
                           <span className="font-semibold text-sm block text-gray-500 dark:text-gray-400">
                             {t('portfolio.date', 'Date')}
@@ -439,7 +439,7 @@ const Tabs = () => {
                       </li>
                       {selectedProject.technologies && (
                         <li className="flex items-start text-gray-700 dark:text-gray-300">
-                          <FaCode className="mr-2 md:mr-3 mt-1 text-pink-600 dark:text-pink-400 text-base md:text-lg" />
+                          <FaCode className="mr-2 md:mr-3 mt-1 text-violet-600 dark:text-violet-400 text-base md:text-lg" />
                           <div className="font-inter text-sm md:text-base">
                             <span className="font-semibold text-sm block text-gray-500 dark:text-gray-400 mb-2">
                               {t('portfolio.technologies', 'Technologies')}
@@ -457,7 +457,7 @@ const Tabs = () => {
                     </ul>
                   </div>
                 </div>
-                
+
                 {/* Action Buttons */}
                 <div className="flex flex-wrap gap-3 md:gap-4 justify-center sm:justify-start">
                   {selectedProject.projectUrl && (
@@ -465,14 +465,14 @@ const Tabs = () => {
                       href={selectedProject.projectUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white rounded-xl flex items-center gap-2 font-semibold shadow-lg shadow-pink-500/30 transition-all font-inter text-sm md:text-base"
+                      className="px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white rounded-xl flex items-center gap-2 font-semibold shadow-lg shadow-violet-500/30 transition-all font-inter text-sm md:text-base"
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       <FaExternalLinkAlt size={14} /> {t('portfolio.visit_website', 'Visit Website')}
                     </motion.a>
                   )}
-                  
+
                   {selectedProject.githubUrl && (
                     <motion.a
                       href={selectedProject.githubUrl}
@@ -485,7 +485,7 @@ const Tabs = () => {
                       <FaGithub size={14} /> {t('portfolio.view_code', 'View Code')}
                     </motion.a>
                   )}
-                  
+
                   {selectedProject.caseStudyUrl && (
                     <motion.a
                       href={selectedProject.caseStudyUrl}
@@ -511,7 +511,7 @@ const Tabs = () => {
 // Updated Projects Data with Full Details
 const projects = {
   All: [
-     {
+    {
       title: 'Omachiscorner',
       image: '/images/omachiscornerImg.png',
       description: 'Omachiscorner is a restaurant in Nigeria, I am the lead developer of this project crafting a beautiful full stack restaurant management for them.',
@@ -522,7 +522,7 @@ const projects = {
       projectUrl: 'https://omachiscorner.com/',
       technologies: ['React', 'Next.js', 'Firebase']
     },
-      {
+    {
       title: 'Fakaba Realty',
       image: '/images/fakabaimg.png',
       description: 'Fakaba Realty is a real estate company that deals with the buying and selling of lands and houses. I am the lead developer of this project',
@@ -544,7 +544,7 @@ const projects = {
       projectUrl: 'https://urega.org',
       technologies: ['Next.js', 'Firebase', 'JavaScript', 'Tailwind-CSS']
     },
-     {
+    {
       title: 'Squaredtake',
       image: '/images/squaredtake.png',
       description: 'Squaredtake is a mail delivery company based in Nigeria, I am the lead developer of this project crafting a beautiful full stack mail delivery management for them.',
@@ -553,9 +553,9 @@ const projects = {
       client: 'Squaredtake Inc.',
       projectDate: '2025 to Present',
       projectUrl: 'https://squaredtake.com',
-      technologies: ['Next.js', 'Firebase', 'Mailgun', 'Tailwind-CSS', ]
+      technologies: ['Next.js', 'Firebase', 'Mailgun', 'Tailwind-CSS',]
     },
-     {
+    {
       title: 'Bluely',
       image: '/images/bluelyimg.png',
       description: ' As a T1D patient and a tech enthusiast, I always look for ways to assist my community, that is wht i started BLUELY, a platform that will help diabetics manage their diabetes better and find a community. ',
@@ -577,8 +577,8 @@ const projects = {
       projectUrl: 'https://soreva-phi.vercel.app/',
       technologies: ['React', 'Node.js', 'Next.js', 'Firebase', 'Tailwind-CSS']
     },
-  
-    
+
+
     {
       title: 'Multiprime',
       image: '/images/work2.png',
@@ -590,7 +590,7 @@ const projects = {
       projectUrl: 'https://multiprime-react.vercel.app/',
       technologies: ['React', 'Tailwind CSS', 'Framer Motion']
     },
-    
+
     {
       title: 'Soltech',
       image: '/images/soltechimg.png',

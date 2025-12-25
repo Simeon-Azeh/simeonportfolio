@@ -13,30 +13,30 @@ import Tabs from '../components/Portfolio/Tabs'
 import AppHero from '../components/AppHero'
 function Portfolio() {
   return (
-    <div className="">
-        <div className='sticky top-0 bg-[#F9FEFF] dark:bg-[#171716] z-50 '>
+    <div className="bg-slate-50 dark:bg-[#09090b]">
+      <div className='sticky top-0 bg-slate-50 dark:bg-[#09090b] z-50 '>
         <Header />
-        </div>
-        <div>
-          <AppHero />
-        </div>
-       
-        <div className=''>
-          <SubHero />
-        </div>
-        <div>
-            <Tabs />
-        </div>
-       
-        <div>
-          <Testimonial />
-        </div>
-        <div>
-          <Pricing />
-        </div>
-        <div>
-          <Footer />
-        </div>
+      </div>
+      <div>
+        <AppHero />
+      </div>
+
+      <div className=''>
+        <SubHero />
+      </div>
+      <div>
+        <Tabs />
+      </div>
+
+      <div>
+        <Testimonial />
+      </div>
+      <div>
+        <Pricing />
+      </div>
+      <div>
+        <Footer />
+      </div>
     </div>
   )
 }

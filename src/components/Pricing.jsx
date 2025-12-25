@@ -12,19 +12,19 @@ import { useTranslation } from 'react-i18next';
 
 const PricingCard = ({ icon: Icon, title, price, description, features, buttonLabel, popular, category, startingFrom, mostPopular }) => {
   const { t } = useTranslation();
-  
+
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       whileHover={{ y: -5 }}
-      className={`bg-white dark:bg-[#1a1a1a] p-8 rounded-2xl w-full md:w-[calc(33.333%-2rem)] 
-                  border border-gray-200 dark:border-gray-700/50 hover:shadow-xl 
-                  transition-all duration-300 relative ${popular ? 'ring-2 ring-pink-600 dark:ring-pink-500' : ''}`}
+      className={`bg-white dark:bg-zinc-900/80 p-8 rounded-2xl w-full md:w-[calc(33.333%-2rem)] 
+                  border border-slate-200 dark:border-zinc-700/50 hover:shadow-xl 
+                  transition-all duration-300 relative ${popular ? 'ring-2 ring-violet-600 dark:ring-violet-500' : ''}`}
     >
       {popular && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-pink-600 to-light-text 
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-violet-600 to-purple-600 
                         text-white px-4 py-1 rounded-full text-sm font-medium">
           {t('most_popular', 'Most Popular')}
         </div>
@@ -34,20 +34,20 @@ const PricingCard = ({ icon: Icon, title, price, description, features, buttonLa
         <motion.div
           whileHover={{ scale: 1.1, rotate: 360 }}
           transition={{ type: "spring", stiffness: 300 }}
-          className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-600 to-light-text 
+          className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-600 to-purple-600 
                      flex items-center justify-center text-white mb-4"
         >
           <Icon size={24} />
         </motion.div>
-        <h3 className="text-xl font-semibold text-light-text dark:text-white font-inter mb-2">{title}</h3>
-        <div className="text-sm text-gray-500 dark:text-white/70 mb-1 font-inter">{t('starting_from', 'Starting from')}</div>
-        <div className="text-3xl font-bold text-light-text dark:text-white mb-2 font-inter">{price}</div>
-        <p className="text-gray-600 dark:text-white/80 font-inter text-sm">{description}</p>
+        <h3 className="text-xl font-semibold text-slate-800 dark:text-white font-inter mb-2">{title}</h3>
+        <div className="text-sm text-slate-500 dark:text-slate-400 mb-1 font-inter">{t('starting_from', 'Starting from')}</div>
+        <div className="text-3xl font-bold text-slate-800 dark:text-white mb-2 font-inter">{price}</div>
+        <p className="text-slate-600 dark:text-slate-400 font-inter text-sm">{description}</p>
       </div>
 
       <ul className="space-y-3 mb-8 font-inter min-h-[200px]">
         {features.map((feature, index) => (
-          <motion.li 
+          <motion.li
             key={index}
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -55,22 +55,22 @@ const PricingCard = ({ icon: Icon, title, price, description, features, buttonLa
             transition={{ delay: 0.1 * index }}
             className="flex items-center gap-3"
           >
-            <div className="flex-shrink-0 w-5 h-5 rounded-full bg-pink-100 dark:bg-pink-600/20 
+            <div className="flex-shrink-0 w-5 h-5 rounded-full bg-violet-100 dark:bg-violet-600/20 
                            flex items-center justify-center">
-              <BsCheck className="text-pink-600 dark:text-white" />
+              <BsCheck className="text-violet-600 dark:text-violet-400" />
             </div>
-            <span className="text-gray-700 dark:text-white/90 text-sm">{feature}</span>
+            <span className="text-slate-700 dark:text-slate-300 text-sm">{feature}</span>
           </motion.li>
         ))}
       </ul>
 
       <Link to="/request-booking" className="block">
-        <motion.button 
+        <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           className={`w-full px-6 py-3 text-white rounded-lg font-medium transition-all duration-300
-                     ${popular ? 'bg-gradient-to-r from-pink-600 to-light-text' : 'bg-gray-900 dark:bg-white text-white dark:text-[#414760]'}
-                     hover:shadow-lg hover:shadow-pink-600/20`}
+                     ${popular ? 'bg-gradient-to-r from-violet-600 to-purple-600' : 'bg-slate-800 dark:bg-white text-white dark:text-slate-800'}
+                     hover:shadow-lg hover:shadow-violet-500/20`}
         >
           {buttonLabel}
         </motion.button>
@@ -81,7 +81,7 @@ const PricingCard = ({ icon: Icon, title, price, description, features, buttonLa
 
 const ComparisonTable = ({ category, plans }) => {
   const { t } = useTranslation();
-  
+
   return (
     <div className="mt-16">
       <motion.div
@@ -102,16 +102,16 @@ const ComparisonTable = ({ category, plans }) => {
         <div className="inline-block min-w-full align-middle">
           <div className="overflow-hidden border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg">
             <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-              <thead className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-[#0d0d0d] dark:to-[#1a1a1a]">
+              <thead className="bg-gradient-to-r from-slate-50 to-slate-100 dark:from-zinc-900 dark:to-zinc-800">
                 <tr>
-                  <th scope="col" className="sticky left-0 z-10 px-6 py-5 text-left text-sm font-bold text-gray-900 dark:text-white bg-gray-50 dark:bg-[#0d0d0d]">
+                  <th scope="col" className="sticky left-0 z-10 px-6 py-5 text-left text-sm font-bold text-slate-900 dark:text-white bg-slate-50 dark:bg-zinc-900">
                     {t('pricing_features', 'Features')}
                   </th>
                   {plans.map((plan, index) => (
                     <th key={index} scope="col" className="px-6 py-5 text-center text-sm font-bold text-gray-900 dark:text-white min-w-[180px]">
                       <div className="flex flex-col items-center">
                         <span className="text-base mb-1">{plan.name}</span>
-                        <span className="text-xs font-normal text-pink-600 dark:text-pink-400">{plan.price}</span>
+                        <span className="text-xs font-normal text-violet-600 dark:text-violet-400">{plan.price}</span>
                       </div>
                     </th>
                   ))}
@@ -120,10 +120,10 @@ const ComparisonTable = ({ category, plans }) => {
               <tbody className="bg-white dark:bg-[#1a1a1a] divide-y divide-gray-200 dark:divide-gray-700">
                 {plans[0].detailedFeatures.map((featureGroup, groupIndex) => (
                   <React.Fragment key={groupIndex}>
-                    <tr className="bg-gradient-to-r from-pink-50 to-purple-50 dark:from-pink-900/10 dark:to-purple-900/10">
+                    <tr className="bg-gradient-to-r from-violet-50 to-purple-50 dark:from-violet-900/10 dark:to-purple-900/10">
                       <td colSpan={plans.length + 1} className="px-6 py-4">
                         <div className="flex items-center gap-2">
-                          <div className="h-1 w-8 bg-gradient-to-r from-pink-600 to-light-text rounded-full"></div>
+                          <div className="h-1 w-8 bg-gradient-to-r from-violet-600 to-purple-600 rounded-full"></div>
                           <span className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wide">
                             {featureGroup.category}
                           </span>
@@ -131,7 +131,7 @@ const ComparisonTable = ({ category, plans }) => {
                       </td>
                     </tr>
                     {featureGroup.items.map((item, itemIndex) => (
-                      <motion.tr 
+                      <motion.tr
                         key={itemIndex}
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
@@ -670,48 +670,42 @@ function Pricing() {
   };
 
   return (
-    <motion.section 
+    <motion.section
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="py-16 bg-light-body dark:bg-dark-body relative overflow-hidden"
+      className="py-16 bg-light-body dark:bg-[#09090b] relative overflow-hidden"
     >
       {/* Background Pattern */}
-      <motion.div 
-        className="absolute inset-0 opacity-5 dark:opacity-10"
-        animate={{
-          backgroundPosition: ['0% 0%', '100% 100%'],
+      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(139, 92, 246, 0.5) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(139, 92, 246, 0.5) 1px, transparent 1px)`,
+          backgroundSize: '60px 60px'
         }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-      >
-        <div className="absolute inset-0 bg-grid-pattern"></div>
-      </motion.div>
+      />
 
       <div className="w-full md:w-4/5 mx-auto px-6 md:px-0 relative z-10">
         <div className="mb-12 flex flex-col items-start">
-          <motion.div 
+          <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: "80px" }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="h-1 bg-pink-600 dark:bg-white rounded-full mb-6"
+            className="h-1 bg-gradient-to-r from-violet-600 to-purple-600 dark:from-violet-400 dark:to-purple-400 rounded-full mb-6"
           />
-          
-          <motion.h2 
-            className="text-3xl md:text-4xl font-bold mb-4"
+
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold font-montserrat-alt mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r font-inter from-pink-600 to-light-text dark:from-white dark:to-white">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r font-inter from-violet-600 to-slate-700 dark:from-violet-400 dark:to-slate-200">
               {t('pricing_title')}
             </span>
           </motion.h2>
-          <motion.p 
-            className="text-gray-600 dark:text-white/80 max-w-2xl font-inter"
+          <motion.p
+            className="text-slate-600 dark:text-slate-400 max-w-2xl font-inter"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -723,16 +717,15 @@ function Pricing() {
 
         {/* Category Tabs */}
         <div className="flex justify-center mb-12">
-          <div className="inline-flex rounded-lg border border-gray-200 dark:border-gray-700 p-1 bg-white dark:bg-[#1a1a1a]">
+          <div className="inline-flex rounded-lg border border-slate-200 dark:border-zinc-700 p-1 bg-white dark:bg-zinc-900">
             {Object.entries(categories).map(([key, { title }]) => (
               <button
                 key={key}
                 onClick={() => setActiveCategory(key)}
-                className={`px-6 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
-                  activeCategory === key
-                    ? 'bg-gradient-to-r from-pink-600 to-light-text text-white'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
-                }`}
+                className={`px-6 py-2 rounded-md text-sm font-medium transition-all duration-300 ${activeCategory === key
+                    ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  }`}
               >
                 {title}
               </button>
@@ -755,23 +748,23 @@ function Pricing() {
         </div>
 
         {/* Comparison Table */}
-        <ComparisonTable 
+        <ComparisonTable
           category={activeCategory}
           plans={categories[activeCategory].plans}
         />
 
         {/* Custom Solution CTA */}
-        <div className="flex items-center justify-between flex-col md:flex-row bg-white dark:bg-[#1B1B1A] px-6 py-6 rounded-lg w-full mt-12 border dark:border-gray-800 dark:border-solid font-inter" data-aos="fade-up">
+        <div className="flex items-center justify-between flex-col md:flex-row bg-white dark:bg-zinc-900 px-6 py-6 rounded-lg w-full mt-12 border border-slate-200 dark:border-zinc-700 font-inter" data-aos="fade-up">
           <div className='flex gap-2 items-center'>
             <div>
               <div className='flex items-center gap-2'>
-                <TbRainbow size={20} className='text-pink-600 dark:text-white' />
-                <h3 className="text-lg font-semibold text-light-text dark:text-white">{t('pricing_custom_title')}</h3>
+                <TbRainbow size={20} className='text-violet-600 dark:text-violet-400' />
+                <h3 className="text-lg font-semibold text-slate-800 dark:text-white">{t('pricing_custom_title')}</h3>
               </div>
-              <p className="mb-4 text-gray-700 dark:text-white/90">{t('pricing_custom_desc')}</p>
+              <p className="mb-4 text-slate-700 dark:text-slate-300">{t('pricing_custom_desc')}</p>
             </div>
           </div>
-          <Link to="/request-booking" className='bg-pink-600 flex w-full items-center justify-center md:w-1/6 text-white dark:bg-white px-4 py-2 rounded-lg hover:translate-y-[-3px] duration-300 dark:text-light-text' data-aos="fade-up" data-aos-delay="200">
+          <Link to="/request-booking" className='bg-gradient-to-r from-violet-600 to-purple-600 flex w-full items-center justify-center md:w-1/6 text-white px-4 py-2 rounded-lg hover:translate-y-[-3px] duration-300 hover:shadow-lg hover:shadow-violet-500/20' data-aos="fade-up" data-aos-delay="200">
             {t('pricing_custom_button')}
           </Link>
         </div>

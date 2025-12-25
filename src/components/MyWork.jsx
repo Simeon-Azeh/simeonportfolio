@@ -44,7 +44,7 @@ const MyWork = () => {
       return () => clearInterval(interval);
     }
   }, [isPaused]);
-  
+
   const slideVariants = {
     enter: (direction) => ({
       x: direction > 0 ? 1000 : -1000,
@@ -63,14 +63,14 @@ const MyWork = () => {
   };
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-light-body dark:bg-dark-body transition-colors font-inter relative overflow-hidden py-16"
+      className="min-h-screen bg-light-body dark:bg-[#09090b] transition-colors duration-500 font-inter relative overflow-hidden py-16"
     >
       {/* Background Pattern */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 opacity-5 dark:opacity-10"
         animate={{
           backgroundPosition: ['0% 0%', '100% 100%'],
@@ -87,33 +87,33 @@ const MyWork = () => {
       <div className="w-full md:w-4/5 mx-auto px-6 md:px-0 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           {/* Left Content */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="flex-1 w-full lg:w-2/5"
           >
-            <motion.div 
+            <motion.div
               initial={{ width: 0 }}
               whileInView={{ width: "100px" }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="h-1 bg-pink-600 dark:bg-white rounded-full mb-6"
+              className="h-1 bg-gradient-to-r from-violet-600 to-purple-600 dark:from-violet-400 dark:to-purple-400 rounded-full mb-6"
             />
-            
-            <motion.h2 
-              className="text-4xl md:text-5xl font-bold mb-6"
+
+            <motion.h2
+              className="text-4xl md:text-5xl font-bold font-montserrat-alt mb-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-light-text dark:from-white dark:to-gray-300">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-slate-700 dark:from-violet-400 dark:to-slate-200">
                 {t('MyWork')}
               </span>
             </motion.h2>
 
-            <motion.p 
-              className="text-lg text-gray-600 dark:text-gray-400 mb-8"
+            <motion.p
+              className="text-lg text-slate-600 dark:text-slate-400 mb-8"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -123,13 +123,13 @@ const MyWork = () => {
             </motion.p>
 
             <Link to="/portfolio">
-              <motion.button 
-                className="group px-8 py-3 bg-pink-600 dark:bg-white text-white dark:text-[#414760] rounded-lg font-medium 
-                         shadow-lg shadow-pink-600/20 dark:shadow-white/10
-                         hover:transform hover:translate-y-[-2px] transition-all duration-300
-                         hover:shadow-xl hover:shadow-pink-600/30 dark:hover:shadow-white/20
-                         relative overflow-hidden"
-                whileHover={{ scale: 1.02 }}
+              <motion.button
+                className="group px-8 py-3.5 bg-gradient-to-r from-violet-600 to-purple-600 
+                         dark:from-violet-500 dark:to-purple-500 text-white rounded-xl font-medium 
+                         shadow-lg shadow-violet-500/25 dark:shadow-violet-500/20
+                         hover:shadow-xl hover:shadow-violet-500/30 dark:hover:shadow-violet-500/25
+                         transition-all duration-300 relative overflow-hidden"
+                whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <span className="relative z-10 flex items-center gap-2">
@@ -137,7 +137,7 @@ const MyWork = () => {
                   <IoArrowForward className="group-hover:translate-x-1 transition-transform" />
                 </span>
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 dark:from-gray-200 dark:to-white"
+                  className="absolute inset-0 bg-gradient-to-r from-purple-600 to-rose-500"
                   initial={{ x: "100%" }}
                   whileHover={{ x: 0 }}
                   transition={{ duration: 0.3 }}
@@ -147,13 +147,13 @@ const MyWork = () => {
           </motion.div>
 
           {/* Right Content - Slider */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="flex-1 w-full lg:w-3/5"
           >
-            <div 
+            <div
               className="relative h-[400px] md:h-[500px] group rounded-2xl overflow-hidden"
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
@@ -183,38 +183,38 @@ const MyWork = () => {
                 </motion.div>
               </AnimatePresence>
 
-              
 
-{/* Navigation Controls */}
-<div className="absolute inset-0 flex items-center justify-between px-4 z-30">
-  <motion.button
-    whileHover={{ scale: 1.1 }}
-    whileTap={{ scale: 0.9 }}
-    onClick={() => {
-      setDirection(-1);
-      setCurrentIndex((prev) => (prev - 1 + works.length) % works.length);
-    }}
-    className="p-3 rounded-full bg-black/20 backdrop-blur-md text-white 
+
+              {/* Navigation Controls */}
+              <div className="absolute inset-0 flex items-center justify-between px-4 z-30">
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => {
+                    setDirection(-1);
+                    setCurrentIndex((prev) => (prev - 1 + works.length) % works.length);
+                  }}
+                  className="p-3 rounded-full bg-black/20 backdrop-blur-md text-white 
                hover:bg-black/30 transition-colors transform -translate-x-2
                shadow-lg border border-white/10 opacity-0 group-hover:opacity-100"
-  >
-    <IoArrowBack size={24} />
-  </motion.button>
-  
-  <motion.button
-    whileHover={{ scale: 1.1 }}
-    whileTap={{ scale: 0.9 }}
-    onClick={() => {
-      setDirection(1);
-      setCurrentIndex((prev) => (prev + 1) % works.length);
-    }}
-    className="p-3 rounded-full bg-black/20 backdrop-blur-md text-white 
+                >
+                  <IoArrowBack size={24} />
+                </motion.button>
+
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => {
+                    setDirection(1);
+                    setCurrentIndex((prev) => (prev + 1) % works.length);
+                  }}
+                  className="p-3 rounded-full bg-black/20 backdrop-blur-md text-white 
                hover:bg-black/30 transition-colors transform translate-x-2
                shadow-lg border border-white/10 opacity-0 group-hover:opacity-100"
-  >
-    <IoArrowForward size={24} />
-  </motion.button>
-</div>
+                >
+                  <IoArrowForward size={24} />
+                </motion.button>
+              </div>
 
               {/* Navigation Dots */}
               <div className="absolute bottom-6 left-0 right-0 flex justify-center items-center gap-3 z-20">
@@ -225,11 +225,10 @@ const MyWork = () => {
                       setDirection(index > currentIndex ? 1 : -1);
                       setCurrentIndex(index);
                     }}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      index === currentIndex 
-                        ? 'bg-pink-600 dark:bg-white w-4' 
-                        : 'bg-gray-400/50 dark:bg-gray-600/50 hover:bg-pink-600/50 dark:hover:bg-white/50'
-                    }`}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex
+                        ? 'bg-violet-600 dark:bg-violet-400 w-4'
+                        : 'bg-slate-400/50 dark:bg-slate-600/50 hover:bg-violet-500/50 dark:hover:bg-violet-400/50'
+                      }`}
                     whileHover={{ scale: 1.2 }}
                     whileTap={{ scale: 0.9 }}
                   />

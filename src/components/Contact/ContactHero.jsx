@@ -10,7 +10,7 @@ import 'aos/dist/aos.css';
 
 function ContactHero() {
   const { t } = useTranslation();
-  
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -22,7 +22,7 @@ function ContactHero() {
     {
       icon: <RiCustomerService2Fill className="text-xl" />,
       text: t('support_247', '24/7 Support'),
-      color: 'bg-pink-50 text-pink-600 dark:bg-pink-900/20 dark:text-pink-400',
+      color: 'bg-violet-50 text-violet-600 dark:bg-violet-900/20 dark:text-violet-400',
       delay: 300
     },
     {
@@ -49,14 +49,14 @@ function ContactHero() {
     <div className="bg-light-body dark:bg-dark-body font-inter relative overflow-hidden pt-16 pb-24">
       {/* Background decorations */}
       <div className="absolute inset-0 dark:opacity-20 opacity-5">
-        <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-pink-200 dark:bg-pink-900 blur-3xl opacity-20"></div>
-        <div className="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-blue-200 dark:bg-blue-900 blur-3xl opacity-20"></div>
+        <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-violet-200 dark:bg-violet-900 blur-3xl opacity-20"></div>
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-purple-200 dark:bg-purple-900 blur-3xl opacity-20"></div>
       </div>
-      
+
       <div className="absolute inset-0 dark:opacity-10 opacity-5">
         <div className="h-full w-full" style={{ backgroundImage: 'radial-gradient(#94a3b8 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
       </div>
-      
+
       <div className="max-w-4xl mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center text-center">
           <motion.div
@@ -65,14 +65,14 @@ function ContactHero() {
             transition={{ duration: 0.5 }}
             className="mb-6"
           >
-            <div className="w-16 h-16 flex items-center justify-center rounded-full bg-pink-100 dark:bg-white/20 text-pink-600 dark:text-white mx-auto mb-2">
+            <div className="w-16 h-16 flex items-center justify-center rounded-full bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 mx-auto mb-2">
               <PiChatsFill className="text-3xl" />
             </div>
-            <span className="inline-block px-3 py-1 text-xs font-medium bg-pink-50 dark:bg-white/20 text-pink-600 dark:text-white rounded-full">
+            <span className="inline-block px-3 py-1 text-xs font-medium bg-violet-50 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 rounded-full">
               {t('lets_connect')}
             </span>
           </motion.div>
-          
+
           <motion.h1
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -81,7 +81,7 @@ function ContactHero() {
           >
             {t('contact_title')}
           </motion.h1>
-          
+
           <motion.p
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -90,7 +90,7 @@ function ContactHero() {
           >
             {t('contact_description')}
           </motion.p>
-          
+
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -115,13 +115,13 @@ function ContactHero() {
               ))}
             </div>
           </motion.div>
-          
+
           <motion.a
             href="#contact-form"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
-            className="mt-16 flex flex-col items-center text-gray-500 dark:text-gray-400 hover:text-pink-600 dark:hover:text-pink-400 transition-colors"
+            className="mt-16 flex flex-col items-center text-gray-500 dark:text-gray-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
           >
             <span className="text-sm mb-2">{t('scroll_to_form')}</span>
             <motion.div
@@ -133,21 +133,21 @@ function ContactHero() {
           </motion.a>
         </div>
       </div>
-      
+
       {/* Contact CTA Banner */}
       <div className="max-w-5xl mx-auto px-6 mt-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9 }}
-          className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-pink-500 to-purple-600 shadow-xl"
+          className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-violet-500 to-purple-600 shadow-xl"
         >
           <div className="absolute inset-0 opacity-20">
             <svg className="absolute right-0 top-0 h-full" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
               <path fill="white" d="M400,985Q335,970,277.5,934.5Q220,899,197.5,841.5Q175,784,130.5,738.5Q86,693,88.5,627.5Q91,562,97,500Q103,438,125.5,382.5Q148,327,195,286.5Q242,246,274,196.5Q306,147,353,101.5Q400,56,458.5,83.5Q517,111,562,160.5Q607,210,649.5,260Q692,310,702.5,372.5Q713,435,734.5,500Q756,565,744,631Q732,697,708,759Q684,821,635.5,871Q587,921,521,961.5Q455,1002,400,985Z" />
             </svg>
           </div>
-          
+
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between p-8 md:p-12">
             <div className="mb-8 md:mb-0 md:mr-8">
               <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
@@ -157,12 +157,12 @@ function ContactHero() {
                 {t('project_pitch', "Let's discuss your ideas and bring them to life with creative solutions tailored to your needs.")}
               </p>
             </div>
-            
+
             <motion.a
               href="#contact-form"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
-              className="flex items-center gap-2 bg-white text-pink-600 px-6 py-3 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all"
+              className="flex items-center gap-2 bg-white text-violet-600 px-6 py-3 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all"
             >
               <PiPaperPlaneTiltFill /> {t('contact_me', 'Contact Me')}
             </motion.a>

@@ -17,33 +17,33 @@ import Skills from '../components/About/Skills'
 
 function About() {
   return (
-    <div className="">
-        <div className='sticky top-0 bg-[#F9FEFF] dark:bg-[#171716] z-50 '>
+    <div className="bg-slate-50 dark:bg-[#09090b]">
+      <div className='sticky top-0 z-50 '>
         <Header />
-        </div>
-        
-        <div>
-           <AboutHero />
-        </div>
-       
-        <div>
-          <AboutMe />
-        </div>
-        <div>
-            <Facts/>
-        </div>
-        <div>
-            <Timeline/>
-        </div>
-        <div>
-          <Skills />
-        </div>
-        <div className=''>
-          <WhyMe />
-        </div>
-        <div>
-          <Footer />
-        </div>
+      </div>
+
+      <div>
+        <AboutHero />
+      </div>
+
+      <div>
+        <AboutMe />
+      </div>
+      <div>
+        <Facts />
+      </div>
+      <div>
+        <Timeline />
+      </div>
+      <div>
+        <Skills />
+      </div>
+      <div className=''>
+        <WhyMe />
+      </div>
+      <div>
+        <Footer />
+      </div>
     </div>
   )
 }

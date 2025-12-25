@@ -13,33 +13,27 @@ const WhyMe = () => {
   ];
 
   return (
-    <motion.section 
+    <motion.section
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="py-16 bg-light-body dark:bg-dark-body transition-colors duration-500 font-inter relative overflow-hidden"
+      className="py-16 bg-light-body dark:bg-[#09090b] transition-colors duration-500 font-inter relative overflow-hidden"
     >
       {/* Background Pattern */}
-      <motion.div 
-        className="absolute inset-0 opacity-5 dark:opacity-10"
-        animate={{
-          backgroundPosition: ['0% 0%', '100% 100%'],
+      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(139, 92, 246, 0.5) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(139, 92, 246, 0.5) 1px, transparent 1px)`,
+          backgroundSize: '60px 60px'
         }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-      >
-        <div className="absolute inset-0 bg-grid-pattern"></div>
-      </motion.div>
+      />
 
       {/* Floating Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(3)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-72 h-72 bg-pink-600/5 dark:bg-white/5 rounded-full blur-3xl"
+            className="absolute w-72 h-72 bg-violet-500/5 dark:bg-violet-400/5 rounded-full blur-3xl"
             initial={{ x: -100, y: -100 }}
             animate={{
               x: [Math.random() * window.innerWidth, Math.random() * window.innerWidth],
@@ -56,27 +50,27 @@ const WhyMe = () => {
       </div>
 
       <div className="w-full md:w-4/5 mx-auto px-6 md:px-0 relative z-10">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="max-w-3xl mx-auto"
         >
           {/* Title with Gradient - Left aligned */}
-          <motion.h2 
-            className="text-3xl md:text-4xl font-bold mb-6 text-left"
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold font-montserrat-alt mb-6 text-left"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-light-text dark:from-white dark:to-gray-300">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-slate-700 dark:from-violet-400 dark:to-slate-200">
               {t('why_me_title')}
             </span>
           </motion.h2>
 
           {/* Introduction - Left aligned */}
-          <motion.p 
-            className="text-base text-gray-600 dark:text-gray-400 text-left mb-12"
+          <motion.p
+            className="text-base text-slate-600 dark:text-slate-400 text-left mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -99,21 +93,21 @@ const WhyMe = () => {
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 180 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  className="flex-shrink-0 p-3 rounded-xl bg-gradient-to-br from-pink-500/10 to-purple-500/10 
-                           dark:from-white/5 dark:to-white/10 backdrop-blur-sm
-                           border border-pink-500/20 dark:border-white/10"
+                  className="flex-shrink-0 p-3 rounded-xl bg-gradient-to-br from-violet-500/10 to-purple-500/10 
+                           dark:from-violet-400/10 dark:to-purple-400/10 backdrop-blur-sm
+                           border border-violet-500/20 dark:border-violet-400/20"
                 >
-                  <BsStars className="text-pink-600 dark:text-white text-xl" />
+                  <BsStars className="text-violet-600 dark:text-violet-400 text-xl" />
                 </motion.div>
-                
+
                 <motion.div
                   whileHover={{ x: 5 }}
-                  className="flex-1 bg-white/50 dark:bg-[#1a1a1a] backdrop-blur-sm
-                           p-4 rounded-xl border border-gray-200/50 dark:border-gray-700/50
-                           group-hover:border-pink-500/30 dark:group-hover:border-white/20
+                  className="flex-1 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-sm
+                           p-4 rounded-xl border border-slate-200/50 dark:border-zinc-700/50
+                           group-hover:border-violet-500/30 dark:group-hover:border-violet-400/30
                            transition-all duration-300"
                 >
-                  <p className="text-gray-700 dark:text-gray-300 text-left">
+                  <p className="text-slate-700 dark:text-slate-300 text-left">
                     {t(point.text)}
                   </p>
                 </motion.div>
@@ -122,8 +116,8 @@ const WhyMe = () => {
           </div>
 
           {/* Conclusion - Left aligned */}
-          <motion.p 
-            className="text-base text-gray-600 dark:text-gray-400 text-left mt-12"
+          <motion.p
+            className="text-base text-slate-600 dark:text-slate-400 text-left mt-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

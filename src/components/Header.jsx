@@ -35,14 +35,14 @@ function Header() {
     const handleScroll = () => {
       // Check if scrolled more than 50px for header style change
       setScrolled(window.scrollY > 50);
-      
+
       // Calculate scroll progress percentage
       const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrolled = window.scrollY;
       const progress = Math.min(scrolled / windowHeight * 100, 100);
       setScrollProgress(progress);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -64,6 +64,19 @@ function Header() {
     setVisible(false);
   }, [location]);
 
+  // Prevent body scroll when drawer is open
+  useEffect(() => {
+    if (visible) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [visible]);
+
   const toggleDrawer = () => {
     setVisible(!visible);
   };
@@ -78,10 +91,10 @@ function Header() {
 
   const handleLanguageChange = (langCode) => {
     if (i18n.language === langCode) return;
-    
+
     setIsChangingLang(true);
     setLangDropdownOpen(false);
-    
+
     // Simulate loading time
     setTimeout(() => {
       i18n.changeLanguage(langCode);
@@ -110,81 +123,79 @@ function Header() {
   const currentLang = languages.find(lang => lang.code === i18n.language) || languages[0];
 
   return (
-    <div className={`sticky top-0 z-50
-      ${scrolled 
-        ? 'bg-white/90 dark:bg-dark-body/90' 
-        : 'bg-light-body/90 dark:bg-dark-body/90'
-      }`}>
+    <div className={`sticky top-0 z-50 transition-all duration-500 ease-in-out
+      ${scrolled
+        ? 'bg-gradient-to-r from-violet-600 via-purple-600 to-violet-700 dark:bg-gradient-to-r dark:from-zinc-900 dark:via-zinc-900 dark:to-zinc-900 shadow-lg shadow-violet-500/20 dark:shadow-violet-500/10'
+        : 'bg-slate-50/80 dark:bg-[#09090b]/80'
+      } backdrop-blur-xl`}>
       {/* Scroll Progress Indicator */}
-      <motion.div 
-        className="absolute top-0 left-0 h-1 bg-gradient-to-r from-pink-500 to-light-text dark:from-white dark:to-pink-400 z-50"
+      <motion.div
+        className={`absolute top-0 left-0 h-0.5 z-50 ${scrolled ? 'bg-gradient-to-r from-white/50 via-white to-white/50' : 'bg-gradient-to-r from-violet-500 via-purple-500 to-rose-500 dark:from-violet-400 dark:via-purple-400 dark:to-rose-400'}`}
         style={{ width: `${scrollProgress}%` }}
         initial={{ opacity: 0 }}
         animate={{ opacity: scrollProgress > 0 ? 1 : 0 }}
         transition={{ duration: 0.2 }}
       />
 
-      <motion.div 
+      <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className={`flex justify-between w-full md:w-4/5 mx-auto items-center py-4 px-6 md:px-0 font-inter
-          backdrop-blur-sm transition-colors duration-500
-          ${scrolled 
-            ? 'bg-white/90 dark:bg-dark-body/90' 
-            : 'bg-light-body/90 dark:bg-dark-body/90'
-          }`}
+        className={`flex justify-between w-full md:w-4/5 mx-auto items-center py-3 md:py-4 px-4 sm:px-6 md:px-0 font-inter
+          transition-all duration-500 ease-in-out`}
       >
         <Link to="/" className="text-lg font-semibold group">
-          <motion.h1 
+          <motion.h1
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            className='font-montserrat-alt text-light-text dark:text-slate-50 relative'
+            className={`font-montserrat-alt relative transition-colors duration-300 ${scrolled ? 'text-white' : 'text-slate-800 dark:text-slate-50'}`}
           >
-            Simeon <span className='dark:text-gray-300 text-pink-600'>Azeh</span>
-            <motion.span 
-              className="absolute bottom-0 left-0 w-0 h-0.5 bg-pink-600 dark:bg-gray-300 group-hover:w-full transition-all duration-300"
+            Simeon <span className={`transition-colors duration-300 ${scrolled ? 'text-violet-200' : 'dark:text-violet-300 text-violet-600'}`}>Azeh</span>
+            <motion.span
+              className={`absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${scrolled ? 'bg-white' : 'bg-gradient-to-r from-violet-600 to-purple-600 dark:from-violet-400 dark:to-purple-400'}`}
               initial={{ width: 0 }}
               whileHover={{ width: "100%" }}
             />
           </motion.h1>
         </Link>
-        
+
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8 text-[#414760] dark:text-slate-50">
-          <NavLink to="/" isActive={isActive("/")} label={t('home')} />
-          
+        <nav className={`hidden md:flex space-x-6 lg:space-x-8 transition-colors duration-300 ${scrolled ? 'text-violet-100' : 'text-slate-600 dark:text-slate-200'}`}>
+          <NavLink to="/" isActive={isActive("/")} label={t('home')} scrolled={scrolled} />
+
           <div className="relative">
-            <motion.button 
-              onClick={toggleDropdown} 
-              className={`flex items-center hover:text-pink-600 dark:hover:text-gray-400 ${dropdownOpen ? 'text-pink-600 dark:text-gray-400' : ''}`}
+            <motion.button
+              onClick={toggleDropdown}
+              className={`flex items-center transition-colors duration-300 ${scrolled
+                ? `hover:text-white ${dropdownOpen ? 'text-white' : ''}`
+                : `hover:text-violet-600 dark:hover:text-violet-400 ${dropdownOpen ? 'text-violet-600 dark:text-violet-400' : ''}`}`}
               whileHover={{ scale: 1.05 }}
             >
               {t('about')}
               {dropdownOpen ? <IoIosArrowUp className="ml-1" /> : <IoIosArrowDown className="ml-1" />}
             </motion.button>
-            
+
             <AnimatePresence>
               {dropdownOpen && (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute dark:bg-dark-body py-2 mt-2 rounded-md border bg-white text-[#414760] dark:border-gray-600 shadow-lg min-w-[140px]"
+                  className="absolute dark:bg-zinc-900 py-2 mt-2 rounded-lg border bg-white/95 backdrop-blur-xl text-slate-600 dark:text-slate-200 dark:border-zinc-700 shadow-xl shadow-violet-500/10 min-w-[140px]"
                 >
                   <Link to="/resume">
-                    <motion.p 
+                    <motion.p
                       whileHover={{ x: 5 }}
-                      className={`block py-2 px-4 hover:text-pink-600 dark:hover:text-slate-300 ${isActive("/resume") ? 'text-pink-600 dark:text-slate-300 font-medium' : ''}`}
+                      className={`block py-2 px-4 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300 ${isActive("/resume") ? 'text-violet-600 dark:text-violet-400 font-medium' : ''}`}
                     >
                       {t('resume')}
                     </motion.p>
                   </Link>
                   <Link to="/portfolio">
-                    <motion.p 
+                    <motion.p
                       whileHover={{ x: 5 }}
-                      className={`block py-2 px-4 hover:text-pink-600 dark:hover:text-slate-300 ${isActive("/portfolio") ? 'text-pink-600 dark:text-slate-300 font-medium' : ''}`}
+                      className={`block py-2 px-4 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300 ${isActive("/portfolio") ? 'text-violet-600 dark:text-violet-400 font-medium' : ''}`}
                     >
                       {t('portfolio')}
                     </motion.p>
@@ -193,74 +204,102 @@ function Header() {
               )}
             </AnimatePresence>
           </div>
-          
-          <NavLink to="/services" isActive={isActive("/services")} label={t('services')} />
-          
+
+          <NavLink to="/services" isActive={isActive("/services")} label={t('services')} scrolled={scrolled} />
+
           {/* Referrals Link with New Badge */}
           <div className="relative">
-            <NavLink to="/referrals" isActive={isActive("/referrals")} label={t('referrals', 'Referrals')} />
+            <NavLink to="/referrals" isActive={isActive("/referrals")} label={t('referrals', 'Referrals')} scrolled={scrolled} />
             <motion.div
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ 
+              transition={{
                 type: "spring",
                 stiffness: 500,
                 damping: 10,
-                delay: 0.3 
+                delay: 0.3
               }}
-              className="absolute -top-3 -right-8 bg-gradient-to-r from-pink-600 to-light-text 
-                        text-white text-[9px] font-bold px-2 py-0.5 rounded-full"
+              className={`absolute -top-3 -right-8 text-[9px] font-bold px-2 py-0.5 rounded-full shadow-sm ${scrolled
+                ? 'bg-white text-violet-600 shadow-white/20'
+                : 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-violet-500/30'}`}
             >
               {t('new', 'NEW')}
             </motion.div>
           </div>
-          
-          <NavLink to="/contact" isActive={isActive("/contact")} label={t('contact')} />
-         
+
+          <NavLink to="/contact" isActive={isActive("/contact")} label={t('contact')} scrolled={scrolled} />
+
         </nav>
-        
+
         {/* Desktop Controls */}
-        <div className="hidden md:flex items-center space-x-5">
-          <motion.button 
-            onClick={toggleDarkMode} 
-            whileHover={{ rotate: 180, scale: 1.1 }}
-            transition={{ duration: 0.3 }}
-            className="hover:text-pink-600 dark:hover:text-gray-300 dark:text-slate-50 text-[#414760]"
+        <div className="hidden md:flex items-center space-x-3 lg:space-x-5">
+          <motion.button
+            onClick={toggleDarkMode}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ duration: 0.2 }}
+            className={`relative p-2 rounded-xl transition-all duration-300 ${scrolled
+              ? 'hover:bg-white/20 text-white'
+              : 'hover:bg-violet-100 dark:hover:bg-zinc-800 text-slate-600 dark:text-slate-200 hover:text-violet-600 dark:hover:text-violet-400'}`}
           >
-            {darkMode ? <MdOutlineLightMode size={24} /> : <MdOutlineDarkMode size={24} />}
+            <AnimatePresence mode="wait">
+              {darkMode ? (
+                <motion.div
+                  key="light"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <MdOutlineLightMode size={22} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="dark"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <MdOutlineDarkMode size={22} />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.button>
-          
+
           {/* Custom Language Selector - Desktop */}
           <div className="relative" ref={langDropdownRef}>
             <motion.button
               onClick={toggleLangDropdown}
               disabled={isChangingLang}
-              className="flex items-center space-x-2 text-[#414760] dark:text-slate-50 hover:text-pink-600 dark:hover:text-gray-300 cursor-pointer px-2 py-1 rounded-md"
+              className={`flex items-center space-x-2 cursor-pointer px-2 py-1 rounded-lg transition-all duration-300 ${scrolled
+                ? 'text-white hover:bg-white/20'
+                : 'text-slate-600 dark:text-slate-200 hover:text-violet-600 dark:hover:text-violet-400 hover:bg-violet-50 dark:hover:bg-zinc-800'}`}
               whileHover={{ scale: isChangingLang ? 1 : 1.05 }}
             >
               {isChangingLang ? (
-                <motion.div 
+                <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
                 >
-                  <BiLoaderAlt size={20} className="text-pink-600 dark:text-gray-300" />
+                  <BiLoaderAlt size={20} className={scrolled ? 'text-white' : 'text-violet-600 dark:text-violet-400'} />
                 </motion.div>
               ) : (
                 <>
-                  <img 
-                    src={`/images/${currentLang.flag}`} 
-                    alt={currentLang.code} 
-                    className="w-5 h-5 rounded-sm"
+                  <img
+                    src={`/images/${currentLang.flag}`}
+                    alt={currentLang.code}
+                    className="w-5 h-5 rounded-sm ring-2 ring-white/50 dark:ring-white/30"
                   />
                   <span className="text-sm">{currentLang.code.toUpperCase()}</span>
-                  <IoIosArrowDown 
-                    className={`transition-transform ${langDropdownOpen ? 'rotate-180' : ''}`} 
-                    size={14} 
+                  <IoIosArrowDown
+                    className={`transition-transform ${langDropdownOpen ? 'rotate-180' : ''}`}
+                    size={14}
                   />
                 </>
               )}
             </motion.button>
-            
+
             <AnimatePresence>
               {langDropdownOpen && (
                 <motion.div
@@ -268,26 +307,25 @@ function Header() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-full right-0 mt-1 bg-white dark:bg-dark-body border dark:border-gray-700 rounded-md shadow-lg py-1 min-w-[120px]"
+                  className="absolute top-full right-0 mt-1 bg-white/95 dark:bg-zinc-900 backdrop-blur-xl border border-slate-200 dark:border-zinc-700 rounded-lg shadow-xl shadow-violet-500/10 py-1 min-w-[120px]"
                 >
                   {languages.map((lang) => (
                     <motion.button
                       key={lang.code}
-                      whileHover={{ 
+                      whileHover={{
                         x: 3,
-                        backgroundColor: "rgba(249, 168, 212, 0.1)" 
+                        backgroundColor: "rgba(139, 92, 246, 0.1)"
                       }}
                       onClick={() => handleLanguageChange(lang.code)}
-                      className={`flex items-center space-x-2 w-full text-left px-3 py-2 ${
-                        lang.code === i18n.language 
-                          ? 'text-pink-600 dark:text-gray-300 font-medium'
-                          : 'text-[#414760] dark:text-slate-200'
-                      }`}
+                      className={`flex items-center space-x-2 w-full text-left px-3 py-2 transition-colors duration-300 ${lang.code === i18n.language
+                        ? 'text-violet-600 dark:text-violet-400 font-medium'
+                        : 'text-slate-600 dark:text-slate-200'
+                        }`}
                     >
-                      <img 
-                        src={`/images/${lang.flag}`} 
+                      <img
+                        src={`/images/${lang.flag}`}
                         alt={lang.code}
-                        className="w-5 h-5 rounded-sm" 
+                        className="w-5 h-5 rounded-sm"
                       />
                       <span className="text-sm">{lang.label}</span>
                     </motion.button>
@@ -296,45 +334,70 @@ function Header() {
               )}
             </AnimatePresence>
           </div>
-          
-          <SocialLinks />
+
+          <SocialLinks scrolled={scrolled} />
         </div>
-        
+
         {/* Mobile Controls */}
         <div className="md:hidden flex items-center space-x-4">
-          <motion.button 
-            onClick={toggleDarkMode} 
-            whileHover={{ rotate: 180 }}
-            transition={{ duration: 0.3 }}
-            className="hover:text-pink-600 dark:hover:text-slate-300 dark:text-slate-50 text-[#414760]"
+          <motion.button
+            onClick={toggleDarkMode}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ duration: 0.2 }}
+            className={`p-1.5 rounded-lg transition-all duration-300 ${scrolled
+              ? 'text-white hover:bg-white/20'
+              : 'hover:bg-violet-100 dark:hover:bg-zinc-800 text-slate-600 dark:text-slate-200'}`}
           >
-            {darkMode ? <MdOutlineLightMode size={22} /> : <MdOutlineDarkMode size={22} />}
+            <AnimatePresence mode="wait">
+              {darkMode ? (
+                <motion.div
+                  key="light-mobile"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <MdOutlineLightMode size={20} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="dark-mobile"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <MdOutlineDarkMode size={20} />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.button>
-          
+
           {/* Custom Language Selector - Mobile */}
           <div className="relative" ref={langDropdownRef}>
             <motion.button
               onClick={toggleLangDropdown}
               disabled={isChangingLang}
-              className="flex items-center text-[#414760] dark:text-slate-50"
+              className={`flex items-center ${scrolled ? 'text-white' : 'text-slate-600 dark:text-slate-200'}`}
               whileHover={{ scale: isChangingLang ? 1 : 1.05 }}
             >
               {isChangingLang ? (
-                <motion.div 
+                <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
                 >
-                  <BiLoaderAlt size={18} className="text-pink-600 dark:text-gray-300" />
+                  <BiLoaderAlt size={18} className={scrolled ? 'text-white' : 'text-violet-600 dark:text-violet-400'} />
                 </motion.div>
               ) : (
-                <img 
-                  src={`/images/${currentLang.flag}`} 
-                  alt={currentLang.code} 
-                  className="w-5 h-5 rounded-sm"
+                <img
+                  src={`/images/${currentLang.flag}`}
+                  alt={currentLang.code}
+                  className="w-5 h-5 rounded-sm ring-2 ring-white/50 dark:ring-white/30"
                 />
               )}
             </motion.button>
-            
+
             <AnimatePresence>
               {langDropdownOpen && (
                 <motion.div
@@ -342,26 +405,25 @@ function Header() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-full right-0 mt-1 bg-white dark:bg-dark-body border dark:border-gray-700 rounded-md shadow-lg py-1 min-w-[120px] z-50"
+                  className="absolute top-full right-0 mt-1 bg-white/95 dark:bg-zinc-900 backdrop-blur-xl border border-slate-200 dark:border-zinc-700 rounded-lg shadow-xl shadow-violet-500/10 py-1 min-w-[120px] z-50"
                 >
                   {languages.map((lang) => (
                     <motion.button
                       key={lang.code}
-                      whileHover={{ 
+                      whileHover={{
                         x: 3,
-                        backgroundColor: "rgba(249, 168, 212, 0.1)" 
+                        backgroundColor: "rgba(139, 92, 246, 0.1)"
                       }}
                       onClick={() => handleLanguageChange(lang.code)}
-                      className={`flex items-center space-x-2 w-full text-left px-3 py-2 ${
-                        lang.code === i18n.language 
-                          ? 'text-pink-600 dark:text-gray-300 font-medium'
-                          : 'text-[#414760] dark:text-slate-200'
-                      }`}
+                      className={`flex items-center space-x-2 w-full text-left px-3 py-2 transition-colors duration-300 ${lang.code === i18n.language
+                        ? 'text-violet-600 dark:text-violet-400 font-medium'
+                        : 'text-slate-600 dark:text-slate-200'
+                        }`}
                     >
-                      <img 
-                        src={`/images/${lang.flag}`} 
+                      <img
+                        src={`/images/${lang.flag}`}
                         alt={lang.code}
-                        className="w-5 h-5 rounded-sm" 
+                        className="w-5 h-5 rounded-sm"
                       />
                       <span className="text-sm">{lang.label}</span>
                     </motion.button>
@@ -370,11 +432,11 @@ function Header() {
               )}
             </AnimatePresence>
           </div>
-          
-          <motion.button 
+
+          <motion.button
             whileTap={{ scale: 0.9 }}
-            onClick={toggleDrawer} 
-            className="dark:text-slate-50 text-light-text"
+            onClick={toggleDrawer}
+            className={`p-1 ${scrolled ? 'text-white' : 'dark:text-slate-200 text-slate-700'}`}
           >
             {visible ? <CloseOutlined size={24} /> : <MenuOutlined size={24} />}
           </motion.button>
@@ -388,61 +450,61 @@ function Header() {
             {/* Overlay */}
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.5 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black z-40 md:hidden"
+              className="fixed inset-0 bg-black z-[75] md:hidden"
               onClick={toggleDrawer}
             />
-            
+
             {/* Drawer */}
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 h-full w-3/4 max-w-xs z-50 bg-[#fff] dark:bg-dark-body shadow-xl md:hidden flex flex-col"
+              className="fixed top-0 right-0 h-screen w-full z-[80] bg-white dark:bg-zinc-900 shadow-2xl md:hidden overflow-y-auto"
             >
-              <div className="p-6">
+              <div className="p-6 min-h-full">
                 <div className="flex justify-between items-center mb-8">
-                  <h2 className="text-xl font-semibold dark:text-white">{t('menu')}</h2>
-                  <motion.button 
+                  <h2 className="text-xl font-semibold text-slate-800 dark:text-white font-montserrat-alt">{t('menu')}</h2>
+                  <motion.button
                     whileTap={{ scale: 0.9 }}
                     onClick={toggleDrawer}
-                    className="text-light-text dark:text-white"
+                    className="text-slate-700 dark:text-slate-200 p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-zinc-800 transition-colors duration-300"
                   >
-                    <CloseOutlined />
+                    <CloseOutlined className="text-xl" />
                   </motion.button>
                 </div>
-                
-                <nav className="flex flex-col space-y-4">
+
+                <nav className="flex flex-col space-y-3 mb-6">
                   <MobileNavLink to="/" label={t('home')} isActive={isActive("/")} />
                   <MobileNavLink to="/resume" label={t('resume')} isActive={isActive("/resume")} />
                   <MobileNavLink to="/services" label={t('services')} isActive={isActive("/services")} />
                   <MobileNavLink to="/portfolio" label={t('portfolio')} isActive={isActive("/portfolio")} />
-                  
+
                   {/* Mobile Referral Link with New Badge */}
                   <div className="relative">
                     <MobileNavLink to="/referrals" label={t('referrals', 'Referrals')} isActive={isActive("/referrals")} />
                     <motion.div
                       initial={{ scale: 0.5, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
-                      transition={{ 
+                      transition={{
                         type: "spring",
                         stiffness: 500,
                         damping: 10,
-                        delay: 0.3 
+                        delay: 0.3
                       }}
-                      className="absolute top-2 right-2 bg-gradient-to-r from-pink-600 to-light-text 
-                                text-white text-[9px] font-bold px-2 py-0.5 rounded-full"
+                      className="absolute top-2 right-2 bg-gradient-to-r from-violet-600 to-purple-600 
+                                text-white text-[9px] font-bold px-2 py-0.5 rounded-full shadow-sm shadow-violet-500/30"
                     >
                       {t('new', 'NEW')}
                     </motion.div>
                   </div>
-                  
+
                   <MobileNavLink to="/contact" label={t('contact')} isActive={isActive("/contact")} />
                 </nav>
-                
-                <div className="flex space-x-5 mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+
+                <div className="flex space-x-5 mt-auto pt-8 border-t border-slate-200 dark:border-zinc-700">
                   <SocialLinks mobile />
                 </div>
               </div>
@@ -474,47 +536,52 @@ function Header() {
 }
 
 // Component for desktop nav links
-const NavLink = ({ to, label, isActive }) => (
+const NavLink = ({ to, label, isActive, scrolled = false }) => (
   <Link to={to}>
-    <motion.a 
-      className={`relative py-2 ${isActive ? 'text-pink-600 dark:text-gray-300' : ''}`}
+    <motion.span
+      className={`relative py-2 transition-colors duration-300 ${isActive
+        ? scrolled ? 'text-white font-medium' : 'text-violet-600 dark:text-violet-400'
+        : scrolled ? 'hover:text-white' : 'hover:text-violet-600 dark:hover:text-violet-400'
+        }`}
       whileHover={{ scale: 1.05 }}
     >
       {label}
-      <motion.span 
-        className={`absolute bottom-0 left-0 h-0.5 bg-pink-600 dark:bg-gray-300 ${isActive ? 'w-full' : 'w-0'}`}
+      <motion.span
+        className={`absolute bottom-0 left-0 h-0.5 ${scrolled
+          ? 'bg-white'
+          : 'bg-gradient-to-r from-violet-600 to-purple-600 dark:from-violet-400 dark:to-purple-400'
+          } ${isActive ? 'w-full' : 'w-0'}`}
         whileHover={{ width: "100%" }}
         initial={{ width: isActive ? "100%" : "0%" }}
-        transition={{ 
+        transition={{
           duration: 0.3,
           ease: "easeInOut"
         }}
       />
-    </motion.a>
+    </motion.span>
   </Link>
 );
 
 // Component for mobile nav links
 const MobileNavLink = ({ to, label, isActive }) => (
   <Link to={to} className="block">
-    <motion.div 
-      whileHover={{ 
+    <motion.div
+      whileHover={{
         x: 8,
-        backgroundColor: isActive ? "" : "rgba(249, 168, 212, 0.1)",
+        backgroundColor: isActive ? "" : "rgba(139, 92, 246, 0.1)",
         transition: { duration: 0.2 }
       }}
       whileTap={{ scale: 0.97 }}
-      initial={{ borderRadius: "0.375rem" }}
-      className={`py-3 px-3 rounded-md transition-colors duration-200 flex items-center ${
-        isActive 
-          ? 'bg-pink-100 dark:bg-gray-800 text-pink-600 dark:text-gray-300 font-medium border-l-2 border-pink-600 dark:border-gray-300' 
-          : 'text-[#414760] dark:text-slate-200'
-      }`}
+      initial={{ borderRadius: "0.5rem" }}
+      className={`py-3.5 px-4 rounded-lg transition-all duration-300 flex items-center ${isActive
+        ? 'bg-violet-100 dark:bg-violet-500/20 text-violet-600 dark:text-violet-400 font-semibold border-l-4 border-violet-600 dark:border-violet-400 shadow-sm'
+        : 'bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-slate-200 hover:bg-violet-50 dark:hover:bg-violet-500/10'
+        }`}
     >
       <motion.span
         initial={{ width: 0 }}
         whileHover={{ width: isActive ? 0 : 3 }}
-        className={`mr-1 h-4 bg-pink-600 dark:bg-gray-300 rounded-full ${isActive ? 'hidden' : ''}`}
+        className={`mr-2 h-4 bg-violet-600 dark:bg-violet-400 rounded-full ${isActive ? 'hidden' : ''}`}
         transition={{ duration: 0.2 }}
       />
       {label}
@@ -523,16 +590,18 @@ const MobileNavLink = ({ to, label, isActive }) => (
 );
 
 // Component for social media links
-const SocialLinks = ({ mobile = false }) => {
-  const linkClass = mobile 
-    ? "text-[#414760] dark:text-slate-200 hover:text-pink-600 dark:hover:text-gray-400"
-    : "dark:hover:text-gray-400 dark:text-slate-50 text-light-text hover:text-pink-600";
-    
+const SocialLinks = ({ mobile = false, scrolled = false }) => {
+  const linkClass = mobile
+    ? "text-slate-600 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300"
+    : scrolled
+      ? "text-white/80 hover:text-white transition-colors duration-300"
+      : "text-slate-600 dark:text-slate-200 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300";
+
   return (
     <>
-      <motion.a 
-        href="https://www.facebook.com/kongnyuy.simeon.3?mibextid=ZbWKwL" 
-        target="_blank" 
+      <motion.a
+        href="https://www.facebook.com/kongnyuy.simeon.3?mibextid=ZbWKwL"
+        target="_blank"
         rel="noopener noreferrer"
         className={linkClass}
         whileHover={{ scale: 1.2, rotate: 5 }}
@@ -540,9 +609,9 @@ const SocialLinks = ({ mobile = false }) => {
       >
         <FaFacebook size={20} />
       </motion.a>
-      <motion.a 
-        href="https://www.linkedin.com/in/simeonazeh" 
-        target="_blank" 
+      <motion.a
+        href="https://www.linkedin.com/in/simeonazeh"
+        target="_blank"
         rel="noopener noreferrer"
         className={linkClass}
         whileHover={{ scale: 1.2, rotate: 5 }}
@@ -550,9 +619,9 @@ const SocialLinks = ({ mobile = false }) => {
       >
         <FaLinkedin size={20} />
       </motion.a>
-      <motion.a 
-        href="https://github.com/Simeon-Azeh" 
-        target="_blank" 
+      <motion.a
+        href="https://github.com/Simeon-Azeh"
+        target="_blank"
         rel="noopener noreferrer"
         className={linkClass}
         whileHover={{ scale: 1.2, rotate: 5 }}

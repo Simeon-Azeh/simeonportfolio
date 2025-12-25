@@ -163,7 +163,7 @@ function AppHero() {
 
       {/* Decorative elements */}
       <motion.div
-        className="absolute top-20 right-10 w-40 h-40 rounded-full bg-pink-200/30 dark:bg-white/20 blur-xl"
+        className="absolute top-20 right-10 w-40 h-40 rounded-full bg-violet-200/30 dark:bg-violet-500/20 blur-xl"
         animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.8, 0.5] }}
         transition={{ duration: 8, repeat: Infinity }}
       />
@@ -181,7 +181,7 @@ function AppHero() {
             whileInView={{ width: "120px" }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="h-1 bg-pink-600 dark:bg-white rounded-full mb-6 mx-auto"
+            className="h-1 bg-violet-600 dark:bg-violet-400 rounded-full mb-6 mx-auto"
           />
           <motion.h1
             initial={{ y: 20, opacity: 0 }}
@@ -189,7 +189,7 @@ function AppHero() {
             transition={{ delay: 0.2 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold text-light-text dark:text-white mb-4 leading-tight"
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-light-text dark:from-white dark:to-gray-300">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-purple-600 dark:from-violet-400 dark:to-purple-400">
               {t('app_showcase_title', 'Mobile Applications')}
             </span>
           </motion.h1>
@@ -208,7 +208,7 @@ function AppHero() {
           {/* Expanded view toggle */}
           <motion.button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="absolute top-0 right-4 z-30 bg-white/80 border border-pink-600 dark:bg-[#1a1a1a] dark:border dark:border-gray-800 backdrop-blur-sm rounded-full py-1.5 px-4 text-sm font-medium text-pink-600 dark:text-white "
+            className="absolute top-0 right-4 z-30 bg-white/80 border border-violet-600 dark:bg-[#1a1a1a] dark:border dark:border-gray-800 backdrop-blur-sm rounded-full py-1.5 px-4 text-sm font-medium text-violet-600 dark:text-violet-400 "
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -232,7 +232,7 @@ function AppHero() {
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    className="absolute left-0 sm:left-6 md:left-10 z-20 border border-pink-600 bg-white/90 dark:bg-[#1a1a1a] dark:border dark:border-gray-800 backdrop-blur-sm rounded-full p-2 sm:p-3 shadow-lg text-pink-600 dark:text-white"
+                    className="absolute left-0 sm:left-6 md:left-10 z-20 border border-violet-600 bg-white/90 dark:bg-[#1a1a1a] dark:border dark:border-gray-800 backdrop-blur-sm rounded-full p-2 sm:p-3 shadow-lg text-violet-600 dark:text-violet-400"
                     onClick={prevMockup}
                     aria-label="Previous project"
                   >
@@ -279,7 +279,7 @@ function AppHero() {
                             <motion.div
                               initial={{ opacity: 0, scale: 0.8 }}
                               animate={{ opacity: 1, scale: 1 }}
-                              className="absolute top-4 sm:top-6 left-0 sm:left-6 bg-pink-600 text-white dark:bg-white dark:text-light-text    text-xs font-bold px-3 py-1 rounded-r-full sm:rounded-full shadow-lg"
+                              className="absolute top-4 sm:top-6 left-0 sm:left-6 bg-gradient-to-r from-violet-600 to-purple-600 text-white dark:from-violet-500 dark:to-purple-500 text-xs font-bold px-3 py-1 rounded-r-full sm:rounded-full shadow-lg"
                             >
                               {t(mockup.badge)}
                             </motion.div>
@@ -299,7 +299,7 @@ function AppHero() {
                                   initial={{ x: -20, opacity: 0 }}
                                   animate={{ x: 0, opacity: 1 }}
                                   transition={{ delay: 0.2 + (idx * 0.1) }}
-                                  className="w-8 h-8 sm:w-10 sm:h-10 bg-white dark:bg-white rounded-full flex items-center justify-center shadow-md text-pink-600 dark:text-light-text"
+                                  className="w-8 h-8 sm:w-10 sm:h-10 bg-white dark:bg-zinc-800 rounded-full flex items-center justify-center shadow-md text-violet-600 dark:text-violet-400"
                                 >
                                   {Icon}
                                 </motion.div>
@@ -365,7 +365,7 @@ function AppHero() {
 
                                 <motion.a
                                   href={mockup.caseStudyLink}
-                                  className="flex-1 flex items-center justify-center gap-1.5 bg-pink-600 dark:bg-white dark:hover:bg-white/80 hover:bg-pink-600 text-white dark:text-light-text text-sm font-medium px-4 py-2 rounded-full transition-colors"
+                                  className="flex-1 flex items-center justify-center gap-1.5 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white dark:from-violet-500 dark:to-purple-500 text-sm font-medium px-4 py-2 rounded-full transition-colors"
                                   whileHover={{ y: -2 }}
                                   whileTap={{ scale: 0.95 }}
                                 >
@@ -382,7 +382,7 @@ function AppHero() {
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    className="absolute right-0 sm:right-6 md:right-10 z-20 bg-white/90 dark:bg-[#1a1a1a] dark:border dark:border-gray-800 backdrop-blur-sm rounded-full p-2 sm:p-3 shadow-lg text-pink-600 dark:text-white"
+                    className="absolute right-0 sm:right-6 md:right-10 z-20 bg-white/90 dark:bg-[#1a1a1a] dark:border dark:border-gray-800 backdrop-blur-sm rounded-full p-2 sm:p-3 shadow-lg text-violet-600 dark:text-violet-400"
                     onClick={nextMockup}
                     aria-label="Next project"
                   >
@@ -397,7 +397,7 @@ function AppHero() {
                       key={idx}
                       onClick={() => setCurrentMockup(idx)}
                       className={`w-8 sm:w-10 h-1.5 mx-1 rounded-full transition-all duration-300 ${idx === currentMockup
-                        ? "bg-pink-600 dark:bg-white w-12 sm:w-16"
+                        ? "bg-violet-600 dark:bg-violet-400 w-12 sm:w-16"
                         : "bg-gray-300 dark:bg-gray-700"
                         }`}
                       aria-label={`Go to project ${idx + 1}`}
@@ -458,7 +458,7 @@ function AppHero() {
                     <div className="absolute top-4 left-4 bg-white border dark:bg-[#1a1a1a] backdrop-blur-sm rounded-lg px-3 py-2 shadow-md dark:border-gray-800">
                       <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center">
                         {mockupImages[currentMockup].title}
-                        <span className="ml-2 text-xs font-normal px-2 py-0.5 bg-pink-100 dark:bg-white text-pink-600 dark:text-light-text rounded-full">
+                        <span className="ml-2 text-xs font-normal px-2 py-0.5 bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 rounded-full">
                           {t(mockupImages[currentMockup].badge)}
                         </span>
                       </h3>
@@ -509,7 +509,7 @@ function AppHero() {
 
                   <div className="prose dark:prose-invert mb-6 max-w-none">
                     <p className="text-gray-700 dark:text-gray-300">
-                    {t(mockupImages[currentMockup].longDescription)}
+                      {t(mockupImages[currentMockup].longDescription)}
                     </p>
                   </div>
 
@@ -547,7 +547,7 @@ function AppHero() {
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.2 + (idx * 0.1) }}
                         >
-                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-pink-600 dark:bg-white mt-2 mr-2"></span>
+                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-violet-600 dark:bg-violet-400 mt-2 mr-2"></span>
                           <span className="text-gray-700 dark:text-gray-300">{t(featureKey)}</span>
                         </motion.li>
                       ))}
@@ -558,7 +558,7 @@ function AppHero() {
                   <div className="flex flex-wrap gap-3 mt-8">
                     <motion.a
                       href={mockupImages[currentMockup].caseStudyLink}
-                      className="px-6 py-3 bg-pink-600 hover:bg-pink-700 text-white dark:bg-white dark:text-light-text dark:shadow-white/20 font-medium rounded-lg flex items-center gap-2 shadow-lg shadow-pink-600/20"
+                      className="px-6 py-3 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white dark:from-violet-500 dark:to-purple-500 font-medium rounded-lg flex items-center gap-2 shadow-lg shadow-violet-600/20"
                       whileHover={{ y: -2 }}
                       whileTap={{ scale: 0.98 }}
                     >

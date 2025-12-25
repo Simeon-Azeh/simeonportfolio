@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { 
-  FiSend, FiUser, FiMail, FiMessageSquare, FiCheckCircle, FiAlertCircle, 
-  FiCornerDownRight, FiBriefcase, FiCode, FiHelpCircle, FiCoffee 
+import {
+  FiSend, FiUser, FiMail, FiMessageSquare, FiCheckCircle, FiAlertCircle,
+  FiCornerDownRight, FiBriefcase, FiCode, FiHelpCircle, FiCoffee
 } from 'react-icons/fi';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -23,7 +23,7 @@ const ContactForm = () => {
   const [submitStatus, setSubmitStatus] = useState(null);
   const [showSubjectSuggestions, setShowSubjectSuggestions] = useState(false);
   const subjectInputRef = useRef(null);
-  
+
   const subjectSuggestions = [
     { icon: <FiBriefcase />, text: t('subject_project', 'Project Inquiry'), value: 'Project Inquiry' },
     { icon: <FiCode />, text: t('subject_collaboration', 'Collaboration Opportunity'), value: 'Collaboration Opportunity' },
@@ -52,23 +52,23 @@ const ContactForm = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.name.trim()) {
       newErrors.name = t('name_required', 'Name is required');
     }
-    
+
     if (!formData.email.trim()) {
       newErrors.email = t('email_required', 'Email is required');
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = t('email_invalid', 'Email is invalid');
     }
-    
+
     if (!formData.message.trim()) {
       newErrors.message = t('message_required', 'Message is required');
     } else if (formData.message.trim().length < 10) {
       newErrors.message = t('message_too_short', 'Message is too short (minimum 10 characters)');
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -76,7 +76,7 @@ const ContactForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    
+
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors({
@@ -97,16 +97,16 @@ const ContactForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
-    
+
     setIsSubmitting(true);
     setSubmitStatus(null);
-    
+
     try {
       // Save form data to Firestore
       const formSubmissionsRef = collection(db, 'contactFormSubmissions');
-      
+
       // Add timestamp and status
       const submissionData = {
         ...formData,
@@ -116,12 +116,12 @@ const ContactForm = () => {
         userAgent: navigator.userAgent,
         language: navigator.language || 'unknown'
       };
-      
+
       // Submit to Firestore
       await addDoc(formSubmissionsRef, submissionData);
-      
+
       console.log('Form data submitted to Firestore:', submissionData);
-      
+
       // Success!
       setSubmitStatus('success');
       setFormData({
@@ -130,12 +130,12 @@ const ContactForm = () => {
         subject: '',
         message: ''
       });
-      
+
       // Reset success message after 5 seconds
       setTimeout(() => {
         setSubmitStatus(null);
       }, 5000);
-      
+
     } catch (error) {
       console.error('Error submitting form to Firestore:', error);
       setSubmitStatus('error');
@@ -153,11 +153,11 @@ const ContactForm = () => {
           transition={{ duration: 0.5 }}
           className="bg-white dark:bg-[#1B1B1A] rounded-2xl shadow-lg dark:shadow-gray-900/30 overflow-hidden border border-gray-100 dark:border-gray-800"
         >
-          <div className="bg-gradient-to-r from-pink-500 to-pink-600 dark:from-pink-700 dark:to-pink-800 py-6 px-8 relative overflow-hidden">
+          <div className="bg-gradient-to-r from-violet-500 to-purple-600 dark:from-violet-600 dark:to-purple-700 py-6 px-8 relative overflow-hidden">
             {/* Decorative elements */}
             <div className="absolute right-0 top-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
             <div className="absolute left-16 bottom-0 w-16 h-16 bg-white/10 rounded-full translate-y-1/2"></div>
-            
+
             <h2 className="text-2xl md:text-3xl font-bold text-white">
               {t('get_in_touch', 'Get in Touch')}
             </h2>
@@ -165,8 +165,8 @@ const ContactForm = () => {
               {t('form_description', "I'm excited to hear about your project. Fill out the form below and I'll get back to you as soon as possible.")}
             </p>
           </div>
-          
-          <form 
+
+          <form
             onSubmit={handleSubmit}
             className="p-8"
           >
@@ -182,9 +182,8 @@ const ContactForm = () => {
                     id="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className={`block w-full px-4 py-3 text-gray-900 dark:text-white bg-white dark:bg-gray-800/50 border ${
-                      errors.name ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-800'
-                    } rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-colors`}
+                    className={`block w-full px-4 py-3 text-gray-900 dark:text-white bg-white dark:bg-gray-800/50 border ${errors.name ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-800'
+                      } rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-colors`}
                     placeholder={t('name_placeholder', 'Enter your full name')}
                   />
                   {errors.name && (
@@ -195,7 +194,7 @@ const ContactForm = () => {
                   )}
                 </div>
               </div>
-              
+
               <div>
                 <label htmlFor="email" className="flex items-center text-sm font-medium text-gray-700 dark:text-white mb-1">
                   <FiMail className="mr-2 text-gray-500 dark:text-gray-400" /> {t('your_email', 'Your Email')}
@@ -207,9 +206,8 @@ const ContactForm = () => {
                     id="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className={`block w-full px-4 py-3 text-gray-900 dark:text-white bg-white dark:bg-gray-800/50 border ${
-                      errors.email ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-800'
-                    } rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-colors`}
+                    className={`block w-full px-4 py-3 text-gray-900 dark:text-white bg-white dark:bg-gray-800/50 border ${errors.email ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-800'
+                      } rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-colors`}
                     placeholder={t('email_placeholder', 'your@email.com')}
                   />
                   {errors.email && (
@@ -220,7 +218,7 @@ const ContactForm = () => {
                   )}
                 </div>
               </div>
-              
+
               <div>
                 <label htmlFor="subject" className="flex items-center text-sm font-medium text-gray-700 dark:text-white mb-1">
                   <FiMessageSquare className="mr-2 text-gray-500 dark:text-gray-400" /> {t('subject', 'Subject')} <span className="text-gray-400 ml-1">{t('optional', '(Optional)')}</span>
@@ -233,13 +231,13 @@ const ContactForm = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     onFocus={handleSubjectFocus}
-                    className="block w-full px-4 py-3 text-gray-900 dark:text-white bg-white dark:bg-gray-800/50 border border-gray-300 dark:border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-colors"
+                    className="block w-full px-4 py-3 text-gray-900 dark:text-white bg-white dark:bg-gray-800/50 border border-gray-300 dark:border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-colors"
                     placeholder={t('subject_placeholder', 'What is this regarding?')}
                   />
-                  
+
                   <AnimatePresence>
                     {showSubjectSuggestions && (
-                      <motion.div 
+                      <motion.div
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
@@ -268,7 +266,7 @@ const ContactForm = () => {
                   </AnimatePresence>
                 </div>
               </div>
-              
+
               <div>
                 <label htmlFor="message" className="flex items-center text-sm font-medium text-gray-700 dark:text-white mb-1">
                   <FiMessageSquare className="mr-2 text-gray-500 dark:text-gray-400" /> {t('your_message', 'Your Message')}
@@ -279,9 +277,8 @@ const ContactForm = () => {
                     id="message"
                     value={formData.message}
                     onChange={handleChange}
-                    className={`block w-full px-4 py-3 text-gray-900 dark:text-white bg-white dark:bg-gray-800/50 border ${
-                      errors.message ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-800'
-                    } rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-colors`}
+                    className={`block w-full px-4 py-3 text-gray-900 dark:text-white bg-white dark:bg-gray-800/50 border ${errors.message ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-800'
+                      } rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-colors`}
                     rows="5"
                     placeholder={t('message_placeholder', 'Describe your project, ask a question, or just say hello!')}
                   />
@@ -293,7 +290,7 @@ const ContactForm = () => {
                   )}
                 </div>
               </div>
-              
+
               {submitStatus === 'success' && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -311,7 +308,7 @@ const ContactForm = () => {
                   </div>
                 </motion.div>
               )}
-              
+
               {submitStatus === 'error' && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
@@ -331,16 +328,15 @@ const ContactForm = () => {
                   </div>
                 </motion.div>
               )}
-              
+
               <div>
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full flex items-center justify-center px-6 py-3 text-white font-medium rounded-lg shadow-lg ${
-                    isSubmitting 
-                      ? 'bg-gray-400 dark:bg-gray-700 cursor-not-allowed' 
-                      : 'bg-pink-600 hover:bg-pink-700 dark:bg-pink-700 dark:hover:bg-pink-800 shadow-pink-500/20'
-                  } transition-all duration-300`}
+                  className={`w-full flex items-center justify-center px-6 py-3 text-white font-medium rounded-lg shadow-lg ${isSubmitting
+                      ? 'bg-gray-400 dark:bg-gray-700 cursor-not-allowed'
+                      : 'bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 dark:from-violet-600 dark:to-purple-600 shadow-violet-500/20'
+                    } transition-all duration-300`}
                   whileHover={!isSubmitting ? { y: -2 } : {}}
                   whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                 >
@@ -362,12 +358,12 @@ const ContactForm = () => {
             </div>
           </form>
         </motion.div>
-        
+
         {/* Alternative contact info */}
         <div className="mt-10 text-center">
           <p className="text-gray-600 dark:text-gray-300">
-            {t('prefer_email', 'Prefer to email me directly?')} 
-            <a href="mailto:hello@simeonazeh.com" className="text-pink-600 dark:text-pink-400 font-medium ml-1 hover:underline">
+            {t('prefer_email', 'Prefer to email me directly?')}
+            <a href="mailto:hello@simeonazeh.com" className="text-violet-600 dark:text-violet-400 font-medium ml-1 hover:underline">
               hello@simeonazeh.com
             </a>
           </p>

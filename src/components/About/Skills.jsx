@@ -20,108 +20,108 @@ import {
 } from 'react-icons/si';
 
 const skillsData = [
-  { 
-    skill: 'reactjs', 
-    level: 85, 
-    color: 'from-pink-600 to-purple-600',
+  {
+    skill: 'reactjs',
+    level: 85,
+    color: 'from-violet-600 to-purple-600',
     icon: SiReact,
     iconColor: 'text-[#61DAFB]'
   },
-  { 
-    skill: 'nextjs', 
-    level: 85, 
-    color: 'from-pink-600 to-purple-600',
+  {
+    skill: 'nextjs',
+    level: 85,
+    color: 'from-violet-600 to-purple-600',
     icon: SiNextdotjs,
     iconColor: 'text-black dark:text-white'
   },
-  { 
-    skill: 'javascript', 
-    level: 65, 
-    color: 'from-pink-600 to-purple-600',
+  {
+    skill: 'javascript',
+    level: 65,
+    color: 'from-violet-600 to-purple-600',
     icon: SiJavascript,
     iconColor: 'text-[#F7DF1E]'
   },
-  { 
-    skill: 'html_css', 
-    level: 99, 
-    color: 'from-pink-600 to-purple-600',
+  {
+    skill: 'html_css',
+    level: 99,
+    color: 'from-violet-600 to-purple-600',
     icon: SiHtml5,
     iconColor: 'text-[#E34F26]'
   },
-  { 
-    skill: 'tailwind_css', 
-    level: 95, 
-    color: 'from-pink-600 to-purple-600',
+  {
+    skill: 'tailwind_css',
+    level: 95,
+    color: 'from-violet-600 to-purple-600',
     icon: SiTailwindcss,
     iconColor: 'text-[#38B2AC]'
   },
-  { 
-    skill: 'firebase', 
-    level: 75, 
-    color: 'from-pink-600 to-purple-600',
+  {
+    skill: 'firebase',
+    level: 75,
+    color: 'from-violet-600 to-purple-600',
     icon: SiFirebase,
     iconColor: 'text-[#FFCA28]'
   },
-  { 
-    skill: 'sass', 
-    level: 80, 
-    color: 'from-pink-600 to-purple-600',
+  {
+    skill: 'sass',
+    level: 80,
+    color: 'from-violet-600 to-purple-600',
     icon: SiSass,
     iconColor: 'text-[#CC6699]'
   },
-  { 
-    skill: 'node_js', 
-    level: 65, 
-    color: 'from-pink-600 to-purple-600',
+  {
+    skill: 'node_js',
+    level: 65,
+    color: 'from-violet-600 to-purple-600',
     icon: SiNodedotjs,
     iconColor: 'text-[#339933]'
   },
-  { 
-    skill: 'design', 
-    level: 90, 
-    color: 'from-pink-600 to-purple-600',
+  {
+    skill: 'design',
+    level: 90,
+    color: 'from-violet-600 to-purple-600',
     icon: SiFigma,
     iconColor: 'text-[#F24E1E]'
   },
-  { 
-    skill: 'photography', 
-    level: 95, 
-    color: 'from-pink-600 to-purple-600',
+  {
+    skill: 'photography',
+    level: 95,
+    color: 'from-violet-600 to-purple-600',
     icon: SiAdobephotoshop,
     iconColor: 'text-[#31A8FF]'
   },
-  { 
-    skill: 'videography', 
-    level: 90, 
-    color: 'from-pink-600 to-purple-600',
+  {
+    skill: 'videography',
+    level: 90,
+    color: 'from-violet-600 to-purple-600',
     icon: SiAdobepremierepro,
     iconColor: 'text-[#9999FF]'
   },
-  { 
-    skill: 'react_native', 
-    level: 80, 
-    color: 'from-pink-600 to-purple-600',
+  {
+    skill: 'react_native',
+    level: 80,
+    color: 'from-violet-600 to-purple-600',
     icon: SiReact,
     iconColor: 'text-[#61DAFB]'
   },
-  { 
-    skill: 'flutter', 
-    level: 40, 
-    color: 'from-pink-600 to-purple-600',
+  {
+    skill: 'flutter',
+    level: 40,
+    color: 'from-violet-600 to-purple-600',
     icon: SiFlutter,
     iconColor: 'text-[#02569B]'
   },
-  { 
-    skill: 'bootstrap', 
-    level: 60, 
-    color: 'from-pink-600 to-purple-600',
+  {
+    skill: 'bootstrap',
+    level: 60,
+    color: 'from-violet-600 to-purple-600',
     icon: SiBootstrap,
     iconColor: 'text-[#02569B]'
   },
-  { 
-    skill: 'Github', 
-    level: 90, 
-    color: 'from-pink-600 to-purple-600',
+  {
+    skill: 'Github',
+    level: 90,
+    color: 'from-violet-600 to-purple-600',
     icon: SiGithub,
     iconColor: 'text-[#02569B]'
   },
@@ -135,10 +135,10 @@ const Skills = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-white dark:bg-dark-body py-16 relative overflow-hidden font-inter"
+      className="bg-white dark:bg-[#09090b] py-16 relative overflow-hidden font-inter"
     >
       {/* Background Pattern */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 opacity-5 dark:opacity-10"
         animate={{
           backgroundPosition: ['0% 0%', '100% 100%'],
@@ -153,22 +153,22 @@ const Skills = () => {
       </motion.div>
 
       <div className="relative z-10 w-full md:w-4/5 mx-auto px-6 md:px-0">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-3xl md:text-4xl font-bold mb-12 text-center"
         >
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-purple-600 dark:from-pink-500 dark:to-purple-500">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-purple-600 dark:from-violet-400 dark:to-purple-400">
             {t('skills_title')}
           </span>
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillsData.map((item, index) => (
-            <SkillBar 
-              key={index} 
-              skill={t(`skills_${item.skill}`)} 
-              level={item.level} 
+            <SkillBar
+              key={index}
+              skill={t(`skills_${item.skill}`)}
+              level={item.level}
               color={item.color}
               icon={item.icon}
               iconColor={item.iconColor}
@@ -204,8 +204,8 @@ const SkillBar = ({ skill, level, color, icon: Icon, iconColor, delay }) => {
           >
             <Icon />
           </motion.div>
-          <motion.span 
-            className="text-light-text dark:text-gray-200 font-medium"
+          <motion.span
+            className="text-slate-800 dark:text-slate-200 font-medium"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: delay + 0.2 }}
@@ -213,8 +213,8 @@ const SkillBar = ({ skill, level, color, icon: Icon, iconColor, delay }) => {
             {skill}
           </motion.span>
         </div>
-        <motion.span 
-          className="text-light-text dark:text-gray-400"
+        <motion.span
+          className="text-slate-700 dark:text-slate-400"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: delay + 0.2 }}
@@ -222,7 +222,7 @@ const SkillBar = ({ skill, level, color, icon: Icon, iconColor, delay }) => {
           {level}%
         </motion.span>
       </div>
-      <div className="h-2.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+      <div className="h-2.5 bg-slate-200 dark:bg-zinc-700 rounded-full overflow-hidden">
         <motion.div
           ref={ref}
           className={`h-full rounded-full bg-gradient-to-r ${color}`}

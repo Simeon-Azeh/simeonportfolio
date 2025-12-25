@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaFacebook, FaLinkedinIn, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FiChevronRight } from "react-icons/fi";
 import { useTranslation } from 'react-i18next';
 
 const socialLinks = [
@@ -33,50 +34,61 @@ function Footer() {
   const { t } = useTranslation();
 
   return (
-    <motion.footer 
+    <motion.footer
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-white dark:bg-dark-body transition-colors font-inter relative overflow-hidden"
+      className="relative overflow-hidden bg-gradient-to-br from-violet-600 via-purple-600 to-violet-700 font-inter transition-colors duration-500 dark:from-[#09090b] dark:via-zinc-900 dark:to-violet-950/30"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5 dark:opacity-10">
-        <div className="absolute inset-0 bg-grid-pattern"></div>
-      </div>
+      <div className="absolute inset-0 opacity-10 dark:opacity-[0.03]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(255, 255, 255, 0.3) 1px, transparent 1px)`,
+          backgroundSize: '60px 60px'
+        }}
+      />
 
-      <div className="relative z-10 border-t border-gray-200 dark:border-gray-800">
-        <div className="w-full md:w-4/5 mx-auto">
+      {/* Gradient overlay at top */}
+      <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent dark:via-violet-500/50" />
+
+      <div className="relative z-10 border-t border-white/10 dark:border-zinc-800/50">
+        <div className="mx-auto w-full md:w-4/5">
           {/* Main Footer Content */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 py-16 px-6 md:px-0">
+          <div className="grid grid-cols-1 gap-8 px-6 py-16 md:grid-cols-2 md:px-0 lg:grid-cols-4">
             {/* Brand Section */}
             <div className="space-y-4">
-              <motion.h2 
-                className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-purple-600 dark:from-white dark:to-gray-300"
+              <motion.h2
+                className="font-montserrat-alt text-2xl font-bold text-white dark:bg-gradient-to-r dark:from-violet-400 dark:to-purple-400 dark:bg-clip-text dark:text-transparent"
               >
                 {t('name')} <span>{t('surname')}</span>
               </motion.h2>
-              <p className="text-gray-600 dark:text-gray-400 max-w-sm">
+              <p className="max-w-sm text-violet-100 dark:text-slate-400">
                 {t('footer_description')}
               </p>
             </div>
 
             {/* Quick Links */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <h3 className="text-lg font-semibold text-white dark:text-white">
                 {t('quick_links')}
               </h3>
               <ul className="space-y-2">
                 {navLinks.map((link) => (
-                  <motion.li 
+                  <motion.li
                     key={link}
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                    className="group"
                   >
-                    <Link 
+                    <Link
                       to={`/${link}`}
-                      className="text-gray-600 dark:text-gray-400 hover:text-pink-600 dark:hover:text-white transition-colors"
+                      className="flex items-center gap-1 text-violet-100 transition-colors duration-300 hover:text-white dark:text-slate-400 dark:hover:text-violet-400"
                     >
-                      {t(link)}
+                      <span className="text-white dark:text-violet-400">
+                        <FiChevronRight className="opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0.5" />
+                      </span>
+                      <span className="transition-transform duration-300 group-hover:translate-x-1">
+                        {t(link)}
+                      </span>
                     </Link>
                   </motion.li>
                 ))}
@@ -85,7 +97,7 @@ function Footer() {
 
             {/* Social Links */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <h3 className="text-lg font-semibold text-white dark:text-white">
                 {t('follow_me')}
               </h3>
               <div className="flex gap-4">
@@ -95,10 +107,8 @@ function Footer() {
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center
-                             text-gray-600 dark:text-gray-400 hover:bg-pink-600 hover:text-white dark:hover:bg-pink-600
-                             transition-colors"
+                    whileHover={{ scale: 1.1, y: -3 }}
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white shadow-sm backdrop-blur-sm transition-all duration-300 hover:bg-white hover:text-violet-600 hover:shadow-lg dark:bg-zinc-800 dark:text-slate-400 dark:hover:bg-gradient-to-r dark:hover:from-violet-500 dark:hover:to-purple-500 dark:hover:text-white"
                   >
                     <Icon size={18} />
                   </motion.a>
@@ -108,28 +118,28 @@ function Footer() {
 
             {/* Contact Info */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <h3 className="text-lg font-semibold text-white dark:text-white">
                 {t('contact_info')}
               </h3>
-              <ul className="space-y-2 text-gray-600 dark:text-gray-400">
-                <li>contact@simeonazeh.com</li>
-                <li>+250 798 654 693</li>
+              <ul className="space-y-2 text-violet-100 dark:text-slate-400">
+                <li className="cursor-pointer transition-colors hover:text-white dark:hover:text-violet-400">contact@simeonazeh.com</li>
+                <li className="cursor-pointer transition-colors hover:text-white dark:hover:text-violet-400">+250 798 654 693</li>
                 <li>Kigali, Rwanda</li>
               </ul>
             </div>
           </div>
 
           {/* Bottom Bar */}
-          <div className="border-t border-gray-200 dark:border-gray-800 py-6 px-6 md:px-0">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <p className="text-gray-600 dark:text-gray-400 text-sm text-center md:text-left">
+          <div className="border-t border-white/10 px-6 py-6 dark:border-zinc-800/50 md:px-0">
+            <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+              <p className="text-center text-sm text-violet-100 dark:text-slate-400 md:text-left">
                 © {new Date().getFullYear()} {t('name')} {t('surname')}. {t('all_rights_reserved')}
               </p>
-              <div className="flex gap-6 text-sm">
-                <Link to="/terms" className="text-gray-600 dark:text-gray-400 hover:text-pink-600 dark:hover:text-white transition-colors">
+              <div className="flex items-center gap-4 text-sm">
+                <Link to="/terms" className="text-violet-100 transition-colors duration-300 hover:text-white dark:text-slate-400 dark:hover:text-violet-400">
                   {t('terms_conditions')}
                 </Link>
-                <Link to="/cookies" className="text-gray-600 dark:text-gray-400 hover:text-pink-600 dark:hover:text-white transition-colors">
+                <Link to="/cookies" className="text-violet-100 transition-colors duration-300 hover:text-white dark:text-slate-400 dark:hover:text-violet-400">
                   {t('cookies')}
                 </Link>
               </div>

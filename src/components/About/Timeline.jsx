@@ -17,11 +17,11 @@ const TimelineItem = ({ date, title, subtitle, description, icon: Icon, items, d
       whileInView={{ scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.3, delay: delay + 0.2 }}
-      className="absolute left-0 top-0 w-4 h-4 rounded-full bg-white dark:bg-dark-body 
-                 border-2 border-pink-600 dark:border-pink-500"
+      className="absolute left-0 top-0 w-4 h-4 rounded-full bg-white dark:bg-[#09090b] 
+                 border-2 border-violet-600 dark:border-violet-500"
     />
-    <div className="absolute left-2 top-4 w-px h-full bg-gradient-to-b from-pink-600 to-light-text 
-                    dark:from-pink-500 dark:to-light-text opacity-50" />
+    <div className="absolute left-2 top-4 w-px h-full bg-gradient-to-b from-violet-600 to-purple-600 
+                    dark:from-violet-500 dark:to-purple-500 opacity-50" />
     <div className="pl-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -29,12 +29,12 @@ const TimelineItem = ({ date, title, subtitle, description, icon: Icon, items, d
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: delay + 0.1 }}
         className="inline-block px-3 py-1 rounded-full text-sm font-medium font-inter
-                   bg-gradient-to-r from-pink-600 to-light-text dark:from-pink-500 dark:to-light-text 
-                   text-white shadow-lg transform hover:-translate-y-1 transition-transform duration-300"
+                   bg-gradient-to-r from-violet-600 to-purple-600 dark:from-violet-500 dark:to-purple-500 
+                   text-white shadow-lg shadow-violet-500/25 transform hover:-translate-y-1 transition-transform duration-300"
       >
         {date}
       </motion.div>
-      
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -42,15 +42,15 @@ const TimelineItem = ({ date, title, subtitle, description, icon: Icon, items, d
         transition={{ duration: 0.5, delay: delay + 0.2 }}
         className="mt-4"
       >
-        <h3 className="text-lg font-bold text-light-text dark:text-white font-inter">{title}</h3>
+        <h3 className="text-lg font-bold text-slate-800 dark:text-white font-inter">{title}</h3>
         {subtitle && (
-          <p className="flex items-center gap-2 text-gray-600 dark:text-gray-400 mt-1 font-inter">
-            {Icon && <Icon className="text-pink-600 dark:text-pink-500" size={18} />}
+          <p className="flex items-center gap-2 text-slate-600 dark:text-slate-400 mt-1 font-inter">
+            {Icon && <Icon className="text-violet-600 dark:text-violet-500" size={18} />}
             {subtitle}
           </p>
         )}
         {description && (
-          <p className="mt-2 text-gray-600 dark:text-gray-400 font-inter">{description}</p>
+          <p className="mt-2 text-slate-600 dark:text-slate-400 font-inter">{description}</p>
         )}
         {items && (
           <ul className="mt-4 space-y-2">
@@ -61,9 +61,9 @@ const TimelineItem = ({ date, title, subtitle, description, icon: Icon, items, d
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: delay + 0.3 + (index * 0.1) }}
-                className="flex items-start gap-2 text-gray-600 dark:text-gray-400 font-inter"
+                className="flex items-start gap-2 text-slate-600 dark:text-slate-400 font-inter"
               >
-                <span className="w-1.5 h-1.5 mt-2 rounded-full bg-pink-600 dark:bg-pink-500" />
+                <span className="w-1.5 h-1.5 mt-2 rounded-full bg-violet-600 dark:bg-violet-500" />
                 {item}
               </motion.li>
             ))}
@@ -199,10 +199,10 @@ function Timeline() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-white dark:bg-dark-body py-16 relative overflow-hidden"
+      className="bg-white dark:bg-[#09090b] py-16 relative overflow-hidden"
     >
       {/* Background Pattern */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 opacity-5 dark:opacity-10"
         animate={{
           backgroundPosition: ['0% 0%', '100% 100%'],
@@ -228,17 +228,17 @@ function Timeline() {
               className="mb-12"
             >
               <h2 className="text-3xl font-bold mb-6 bg-clip-text text-transparent font-inter 
-                           bg-gradient-to-r from-pink-600 to-light-text dark:from-pink-500 dark:to-light-text">
+                           bg-gradient-to-r from-violet-600 to-purple-600 dark:from-violet-400 dark:to-purple-400">
                 {t('summary_title')}
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed font-inter">
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed font-inter">
                 {t('summary_description')}
               </p>
             </motion.div>
 
             {/* Education Section */}
             <div>
-              <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-white font-inter">
+              <h2 className="text-2xl font-bold mb-8 text-slate-900 dark:text-white font-inter">
                 {t('education_title')}
               </h2>
               {educationData.map((item, index) => (
@@ -256,7 +256,7 @@ function Timeline() {
 
             {/* Anticipated Skills Section */}
             <div className="mt-12">
-              <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-white font-inter">
+              <h2 className="text-2xl font-bold mb-8 text-slate-900 dark:text-white font-inter">
                 {t('anticipated_skills_title')}
               </h2>
               {anticipatedSkillsData.map((item, index) => (
@@ -273,7 +273,7 @@ function Timeline() {
 
           {/* Right Column - Professional Experience */}
           <div>
-            <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-white font-inter">
+            <h2 className="text-2xl font-bold mb-8 text-slate-900 dark:text-white font-inter">
               {t('professional_experience_title')}
             </h2>
             {timelineData.map((item, index) => (
