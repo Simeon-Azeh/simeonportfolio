@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
 import { FaFacebook, FaLinkedin, FaGithub } from 'react-icons/fa';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
@@ -20,7 +20,30 @@ function Header() {
   });
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const langDropdownRef = useRef(null);
+  const mobileLangDropdownRef = useRef(null);
+
+  // Mouse tracking for parallax effect on glow
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 25, stiffness: 150 };
+  const moveX = useSpring(useTransform(mouseX, [0, 1], [-20, 20]), springConfig);
+  const moveY = useSpring(useTransform(mouseY, [0, 1], [-20, 20]), springConfig);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+      mouseX.set(clientX / innerWidth);
+      mouseY.set(clientY / innerHeight);
+      setMousePosition({ x: clientX, y: clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
 
   useEffect(() => {
     if (darkMode) {
@@ -43,14 +66,15 @@ function Header() {
       setScrollProgress(progress);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target)) {
+      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target) &&
+        mobileLangDropdownRef.current && !mobileLangDropdownRef.current.contains(event.target)) {
         setLangDropdownOpen(false);
       }
     };
@@ -123,14 +147,35 @@ function Header() {
   const currentLang = languages.find(lang => lang.code === i18n.language) || languages[0];
 
   return (
-    <div className={`sticky top-0 z-50 transition-all duration-500 ease-in-out
+    <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ease-smooth will-change-[background-color,box-shadow]
       ${scrolled
-        ? 'bg-gradient-to-r from-violet-600 via-purple-600 to-violet-700 dark:bg-gradient-to-r dark:from-zinc-900 dark:via-zinc-900 dark:to-zinc-900 shadow-lg shadow-violet-500/20 dark:shadow-violet-500/10'
-        : 'bg-slate-50/80 dark:bg-[#09090b]/80'
+        ? 'bg-white/95 dark:bg-dark-body/95 shadow-lg shadow-slate-200/50 dark:shadow-violet-500/10 border-b border-slate-100 dark:border-zinc-800'
+        : 'bg-gradient-to-b from-slate-50 via-white/95 to-white/90 dark:from-dark-body dark:via-dark-body/95 dark:to-dark-body/90'
       } backdrop-blur-xl`}>
+      {/* Subtle glow effect for dark mode - violet gradient */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute -top-40 -left-48 w-[400px] h-[300px] rounded-full blur-[100px] opacity-0 dark:opacity-60 transition-opacity duration-500"
+          style={{
+            background: 'radial-gradient(circle, rgba(139,92,246,0.15) 0%, rgba(139,92,246,0.08) 50%, transparent 70%)',
+            x: moveX,
+            y: moveY
+          }}
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0, 0.6, 0]
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            repeatType: "reverse"
+          }}
+        />
+      </div>
+
       {/* Scroll Progress Indicator */}
       <motion.div
-        className={`absolute top-0 left-0 h-0.5 z-50 ${scrolled ? 'bg-gradient-to-r from-white/50 via-white to-white/50' : 'bg-gradient-to-r from-violet-500 via-purple-500 to-rose-500 dark:from-violet-400 dark:via-purple-400 dark:to-rose-400'}`}
+        className={`absolute top-0 left-0 h-0.5 z-50 bg-gradient-to-r from-violet-500 via-purple-500 to-violet-500`}
         style={{ width: `${scrollProgress}%` }}
         initial={{ opacity: 0 }}
         animate={{ opacity: scrollProgress > 0 ? 1 : 0 }}
@@ -141,18 +186,18 @@ function Header() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className={`flex justify-between w-full md:w-4/5 mx-auto items-center py-3 md:py-4 px-4 sm:px-6 md:px-0 font-inter
+        className={`relative z-10 flex justify-between w-full md:w-4/5 mx-auto items-center py-3 md:py-4 px-4 sm:px-6 md:px-0 font-inter
           transition-all duration-500 ease-in-out`}
       >
         <Link to="/" className="text-lg font-semibold group">
           <motion.h1
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            className={`font-montserrat-alt relative transition-colors duration-300 ${scrolled ? 'text-white' : 'text-slate-800 dark:text-slate-50'}`}
+            className={`font-montserrat-alt relative transition-colors duration-300 text-slate-800 dark:text-white`}
           >
-            Simeon <span className={`transition-colors duration-300 ${scrolled ? 'text-violet-200' : 'dark:text-violet-300 text-violet-600'}`}>Azeh</span>
+            Simeon <span className={`transition-colors duration-300 dark:text-violet-300 text-violet-600`}>Azeh</span>
             <motion.span
-              className={`absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${scrolled ? 'bg-white' : 'bg-gradient-to-r from-violet-600 to-purple-600 dark:from-violet-400 dark:to-purple-400'}`}
+              className={`absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-gradient-to-r from-violet-600 to-purple-600 dark:from-violet-400 dark:to-purple-400`}
               initial={{ width: 0 }}
               whileHover={{ width: "100%" }}
             />
@@ -160,15 +205,13 @@ function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className={`hidden md:flex space-x-6 lg:space-x-8 transition-colors duration-300 ${scrolled ? 'text-violet-100' : 'text-slate-600 dark:text-slate-200'}`}>
-          <NavLink to="/" isActive={isActive("/")} label={t('home')} scrolled={scrolled} />
+        <nav className={`hidden md:flex space-x-6 lg:space-x-8 transition-colors duration-300 text-slate-600 dark:text-slate-200`}>
+          <NavLink to="/" isActive={isActive("/")} label={t('home')} />
 
           <div className="relative">
             <motion.button
               onClick={toggleDropdown}
-              className={`flex items-center transition-colors duration-300 ${scrolled
-                ? `hover:text-white ${dropdownOpen ? 'text-white' : ''}`
-                : `hover:text-violet-600 dark:hover:text-violet-400 ${dropdownOpen ? 'text-violet-600 dark:text-violet-400' : ''}`}`}
+              className={`flex items-center transition-colors duration-300 hover:text-violet-600 dark:hover:text-violet-400 ${dropdownOpen ? 'text-violet-600 dark:text-violet-400' : ''}`}
               whileHover={{ scale: 1.05 }}
             >
               {t('about')}
@@ -205,11 +248,11 @@ function Header() {
             </AnimatePresence>
           </div>
 
-          <NavLink to="/services" isActive={isActive("/services")} label={t('services')} scrolled={scrolled} />
+          <NavLink to="/services" isActive={isActive("/services")} label={t('services')} />
 
           {/* Referrals Link with New Badge */}
           <div className="relative">
-            <NavLink to="/referrals" isActive={isActive("/referrals")} label={t('referrals', 'Referrals')} scrolled={scrolled} />
+            <NavLink to="/referrals" isActive={isActive("/referrals")} label={t('referrals', 'Referrals')} />
             <motion.div
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -219,15 +262,13 @@ function Header() {
                 damping: 10,
                 delay: 0.3
               }}
-              className={`absolute -top-3 -right-8 text-[9px] font-bold px-2 py-0.5 rounded-full shadow-sm ${scrolled
-                ? 'bg-white text-violet-600 shadow-white/20'
-                : 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-violet-500/30'}`}
+              className={`absolute -top-3 -right-8 text-[9px] font-bold px-2 py-0.5 rounded-full shadow-sm bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-violet-500/30`}
             >
               {t('new', 'NEW')}
             </motion.div>
           </div>
 
-          <NavLink to="/contact" isActive={isActive("/contact")} label={t('contact')} scrolled={scrolled} />
+          <NavLink to="/contact" isActive={isActive("/contact")} label={t('contact')} />
 
         </nav>
 
@@ -238,9 +279,7 @@ function Header() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             transition={{ duration: 0.2 }}
-            className={`relative p-2 rounded-xl transition-all duration-300 ${scrolled
-              ? 'hover:bg-white/20 text-white'
-              : 'hover:bg-violet-100 dark:hover:bg-zinc-800 text-slate-600 dark:text-slate-200 hover:text-violet-600 dark:hover:text-violet-400'}`}
+            className={`relative p-2 rounded-xl transition-all duration-300 hover:bg-violet-100 dark:hover:bg-zinc-800 text-slate-600 dark:text-slate-200 hover:text-violet-600 dark:hover:text-violet-400`}
           >
             <AnimatePresence mode="wait">
               {darkMode ? (
@@ -272,9 +311,7 @@ function Header() {
             <motion.button
               onClick={toggleLangDropdown}
               disabled={isChangingLang}
-              className={`flex items-center space-x-2 cursor-pointer px-2 py-1 rounded-lg transition-all duration-300 ${scrolled
-                ? 'text-white hover:bg-white/20'
-                : 'text-slate-600 dark:text-slate-200 hover:text-violet-600 dark:hover:text-violet-400 hover:bg-violet-50 dark:hover:bg-zinc-800'}`}
+              className={`flex items-center space-x-2 cursor-pointer px-2 py-1 rounded-lg transition-all duration-300 text-slate-600 dark:text-slate-200 hover:text-violet-600 dark:hover:text-violet-400 hover:bg-violet-50 dark:hover:bg-zinc-800`}
               whileHover={{ scale: isChangingLang ? 1 : 1.05 }}
             >
               {isChangingLang ? (
@@ -282,7 +319,7 @@ function Header() {
                   animate={{ rotate: 360 }}
                   transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
                 >
-                  <BiLoaderAlt size={20} className={scrolled ? 'text-white' : 'text-violet-600 dark:text-violet-400'} />
+                  <BiLoaderAlt size={20} className={'text-violet-600 dark:text-violet-400'} />
                 </motion.div>
               ) : (
                 <>
@@ -335,7 +372,7 @@ function Header() {
             </AnimatePresence>
           </div>
 
-          <SocialLinks scrolled={scrolled} />
+          <SocialLinks />
         </div>
 
         {/* Mobile Controls */}
@@ -345,9 +382,7 @@ function Header() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             transition={{ duration: 0.2 }}
-            className={`p-1.5 rounded-lg transition-all duration-300 ${scrolled
-              ? 'text-white hover:bg-white/20'
-              : 'hover:bg-violet-100 dark:hover:bg-zinc-800 text-slate-600 dark:text-slate-200'}`}
+            className={`p-1.5 rounded-lg transition-all duration-300 hover:bg-violet-100 dark:hover:bg-zinc-800 text-slate-600 dark:text-slate-200`}
           >
             <AnimatePresence mode="wait">
               {darkMode ? (
@@ -375,11 +410,11 @@ function Header() {
           </motion.button>
 
           {/* Custom Language Selector - Mobile */}
-          <div className="relative" ref={langDropdownRef}>
+          <div className="relative" ref={mobileLangDropdownRef}>
             <motion.button
               onClick={toggleLangDropdown}
               disabled={isChangingLang}
-              className={`flex items-center ${scrolled ? 'text-white' : 'text-slate-600 dark:text-slate-200'}`}
+              className={`flex items-center text-slate-600 dark:text-slate-200`}
               whileHover={{ scale: isChangingLang ? 1 : 1.05 }}
             >
               {isChangingLang ? (
@@ -387,7 +422,7 @@ function Header() {
                   animate={{ rotate: 360 }}
                   transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
                 >
-                  <BiLoaderAlt size={18} className={scrolled ? 'text-white' : 'text-violet-600 dark:text-violet-400'} />
+                  <BiLoaderAlt size={18} className={'text-violet-600 dark:text-violet-400'} />
                 </motion.div>
               ) : (
                 <img
@@ -436,7 +471,7 @@ function Header() {
           <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={toggleDrawer}
-            className={`p-1 ${scrolled ? 'text-white' : 'dark:text-slate-200 text-slate-700'}`}
+            className={`p-1 dark:text-slate-200 text-slate-700`}
           >
             {visible ? <CloseOutlined size={24} /> : <MenuOutlined size={24} />}
           </motion.button>
@@ -452,7 +487,7 @@ function Header() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black z-[75] md:hidden"
+              className="fixed inset-0 bg-black/50 z-[75] md:hidden"
               onClick={toggleDrawer}
             />
 
@@ -462,7 +497,7 @@ function Header() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 h-screen w-full z-[80] bg-white dark:bg-zinc-900 shadow-2xl md:hidden overflow-y-auto"
+              className="fixed top-0 right-0 h-screen w-80 z-[80] bg-white dark:bg-zinc-900 shadow-2xl md:hidden overflow-y-auto"
             >
               <div className="p-6 min-h-full">
                 <div className="flex justify-between items-center mb-8">
@@ -536,21 +571,18 @@ function Header() {
 }
 
 // Component for desktop nav links
-const NavLink = ({ to, label, isActive, scrolled = false }) => (
+const NavLink = ({ to, label, isActive }) => (
   <Link to={to}>
     <motion.span
       className={`relative py-2 transition-colors duration-300 ${isActive
-        ? scrolled ? 'text-white font-medium' : 'text-violet-600 dark:text-violet-400'
-        : scrolled ? 'hover:text-white' : 'hover:text-violet-600 dark:hover:text-violet-400'
+        ? 'text-violet-600 dark:text-violet-400 font-medium'
+        : 'hover:text-violet-600 dark:hover:text-violet-400'
         }`}
       whileHover={{ scale: 1.05 }}
     >
       {label}
       <motion.span
-        className={`absolute bottom-0 left-0 h-0.5 ${scrolled
-          ? 'bg-white'
-          : 'bg-gradient-to-r from-violet-600 to-purple-600 dark:from-violet-400 dark:to-purple-400'
-          } ${isActive ? 'w-full' : 'w-0'}`}
+        className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-violet-600 to-purple-600 dark:from-violet-400 dark:to-purple-400 ${isActive ? 'w-full' : 'w-0'}`}
         whileHover={{ width: "100%" }}
         initial={{ width: isActive ? "100%" : "0%" }}
         transition={{
@@ -590,26 +622,24 @@ const MobileNavLink = ({ to, label, isActive }) => (
 );
 
 // Component for social media links
-const SocialLinks = ({ mobile = false, scrolled = false }) => {
+const SocialLinks = ({ mobile = false }) => {
   const linkClass = mobile
     ? "text-slate-600 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300"
-    : scrolled
-      ? "text-white/80 hover:text-white transition-colors duration-300"
-      : "text-slate-600 dark:text-slate-200 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300";
+    : "text-slate-600 dark:text-slate-200 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300";
 
   return (
     <>
-      <motion.a
-        href="https://www.facebook.com/kongnyuy.simeon.3?mibextid=ZbWKwL"
+     <motion.a
+        href="https://github.com/Simeon-Azeh"
         target="_blank"
         rel="noopener noreferrer"
         className={linkClass}
         whileHover={{ scale: 1.2, rotate: 5 }}
         whileTap={{ scale: 0.9 }}
       >
-        <FaFacebook size={20} />
+        <FaGithub size={20} />
       </motion.a>
-      <motion.a
+         <motion.a
         href="https://www.linkedin.com/in/simeonazeh"
         target="_blank"
         rel="noopener noreferrer"
@@ -620,15 +650,17 @@ const SocialLinks = ({ mobile = false, scrolled = false }) => {
         <FaLinkedin size={20} />
       </motion.a>
       <motion.a
-        href="https://github.com/Simeon-Azeh"
+        href="https://www.facebook.com/kongnyuy.simeon.3?mibextid=ZbWKwL"
         target="_blank"
         rel="noopener noreferrer"
         className={linkClass}
         whileHover={{ scale: 1.2, rotate: 5 }}
         whileTap={{ scale: 0.9 }}
       >
-        <FaGithub size={20} />
+        <FaFacebook size={20} />
       </motion.a>
+   
+     
     </>
   );
 };

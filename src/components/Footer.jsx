@@ -38,10 +38,16 @@ function Footer() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="relative overflow-hidden bg-gradient-to-br from-violet-600 via-purple-600 to-violet-700 font-inter transition-colors duration-500 dark:from-[#09090b] dark:via-zinc-900 dark:to-violet-950/30"
+      className="relative overflow-hidden bg-gradient-to-br from-violet-600 via-purple-600 to-violet-700 font-inter transition-colors duration-500 ease-smooth dark:from-dark-body dark:via-dark-body dark:to-dark-body"
     >
+      {/* Subtle glow for dark mode */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none hidden dark:block">
+        <div className="absolute -top-20 -left-20 w-[400px] h-[300px] bg-violet-500/10 rounded-full blur-[100px]" />
+        <div className="absolute -bottom-20 -right-20 w-[300px] h-[200px] bg-violet-500/5 rounded-full blur-[80px]" />
+      </div>
+
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10 dark:opacity-[0.03]"
+      <div className="absolute inset-0 opacity-10 dark:opacity-[0.02]"
         style={{
           backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px),
                             linear-gradient(90deg, rgba(255, 255, 255, 0.3) 1px, transparent 1px)`,

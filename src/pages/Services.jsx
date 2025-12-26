@@ -10,16 +10,15 @@ import Testimonial from '../components/Testimonial'
 import Pricing from '../components/Pricing'
 import Footer from '../components/Footer'
 import Tabs from '../components/Portfolio/Tabs'
+
 function ServicesPage() {
   return (
-    <div className="">
-        <div className='sticky top-0 bg-[#F9FEFF] dark:bg-[#171716] z-50 '>
-        <Header />
+    <>
+      <Header />
+      <div className="gpu-accelerated">
+        <div>
+          <Services />
         </div>
-       <div>
-        <Services />
-       </div>
-        
         <div>
           <Pricing />
         </div>
@@ -29,7 +28,8 @@ function ServicesPage() {
         <div>
           <Footer />
         </div>
-    </div>
+      </div>
+    </>
   )
 }
 

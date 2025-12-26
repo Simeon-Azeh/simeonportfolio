@@ -47,7 +47,7 @@ function AboutHero() {
   }, []);
 
   return (
-    <div className='bg-slate-50 dark:bg-[#09090b] transition-colors py-20 md:py-32 relative overflow-hidden'>
+    <div className='bg-slate-50 dark:bg-dark-body transition-colors duration-500 ease-smooth py-20 md:py-32 relative overflow-hidden'>
       {/* Decorative Background Elements */}
       <motion.div
         className="absolute top-20 right-10 w-72 h-72 bg-violet-500/5 dark:bg-violet-500/10 rounded-full blur-3xl"

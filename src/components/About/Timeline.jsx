@@ -17,7 +17,7 @@ const TimelineItem = ({ date, title, subtitle, description, icon: Icon, items, d
       whileInView={{ scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.3, delay: delay + 0.2 }}
-      className="absolute left-0 top-0 w-4 h-4 rounded-full bg-white dark:bg-[#09090b] 
+      className="absolute left-0 top-0 w-4 h-4 rounded-full bg-white dark:bg-dark-body 
                  border-2 border-violet-600 dark:border-violet-500"
     />
     <div className="absolute left-2 top-4 w-px h-full bg-gradient-to-b from-violet-600 to-purple-600 
@@ -199,7 +199,7 @@ function Timeline() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-white dark:bg-[#09090b] py-16 relative overflow-hidden"
+      className="bg-white dark:bg-dark-body py-16 relative overflow-hidden transition-colors duration-500 ease-smooth"
     >
       {/* Background Pattern */}
       <motion.div

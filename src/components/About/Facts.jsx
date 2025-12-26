@@ -109,7 +109,7 @@ const Facts = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-slate-50 dark:bg-[#09090b] transition-colors py-20 relative overflow-hidden font-inter"
+      className="bg-slate-50 dark:bg-dark-body transition-colors duration-500 ease-smooth py-20 relative overflow-hidden font-inter"
     >
       {/* Enhanced Background Pattern with Gradient Orbs */}
       <motion.div

@@ -924,7 +924,7 @@ function Testimonial() {
   const hasNextTestimonial = (page * testimonialsPerPage) + testimonialsPerPage < testimonials.length;
 
   return (
-    <div className="bg-light-body dark:bg-[#09090b] relative overflow-hidden py-12 md:py-20">
+    <div className="bg-light-body dark:bg-dark-body relative overflow-hidden py-12 md:py-20 transition-colors duration-500 ease-smooth">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
         style={{

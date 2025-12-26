@@ -200,9 +200,9 @@ const Referrals = () => {
         <link rel="canonical" href={window.location.href} />
       </Helmet>
 
-      <div className="bg-light-body dark:bg-dark-body min-h-screen">
-        <Header />
+      <Header />
 
+      <div className="bg-light-body dark:bg-dark-body min-h-screen">
         {/* Hero Section */}
         <section className="pt-32 pb-16 px-6 relative overflow-hidden">
           <div className="absolute inset-0 opacity-5 dark:opacity-10 bg-[url('/images/grid-pattern.svg')] bg-repeat"></div>

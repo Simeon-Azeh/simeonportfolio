@@ -3,39 +3,152 @@
 @tailwind utilities;
 
 :root {
- 
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
+
+  /* Light mode colors */
+  --bg-primary: #F9FEFF;
+  --bg-secondary: #ffffff;
+  --text-primary: #1e293b;
+  --text-secondary: #545e85;
+  --accent-primary: #8b5cf6;
+  --accent-secondary: #a855f7;
+  --glow-color: rgba(139, 92, 246, 0.15);
 }
+
+/* Dark mode CSS variables */
+html.dark {
+  --bg-primary: #09090b;
+  --bg-secondary: #0c0c0f;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --accent-primary: #a78bfa;
+  --accent-secondary: #c084fc;
+  --glow-color: rgba(167, 139, 250, 0.25);
+}
+
 html {
   scroll-behavior: smooth;
+  /* GPU acceleration for smoother scrolling */
+  -webkit-overflow-scrolling: touch;
 }
+
+/* Prevent layout shift on scroll */
+html,
 body {
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #171716;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  /* Smooth transitions for theme changes */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Global smooth transitions for all theme-affected elements */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Exclude elements that need their own animation timing */
+.no-transition,
+.no-transition *,
+[data-no-transition],
+[data-no-transition] * {
+  transition: none !important;
+}
+
+/* Performance optimization for animations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* GPU-accelerated transforms */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Dark mode glow effects */
+.dark .glow-sm {
+  box-shadow: 0 0 15px -3px var(--glow-color);
+}
+
+.dark .glow-md {
+  box-shadow: 0 0 25px -5px var(--glow-color), 0 0 10px -5px var(--glow-color);
+}
+
+.dark .glow-lg {
+  box-shadow: 0 0 35px -5px var(--glow-color), 0 0 20px -5px var(--glow-color);
+}
+
+.dark .glow-violet {
+  box-shadow: 0 0 30px -5px rgba(139, 92, 246, 0.4), 0 0 15px -5px rgba(139, 92, 246, 0.3);
+}
+
+.dark .glow-purple {
+  box-shadow: 0 0 30px -5px rgba(168, 85, 247, 0.4), 0 0 15px -5px rgba(168, 85, 247, 0.3);
+}
+
+.dark .glow-rose {
+  box-shadow: 0 0 30px -5px rgba(244, 63, 94, 0.3), 0 0 15px -5px rgba(244, 63, 94, 0.2);
+}
+
+.dark .text-glow {
+  text-shadow: 0 0 20px var(--glow-color);
+}
+
+.dark .text-glow-violet {
+  text-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
+}
+
+/* Card glow on hover in dark mode */
+.dark .hover-glow:hover {
+  box-shadow: 0 0 40px -10px var(--glow-color), 0 10px 30px -15px rgba(0, 0, 0, 0.3);
+}
+
+/* Border glow effect */
+.dark .border-glow {
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: 0 0 15px -5px rgba(139, 92, 246, 0.2);
 }
 
 
 
 /* Webkit Browsers */
 ::-webkit-scrollbar {
-  width: 6px; /* width for vertical scrollbars */
-  height: 6px; /* height for horizontal scrollbars */
+  width: 6px;
+  /* width for vertical scrollbars */
+  height: 6px;
+  /* height for horizontal scrollbars */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #414760; /* Scrollbar color */
-  border-radius: 6px; /* Rounded corners */
+  background: #414760;
+  /* Scrollbar color */
+  border-radius: 6px;
+  /* Rounded corners */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #414760; /* Darker color on hover */
+  background: #414760;
+  /* Darker color on hover */
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Track color */
+  background: #f1f1f1;
+  /* Track color */
   border-radius: 6px;
 }
 
@@ -54,27 +167,54 @@ body {
   border-radius: 6px;
   border: 3px solid #f1f1f1;
 }
+
 .hide-scroll {
   /* Custom styles to hide the scrollbar */
-  scrollbar-width: none; /* For Firefox */
-  -ms-overflow-style: none; /* For Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* For Firefox */
+  -ms-overflow-style: none;
+  /* For Internet Explorer 10+ */
 }
 
 .hide-scroll::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and Opera */
+  display: none;
+  /* For Chrome, Safari, and Opera */
 }
 
 
 
 @keyframes wave {
-  0% { transform: rotate(0deg); }
-  10% { transform: rotate(14deg); }
-  20% { transform: rotate(-8deg); }
-  30% { transform: rotate(14deg); }
-  40% { transform: rotate(-4deg); }
-  50% { transform: rotate(10deg); }
-  60% { transform: rotate(0deg); }
-  100% { transform: rotate(0deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  10% {
+    transform: rotate(14deg);
+  }
+
+  20% {
+    transform: rotate(-8deg);
+  }
+
+  30% {
+    transform: rotate(14deg);
+  }
+
+  40% {
+    transform: rotate(-4deg);
+  }
+
+  50% {
+    transform: rotate(10deg);
+  }
+
+  60% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 .wave-icon {
@@ -82,6 +222,7 @@ body {
   animation: wave 5s infinite;
   transform-origin: 80% 70%;
 }
+
 .custom-flag-select {
   background-color: transparent !important;
   border: none !important;
@@ -91,8 +232,11 @@ body {
 .custom-flag-select .flag-select__option {
   background-color: #1a1818 !important;
   color: white !important;
-}.marquee-container {
-  height: 100%; /* Adjust to show exactly two rows of images */
+}
+
+.marquee-container {
+  height: 100%;
+  /* Adjust to show exactly two rows of images */
   overflow: hidden;
   position: relative;
 }
@@ -100,29 +244,37 @@ body {
 .marquee {
   display: flex;
   flex-direction: column;
-  animation: marquee 60s linear infinite; /* Adjust duration as needed */
-    /* Pause animation on hover */
+  animation: marquee 60s linear infinite;
+  /* Adjust duration as needed */
+  /* Pause animation on hover */
 
-    transition: animation-play-state 0.5s ease; /* Smooth transition */
+  transition: animation-play-state 0.5s ease;
+  /* Smooth transition */
 }
+
 .marquee:hover {
   animation-play-state: paused;
 }
+
 .marquee-row {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr)); /* Two images per row */
-  gap: 10px; /* Adjust the gap between images if needed */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  /* Two images per row */
+  gap: 10px;
+  /* Adjust the gap between images if needed */
 }
 
 .marquee-item {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px; /* Space between images */
+  padding: 10px;
+  /* Space between images */
 }
 
 .marquee-item img {
-  width: 100%; /* Ensure images take full width */
+  width: 100%;
+  /* Ensure images take full width */
   height: auto;
   object-fit: cover;
   border-radius: 8px;
@@ -135,7 +287,8 @@ body {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 20%; /* Adjust height for the fade effect */
+  height: 20%;
+  /* Adjust height for the fade effect */
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
   z-index: 1;
 }
@@ -150,22 +303,26 @@ body {
   0% {
     transform: translateY(0%);
   }
+
   100% {
-    transform: translateY(-100%); /* Move up by the container's height */
+    transform: translateY(-100%);
+    /* Move up by the container's height */
   }
 }
+
 .dot-pattern {
   background-image: radial-gradient(circle, #e0e0e0 1px, transparent 1px);
   background-size: 20px 20px;
   background-position: 0 0;
   animation: moveDots 10s linear infinite;
-  
+
 }
 
 @keyframes moveDots {
   0% {
     background-position: 0 0;
   }
+
   100% {
     background-position: 20px 20px;
   }
@@ -174,7 +331,9 @@ body {
 /* Hide dot pattern in dark mode */
 .dark .dot-pattern {
   background-image: none;
-}/* index.css */
+}
+
+/* index.css */
 
 
 /* Add this CSS to your styles.css or a CSS module */
@@ -188,6 +347,7 @@ body {
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
@@ -211,6 +371,7 @@ body {
   border-radius: 0.25rem;
   margin: auto;
 }
+
 .mobile-nav-link {
   @apply block py-2 text-light-text dark:text-slate-50 hover:text-pink-600 dark:hover:text-gray-300 transition-colors duration-300;
 }
@@ -231,9 +392,11 @@ body {
   0% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-10px);
   }
+
   100% {
     transform: translateY(0px);
   }
@@ -244,8 +407,13 @@ body {
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 .animate-shimmer {
@@ -257,6 +425,7 @@ body {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }

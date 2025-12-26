@@ -19,9 +19,9 @@ const PricingCard = ({ icon: Icon, title, price, description, features, buttonLa
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       whileHover={{ y: -5 }}
-      className={`bg-white dark:bg-zinc-900/80 p-8 rounded-2xl w-full md:w-[calc(33.333%-2rem)] 
-                  border border-slate-200 dark:border-zinc-700/50 hover:shadow-xl 
-                  transition-all duration-300 relative ${popular ? 'ring-2 ring-violet-600 dark:ring-violet-500' : ''}`}
+      className={`bg-white dark:bg-dark-body p-8 rounded-2xl w-full md:w-[calc(33.333%-2rem)] 
+                  border border-slate-200 dark:border-zinc-800 hover:shadow-xl dark:hover:shadow-violet-500/5
+                  transition-all duration-300 relative ${popular ? 'ring-2 ring-violet-600 dark:ring-violet-500/50' : ''}`}
     >
       {popular && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-violet-600 to-purple-600 
@@ -83,48 +83,55 @@ const ComparisonTable = ({ category, plans }) => {
   const { t } = useTranslation();
 
   return (
-    <div className="mt-16">
+    <div className="mt-20 font-inter">
+      {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center mb-8"
+        className="text-center mb-12"
       >
-        <h3 className="text-2xl font-bold text-light-text dark:text-white mb-2">
+        <motion.div
+          initial={{ width: 0 }}
+          whileInView={{ width: 60 }}
+          viewport={{ once: true }}
+          className="h-1 bg-gradient-to-r from-violet-600 to-purple-600 rounded-full mx-auto mb-4"
+        />
+        <h3 className="text-3xl md:text-4xl font-bold font-montserrat-alt bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 dark:from-white dark:via-slate-200 dark:to-white bg-clip-text text-transparent mb-3">
           {t('detailed_comparison', 'Detailed Feature Comparison')}
         </h3>
-        <p className="text-gray-600 dark:text-white/70">
+        <p className="text-light-text dark:text-slate-400 text-lg max-w-2xl mx-auto">
           {t('compare_plans', 'Compare all features across different plans')}
         </p>
       </motion.div>
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto rounded-2xl">
         <div className="inline-block min-w-full align-middle">
-          <div className="overflow-hidden border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-              <thead className="bg-gradient-to-r from-slate-50 to-slate-100 dark:from-zinc-900 dark:to-zinc-800">
+          <div className="overflow-hidden border border-slate-200 dark:border-zinc-800 rounded-2xl shadow-xl dark:shadow-violet-500/5">
+            <table className="min-w-full divide-y divide-slate-200 dark:divide-zinc-800">
+              <thead className="bg-gradient-to-r from-slate-100 via-slate-50 to-slate-100 dark:from-dark-body dark:via-dark-body dark:to-dark-body">
                 <tr>
-                  <th scope="col" className="sticky left-0 z-10 px-6 py-5 text-left text-sm font-bold text-slate-900 dark:text-white bg-slate-50 dark:bg-zinc-900">
+                  <th scope="col" className="sticky left-0 z-10 px-6 py-6 text-left text-sm font-bold font-inter text-slate-900 dark:text-white bg-slate-100 dark:bg-dark-body border-r border-slate-200 dark:border-zinc-800">
                     {t('pricing_features', 'Features')}
                   </th>
                   {plans.map((plan, index) => (
-                    <th key={index} scope="col" className="px-6 py-5 text-center text-sm font-bold text-gray-900 dark:text-white min-w-[180px]">
-                      <div className="flex flex-col items-center">
-                        <span className="text-base mb-1">{plan.name}</span>
-                        <span className="text-xs font-normal text-violet-600 dark:text-violet-400">{plan.price}</span>
+                    <th key={index} scope="col" className="px-6 py-6 text-center min-w-[180px]">
+                      <div className="flex flex-col items-center gap-2">
+                        <span className="text-lg font-bold font-montserrat-alt text-slate-900 dark:text-white">{plan.name}</span>
+                        <span className="text-sm font-medium font-inter bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">{plan.price}</span>
                       </div>
                     </th>
                   ))}
                 </tr>
               </thead>
-              <tbody className="bg-white dark:bg-[#1a1a1a] divide-y divide-gray-200 dark:divide-gray-700">
+              <tbody className="bg-white dark:bg-dark-body divide-y divide-slate-100 dark:divide-zinc-800">
                 {plans[0].detailedFeatures.map((featureGroup, groupIndex) => (
                   <React.Fragment key={groupIndex}>
-                    <tr className="bg-gradient-to-r from-violet-50 to-purple-50 dark:from-violet-900/10 dark:to-purple-900/10">
+                    <tr className="bg-gradient-to-r from-violet-50 via-purple-50 to-violet-50 dark:from-violet-900/10 dark:via-violet-900/5 dark:to-violet-900/10">
                       <td colSpan={plans.length + 1} className="px-6 py-4">
-                        <div className="flex items-center gap-2">
-                          <div className="h-1 w-8 bg-gradient-to-r from-violet-600 to-purple-600 rounded-full"></div>
-                          <span className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wide">
+                        <div className="flex items-center gap-3">
+                          <div className="h-1.5 w-10 bg-gradient-to-r from-violet-600 to-purple-600 rounded-full"></div>
+                          <span className="text-sm font-bold font-inter text-slate-800 dark:text-white uppercase tracking-wider">
                             {featureGroup.category}
                           </span>
                         </div>
@@ -137,9 +144,9 @@ const ComparisonTable = ({ category, plans }) => {
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: itemIndex * 0.05 }}
-                        className="hover:bg-gray-50 dark:hover:bg-[#0d0d0d]/50 transition-colors"
+                        className="hover:bg-slate-50 dark:hover:bg-zinc-800/50 transition-colors duration-200"
                       >
-                        <td className="sticky left-0 z-10 px-6 py-4 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-[#1a1a1a] hover:bg-gray-50 dark:hover:bg-[#0d0d0d]/50">
+                        <td className="sticky left-0 z-10 px-6 py-4 text-sm font-medium font-inter text-slate-700 dark:text-slate-300 bg-white dark:bg-dark-body hover:bg-slate-50 dark:hover:bg-zinc-800/50 border-r border-slate-100 dark:border-zinc-800 transition-colors duration-200">
                           {item.name}
                         </td>
                         {plans.map((plan, planIndex) => {
@@ -148,17 +155,17 @@ const ComparisonTable = ({ category, plans }) => {
                             <td key={planIndex} className="px-6 py-4 text-center">
                               {feature.available ? (
                                 typeof feature.value === 'string' ? (
-                                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300">
+                                  <span className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium font-inter bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 text-green-700 dark:text-green-300">
                                     {feature.value}
                                   </span>
                                 ) : (
-                                  <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30">
-                                    <BsCheck className="w-5 h-5 text-green-600 dark:text-green-400" />
+                                  <div className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30">
+                                    <BsCheck className="w-6 h-6 text-green-600 dark:text-green-400" />
                                   </div>
                                 )
                               ) : (
-                                <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800">
-                                  <BsX className="w-5 h-5 text-gray-400 dark:text-gray-600" />
+                                <div className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-slate-100 dark:bg-dark-tertiary">
+                                  <BsX className="w-6 h-6 text-slate-400 dark:text-slate-600" />
                                 </div>
                               )}
                             </td>
@@ -175,18 +182,18 @@ const ComparisonTable = ({ category, plans }) => {
       </div>
 
       {/* Table Legend */}
-      <div className="mt-6 flex justify-center gap-6 text-sm">
+      <div className="mt-8 flex justify-center gap-8 text-sm font-inter">
         <div className="flex items-center gap-2">
-          <div className="w-5 h-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+          <div className="w-6 h-6 rounded-full bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 flex items-center justify-center">
             <BsCheck className="w-4 h-4 text-green-600 dark:text-green-400" />
           </div>
-          <span className="text-gray-600 dark:text-gray-400">{t('included', 'Included')}</span>
+          <span className="text-slate-600 dark:text-slate-400">{t('included', 'Included')}</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-5 h-5 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-            <BsX className="w-4 h-4 text-gray-400 dark:text-gray-600" />
+          <div className="w-6 h-6 rounded-full bg-slate-100 dark:bg-dark-tertiary flex items-center justify-center">
+            <BsX className="w-4 h-4 text-slate-400 dark:text-slate-600" />
           </div>
-          <span className="text-gray-600 dark:text-gray-400">{t('not_included', 'Not Included')}</span>
+          <span className="text-slate-600 dark:text-slate-400">{t('not_included', 'Not Included')}</span>
         </div>
       </div>
     </div>
@@ -673,7 +680,7 @@ function Pricing() {
     <motion.section
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="py-16 bg-light-body dark:bg-[#09090b] relative overflow-hidden"
+      className="py-16 bg-light-body dark:bg-dark-body relative overflow-hidden transition-colors duration-500 ease-smooth"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
@@ -717,14 +724,14 @@ function Pricing() {
 
         {/* Category Tabs */}
         <div className="flex justify-center mb-12">
-          <div className="inline-flex rounded-lg border border-slate-200 dark:border-zinc-700 p-1 bg-white dark:bg-zinc-900">
+          <div className="inline-flex rounded-lg border border-slate-200 dark:border-zinc-800 p-1 bg-white dark:bg-dark-body">
             {Object.entries(categories).map(([key, { title }]) => (
               <button
                 key={key}
                 onClick={() => setActiveCategory(key)}
                 className={`px-6 py-2 rounded-md text-sm font-medium transition-all duration-300 ${activeCategory === key
-                    ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                   }`}
               >
                 {title}
@@ -754,7 +761,7 @@ function Pricing() {
         />
 
         {/* Custom Solution CTA */}
-        <div className="flex items-center justify-between flex-col md:flex-row bg-white dark:bg-zinc-900 px-6 py-6 rounded-lg w-full mt-12 border border-slate-200 dark:border-zinc-700 font-inter" data-aos="fade-up">
+        <div className="flex items-center justify-between flex-col md:flex-row bg-white dark:bg-dark-body px-6 py-6 rounded-lg w-full mt-12 border border-slate-200 dark:border-zinc-800 font-inter" data-aos="fade-up">
           <div className='flex gap-2 items-center'>
             <div>
               <div className='flex items-center gap-2'>

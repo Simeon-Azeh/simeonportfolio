@@ -9,29 +9,29 @@ import MoreWaysToContact from '../components/Contact/MoreWaysToContact';
 
 function Contact() {
   return (
-    <div className="bg-slate-50 dark:bg-[#09090b]">
-      <div className='sticky top-0 bg-slate-50 dark:bg-[#09090b] z-50 '>
-        <Header />
-      </div>
-      <div>
-        <ContactHero />
-      </div>
-      <div className="py-10 px-4 md:px-0 font-inter bg-light-body dot-pattern dark:bg-dark-body">
-        <div className=" grid grid-cols-1 md:grid-cols-2 gap-4 w-full md:w-4/5 mx-auto">
-          <div className='px-2 md:px-0'>
-            <MoreWaysToContact />
-          </div>
-          <div className='px-2 md:px-0 w-[100%]'>
-            <ContactForm />
-          </div>
+    <>
+      <Header />
+      <div className="bg-slate-50 dark:bg-dark-body transition-colors duration-500 ease-smooth">
+        <div>
+          <ContactHero />
+        </div>
+        <div className="py-10 px-4 md:px-0 font-inter bg-light-body dot-pattern dark:bg-dark-body">
+          <div className=" grid grid-cols-1 md:grid-cols-2 gap-4 w-full md:w-4/5 mx-auto">
+            <div className='px-2 md:px-0'>
+              <MoreWaysToContact />
+            </div>
+            <div className='px-2 md:px-0 w-[100%]'>
+              <ContactForm />
+            </div>
 
+          </div>
+        </div>
+
+        <div>
+          <Footer />
         </div>
       </div>
-
-      <div>
-        <Footer />
-      </div>
-    </div>
+    </>
   );
 }
 

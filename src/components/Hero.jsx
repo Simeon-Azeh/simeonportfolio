@@ -19,7 +19,7 @@ const skillKeys = [
   'skill_tech_tutor'
 ];
 
-// Info boxes data with enhanced styling - using cohesive color palette
+// Info boxes data with enhanced styling - using consistent violet palette
 const infoBoxes = [
   {
     id: 'frontend',
@@ -28,7 +28,7 @@ const infoBoxes = [
     value: 'info_frontend_value',
     position: 'top-4 -right-4 md:top-0 md:-right-16 lg:-right-20',
     delay: 0.8,
-    gradient: 'from-violet-600 via-purple-500 to-violet-600',
+    gradient: 'from-violet-600 to-purple-600',
     bgGlow: 'bg-violet-500/20'
   },
   {
@@ -38,8 +38,8 @@ const infoBoxes = [
     value: 'info_ui_design_value',
     position: 'top-1/3 -left-4 md:-left-16 lg:-left-20',
     delay: 1.0,
-    gradient: 'from-rose-500 via-pink-500 to-rose-500',
-    bgGlow: 'bg-rose-500/20'
+    gradient: 'from-violet-600 to-purple-600',
+    bgGlow: 'bg-violet-500/20'
   },
   {
     id: 'mobile',
@@ -48,8 +48,8 @@ const infoBoxes = [
     value: 'info_mobile_value',
     position: 'bottom-8 -right-4 md:bottom-10 md:-right-12 lg:-right-16',
     delay: 1.2,
-    gradient: 'from-indigo-500 via-blue-500 to-indigo-500',
-    bgGlow: 'bg-indigo-500/20'
+    gradient: 'from-violet-600 to-purple-600',
+    bgGlow: 'bg-violet-500/20'
   }
 ];
 
@@ -65,13 +65,13 @@ const floatingIcons = [
 // Grid cell component for futuristic effect
 const GridCell = ({ delay, className }) => (
   <motion.div
-    className={`absolute w-8 h-8 md:w-12 md:h-12 border border-violet-500/10 dark:border-violet-400/20 ${className}`}
+    className={`absolute w-8 h-8 md:w-12 md:h-12 border border-violet-500/10 dark:border-violet-400/10 ${className}`}
     initial={{ opacity: 0, scale: 0 }}
     animate={{ opacity: 1, scale: 1 }}
     transition={{ delay, duration: 0.5 }}
   >
     <motion.div
-      className="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-rose-500/5"
+      className="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-violet-400/5"
       animate={{ opacity: [0, 0.5, 0] }}
       transition={{ duration: 3, repeat: Infinity, delay }}
     />
@@ -134,17 +134,17 @@ function Hero() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-[92vh] flex items-center bg-gradient-to-b from-slate-50 via-white to-slate-50/80 dark:from-[#09090b] dark:via-[#0c0c0f] dark:to-[#09090b] transition-all duration-700 ease-in-out relative overflow-hidden"
+      className="min-h-[92vh] flex items-center bg-gradient-to-b from-slate-50 via-white to-slate-50/80 dark:from-dark-body dark:via-dark-body dark:to-dark-body transition-colors duration-500 ease-smooth relative overflow-hidden gpu-accelerated"
     >
       {/* Futuristic Grid Background */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Main grid pattern */}
         <div
-          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.07]"
+          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04]"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(236, 72, 153, 0.3) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(236, 72, 153, 0.3) 1px, transparent 1px)
+              linear-gradient(rgba(139, 92, 246, 0.3) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(139, 92, 246, 0.3) 1px, transparent 1px)
             `,
             backgroundSize: '60px 60px'
           }}
@@ -152,7 +152,7 @@ function Hero() {
 
         {/* Animated grid overlay */}
         <motion.div
-          className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]"
+          className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
           style={{
             backgroundImage: `
               linear-gradient(rgba(139, 92, 246, 0.5) 1px, transparent 1px),
@@ -170,10 +170,9 @@ function Hero() {
           }}
         />
 
-        {/* Radial gradient overlays */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(236,72,153,0.1),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(139,92,246,0.1),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.05),transparent_70%)]" />
+        {/* Radial gradient overlays - violet only */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(139,92,246,0.08),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(139,92,246,0.06),transparent_50%)]" />
       </div>
 
       {/* Floating Grid Cells */}
@@ -209,11 +208,11 @@ function Hero() {
         ))}
       </div>
 
-      {/* Animated Gradient Orbs */}
+      {/* Animated Gradient Orbs - subtle violet glow */}
       <motion.div
-        className="absolute top-20 -left-32 w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full blur-[100px]"
+        className="absolute top-20 -left-32 w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full blur-[100px] dark:opacity-40"
         style={{
-          background: 'radial-gradient(circle, rgba(236,72,153,0.15) 0%, rgba(139,92,246,0.1) 50%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(139,92,246,0.15) 0%, rgba(139,92,246,0.08) 50%, transparent 70%)',
           x: moveX,
           y: moveY
         }}
@@ -228,9 +227,9 @@ function Hero() {
         }}
       />
       <motion.div
-        className="absolute -bottom-32 -right-32 w-[400px] h-[400px] md:w-[600px] md:h-[600px] rounded-full blur-[120px]"
+        className="absolute -bottom-32 -right-32 w-[400px] h-[400px] md:w-[600px] md:h-[600px] rounded-full blur-[120px] dark:opacity-30"
         style={{
-          background: 'radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(139,92,246,0.1) 50%, transparent 70%)'
+          background: 'radial-gradient(circle, rgba(139,92,246,0.12) 0%, rgba(139,92,246,0.06) 50%, transparent 70%)'
         }}
         animate={{
           scale: [1, 1.3, 1],
@@ -276,9 +275,9 @@ function Hero() {
               >
                 {/* Animated border glow */}
                 <motion.span
-                  className="absolute inset-0 rounded-full"
+                  className="absolute inset-0 rounded-full dark:hidden"
                   style={{
-                    background: 'linear-gradient(90deg, transparent, rgba(236,72,153,0.3), transparent)',
+                    background: 'linear-gradient(90deg, transparent, rgba(139,92,246,0.3), transparent)',
                     backgroundSize: '200% 100%'
                   }}
                   animate={{ backgroundPosition: ['200% 0', '-200% 0'] }}
@@ -303,9 +302,10 @@ function Hero() {
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 15, delay: 1.2 }}
                   whileHover={{ scale: 1.05, y: -2 }}
-                  className="relative px-4 py-1.5 bg-gradient-to-r from-violet-600 via-purple-600 to-rose-600 
-                            text-white rounded-full text-xs font-medium flex items-center gap-1.5 
-                            shadow-lg shadow-violet-500/30 dark:shadow-violet-500/20 overflow-hidden"
+                  className="relative px-4 py-1.5 bg-gradient-to-r from-violet-600 via-purple-600 to-violet-600 
+                            dark:bg-gradient-to-r dark:from-white dark:via-slate-100 dark:to-white
+                            text-white dark:text-zinc-800 rounded-full text-xs font-medium flex items-center gap-1.5 
+                            shadow-lg shadow-violet-500/30 dark:shadow-black/10 overflow-hidden"
                   style={{ backgroundSize: '200% 100%' }}
                 >
                   <motion.div
@@ -395,17 +395,17 @@ function Hero() {
                   whileHover={{
                     scale: 1.05,
                     y: -2,
-                    boxShadow: "0 10px 30px -10px rgba(236, 72, 153, 0.3)"
+                    boxShadow: "0 10px 30px -10px rgba(139, 92, 246, 0.3)"
                   }}
-                  className="relative px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-white/90 dark:bg-zinc-900/80 
-                            backdrop-blur-sm text-slate-700 dark:text-zinc-300 
-                            border border-slate-200/80 dark:border-zinc-700/60 
+                  className="relative px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-white/90 dark:bg-zinc-800/90 
+                            backdrop-blur-sm text-slate-700 dark:text-zinc-200 
+                            border border-slate-200/80 dark:border-zinc-600/50 
                             text-xs sm:text-sm font-medium shadow-sm hover:shadow-md cursor-default
                             transition-all duration-500 font-inter overflow-hidden group"
                 >
                   {/* Hover gradient effect */}
                   <motion.span
-                    className="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-rose-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-violet-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   />
                   {/* Corner accents */}
                   <span className="absolute top-0 left-0 w-2 h-2 border-t border-l border-violet-500/40 dark:border-violet-400/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -425,9 +425,11 @@ function Hero() {
               <motion.button
                 onClick={() => window.open('/simeonazehPortfolioUpdated.pdf', '_blank')}
                 className="group relative px-6 sm:px-8 py-3 sm:py-3.5 bg-gradient-to-r from-violet-600 via-purple-600 to-violet-600 
+                          dark:from-violet-600 dark:via-purple-600 dark:to-violet-600
                           text-white rounded-xl font-semibold 
                           flex items-center justify-center gap-2 w-full sm:w-auto
                           shadow-xl shadow-violet-600/25 dark:shadow-violet-500/20 overflow-hidden
+                          border border-violet-500/50 dark:border-violet-400/30
                           transition-all duration-500 font-inter text-sm sm:text-base"
                 style={{ backgroundSize: '200% 100%' }}
                 whileHover={{
@@ -463,21 +465,21 @@ function Hero() {
 
               <Link to="/contact" className="w-full sm:w-auto">
                 <motion.button
-                  className="group relative px-6 sm:px-8 py-3 sm:py-3.5 bg-white/90 dark:bg-zinc-900/80 
-                            backdrop-blur-xl border-2 border-violet-300/50 dark:border-zinc-700 
-                            text-violet-600 dark:text-violet-300 
+                  className="group relative px-6 sm:px-8 py-3 sm:py-3.5 bg-white/90 dark:bg-transparent 
+                            backdrop-blur-xl border-2 border-violet-300/50 dark:border-zinc-500/60 
+                            text-violet-600 dark:text-zinc-200 
                             rounded-xl font-semibold transition-all duration-500 w-full
-                            hover:border-violet-500 dark:hover:border-violet-500/50 
-                            shadow-lg shadow-violet-500/10 hover:shadow-xl hover:shadow-violet-500/20
+                            hover:border-violet-500 dark:hover:border-violet-400/50 dark:hover:text-violet-300
+                            shadow-lg shadow-violet-500/10 dark:shadow-none hover:shadow-xl hover:shadow-violet-500/20
                             font-inter overflow-hidden text-sm sm:text-base"
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  {/* Animated border gradient */}
+                  {/* Animated border gradient - light mode only */}
                   <motion.span
-                    className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 dark:hidden"
                     style={{
-                      background: 'linear-gradient(90deg, transparent, rgba(236,72,153,0.1), transparent)',
+                      background: 'linear-gradient(90deg, transparent, rgba(139,92,246,0.1), transparent)',
                       backgroundSize: '200% 100%'
                     }}
                     animate={{ backgroundPosition: ['200% 0', '-200% 0'] }}
@@ -495,12 +497,12 @@ function Hero() {
               transition={{ delay: 1.2, duration: 0.8 }}
               className="hidden md:flex items-center gap-4 pt-4"
             >
-              <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-violet-500/50 to-transparent" />
-              <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-zinc-400 font-mono">
-                <Sparkles size={12} className="text-violet-500 dark:text-violet-400" />
+              <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-violet-500/50 to-transparent dark:from-zinc-500/30" />
+              <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-300 font-mono">
+                <Sparkles size={12} className="text-violet-500 dark:text-slate-300" />
                 <span>Available for projects</span>
               </div>
-              <div className="h-px flex-1 max-w-[100px] bg-gradient-to-l from-rose-500/50 to-transparent" />
+              <div className="h-px flex-1 max-w-[100px] bg-gradient-to-l from-violet-500/50 to-transparent dark:from-zinc-500/30" />
             </motion.div>
           </motion.div>
 
@@ -515,25 +517,25 @@ function Hero() {
 
               {/* Rotating Grid Frame */}
               <motion.div
-                className="absolute inset-[-20px] md:inset-[-30px]"
+                className="absolute inset-[-20px] md:inset-[-30px] hidden dark:hidden"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
               >
                 <svg className="w-full h-full" viewBox="0 0 100 100">
                   <defs>
                     <linearGradient id="frameGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="rgba(236, 72, 153, 0.3)" />
-                      <stop offset="50%" stopColor="rgba(139, 92, 246, 0.3)" />
-                      <stop offset="100%" stopColor="rgba(236, 72, 153, 0.3)" />
+                      <stop offset="0%" stopColor="rgba(139, 92, 246, 0.3)" />
+                      <stop offset="50%" stopColor="rgba(139, 92, 246, 0.2)" />
+                      <stop offset="100%" stopColor="rgba(139, 92, 246, 0.3)" />
                     </linearGradient>
                   </defs>
                   <rect x="5" y="5" width="90" height="90" fill="none" stroke="url(#frameGradient)" strokeWidth="0.3" strokeDasharray="2,4" rx="8" />
                 </svg>
               </motion.div>
 
-              {/* Counter-rotating inner frame */}
+              {/* Counter-rotating inner frame - hidden in dark mode */}
               <motion.div
-                className="absolute inset-[-10px] md:inset-[-15px]"
+                className="absolute inset-[-10px] md:inset-[-15px] dark:hidden"
                 animate={{ rotate: -360 }}
                 transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
               >
@@ -542,7 +544,7 @@ function Hero() {
                 </svg>
               </motion.div>
 
-              {/* Corner Accents */}
+              {/* Corner Accents - more subtle in dark mode */}
               {[
                 { pos: 'top-0 left-0', rotate: 0 },
                 { pos: 'top-0 right-0', rotate: 90 },
@@ -551,19 +553,19 @@ function Hero() {
               ].map((corner, i) => (
                 <motion.div
                   key={i}
-                  className={`absolute ${corner.pos} w-6 h-6 md:w-8 md:h-8`}
+                  className={`absolute ${corner.pos} w-6 h-6 md:w-8 md:h-8 dark:opacity-30`}
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.8 + i * 0.1 }}
                   style={{ rotate: corner.rotate }}
                 >
-                  <div className="w-full h-full border-t-2 border-l-2 border-violet-500/50 dark:border-violet-400/50" />
+                  <div className="w-full h-full border-t-2 border-l-2 border-violet-500/50 dark:border-zinc-500/50" />
                 </motion.div>
               ))}
 
               {/* Glowing backdrop */}
               <motion.div
-                className="absolute inset-4 rounded-2xl bg-gradient-to-br from-violet-500/20 via-purple-500/15 to-rose-500/20 blur-2xl"
+                className="absolute inset-4 rounded-2xl bg-gradient-to-br from-violet-500/15 via-purple-500/10 to-violet-500/15 blur-2xl dark:from-violet-500/10 dark:via-purple-500/5 dark:to-violet-500/10"
                 animate={{
                   opacity: [0.4, 0.6, 0.4],
                   scale: [1, 1.05, 1]
@@ -580,18 +582,23 @@ function Hero() {
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 15 }}
               >
-                {/* Animated border gradient */}
+                {/* Animated border gradient - hidden in dark mode */}
                 <motion.div
-                  className="absolute inset-0 rounded-2xl p-[2px] z-0"
+                  className="absolute inset-0 rounded-2xl p-[2px] z-0 dark:hidden"
                   style={{
-                    background: 'linear-gradient(90deg, rgba(236,72,153,0.5), rgba(139,92,246,0.5), rgba(59,130,246,0.5), rgba(236,72,153,0.5))',
+                    background: 'linear-gradient(90deg, rgba(139,92,246,0.5), rgba(124,58,237,0.5), rgba(139,92,246,0.5))',
                     backgroundSize: '300% 100%'
                   }}
                   animate={{ backgroundPosition: ['0% 0%', '100% 0%'] }}
                   transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
                 >
-                  <div className="w-full h-full bg-white dark:bg-[#0d0d0d] rounded-2xl" />
+                  <div className="w-full h-full bg-white rounded-2xl" />
                 </motion.div>
+
+                {/* Simple border for dark mode */}
+                <div className="absolute inset-0 rounded-2xl p-[1px] z-0 hidden dark:block bg-zinc-700/50">
+                  <div className="w-full h-full bg-dark-body rounded-2xl" />
+                </div>
 
                 {/* Image */}
                 <div className="relative w-full h-full rounded-2xl overflow-hidden z-10">
@@ -635,8 +642,8 @@ function Hero() {
                   transition={{ delay: box.delay, type: "spring", stiffness: 200 }}
                 >
                   <motion.div
-                    className="relative bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl
-                              rounded-xl p-3 sm:p-4 shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-slate-200/80 dark:border-zinc-700/60
+                    className="relative bg-white/95 dark:bg-zinc-800/95 backdrop-blur-xl
+                              rounded-xl p-3 sm:p-4 shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-slate-200/80 dark:border-zinc-600/50
                               cursor-default overflow-hidden"
                     whileHover={{
                       scale: 1.05,
@@ -670,7 +677,7 @@ function Hero() {
                         {box.icon}
                       </motion.div>
                       <div>
-                        <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 font-inter uppercase tracking-wider">
+                        <p className="text-[10px] sm:text-xs text-gray-500 dark:text-zinc-400 font-inter uppercase tracking-wider">
                           {t(box.label)}
                         </p>
                         <p className="text-sm sm:text-base font-bold text-gray-900 dark:text-white font-mono">
@@ -680,13 +687,13 @@ function Hero() {
                     </div>
 
                     {/* Corner accent */}
-                    <div className="absolute bottom-1 right-1 w-2 h-2 border-b border-r border-gray-300 dark:border-gray-600 opacity-50" />
+                    <div className="absolute bottom-1 right-1 w-2 h-2 border-b border-r border-gray-300 dark:border-zinc-500 opacity-50" />
                   </motion.div>
                 </motion.div>
               ))}
 
               {/* Animated Data Points */}
-              <div className="absolute -right-2 md:-right-6 top-1/4 flex flex-col gap-2">
+              <div className="absolute -right-2 md:-right-6 top-1/4 flex flex-col gap-2 dark:opacity-50">
                 {[...Array(4)].map((_, i) => (
                   <motion.div
                     key={i}
@@ -696,7 +703,7 @@ function Hero() {
                     transition={{ delay: 1.4 + i * 0.1 }}
                   >
                     <motion.div
-                      className="h-1.5 w-1.5 md:h-2 md:w-2 rounded-full bg-gradient-to-r from-violet-500 to-purple-500"
+                      className="h-1.5 w-1.5 md:h-2 md:w-2 rounded-full bg-gradient-to-r from-violet-500 to-purple-500 dark:from-zinc-400 dark:to-zinc-500"
                       animate={{
                         opacity: [0.3, 1, 0.3],
                         scale: [1, 1.3, 1]
@@ -709,7 +716,7 @@ function Hero() {
                       }}
                     />
                     <motion.div
-                      className={`h-0.5 bg-gradient-to-r from-violet-500/50 to-transparent rounded-full`}
+                      className={`h-0.5 bg-gradient-to-r from-violet-500/50 to-transparent dark:from-zinc-500/50 rounded-full`}
                       style={{ width: `${20 + i * 8}px` }}
                       animate={{ opacity: [0.3, 0.7, 0.3] }}
                       transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
@@ -719,7 +726,7 @@ function Hero() {
               </div>
 
               {/* Floating Particles */}
-              <div className="absolute -left-4 md:-left-8 bottom-1/3">
+              <div className="absolute -left-4 md:-left-8 bottom-1/3 dark:opacity-40">
                 {[...Array(3)].map((_, i) => (
                   <motion.div
                     key={i}
@@ -735,7 +742,7 @@ function Hero() {
                       ease: "easeInOut"
                     }}
                   >
-                    <div className="w-3 h-3 md:w-4 md:h-4 rotate-45 border border-violet-500/40 dark:border-violet-400/50" />
+                    <div className="w-3 h-3 md:w-4 md:h-4 rotate-45 border border-violet-500/40 dark:border-zinc-500/50" />
                   </motion.div>
                 ))}
               </div>

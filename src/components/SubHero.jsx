@@ -32,7 +32,7 @@ function SubHero() {
 
   return (
     <motion.div
-      className="bg-light-body dark:bg-[#09090b] transition-colors duration-500 font-inter relative overflow-hidden"
+      className="bg-light-body dark:bg-dark-body transition-colors duration-500 ease-smooth font-inter relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
@@ -41,10 +41,10 @@ function SubHero() {
       {/* Background Elements */}
       <div className="absolute inset-0">
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-violet-50/30 via-transparent to-transparent dark:from-violet-950/20 dark:via-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-violet-50/30 via-transparent to-transparent dark:from-violet-950/10 dark:via-transparent" />
 
         {/* Grid pattern */}
-        <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
+        <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.02]"
           style={{
             backgroundImage: `linear-gradient(rgba(139, 92, 246, 0.5) 1px, transparent 1px),
                               linear-gradient(90deg, rgba(139, 92, 246, 0.5) 1px, transparent 1px)`,
@@ -52,9 +52,9 @@ function SubHero() {
           }}
         />
 
-        {/* Floating orbs */}
+        {/* Floating orbs - subtle violet glow */}
         <motion.div
-          className="absolute top-10 right-1/4 w-64 h-64 bg-violet-500/10 dark:bg-violet-500/5 rounded-full blur-3xl"
+          className="absolute top-10 right-1/4 w-64 h-64 bg-violet-500/5 dark:bg-violet-500/5 rounded-full blur-3xl"
           animate={{
             y: [0, -20, 0],
             scale: [1, 1.1, 1],
@@ -62,7 +62,7 @@ function SubHero() {
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-10 left-1/4 w-48 h-48 bg-purple-500/10 dark:bg-purple-500/5 rounded-full blur-3xl"
+          className="absolute bottom-10 left-1/4 w-48 h-48 bg-violet-500/5 dark:bg-violet-500/3 rounded-full blur-3xl"
           animate={{
             y: [0, 20, 0],
             scale: [1, 0.9, 1],

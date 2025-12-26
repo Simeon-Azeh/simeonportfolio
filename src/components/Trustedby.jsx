@@ -146,7 +146,7 @@ const TrustedBy = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="py-20 bg-light-body dark:bg-[#09090b] transition-colors duration-500 font-inter relative overflow-hidden"
+      className="py-20 bg-light-body dark:bg-dark-body transition-colors duration-500 ease-smooth font-inter relative overflow-hidden"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"

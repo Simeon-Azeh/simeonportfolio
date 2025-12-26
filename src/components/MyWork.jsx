@@ -67,7 +67,7 @@ const MyWork = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-light-body dark:bg-[#09090b] transition-colors duration-500 font-inter relative overflow-hidden py-16"
+      className="min-h-screen bg-light-body dark:bg-dark-body transition-colors duration-500 ease-smooth font-inter relative overflow-hidden py-16"
     >
       {/* Background Pattern */}
       <motion.div
@@ -226,8 +226,8 @@ const MyWork = () => {
                       setCurrentIndex(index);
                     }}
                     className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex
-                        ? 'bg-violet-600 dark:bg-violet-400 w-4'
-                        : 'bg-slate-400/50 dark:bg-slate-600/50 hover:bg-violet-500/50 dark:hover:bg-violet-400/50'
+                      ? 'bg-violet-600 dark:bg-violet-400 w-4'
+                      : 'bg-slate-400/50 dark:bg-slate-600/50 hover:bg-violet-500/50 dark:hover:bg-violet-400/50'
                       }`}
                     whileHover={{ scale: 1.2 }}
                     whileTap={{ scale: 0.9 }}
