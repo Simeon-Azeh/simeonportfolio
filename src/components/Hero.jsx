@@ -25,7 +25,7 @@ const infoBoxes = [
     icon: <FiCode size={20} />,
     label: 'info_frontend_label',
     value: 'info_frontend_value',
-    position: 'top-4 -right-4 md:top-0 md:-right-16 lg:-right-20',
+    position: '-top-12 right-4 sm:-top-14 sm:right-0 md:-top-16 md:-right-16 lg:-right-20',
     delay: 0.8,
     gradient: 'from-violet-600 to-purple-600',
     bgGlow: 'bg-violet-500/20'
@@ -35,7 +35,7 @@ const infoBoxes = [
     icon: <FiMonitor size={20} />,
     label: 'info_ui_design_label',
     value: 'info_ui_design_value',
-    position: 'top-1/3 -left-4 md:-left-16 lg:-left-20',
+    position: 'top-1/4 -left-2 sm:-left-4 md:-left-20 lg:-left-24',
     delay: 1.0,
     gradient: 'from-violet-600 to-purple-600',
     bgGlow: 'bg-violet-500/20'
@@ -45,7 +45,7 @@ const infoBoxes = [
     icon: <FiSmartphone size={20} />,
     label: 'info_mobile_label',
     value: 'info_mobile_value',
-    position: 'bottom-8 -right-4 md:bottom-10 md:-right-12 lg:-right-16',
+    position: '-bottom-12 right-4 sm:-bottom-14 sm:right-0 md:-bottom-8 md:-right-16 lg:-right-20',
     delay: 1.2,
     gradient: 'from-violet-600 to-purple-600',
     bgGlow: 'bg-violet-500/20'
@@ -217,7 +217,7 @@ function Hero() {
 
           {/* Right side - Image Section */}
           <div className="flex-1 relative w-full max-w-md lg:max-w-lg">
-            <div className="relative mx-auto w-[260px] h-[260px] sm:w-[320px] sm:h-[320px] md:w-[380px] md:h-[380px] lg:w-[420px] lg:h-[420px]">
+            <div className="relative mx-auto w-full h-[320px] sm:w-[320px] sm:h-[320px] md:w-[380px] md:h-[380px] lg:w-[420px] lg:h-[420px]">
 
               {/* Corner Accents - static */}
               {[
