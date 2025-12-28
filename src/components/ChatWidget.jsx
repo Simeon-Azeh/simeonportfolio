@@ -602,12 +602,12 @@ const ChatWidget = () => {
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.3 }}
                           className={`max-w-[75%] rounded-2xl px-4 py-2 shadow-sm ${message.type === 'user'
-                              ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-br-none'
-                              : message.type === 'system'
-                                ? 'bg-gradient-to-r from-slate-100 to-slate-200 dark:from-zinc-800 dark:to-zinc-700 text-slate-800 dark:text-white text-center max-w-[90%] mx-auto'
-                                : message.type === 'admin'
-                                  ? 'bg-green-100 dark:bg-green-800/30 text-green-800 dark:text-green-200 rounded-bl-none'
-                                  : 'bg-white dark:bg-zinc-800 text-slate-800 dark:text-white rounded-bl-none'
+                            ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-br-none'
+                            : message.type === 'system'
+                              ? 'bg-gradient-to-r from-slate-100 to-slate-200 dark:from-zinc-800 dark:to-zinc-700 text-slate-800 dark:text-white text-center max-w-[90%] mx-auto'
+                              : message.type === 'admin'
+                                ? 'bg-green-100 dark:bg-green-800/30 text-green-800 dark:text-green-200 rounded-bl-none'
+                                : 'bg-white dark:bg-zinc-800 text-slate-800 dark:text-white rounded-bl-none'
                             }`}
                         >
                           <div className="text-sm md:text-base">{message.text}</div>
@@ -619,10 +619,10 @@ const ChatWidget = () => {
                               </span>
                             )}
                             <span className={`${message.type === 'user'
-                                ? 'text-white/70'
-                                : message.type === 'admin'
-                                  ? 'text-green-600/70 dark:text-green-400/70 ml-auto'
-                                  : 'text-slate-500 dark:text-slate-400'
+                              ? 'text-white/70'
+                              : message.type === 'admin'
+                                ? 'text-green-600/70 dark:text-green-400/70 ml-auto'
+                                : 'text-slate-500 dark:text-slate-400'
                               }`}>
                               {formatTimestamp(message.timestamp)}
                             </span>
@@ -669,8 +669,8 @@ const ChatWidget = () => {
                       type="submit"
                       disabled={!userInput.trim()}
                       className={`p-2.5 rounded-r-full ${userInput.trim()
-                          ? 'bg-gradient-to-r from-violet-500 to-purple-600 text-white shadow-md hover:shadow-lg hover:shadow-violet-500/20'
-                          : 'bg-slate-300 dark:bg-zinc-700 text-slate-500 dark:text-slate-400 cursor-not-allowed'
+                        ? 'bg-gradient-to-r from-violet-500 to-purple-600 text-white shadow-md hover:shadow-lg hover:shadow-violet-500/20'
+                        : 'bg-slate-300 dark:bg-zinc-700 text-slate-500 dark:text-slate-400 cursor-not-allowed'
                         } transition-all`}
                     >
                       <FiSend className="text-lg" />

@@ -360,8 +360,8 @@ const ContactForm = () => {
                   type="submit"
                   disabled={isSubmitting}
                   className={`w-full flex items-center justify-center px-6 py-3 text-white font-medium rounded-lg shadow-lg ${isSubmitting
-                      ? 'bg-gray-400 dark:bg-gray-700 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 dark:from-violet-600 dark:to-purple-600 shadow-violet-500/20'
+                    ? 'bg-gray-400 dark:bg-gray-700 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 dark:from-violet-600 dark:to-purple-600 shadow-violet-500/20'
                     } transition-all duration-300`}
                   whileHover={!isSubmitting ? { y: -2 } : {}}
                   whileTap={!isSubmitting ? { scale: 0.98 } : {}}

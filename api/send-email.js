@@ -2,21 +2,21 @@ import nodemailer from 'nodemailer';
 
 // Brevo SMTP Configuration
 const transporter = nodemailer.createTransport({
-  host: 'smtp-relay.brevo.com',
-  port: 587,
-  secure: false,
-  auth: {
-    user: '9ee24b001@smtp-brevo.com',
-    pass: '8s61gNDBqdKaGtXh'
-  }
+    host: 'smtp-relay.brevo.com',
+    port: 587,
+    secure: false,
+    auth: {
+        user: '9ee24b001@smtp-brevo.com',
+        pass: '8s61gNDBqdKaGtXh'
+    }
 });
 
 // Email templates
 const getAdminNotificationTemplate = (type, data) => {
-  if (type === 'contact') {
-    return {
-      subject: `New Contact Form Submission: ${data.subject || 'No Subject'}`,
-      html: `
+    if (type === 'contact') {
+        return {
+            subject: `New Contact Form Submission: ${data.subject || 'No Subject'}`,
+            html: `
         <!DOCTYPE html>
         <html>
         <head>
@@ -64,11 +64,11 @@ const getAdminNotificationTemplate = (type, data) => {
         </body>
         </html>
       `
-    };
-  } else if (type === 'chat') {
-    return {
-      subject: `New Chat Message from ${data.name || data.email || 'Visitor'}`,
-      html: `
+        };
+    } else if (type === 'chat') {
+        return {
+            subject: `New Chat Message from ${data.name || data.email || 'Visitor'}`,
+            html: `
         <!DOCTYPE html>
         <html>
         <head>
@@ -128,16 +128,16 @@ const getAdminNotificationTemplate = (type, data) => {
         </body>
         </html>
       `
-    };
-  }
+        };
+    }
 };
 
 const getConfirmationTemplate = (type, data) => {
-  return {
-    subject: type === 'contact' 
-      ? "Thanks for reaching out! I've received your message" 
-      : "Thanks for your message! I'll get back to you soon",
-    html: `
+    return {
+        subject: type === 'contact'
+            ? "Thanks for reaching out! I've received your message"
+            : "Thanks for your message! I'll get back to you soon",
+        html: `
       <!DOCTYPE html>
       <html>
       <head>
@@ -214,68 +214,68 @@ const getConfirmationTemplate = (type, data) => {
       </body>
       </html>
     `
-  };
+    };
 };
 
 export default async function handler(req, res) {
-  // Enable CORS
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+    // Enable CORS
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+    res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
-  }
-
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
-  try {
-    const { type, data } = req.body;
-
-    if (!type || !data) {
-      return res.status(400).json({ error: 'Missing type or data' });
+    if (req.method === 'OPTIONS') {
+        res.status(200).end();
+        return;
     }
 
-    if (!data.email && !data.message) {
-      return res.status(400).json({ error: 'Missing required fields' });
+    if (req.method !== 'POST') {
+        return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    // Get email templates
-    const adminTemplate = getAdminNotificationTemplate(type, data);
-    const confirmationTemplate = getConfirmationTemplate(type, data);
+    try {
+        const { type, data } = req.body;
 
-    // Send notification email to admin
-    await transporter.sendMail({
-      from: '"Portfolio Contact" <hello@simeonazeh.me>',
-      to: 's.kongnyuy@alustudent.com',
-      subject: adminTemplate.subject,
-      html: adminTemplate.html
-    });
+        if (!type || !data) {
+            return res.status(400).json({ error: 'Missing type or data' });
+        }
 
-    // Send confirmation email to user (only if they provided an email)
-    if (data.email) {
-      await transporter.sendMail({
-        from: '"Simeon Azeh" <hello@simeonazeh.me>',
-        to: data.email,
-        subject: confirmationTemplate.subject,
-        html: confirmationTemplate.html
-      });
+        if (!data.email && !data.message) {
+            return res.status(400).json({ error: 'Missing required fields' });
+        }
+
+        // Get email templates
+        const adminTemplate = getAdminNotificationTemplate(type, data);
+        const confirmationTemplate = getConfirmationTemplate(type, data);
+
+        // Send notification email to admin
+        await transporter.sendMail({
+            from: '"Portfolio Contact" <hello@simeonazeh.me>',
+            to: 's.kongnyuy@alustudent.com',
+            subject: adminTemplate.subject,
+            html: adminTemplate.html
+        });
+
+        // Send confirmation email to user (only if they provided an email)
+        if (data.email) {
+            await transporter.sendMail({
+                from: '"Simeon Azeh" <hello@simeonazeh.me>',
+                to: data.email,
+                subject: confirmationTemplate.subject,
+                html: confirmationTemplate.html
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: 'Emails sent successfully'
+        });
+
+    } catch (error) {
+        console.error('Email sending error:', error);
+        return res.status(500).json({
+            error: 'Failed to send email',
+            details: error.message
+        });
     }
-
-    return res.status(200).json({ 
-      success: true, 
-      message: 'Emails sent successfully' 
-    });
-
-  } catch (error) {
-    console.error('Email sending error:', error);
-    return res.status(500).json({ 
-      error: 'Failed to send email', 
-      details: error.message 
-    });
-  }
 }

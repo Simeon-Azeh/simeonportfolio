@@ -107,8 +107,8 @@ const MoreWaysToContact = () => {
                       onClick={() => handleCopy(method.value)}
                       whileTap={{ scale: 0.95 }}
                       className={`flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium ${copiedText === method.value
-                          ? 'bg-green-100 dark:bg-[#1a1a1a]/30 text-green-700 dark:text-green-400'
-                          : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:border-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600'
+                        ? 'bg-green-100 dark:bg-[#1a1a1a]/30 text-green-700 dark:text-green-400'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:border-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600'
                         } transition-colors`}
                     >
                       {copiedText === method.value ? (
