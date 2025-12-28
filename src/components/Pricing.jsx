@@ -155,16 +155,16 @@ const ComparisonTable = ({ category, plans }) => {
                             <td key={planIndex} className="px-6 py-4 text-center">
                               {feature.available ? (
                                 typeof feature.value === 'string' ? (
-                                  <span className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium font-inter bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 text-green-700 dark:text-green-300">
+                                  <span className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium font-inter bg-gradient-to-r from-violet-100 to-purple-100 dark:from-violet-900/30 dark:to-purple-900/30 text-violet-700 dark:text-violet-300">
                                     {feature.value}
                                   </span>
                                 ) : (
-                                  <div className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30">
-                                    <BsCheck className="w-6 h-6 text-green-600 dark:text-green-400" />
+                                  <div className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-violet-100 to-purple-100 dark:from-violet-900/30 dark:to-purple-900/30">
+                                    <BsCheck className="w-6 h-6 text-violet-600 dark:text-violet-400" />
                                   </div>
                                 )
                               ) : (
-                                <div className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-slate-100 dark:bg-dark-tertiary">
+                                <div className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-slate-100 dark:bg-zinc-800">
                                   <BsX className="w-6 h-6 text-slate-400 dark:text-slate-600" />
                                 </div>
                               )}
@@ -184,13 +184,13 @@ const ComparisonTable = ({ category, plans }) => {
       {/* Table Legend */}
       <div className="mt-8 flex justify-center gap-8 text-sm font-inter">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-full bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 flex items-center justify-center">
-            <BsCheck className="w-4 h-4 text-green-600 dark:text-green-400" />
+          <div className="w-6 h-6 rounded-full bg-gradient-to-br from-violet-100 to-purple-100 dark:from-violet-900/40 dark:to-purple-900/40 flex items-center justify-center">
+            <BsCheck className="w-4 h-4 text-violet-600 dark:text-violet-400" />
           </div>
           <span className="text-slate-600 dark:text-slate-400">{t('included', 'Included')}</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-full bg-slate-100 dark:bg-dark-tertiary flex items-center justify-center">
+          <div className="w-6 h-6 rounded-full bg-slate-100 dark:bg-zinc-800 flex items-center justify-center">
             <BsX className="w-4 h-4 text-slate-400 dark:text-slate-600" />
           </div>
           <span className="text-slate-600 dark:text-slate-400">{t('not_included', 'Not Included')}</span>

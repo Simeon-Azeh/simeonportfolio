@@ -327,12 +327,40 @@ const ChatWidget = () => {
           if (waitingForContact) {
             setTimeout(async () => {
               if (isValidContact(userInput)) {
+                // Extract email or phone from input
+                const emailRegex = /[^\s@]+@[^\s@]+\.[^\s@]+/;
+                const phoneRegex = /[\d\s\-\+\(\)]{10,}/;
+                const extractedEmail = userInput.match(emailRegex)?.[0];
+                const extractedPhone = userInput.match(phoneRegex)?.[0];
+
                 // If it looks like a valid contact, thank them
                 await addDoc(messagesRef, {
                   text: "Thank you for providing your contact information! Simeon will reach out to you soon.",
                   type: 'assistant',
                   timestamp: serverTimestamp(),
                 });
+
+                // Send email notification via API
+                try {
+                  await fetch('/api/send-email', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                      type: 'chat',
+                      data: {
+                        email: extractedEmail || null,
+                        phone: extractedPhone || null,
+                        message: userInput,
+                        chatId: chatId,
+                        visitorId: visitorId
+                      }
+                    })
+                  });
+                } catch (emailError) {
+                  console.warn('Email notification error:', emailError);
+                }
 
                 setTimeout(async () => {
                   await addDoc(messagesRef, {
@@ -361,6 +389,26 @@ const ChatWidget = () => {
                 type: 'assistant',
                 timestamp: serverTimestamp(),
               });
+
+              // Send email notification for follow-up messages
+              try {
+                await fetch('/api/send-email', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    type: 'chat',
+                    data: {
+                      message: userInput,
+                      chatId: chatId,
+                      visitorId: visitorId
+                    }
+                  })
+                });
+              } catch (emailError) {
+                console.warn('Email notification error:', emailError);
+              }
 
               setIsTyping(false);
             }, 1000);

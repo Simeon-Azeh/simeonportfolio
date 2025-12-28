@@ -152,8 +152,9 @@ function TestimonialCard({ name, position, image, text, rating, company, country
         exit={{ opacity: 0, y: -20 }}
         whileHover={{ y: -8, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
         transition={{ duration: 0.3 }}
-        className={`bg-white dark:bg-zinc-900/80 rounded-xl p-6 dark:shadow-none
-                   border border-slate-200 dark:border-zinc-800 font-inter h-full flex flex-col
+        className={`bg-white dark:bg-zinc-900/90 rounded-xl p-6 dark:shadow-none
+                   border border-slate-200 dark:border-zinc-700/50 font-inter h-full flex flex-col
+                   backdrop-blur-sm relative
                    ${isPreview ? 'opacity-70 blur-[1px]' : ''}`}
       >
         <div className="absolute -top-3 left-6">
@@ -248,15 +249,15 @@ function TestimonialCard({ name, position, image, text, rating, company, country
       className="w-full md:w-4/5 mx-auto py-8 px-6 md:px-0"
     >
       <motion.div
-        className="bg-white dark:bg-zinc-900/80 rounded-2xl p-8 md:p-10 shadow-xl dark:shadow-none relative
-                   border border-slate-200 border-solid dark:border-zinc-800 font-inter overflow-hidden
+        className="bg-white dark:bg-zinc-900/90 rounded-2xl p-8 md:p-10 shadow-xl dark:shadow-none relative
+                   border border-slate-200 border-solid dark:border-zinc-700/50 font-inter overflow-hidden
                    backdrop-blur-sm"
         whileHover={{ y: -5 }}
         transition={{ duration: 0.3 }}
       >
         {/* Background decoration */}
-        <div className="absolute -top-20 -right-20 w-40 h-40 bg-violet-100 dark:bg-violet-900/20 rounded-full opacity-50"></div>
-        <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-purple-100 dark:bg-purple-900/20 rounded-full opacity-50"></div>
+        <div className="absolute -top-20 -right-20 w-40 h-40 bg-violet-100 dark:bg-violet-500/10 rounded-full opacity-50"></div>
+        <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-purple-100 dark:bg-purple-500/10 rounded-full opacity-50"></div>
 
         <div className="absolute -top-4 left-8">
           <FaQuoteLeft className="text-4xl text-violet-600 dark:text-violet-400 opacity-20" />
@@ -694,8 +695,8 @@ function ReviewSummary({ testimonials }) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white dark:bg-[#1a1a1a] rounded-2xl p-6 md:p-8 shadow-[0_4px_12px_0_rgba(0,0,0,0.05)] dark:shadow-none mb-8
-                border border-gray-200 dark:border-gray-800 backdrop-blur-sm bg-white/90 dark:bg-[#1a1a1a]/90"
+      className="bg-white dark:bg-zinc-900/90 rounded-2xl p-6 md:p-8 shadow-[0_4px_12px_0_rgba(0,0,0,0.05)] dark:shadow-none mb-8
+                border border-gray-200 dark:border-zinc-700/50 backdrop-blur-sm font-inter"
     >
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Average Rating */}
@@ -765,7 +766,7 @@ function ReviewSummary({ testimonials }) {
               return (
                 <motion.div
                   key={country}
-                  className="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-800 rounded-lg"
+                  className="flex items-center justify-between p-2 bg-gray-50 dark:bg-zinc-800/80 rounded-lg"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: stats.sortedCountries.indexOf({ country, count }) * 0.05 }}
@@ -948,9 +949,9 @@ function Testimonial() {
               <button
                 type="button"
                 onClick={() => setViewMode('grid')}
-                className={`px-4 py-2 text-sm font-medium rounded-l-lg ${viewMode === 'grid'
+                className={`px-4 py-2 text-sm font-medium font-inter rounded-l-lg border-r border-slate-200 dark:border-zinc-700 ${viewMode === 'grid'
                   ? 'bg-violet-600 text-white'
-                  : 'bg-white dark:bg-zinc-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-zinc-700'
+                  : 'bg-white dark:bg-zinc-900/90 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-zinc-800'
                   }`}
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -960,9 +961,9 @@ function Testimonial() {
               <button
                 type="button"
                 onClick={() => setViewMode('carousel')}
-                className={`px-4 py-2 text-sm font-medium rounded-r-lg ${viewMode === 'carousel'
+                className={`px-4 py-2 text-sm font-medium font-inter rounded-r-lg ${viewMode === 'carousel'
                   ? 'bg-violet-600 text-white'
-                  : 'bg-white dark:bg-zinc-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-zinc-700'
+                  : 'bg-white dark:bg-zinc-900/90 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-zinc-800'
                   }`}
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -977,7 +978,7 @@ function Testimonial() {
           <div className="py-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[1, 2, 3].map(i => (
-                <div key={i} className="bg-white dark:bg-[#1a1a1a] rounded-xl p-6 shadow-[0_4px_12px_0_rgba(0,0,0,0.05)]">
+                <div key={i} className="bg-white dark:bg-zinc-900/90 rounded-xl p-6 shadow-[0_4px_12px_0_rgba(0,0,0,0.05)] dark:shadow-none border border-slate-200 dark:border-zinc-700/50">
                   <div className="flex items-center gap-4 mb-6">
                     <Skeleton.Avatar active size={56} />
                     <div>
@@ -994,8 +995,8 @@ function Testimonial() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="bg-white dark:bg-[#1a1a1a] rounded-2xl p-8 md:p-10 shadow-[0_4px_12px_0_rgba(0,0,0,0.05)] dark:shadow-none
-                        border border-gray-200 border-solid dark:border-gray-800 text-center py-16"
+            className="bg-white dark:bg-zinc-900/90 rounded-2xl p-8 md:p-10 shadow-[0_4px_12px_0_rgba(0,0,0,0.05)] dark:shadow-none
+                        border border-gray-200 border-solid dark:border-zinc-700/50 text-center py-16 font-inter"
           >
             <Empty
               image={Empty.PRESENTED_IMAGE_SIMPLE}
@@ -1071,15 +1072,15 @@ function Testimonial() {
                     disabled={page === 0}
                     className={`w-10 h-10 rounded-full flex items-center justify-center
                               ${page === 0
-                        ? 'bg-gray-200 text-gray-400 dark:bg-gray-800 dark:text-gray-600 cursor-not-allowed'
-                        : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-white shadow-md'}`}
+                        ? 'bg-gray-200 text-gray-400 dark:bg-zinc-800 dark:text-zinc-600 cursor-not-allowed'
+                        : 'bg-white dark:bg-zinc-900/90 text-gray-700 dark:text-white shadow-md border border-transparent dark:border-zinc-700/50'}`}
                     aria-label="Previous page"
                   >
                     <HiChevronLeft size={20} />
                   </motion.button>
 
-                  <div className="px-4 py-2 bg-white dark:bg-gray-800 rounded-lg shadow-[0_4px_12px_0_rgba(0,0,0,0.05)]">
-                    <span className="text-sm font-medium text-gray-700 dark:text-white">
+                  <div className="px-4 py-2 bg-white dark:bg-zinc-900/90 rounded-lg shadow-[0_4px_12px_0_rgba(0,0,0,0.05)] border border-transparent dark:border-zinc-700/50">
+                    <span className="text-sm font-medium font-inter text-gray-700 dark:text-white">
                       {page + 1} / {totalPages}
                     </span>
                   </div>
@@ -1091,8 +1092,8 @@ function Testimonial() {
                     disabled={page >= totalPages - 1}
                     className={`w-10 h-10 rounded-full flex items-center justify-center
                               ${page >= totalPages - 1
-                        ? 'bg-gray-200 text-gray-400 dark:bg-gray-800 dark:text-gray-600 cursor-not-allowed'
-                        : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-white shadow-md'}`}
+                        ? 'bg-gray-200 text-gray-400 dark:bg-zinc-800 dark:text-zinc-600 cursor-not-allowed'
+                        : 'bg-white dark:bg-zinc-900/90 text-gray-700 dark:text-white shadow-md border border-transparent dark:border-zinc-700/50'}`}
                     aria-label="Next page"
                   >
                     <HiChevronRight size={20} />
@@ -1124,9 +1125,9 @@ function Testimonial() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={handlePrev}
-                className="w-10 h-10 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-md 
+                className="w-10 h-10 rounded-full bg-white/80 dark:bg-zinc-900/90 backdrop-blur-sm shadow-md 
                           flex items-center justify-center text-gray-700 dark:text-white pointer-events-auto
-                          hover:bg-white dark:hover:bg-gray-700 transition-colors"
+                          hover:bg-white dark:hover:bg-zinc-800 transition-colors border border-transparent dark:border-zinc-700/50"
                 aria-label="Previous testimonial"
               >
                 <HiChevronLeft size={20} />
@@ -1135,9 +1136,9 @@ function Testimonial() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={handleNext}
-                className="w-10 h-10 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-md 
+                className="w-10 h-10 rounded-full bg-white/80 dark:bg-zinc-900/90 backdrop-blur-sm shadow-md 
                           flex items-center justify-center text-gray-700 dark:text-white pointer-events-auto
-                          hover:bg-white dark:hover:bg-gray-700 transition-colors"
+                          hover:bg-white dark:hover:bg-zinc-800 transition-colors border border-transparent dark:border-zinc-700/50"
                 aria-label="Next testimonial"
               >
                 <HiChevronRight size={20} />

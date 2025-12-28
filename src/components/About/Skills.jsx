@@ -135,7 +135,7 @@ const Skills = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-white dark:bg-dark-body py-16 relative overflow-hidden font-inter transition-colors duration-500 ease-smooth"
+      className="bg-slate-50 dark:bg-dark-body py-16 relative overflow-hidden font-inter transition-colors duration-500 ease-smooth"
     >
       {/* Background Pattern */}
       <motion.div

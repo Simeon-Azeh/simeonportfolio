@@ -5,7 +5,7 @@ import i18n from './routes/i18n';
 import { ChatProvider } from './contexts/ChatContext';
 import { AuthProvider, ProtectedRoute } from './contexts/AuthContext';
 import ChatWidget from './components/ChatWidget';
-import { Analytics } from '@vercel/analytics/react'; 
+import { Analytics } from '@vercel/analytics/react';
 
 // Import all page components directly
 import Home from './pages/Home';
@@ -20,6 +20,7 @@ import Login from './admin/login';
 import Dashboard from './admin/dashboard';
 import Reviews from './pages/Reviews';
 import Referrals from './pages/referrals';
+import SEOServices from './pages/SEOServices';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -48,7 +49,7 @@ function App() {
     <HelmetProvider> {/* Wrapped the entire app with HelmetProvider */}
       <AuthProvider>
         <ChatProvider>
-           <Analytics />
+          <Analytics />
           <BrowserRouter>
             <ScrollToTop />
             <Routes>
@@ -63,33 +64,34 @@ function App() {
               <Route path="/projects/:projectId" element={<ProjectCase />} />
               <Route path='/review' element={<Reviews />} />
               <Route path='/referrals' element={<Referrals />} />
+              <Route path='/seo' element={<SEOServices />} />
 
-              
+
               {/* Admin Routes */}
               <Route path="/admin/login" element={<Login />} />
-              <Route 
-                path="/admin/dashboard" 
+              <Route
+                path="/admin/dashboard"
                 element={
                   <ProtectedRoute>
                     <Dashboard />
                   </ProtectedRoute>
-                } 
+                }
               />
-              <Route 
-                path="/admin/*" 
+              <Route
+                path="/admin/*"
                 element={
                   <ProtectedRoute>
                     <Dashboard />
                   </ProtectedRoute>
-                } 
+                }
               />
-              
+
               {/* Fallback Route - 404 Not Found */}
               <Route path="*" element={<NotFound />} />
             </Routes>
-            
+
             <ConditionalChatWidget />
-           
+
           </BrowserRouter>
         </ChatProvider>
       </AuthProvider>

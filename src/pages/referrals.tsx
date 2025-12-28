@@ -223,7 +223,7 @@ const Referrals = () => {
               <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-purple-600 dark:from-violet-400 dark:to-purple-400 font-montserrat-alt">
                 {t('referral_hero_title', 'Earn Money by Referring Clients')}
               </h1>
-              <p className="text-xl text-gray-600 dark:text-white/80 max-w-3xl mx-auto mb-8 font-inter">
+              <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto mb-8 font-inter">
                 {t('referral_hero_subtitle', 'Know someone who needs web development, design, or mobile app services? Refer them and earn up to XAF 150,000 per referral!')}
               </p>
 
@@ -240,7 +240,7 @@ const Referrals = () => {
                   </button>
                 </Link>
                 <a href="#how-it-works">
-                  <button className="bg-white dark:bg-[#1a1a1a] text-light-text dark:text-white px-8 py-4 rounded-lg font-medium border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 hover:bg-gray-50 dark:hover:bg-gray-800">
+                  <button className="bg-white dark:bg-zinc-900/90 text-light-text dark:text-white px-8 py-4 rounded-lg font-medium border border-gray-200 dark:border-zinc-700/50 hover:shadow-xl transition-all duration-300 hover:bg-gray-50 dark:hover:bg-zinc-800/80">
                     {t('referral_cta_learn', 'How It Works')}
                   </button>
                 </a>
@@ -276,7 +276,7 @@ const Referrals = () => {
         </section>
 
         {/* Commission Tiers */}
-        <section className="py-20 px-6 bg-gray-50 dark:bg-[#0d0d0d] relative overflow-hidden">
+        <section className="py-20 px-6 bg-slate-50 dark:bg-dark-body relative overflow-hidden">
           <motion.div
             className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-violet-600/30 to-transparent"
             animate={{
@@ -297,16 +297,16 @@ const Referrals = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900/20 px-4 py-2 rounded-full mb-4">
-                <BsCurrencyDollar className="text-blue-600 dark:text-blue-400" />
-                <span className="text-blue-600 dark:text-blue-400 font-medium text-sm">
+              <div className="inline-flex items-center gap-2 bg-violet-100 dark:bg-violet-900/20 px-4 py-2 rounded-full mb-4">
+                <BsCurrencyDollar className="text-violet-600 dark:text-violet-400" />
+                <span className="text-violet-600 dark:text-violet-400 font-medium text-sm">
                   {t('referral_commission_label', 'Commission Rates')}
                 </span>
               </div>
               <h2 className="text-3xl md:text-5xl font-bold mb-4 text-light-text dark:text-white font-montserrat-alt">
                 {t('referral_commission_title', 'Commission Structure')}
               </h2>
-              <p className="text-gray-600 dark:text-white/70 max-w-2xl mx-auto font-inter">
+              <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-inter">
                 {t('referral_commission_subtitle', 'Earn competitive commissions based on project type and value')}
               </p>
             </motion.div>
@@ -323,10 +323,10 @@ const Referrals = () => {
                   key={index}
                   variants={itemVariants}
                   whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                  className="bg-white dark:bg-[#1a1a1a] p-8 rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-300 relative group"
+                  className="bg-white dark:bg-zinc-900/90 p-8 rounded-2xl border border-slate-200 dark:border-zinc-700/50 hover:shadow-2xl transition-all duration-300 relative group"
                 >
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-transparent to-gray-100 dark:from-transparent dark:to-gray-800/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    className="absolute inset-0 bg-gradient-to-br from-transparent to-slate-100 dark:from-transparent dark:to-zinc-800/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   />
 
                   <div className="relative z-10">
@@ -342,17 +342,17 @@ const Referrals = () => {
                       {tier.commission}
                     </div>
 
-                    <p className="text-gray-600 dark:text-white/70 mb-6 font-inter">
+                    <p className="text-slate-600 dark:text-slate-400 mb-6 font-inter">
                       {tier.description}
                     </p>
 
                     <div className="space-y-2">
-                      <p className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 font-inter">
+                      <p className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 font-inter">
                         {t('referral_examples', 'Examples:')}
                       </p>
                       {tier.examples.map((example, i) => (
-                        <div key={i} className="flex items-start gap-2 text-sm text-gray-600 dark:text-white/80">
-                          <BsCheckCircleFill className="text-green-500 mt-1 flex-shrink-0" size={14} />
+                        <div key={i} className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
+                          <BsCheckCircleFill className="text-violet-500 dark:text-violet-400 mt-1 flex-shrink-0" size={14} />
                           <span className="font-inter">{example}</span>
                         </div>
                       ))}
@@ -373,16 +373,16 @@ const Referrals = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <div className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900/20 px-4 py-2 rounded-full mb-4">
-                <FaRocket className="text-green-600 dark:text-green-400" />
-                <span className="text-green-600 dark:text-green-400 font-medium text-sm">
+              <div className="inline-flex items-center gap-2 bg-violet-100 dark:bg-violet-900/20 px-4 py-2 rounded-full mb-4">
+                <FaRocket className="text-violet-600 dark:text-violet-400" />
+                <span className="text-violet-600 dark:text-violet-400 font-medium text-sm">
                   {t('referral_process_label', 'Simple Process')}
                 </span>
               </div>
               <h2 className="text-3xl md:text-5xl font-bold mb-4 text-light-text dark:text-white font-montserrat-alt">
                 {t('referral_how_title', 'How It Works')}
               </h2>
-              <p className="text-gray-600 dark:text-white/70 max-w-2xl mx-auto font-inter">
+              <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-inter">
                 {t('referral_how_subtitle', 'Simple 4-step process to start earning')}
               </p>
             </motion.div>
@@ -404,7 +404,7 @@ const Referrals = () => {
 
                   <motion.div
                     whileHover={{ y: -5, boxShadow: "0 10px 40px -15px rgba(0, 0, 0, 0.1)" }}
-                    className="bg-white dark:bg-[#1a1a1a] p-8 rounded-2xl border border-gray-200 dark:border-gray-700 relative z-10 h-full flex flex-col"
+                    className="bg-white dark:bg-zinc-900/90 p-8 rounded-2xl border border-slate-200 dark:border-zinc-700/50 relative z-10 h-full flex flex-col"
                   >
                     <div className="flex items-center gap-4 mb-6">
                       <div className="w-14 h-14 rounded-full bg-gradient-to-r from-violet-600 to-purple-600 flex items-center justify-center text-white font-bold text-xl shadow-lg">
@@ -418,7 +418,7 @@ const Referrals = () => {
                     <h3 className="text-xl font-bold text-light-text dark:text-white mb-3 font-montserrat-alt">
                       {step.title}
                     </h3>
-                    <p className="text-gray-600 dark:text-white/70 font-inter">
+                    <p className="text-slate-600 dark:text-slate-400 font-inter">
                       {step.description}
                     </p>
                   </motion.div>
@@ -429,7 +429,7 @@ const Referrals = () => {
         </section>
 
         {/* Testimonial/Screenshot Section */}
-        <section className="py-24 px-6 bg-gray-50 dark:bg-[#0d0d0d] relative overflow-hidden">
+        <section className="py-24 px-6 bg-slate-50 dark:bg-dark-body relative overflow-hidden">
           <motion.div
             className="absolute -top-40 -right-40 w-80 h-80 bg-violet-500/5 rounded-full blur-3xl"
             animate={{
@@ -459,7 +459,7 @@ const Referrals = () => {
               <h2 className="text-3xl md:text-5xl font-bold mb-4 text-light-text dark:text-white font-montserrat-alt">
                 {t('referral_proof_title', 'Real Referrals, Real Results')}
               </h2>
-              <p className="text-gray-600 dark:text-white/70 max-w-2xl mx-auto font-inter">
+              <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-inter">
                 {t('referral_proof_subtitle', 'See what clients say about working with referred talent')}
               </p>
             </motion.div>
@@ -472,21 +472,21 @@ const Referrals = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
               >
-                <div className="bg-white dark:bg-[#1a1a1a] p-8 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-xl h-full">
+                <div className="bg-white dark:bg-zinc-900/90 p-8 rounded-2xl border border-slate-200 dark:border-zinc-700/50 shadow-xl h-full">
                   <div className="flex items-center gap-4 mb-8">
                     <div className="flex gap-1">
                       {[...Array(5)].map((_, i) => (
                         <BsStar key={i} className="text-yellow-400 fill-current" size={22} />
                       ))}
                     </div>
-                    <span className="text-sm text-gray-600 dark:text-white/70 font-inter">
+                    <span className="text-sm text-slate-600 dark:text-slate-400 font-inter">
                       {t('referral_verified', 'Verified Referral')}
                     </span>
                   </div>
 
                   <div className="relative mb-8">
                     <FaQuoteLeft className="text-violet-100 dark:text-violet-900/30 absolute -top-6 -left-4" size={50} />
-                    <p className="text-lg text-gray-700 dark:text-white/90 italic relative z-10 font-inter">
+                    <p className="text-lg text-slate-700 dark:text-slate-300 italic relative z-10 font-inter">
                       "{t('referral_testimonial_text', 'Working with Simeon through a referral was one of the best decisions. The quality of work exceeded expectations and the referral bonus was paid promptly.')}"
                     </p>
                   </div>
@@ -499,7 +499,7 @@ const Referrals = () => {
                       <p className="font-semibold text-light-text dark:text-white font-montserrat-alt">
                         {t('referral_testimonial_name', 'Happy Client')}
                       </p>
-                      <p className="text-sm text-gray-600 dark:text-white/70 font-inter">
+                      <p className="text-sm text-slate-600 dark:text-slate-400 font-inter">
                         {t('referral_testimonial_project', 'E-commerce Website Project')}
                       </p>
                     </div>
@@ -513,7 +513,7 @@ const Referrals = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
-                className="bg-white dark:bg-[#1a1a1a] p-8 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-xl"
+                className="bg-white dark:bg-zinc-900/90 p-8 rounded-2xl border border-slate-200 dark:border-zinc-700/50 shadow-xl"
               >
                 <h3 className="text-xl font-bold text-light-text dark:text-white mb-4 font-montserrat-alt">
                   {t('referral_screenshot_title', 'Client Confirmation Screenshot')}
@@ -536,8 +536,8 @@ const Referrals = () => {
                       }}
                     />
                   ) : (
-                    <div id="fallback-message" className="bg-gray-100 dark:bg-gray-800 rounded-xl p-10 flex items-center justify-center">
-                      <div className="text-center text-gray-500 dark:text-gray-400 py-8">
+                    <div id="fallback-message" className="bg-slate-100 dark:bg-zinc-800 rounded-xl p-10 flex items-center justify-center">
+                      <div className="text-center text-slate-500 dark:text-slate-400 py-8">
                         <p className="mb-2">{t('referral_screenshot_placeholder', '[Add your screenshot here]')}</p>
                         <p className="text-sm">{t('referral_screenshot_note', 'Upload the screenshot of client confirmation to src/assets/referral-proof.png')}</p>
                       </div>
@@ -545,7 +545,7 @@ const Referrals = () => {
                   )}
                 </div>
 
-                <p className="mt-4 text-sm text-gray-600 dark:text-white/70 font-inter">
+                <p className="mt-4 text-sm text-slate-600 dark:text-slate-400 font-inter">
                   {t('referral_screenshot_caption', 'Real conversation with a client who was referred by a friend. Privacy details have been blurred.')}
                 </p>
               </motion.div>
@@ -575,16 +575,16 @@ const Referrals = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <div className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900/20 px-4 py-2 rounded-full mb-4">
-                <HiOutlineLightBulb className="text-orange-600 dark:text-orange-400" />
-                <span className="text-orange-600 dark:text-orange-400 font-medium text-sm">
+              <div className="inline-flex items-center gap-2 bg-violet-100 dark:bg-violet-900/20 px-4 py-2 rounded-full mb-4">
+                <HiOutlineLightBulb className="text-violet-600 dark:text-violet-400" />
+                <span className="text-violet-600 dark:text-violet-400 font-medium text-sm">
                   {t('referral_benefits_label', 'Key Benefits')}
                 </span>
               </div>
               <h2 className="text-3xl md:text-5xl font-bold mb-4 text-light-text dark:text-white font-montserrat-alt">
                 {t('referral_benefits_title', 'Why Refer?')}
               </h2>
-              <p className="text-gray-600 dark:text-white/70 max-w-2xl mx-auto font-inter">
+              <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-inter">
                 {t('referral_benefits_subtitle', 'Multiple benefits for being a referral partner')}
               </p>
             </motion.div>
@@ -601,7 +601,7 @@ const Referrals = () => {
                   key={index}
                   variants={itemVariants}
                   whileHover={{ scale: 1.02 }}
-                  className="bg-white dark:bg-[#1a1a1a] p-8 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300"
+                  className="bg-white dark:bg-zinc-900/90 p-8 rounded-xl border border-slate-200 dark:border-zinc-700/50 hover:shadow-xl transition-all duration-300"
                 >
                   <div className="flex items-start gap-5">
                     <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-violet-100 to-violet-200 dark:bg-violet-900/20 flex items-center justify-center text-violet-600 dark:text-violet-400 flex-shrink-0 shadow-sm">
@@ -611,7 +611,7 @@ const Referrals = () => {
                       <h3 className="text-xl font-bold text-light-text dark:text-white mb-3 font-montserrat-alt">
                         {benefit.title}
                       </h3>
-                      <p className="text-gray-600 dark:text-white/70 font-inter">
+                      <p className="text-slate-600 dark:text-slate-400 font-inter">
                         {benefit.description}
                       </p>
                     </div>
@@ -680,9 +680,9 @@ const Referrals = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <div className="inline-flex items-center gap-2 bg-teal-100 dark:bg-teal-900/20 px-4 py-2 rounded-full mb-4">
-                <BsCheckCircleFill className="text-teal-600 dark:text-teal-400" />
-                <span className="text-teal-600 dark:text-teal-400 font-medium text-sm">
+              <div className="inline-flex items-center gap-2 bg-violet-100 dark:bg-violet-900/20 px-4 py-2 rounded-full mb-4">
+                <BsCheckCircleFill className="text-violet-600 dark:text-violet-400" />
+                <span className="text-violet-600 dark:text-violet-400 font-medium text-sm">
                   {t('referral_faq_label', 'Questions & Answers')}
                 </span>
               </div>
@@ -699,7 +699,7 @@ const Referrals = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white dark:bg-[#1a1a1a] rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden"
+                  className="bg-white dark:bg-zinc-900/90 rounded-xl border border-slate-200 dark:border-zinc-700/50 overflow-hidden"
                 >
                   <button
                     onClick={() => toggleFaq(index)}
@@ -713,7 +713,7 @@ const Referrals = () => {
                       transition={{ duration: 0.3 }}
                     >
                       <BsChevronDown
-                        className={`transform transition-transform ${activeFaq === index ? 'rotate-180' : ''} text-gray-600 dark:text-white/70`}
+                        className={`transform transition-transform ${activeFaq === index ? 'rotate-180' : ''} text-slate-600 dark:text-slate-400`}
                         size={18}
                       />
                     </motion.div>
@@ -729,8 +729,8 @@ const Referrals = () => {
                         className="overflow-hidden"
                       >
                         <div className="px-6 pb-5">
-                          <div className="w-full h-px bg-gray-200 dark:bg-gray-700 mb-4"></div>
-                          <p className="text-gray-600 dark:text-white/70 font-inter">
+                          <div className="w-full h-px bg-slate-200 dark:bg-zinc-700/50 mb-4"></div>
+                          <p className="text-slate-600 dark:text-slate-400 font-inter">
                             {faq.a}
                           </p>
                         </div>

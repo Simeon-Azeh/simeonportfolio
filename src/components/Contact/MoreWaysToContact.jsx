@@ -38,9 +38,9 @@ const MoreWaysToContact = () => {
     {
       icon: <FaEnvelope />,
       label: t('email', 'Email'),
-      value: 'hello@simeonazeh.com',
+      value: 'hello@simeonazeh.me',
       action: 'copy',
-      link: 'mailto:hello@simeonazeh.com'
+      link: 'mailto:hello@simeonazeh.me'
     },
     {
       icon: <FaMapMarkerAlt />,

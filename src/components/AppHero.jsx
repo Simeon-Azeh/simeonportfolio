@@ -155,7 +155,7 @@ function AppHero() {
   };
 
   return (
-    <div className="min-h-[90vh] bg-gradient-to-b from-light-body to-[#F9FEFF] dark:from-dark-body  transition-colors duration-500 py-16 overflow-hidden">
+    <div className="min-h-[90vh] bg-gradient-to-b from-light-body to-slate-50 dark:from-dark-body dark:to-dark-body transition-colors duration-500 py-16 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5 dark:hidden">
         <div className="absolute inset-0 bg-grid-pattern dark:hidden"></div>
@@ -208,7 +208,7 @@ function AppHero() {
           {/* Expanded view toggle */}
           <motion.button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="absolute top-0 right-4 z-30 bg-white/80 border border-violet-600 dark:bg-[#1a1a1a] dark:border dark:border-gray-800 backdrop-blur-sm rounded-full py-1.5 px-4 text-sm font-medium text-violet-600 dark:text-violet-400 "
+            className="absolute top-0 right-4 z-30 bg-white/80 border border-violet-600 dark:bg-zinc-900/90 dark:border-zinc-700/50 backdrop-blur-sm rounded-full py-1.5 px-4 text-sm font-medium text-violet-600 dark:text-violet-400 "
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -232,7 +232,7 @@ function AppHero() {
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    className="absolute left-0 sm:left-6 md:left-10 z-20 border border-violet-600 bg-white/90 dark:bg-[#1a1a1a] dark:border dark:border-gray-800 backdrop-blur-sm rounded-full p-2 sm:p-3 shadow-lg text-violet-600 dark:text-violet-400"
+                    className="absolute left-0 sm:left-6 md:left-10 z-20 border border-violet-600 bg-white/90 dark:bg-zinc-900/90 dark:border-zinc-700/50 backdrop-blur-sm rounded-full p-2 sm:p-3 shadow-lg text-violet-600 dark:text-violet-400"
                     onClick={prevMockup}
                     aria-label="Previous project"
                   >
@@ -313,7 +313,7 @@ function AppHero() {
                               initial={{ opacity: 0, y: 20 }}
                               animate={{ opacity: 1, y: 0 }}
                               transition={{ delay: 0.3 }}
-                              className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 bg-white dark:bg-[#1a1a1a] dark:border dark:border-gray-800 dark:text-white text-gray-900 
+                              className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 bg-white dark:bg-zinc-900/90 dark:border dark:border-zinc-700/50 dark:text-white text-gray-900 
                       rounded-xl p-3 sm:p-4 md:p-5 shadow-xl dark:shadow-gray-900/30 w-[200px] sm:w-[320px] md:w-[380px]"
                               style={{
                                 borderTop: `3px solid ${mockup.color}`
@@ -339,7 +339,7 @@ function AppHero() {
                                     href={mockup.playStoreLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="bg-gray-100 dark:bg-[#1a1a1a]/20 dark:border dark:border-gray-800 hover:bg-gray-200 dark:hover:bg-gray-900 transition-colors rounded-full p-2 w-10 h-10 flex items-center justify-center"
+                                    className="bg-gray-100 dark:bg-zinc-800/80 dark:border dark:border-zinc-700/50 hover:bg-gray-200 dark:hover:bg-zinc-700 transition-colors rounded-full p-2 w-10 h-10 flex items-center justify-center"
                                     whileHover={{ y: -2 }}
                                     whileTap={{ scale: 0.95 }}
                                     aria-label="Download from Google Play"
@@ -382,7 +382,7 @@ function AppHero() {
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    className="absolute right-0 sm:right-6 md:right-10 z-20 bg-white/90 dark:bg-[#1a1a1a] dark:border dark:border-gray-800 backdrop-blur-sm rounded-full p-2 sm:p-3 shadow-lg text-violet-600 dark:text-violet-400"
+                    className="absolute right-0 sm:right-6 md:right-10 z-20 bg-white/90 dark:bg-zinc-900/90 dark:border-zinc-700/50 backdrop-blur-sm rounded-full p-2 sm:p-3 shadow-lg text-violet-600 dark:text-violet-400"
                     onClick={nextMockup}
                     aria-label="Next project"
                   >
@@ -419,9 +419,9 @@ function AppHero() {
               >
                 {/* Left: Screenshots gallery */}
                 <div className="flex-1">
-                  <div className="relative rounded-xl overflow-hidden bg-white/5 dark:bg-[#1a1a1a] backdrop-blur-sm border border-gray-200 dark:border-gray-800 shadow-xl">
+                  <div className="relative rounded-xl overflow-hidden bg-white/5 dark:bg-zinc-900/90 backdrop-blur-sm border border-gray-200 dark:border-zinc-700/50 shadow-xl">
                     {/* Current screenshot with theme-based images */}
-                    <div className="relative aspect-mobile md:aspect-[9/16] w-full max-h-[600px] overflow-hidden flex items-center justify-center bg-white dark:bg-[#1a1a1a]">
+                    <div className="relative aspect-mobile md:aspect-[9/16] w-full max-h-[600px] overflow-hidden flex items-center justify-center bg-white dark:bg-zinc-900">
                       {getThemeBasedScreenshots(mockupImages[currentMockup]).map((screenshot, idx) => (
                         <motion.div
                           key={`screenshot-${idx}-${isDarkMode ? 'dark' : 'light'}`}
@@ -455,7 +455,7 @@ function AppHero() {
                     </div>
 
                     {/* App info overlay */}
-                    <div className="absolute top-4 left-4 bg-white border dark:bg-[#1a1a1a] backdrop-blur-sm rounded-lg px-3 py-2 shadow-md dark:border-gray-800">
+                    <div className="absolute top-4 left-4 bg-white border dark:bg-zinc-900/90 backdrop-blur-sm rounded-lg px-3 py-2 shadow-md dark:border-zinc-700/50">
                       <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center">
                         {mockupImages[currentMockup].title}
                         <span className="ml-2 text-xs font-normal px-2 py-0.5 bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 rounded-full">

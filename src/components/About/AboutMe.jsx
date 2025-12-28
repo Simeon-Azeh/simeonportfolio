@@ -97,7 +97,7 @@ function AboutMe() {
   };
 
   return (
-    <div className="bg-gradient-to-b from-white to-slate-50 dark:from-[#09090b] dark:to-[#0d0d0d] transition-colors py-20 px-4 md:px-0 overflow-hidden relative">
+    <div className="bg-gradient-to-b from-white to-slate-50 dark:from-dark-body dark:to-dark-body transition-colors py-20 px-4 md:px-0 overflow-hidden relative">
       {/* Decorative background elements */}
       <motion.div
         className="absolute top-0 right-0 w-96 h-96 bg-violet-500/5 dark:bg-violet-500/10 rounded-full blur-3xl"

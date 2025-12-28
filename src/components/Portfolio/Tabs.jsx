@@ -163,7 +163,7 @@ const Tabs = () => {
         >
           <Tab.Group onChange={(index) => setActiveTab(index)}>
             {/* Enhanced Tab List */}
-            <Tab.List className="flex space-x-1 md:space-x-2 bg-white/80 dark:bg-[#1B1B1A]/80 backdrop-blur-lg border border-gray-200 dark:border-gray-800 rounded-2xl p-2 overflow-x-auto scrollbar-hide shadow-lg mb-8 md:mb-12">
+            <Tab.List className="flex space-x-1 md:space-x-2 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-lg border border-gray-200 dark:border-zinc-700/50 rounded-2xl p-2 overflow-x-auto scrollbar-hide shadow-lg mb-8 md:mb-12">
               {categories.map((category) => {
                 const IconComponent = tabIcons[category] || BiGridAlt;
                 return (
@@ -215,7 +215,7 @@ const Tabs = () => {
                             key={index}
                             data-aos="fade-up"
                             data-aos-delay={`${index * 50}`}
-                            className="group bg-white dark:bg-[#1B1B1A] border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-violet-500/10 dark:hover:shadow-violet-500/20 transition-all duration-500"
+                            className="group bg-white dark:bg-zinc-900/90 border border-gray-200 dark:border-zinc-700/50 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-violet-500/10 dark:hover:shadow-violet-500/20 transition-all duration-500"
                             whileHover={{ y: -8, scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                           >
@@ -344,7 +344,7 @@ const Tabs = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="h-full overflow-y-auto bg-white dark:bg-[#0d0d0d]"
+              className="h-full overflow-y-auto bg-white dark:bg-dark-body"
             >
               {/* Hero Image Section */}
               <div className="relative h-64 md:h-72 lg:h-96">

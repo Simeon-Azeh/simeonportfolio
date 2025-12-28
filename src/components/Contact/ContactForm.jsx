@@ -122,6 +122,32 @@ const ContactForm = () => {
 
       console.log('Form data submitted to Firestore:', submissionData);
 
+      // Send email notification via API
+      try {
+        const emailResponse = await fetch('/api/send-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            type: 'contact',
+            data: {
+              name: formData.name,
+              email: formData.email,
+              subject: formData.subject,
+              message: formData.message
+            }
+          })
+        });
+
+        if (!emailResponse.ok) {
+          console.warn('Email notification failed, but form was submitted successfully');
+        }
+      } catch (emailError) {
+        console.warn('Email notification error:', emailError);
+        // Don't fail the form submission if email fails
+      }
+
       // Success!
       setSubmitStatus('success');
       setFormData({
@@ -363,8 +389,8 @@ const ContactForm = () => {
         <div className="mt-10 text-center">
           <p className="text-gray-600 dark:text-gray-300">
             {t('prefer_email', 'Prefer to email me directly?')}
-            <a href="mailto:hello@simeonazeh.com" className="text-violet-600 dark:text-violet-400 font-medium ml-1 hover:underline">
-              hello@simeonazeh.com
+            <a href="mailto:hello@simeonazeh.me" className="text-violet-600 dark:text-violet-400 font-medium ml-1 hover:underline">
+              hello@simeonazeh.me
             </a>
           </p>
         </div>

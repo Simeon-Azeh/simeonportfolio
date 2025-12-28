@@ -249,6 +249,7 @@ function Header() {
           </div>
 
           <NavLink to="/services" isActive={isActive("/services")} label={t('services')} />
+          <NavLink to="/seo" isActive={isActive("/seo")} label={t('seo', 'SEO')} />
 
           {/* Referrals Link with New Badge */}
           <div className="relative">
@@ -515,6 +516,7 @@ function Header() {
                   <MobileNavLink to="/" label={t('home')} isActive={isActive("/")} />
                   <MobileNavLink to="/resume" label={t('resume')} isActive={isActive("/resume")} />
                   <MobileNavLink to="/services" label={t('services')} isActive={isActive("/services")} />
+                  <MobileNavLink to="/seo" label={t('seo', 'SEO')} isActive={isActive("/seo")} />
                   <MobileNavLink to="/portfolio" label={t('portfolio')} isActive={isActive("/portfolio")} />
 
                   {/* Mobile Referral Link with New Badge */}
@@ -629,7 +631,7 @@ const SocialLinks = ({ mobile = false }) => {
 
   return (
     <>
-     <motion.a
+      <motion.a
         href="https://github.com/Simeon-Azeh"
         target="_blank"
         rel="noopener noreferrer"
@@ -639,7 +641,7 @@ const SocialLinks = ({ mobile = false }) => {
       >
         <FaGithub size={20} />
       </motion.a>
-         <motion.a
+      <motion.a
         href="https://www.linkedin.com/in/simeonazeh"
         target="_blank"
         rel="noopener noreferrer"
@@ -659,8 +661,8 @@ const SocialLinks = ({ mobile = false }) => {
       >
         <FaFacebook size={20} />
       </motion.a>
-   
-     
+
+
     </>
   );
 };

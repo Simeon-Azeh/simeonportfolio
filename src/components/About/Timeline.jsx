@@ -199,7 +199,7 @@ function Timeline() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-white dark:bg-dark-body py-16 relative overflow-hidden transition-colors duration-500 ease-smooth"
+      className="bg-white dark:bg-dark-body py-16 relative overflow-hidden transition-colors duration-500 ease-smooth font-inter"
     >
       {/* Background Pattern */}
       <motion.div

@@ -47,7 +47,7 @@ const Settings = () => {
             setDefaultResponses({
               greeting: parsedSettings.defaultResponses?.greeting || "Hi there! How can I assist you with Simeon's services today?",
               fallback: parsedSettings.defaultResponses?.fallback || "I'm sorry, I don't quite understand. Would you like me to connect you with Simeon?",
-              contactRequest: parsedSettings.defaultResponses?.contactRequest || "You can reach Simeon at hello@simeonazeh.com or through the contact form.",
+              contactRequest: parsedSettings.defaultResponses?.contactRequest || "You can reach Simeon at hello@simeonazeh.me or through the contact form.",
               serviceInfo: parsedSettings.defaultResponses?.serviceInfo || "Simeon offers web development, UI/UX design, and digital marketing services.",
             });
             setMessageRetention(parsedSettings.messageRetention || 30);
@@ -60,7 +60,7 @@ const Settings = () => {
             setDefaultResponses({
               greeting: "Hi there! How can I assist you with Simeon's services today?",
               fallback: "I'm sorry, I don't quite understand. Would you like me to connect you with Simeon?",
-              contactRequest: "You can reach Simeon at hello@simeonazeh.com or through the contact form.",
+              contactRequest: "You can reach Simeon at hello@simeonazeh.me or through the contact form.",
               serviceInfo: "Simeon offers web development, UI/UX design, and digital marketing services.",
             });
             setMessageRetention(30);
@@ -123,7 +123,7 @@ const Settings = () => {
       setDefaultResponses({
         greeting: "Hi there! How can I assist you with Simeon's services today?",
         fallback: "I'm sorry, I don't quite understand. Would you like me to connect you with Simeon?",
-        contactRequest: "You can reach Simeon at hello@simeonazeh.com or through the contact form.",
+        contactRequest: "You can reach Simeon at hello@simeonazeh.me or through the contact form.",
         serviceInfo: "Simeon offers web development, UI/UX design, and digital marketing services.",
       });
       setMessageRetention(30);
